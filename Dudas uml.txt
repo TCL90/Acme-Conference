@@ -1,0 +1,10 @@
+List<String> o String[*] -> authors? ,speakers
+
+Dejar Box aunque no se necesite? Conservar mas codigo?
+
+Comments? 27
+
+schedule en Activty -> Yo lo interprete como start moment + duration
+
+CameraReadyVersion debería aparecer también en submission? 13.2
+
