@@ -16,6 +16,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -23,11 +24,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Message extends DomainEntity {
 
 	private Date				moment;
-	private String				priority;
-	private String				tag;
+	private String				topic;
 	private String				body;
 	private String				subject;
-	private boolean				flagSpam;
 	private boolean				broadcast;
 
 	private Actor				sender;
@@ -46,21 +45,7 @@ public class Message extends DomainEntity {
 	}
 
 	@NotBlank
-	public String getPriority() {
-		return this.priority;
-	}
-	public void setPriority(final String priority) {
-		this.priority = priority;
-	}
-
-	public String getTag() {
-		return this.tag;
-	}
-	public void setTag(final String tag) {
-		this.tag = tag;
-	}
-
-	@NotBlank
+	@SafeHtml
 	public String getBody() {
 		return this.body;
 	}
@@ -69,17 +54,12 @@ public class Message extends DomainEntity {
 	}
 
 	@NotBlank
+	@SafeHtml
 	public String getSubject() {
 		return this.subject;
 	}
 	public void setSubject(final String subject) {
 		this.subject = subject;
-	}
-	public boolean getFlagSpam() {
-		return this.flagSpam;
-	}
-	public void setFlagSpam(final boolean flagSpam) {
-		this.flagSpam = flagSpam;
 	}
 
 	public boolean isBroadcast() {
@@ -105,6 +85,16 @@ public class Message extends DomainEntity {
 	}
 	public void setRecipients(final Collection<Actor> recipients) {
 		this.recipients = recipients;
+	}
+
+	@SafeHtml
+	@NotBlank
+	public String getTopic() {
+		return this.topic;
+	}
+
+	public void setTopic(final String topic) {
+		this.topic = topic;
 	}
 	@Override
 	public String toString() {

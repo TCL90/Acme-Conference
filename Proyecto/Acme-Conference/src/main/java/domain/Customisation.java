@@ -1,81 +1,38 @@
 
 package domain;
 
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.SafeHtml;
+import org.hibernate.validator.constraints.URL;
 
 @Entity
 @Access(AccessType.PROPERTY)
 public class Customisation extends DomainEntity {
 
 	//ATRIBUTOS DEL SISTEMA.
-	public List<String>			negativeWords;
-	public List<String>			positiveWords;
-	public Double				finderDuration;
-	public Integer				resultsNumber;
-	public String				systemName;
-	public String				bannerURL;
-	public Collection<String>	welcomeMessage;
-	public List<String>			spamWords;
-	public String				phoneNumberCountryCode;
-	public String				messagePriorities;
+	private String			systemName;
+	private String			bannerUrl;
+	private String			welcomeMessageEng;
+	private String			welcomeMessageEsp;
+	private String			phoneNumberCode;
+	private List<String>	buzzWordsIng;
+	private List<String>	buzzWordsEsp;
+	private List<String>	topicsIng;
+	private List<String>	topicsEsp;
+	private List<String>	categoriesIng;
+	private List<String>	categoriesEsp;
+	private List<String>	creditCardMakes;
 
 
-	public enum negativeWords {   //En principio no hace falta
-		NOT, BAD, HORRIBLE, AVERAGE, DISASTER
-	};
-
-	public enum positiveWords {
-		GOOD, FANTASTIC, EXCELLENT, GREAT, AMAZING, TERRIFIC, BEAUTIFUL
-	}
-
-
-	@Column
-	@ElementCollection(targetClass = String.class)
-	public List<String> getNegativeWords() {
-		return this.negativeWords;
-	}
-
-	public void setNegativeWords(final List<String> negativeWords) {
-		this.negativeWords = negativeWords;
-	}
-	@Column
-	@ElementCollection(targetClass = String.class)
-	public List<String> getPositiveWords() {
-		return this.positiveWords;
-	}
-
-	public void setPositiveWords(final List<String> positiveWords) {
-		this.positiveWords = positiveWords;
-	}
-
-	@Min(value = 1L)
-	@Max(value = 24)
-	public Double getFinderDuration() {
-		return this.finderDuration;
-	}
-
-	public void setFinderDuration(final Double finderDuration) {
-		this.finderDuration = finderDuration;
-	}
-	@Min(value = 1L)
-	@Max(value = 100)
-	public Integer getResultsNumber() {
-		return this.resultsNumber;
-	}
-
-	public void setResultsNumber(final Integer resultsNumber) {
-		this.resultsNumber = resultsNumber;
-	}
-
+	@NotBlank
+	@SafeHtml
 	public String getSystemName() {
 		return this.systemName;
 	}
@@ -84,47 +41,105 @@ public class Customisation extends DomainEntity {
 		this.systemName = systemName;
 	}
 
-	public String getBannerURL() {
-		return this.bannerURL;
+	@NotBlank
+	@URL
+	@SafeHtml
+	public String getBannerUrl() {
+		return this.bannerUrl;
 	}
 
-	public void setBannerURL(final String bannerURL) {
-		this.bannerURL = bannerURL;
+	public void setBannerUrl(final String bannerUrl) {
+		this.bannerUrl = bannerUrl;
+	}
+	@NotBlank
+	@SafeHtml
+	public String getWelcomeMessageEng() {
+		return this.welcomeMessageEng;
+	}
+
+	public void setWelcomeMessageEng(final String welcomeMessageEng) {
+		this.welcomeMessageEng = welcomeMessageEng;
+	}
+	@NotBlank
+	@SafeHtml
+	public String getWelcomeMessageEsp() {
+		return this.welcomeMessageEsp;
+	}
+
+	public void setWelcomeMessageEsp(final String welcomeMessageEsp) {
+		this.welcomeMessageEsp = welcomeMessageEsp;
+	}
+	@NotBlank
+	@SafeHtml
+	public String getPhoneNumberCode() {
+		return this.phoneNumberCode;
+	}
+
+	public void setPhoneNumberCode(final String phoneNumberCode) {
+		this.phoneNumberCode = phoneNumberCode;
 	}
 
 	@ElementCollection(targetClass = String.class)
-	public Collection<String> getWelcomeMessage() {
-		return this.welcomeMessage;
+	public List<String> getBuzzWordsIng() {
+		return this.buzzWordsIng;
 	}
 
-	public void setWelcomeMessage(final Collection<String> welcomeMessage) {
-		this.welcomeMessage = welcomeMessage;
+	public void setBuzzWordsIng(final List<String> buzzWordsIng) {
+		this.buzzWordsIng = buzzWordsIng;
 	}
 
-	@Column
 	@ElementCollection(targetClass = String.class)
-	public List<String> getSpamWords() {
-		return this.spamWords;
+	public List<String> getBuzzWordsEsp() {
+		return this.buzzWordsEsp;
 	}
 
-	public void setSpamWords(final List<String> spamWords) {
-		this.spamWords = spamWords;
+	public void setBuzzWordsEsp(final List<String> buzzWordsEsp) {
+		this.buzzWordsEsp = buzzWordsEsp;
 	}
 
-	public String getPhoneNumberCountryCode() {
-		return this.phoneNumberCountryCode;
+	@ElementCollection(targetClass = String.class)
+	public List<String> getTopicsIng() {
+		return this.topicsIng;
 	}
 
-	public void setPhoneNumberCountryCode(final String phoneNumberCountryCode) {
-		this.phoneNumberCountryCode = phoneNumberCountryCode;
+	public void setTopicsIng(final List<String> topicsIng) {
+		this.topicsIng = topicsIng;
 	}
 
-	public String getMessagePriorities() {
-		return this.messagePriorities;
+	@ElementCollection(targetClass = String.class)
+	public List<String> getTopicsEsp() {
+		return this.topicsEsp;
 	}
 
-	public void setMessagePriorities(final String messagePriorities) {
-		this.messagePriorities = messagePriorities;
+	public void setTopicsEsp(final List<String> topicsEsp) {
+		this.topicsEsp = topicsEsp;
+	}
+
+	@ElementCollection(targetClass = String.class)
+	public List<String> getCategoriesIng() {
+		return this.categoriesIng;
+	}
+
+	public void setCategoriesIng(final List<String> categoriesIng) {
+		this.categoriesIng = categoriesIng;
+	}
+
+	@ElementCollection(targetClass = String.class)
+	public List<String> getCategoriesEsp() {
+		return this.categoriesEsp;
+	}
+
+	public void setCategoriesEsp(final List<String> categoriesEsp) {
+		this.categoriesEsp = categoriesEsp;
+	}
+
+	@ElementCollection(targetClass = String.class)
+	public List<String> getCreditCardMakes() {
+		return this.creditCardMakes;
+	}
+
+	public void setCreditCardMakes(final List<String> creditCardMakes) {
+		this.creditCardMakes = creditCardMakes;
 	}
 
 }
