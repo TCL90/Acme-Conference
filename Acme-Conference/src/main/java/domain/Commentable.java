@@ -12,7 +12,7 @@ import javax.validation.Valid;
 @Access(AccessType.PROPERTY)
 public class Commentable extends DomainEntity {
 
-	private List<Commentary>	comments;
+	private List<Comment>	comments;
 
 
 	@Valid
