@@ -21,7 +21,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Activity extends DomainEntity {
+public class Activity extends Commentable {
 
 	private String			title;
 	private List<String>	speakers;

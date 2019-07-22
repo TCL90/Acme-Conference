@@ -15,7 +15,7 @@ import org.hibernate.validator.constraints.SafeHtml;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Report extends DomainEntity {
+public class Report extends Commentable {
 
 	private int		originalityScore;
 	private int		qualityScore;

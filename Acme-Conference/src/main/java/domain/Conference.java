@@ -20,7 +20,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Conference extends DomainEntity {
+public class Conference extends Commentable {
 
 	private String	title;
 	private String	acronym;
