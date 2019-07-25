@@ -26,8 +26,7 @@ public class Customisation extends DomainEntity {
 	private List<String>	buzzWordsEsp;
 	private List<String>	topicsIng;
 	private List<String>	topicsEsp;
-	private List<String>	categoriesIng;
-	private List<String>	categoriesEsp;
+
 	private List<String>	creditCardMakes;
 
 
@@ -113,24 +112,6 @@ public class Customisation extends DomainEntity {
 
 	public void setTopicsEsp(final List<String> topicsEsp) {
 		this.topicsEsp = topicsEsp;
-	}
-
-	@ElementCollection(targetClass = String.class)
-	public List<String> getCategoriesIng() {
-		return this.categoriesIng;
-	}
-
-	public void setCategoriesIng(final List<String> categoriesIng) {
-		this.categoriesIng = categoriesIng;
-	}
-
-	@ElementCollection(targetClass = String.class)
-	public List<String> getCategoriesEsp() {
-		return this.categoriesEsp;
-	}
-
-	public void setCategoriesEsp(final List<String> categoriesEsp) {
-		this.categoriesEsp = categoriesEsp;
 	}
 
 	@ElementCollection(targetClass = String.class)

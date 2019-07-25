@@ -124,11 +124,22 @@
 			</list>
 		</property>
 	</bean>	
-	<!-- Other domain beans come here -->
+	
+	<bean id="userAccount9" class="security.UserAccount">
+		<property name="username" value="admin2" />
+		<property name="password" value="c84258e9c39059a89ab77d846ddab909" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
 	
 	<!-- ******************************ADMINISTRATOR************************************* -->	
 	
-	<bean id="admin" class="domain.Administrator">
+	<bean id="admin1" class="domain.Administrator">
 		<property name="name" value="administrator1" />
 		<property name="middleName" value="" />
 		<property name="surname" value="Exposito" />
@@ -146,96 +157,74 @@
 			</list>
 		</property>
 		
-		<property name="holderName" value="Admin Admin"/>
-		<property name="makeName" value="VISA"/>
-		<property name="number" value="4083602396731593"/>
-		<property name="expirationYear" value="2025"/>
-		<property name="expirationMonth" value="5"/>
-		<property name="cvv" value="583"/>
 
-</bean>
+
+	</bean>
+	
+	<bean id="admin2" class="domain.Administrator">
+		<property name="name" value="Administrador" />
+		<property name="middleName" value="Admin" />
+		<property name="surname" value="Exposito" />
+		<property name="phoneNumber" value="+34 651236248" />
+		<property name="address" value="C/ Wednesday, nº 2" />
+		<property name="email" value="admin2@" />
+		<property name="photo" value="http://wwww.photo2.com" />
+		<property name="userAccount" ref="userAccount9" />
+
+		<property name="Boxes">
+			<list>
+				<ref bean="in8" />
+				<ref bean="notification8" />
+				<ref bean="out8" />
+			</list>
+		</property>
+		
+
+
+	</bean>
 
 <!-- ******************************AUTHOR************************************* -->	
-<bean id="author1" class="domain.Author">
-		<property name="name" value="author1" />
-		<property name="middleName" value="CG" />
-		<property name="surname" value="Prueba" />
-		<property name="phoneNumber" value="+34 654455555" />
-		<property name="address" value="C/ Saturday, nº 11" />
-		<property name="email" value="author@gmail.com" />
-		<property name="photo" value="http://wwww.photo2.com" />
-		<property name="userAccount" ref="userAccount4" />
+	<bean id="author1" class="domain.Author">
+			<property name="name" value="author1" />
+			<property name="middleName" value="CG" />
+			<property name="surname" value="Prueba" />
+			<property name="phoneNumber" value="+34 654455555" />
+			<property name="address" value="C/ Saturday, nº 11" />
+			<property name="email" value="author@gmail.com" />
+			<property name="photo" value="http://wwww.photo2.com" />
+			<property name="userAccount" ref="userAccount4" />
+	
+			<property name="Boxes">
+				<list>
+					<ref bean="in2" />
+					<ref bean="notification2" />
+					<ref bean="out2" />
+				</list>
+			</property>
+	</bean>
 
-		<property name="Boxes">
-			<list>
-				<ref bean="in2" />
-				<ref bean="notification2" />
-				<ref bean="out2" />
-			</list>
-		</property>
-		
-		<property name="holderName" value="Author Author"/>
-		<property name="makeName" value="VISA"/>
-		<property name="number" value="5083602396731593"/>
-		<property name="expirationYear" value="2025"/>
-		<property name="expirationMonth" value="6"/>
-		<property name="cvv" value="588"/>
+	<bean id="author2" class="domain.Author">
+			<property name="name" value="author2" />
+			<property name="middleName" value="CC" />
+			<property name="surname" value="Prueba2" />
+			<property name="phoneNumber" value="+34 654455556" />
+			<property name="address" value="C/ Saturday, nº 12" />
+			<property name="email" value="author2@gmail.com" />
+			<property name="photo" value="http://wwww.photo3.com" />
+			<property name="userAccount" ref="userAccount5" />
+	
+			<property name="Boxes">
+				<list>
+					<ref bean="in3" />
+					<ref bean="notification3" />
+					<ref bean="out3" />
+				</list>
+			</property>
+	
+	
+	</bean>	
 
-</bean>
 
-<bean id="author2" class="domain.Author">
-		<property name="name" value="author2" />
-		<property name="middleName" value="CC" />
-		<property name="surname" value="Prueba2" />
-		<property name="phoneNumber" value="+34 654455556" />
-		<property name="address" value="C/ Saturday, nº 12" />
-		<property name="email" value="author2@gmail.com" />
-		<property name="photo" value="http://wwww.photo3.com" />
-		<property name="userAccount" ref="userAccount5" />
-
-		<property name="Boxes">
-			<list>
-				<ref bean="in3" />
-				<ref bean="notification3" />
-				<ref bean="out3" />
-			</list>
-		</property>
-		
-		<property name="holderName" value="Author2 Author2"/>
-		<property name="makeName" value="VISA"/>
-		<property name="number" value="5083602396731594"/>
-		<property name="expirationYear" value="2025"/>
-		<property name="expirationMonth" value="4"/>
-		<property name="cvv" value="589"/>
-
-</bean>	
-
-<bean id="author2" class="domain.Author">
-		<property name="name" value="author2" />
-		<property name="middleName" value="CC" />
-		<property name="surname" value="Prueba2" />
-		<property name="phoneNumber" value="+34 654455556" />
-		<property name="address" value="C/ Saturday, nº 12" />
-		<property name="email" value="author2@gmail.com" />
-		<property name="photo" value="http://wwww.photo3.com" />
-		<property name="userAccount" ref="userAccount5" />
-
-		<property name="Boxes">
-			<list>
-				<ref bean="in3" />
-				<ref bean="notification3" />
-				<ref bean="out3" />
-			</list>
-		</property>
-		
-		<property name="holderName" value="Author2 Author2"/>
-		<property name="makeName" value="VISA"/>
-		<property name="number" value="5083602396731594"/>
-		<property name="expirationYear" value="2025"/>
-		<property name="expirationMonth" value="4"/>
-		<property name="cvv" value="589"/>
-
-</bean>
 
 <!-- ******************************REVIEWER************************************* -->	
 <bean id="reviewer1" class="domain.Reviewer">
@@ -255,14 +244,12 @@
 				<ref bean="out4" />
 			</list>
 		</property>
-		
-		<property name="holderName" value="Reviewer1 Reviewer1"/>
-		<property name="makeName" value="VISA"/>
-		<property name="number" value="5083602396731595"/>
-		<property name="expirationYear" value="2025"/>
-		<property name="expirationMonth" value="3"/>
-		<property name="cvv" value="590"/>
-
+		<property name="expertise">
+			<list>
+				<value>research</value>
+				<value>reviews</value>
+			</list>
+		</property>
 </bean>
 
 <bean id="reviewer2" class="domain.Reviewer">
@@ -283,12 +270,12 @@
 			</list>
 		</property>
 		
-		<property name="holderName" value="Reviewer2 Reviewer2"/>
-		<property name="makeName" value="VISA"/>
-		<property name="number" value="5083602396731596"/>
-		<property name="expirationYear" value="2025"/>
-		<property name="expirationMonth" value="2"/>
-		<property name="cvv" value="591"/>
+		<property name="expertise">
+			<list>
+				<value>research</value>
+				<value>reviews</value>
+			</list>
+		</property>
 
 </bean>
 
@@ -310,17 +297,12 @@
 				<ref bean="out6" />
 			</list>
 		</property>
-		
-		<property name="holderName" value="Sponsor1 Sponsor1"/>
-		<property name="makeName" value="VISA"/>
-		<property name="number" value="5083602396731597"/>
-		<property name="expirationYear" value="2025"/>
-		<property name="expirationMonth" value="1"/>
-		<property name="cvv" value="592"/>
+
+
 	
 </bean>
 
-<bean id="sponsor1" class="domain.Sponsor">
+<bean id="sponsor2" class="domain.Sponsor">
 		<property name="name" value="Sponsor2" />
 		<property name="middleName" value="SP2" />
 		<property name="surname" value="Prueba6" />
@@ -338,13 +320,289 @@
 			</list>
 		</property>
 		
-		<property name="holderName" value="Sponsor2 Sponsor2"/>
-		<property name="makeName" value="VISA"/>
-		<property name="number" value="5083602396731598"/>
-		<property name="expirationYear" value="2025"/>
-		<property name="expirationMonth" value="12"/>
-		<property name="cvv" value="593"/>
+
 
 </bean>
+
+
+
+	<bean id="customisation1" class="domain.Customisation">
+		<property name="systemName" value="Acme Conference" /> 
+		<property name="bannerUrl" value="https://i.ibb.co/GVpZCtM/acme-conference.png" /> 
+		<property name="welcomeMessageEng" value="Welcome to Acme Conference! Your scientific event manager" /> 
+		<property name="welcomeMessageEsp" value="¡Bienvenidos a Acme Conference!  Su gestor de eventos científicos" /> 
+		<property name="phoneNumberCode" value="+34" /> 
+		<property name="creditCardMakes">
+			<list>
+				<value>VISA</value>
+				<value>MASTER</value>
+				<value>DINNERS</value>
+				<value>AMEX</value>
+			</list>
+		</property>
+		<property name="buzzWordsIng">
+			<list>
+
+			</list>
+		</property>
+		<property name="buzzWordsEsp">
+			<list>
+
+			</list>
+		</property>
+		<property name="topicsIng">
+			<list>
+
+			</list>
+		</property>
+		<property name="topicsEsp">
+			<list>
+
+			</list>
+		</property>
+	</bean>
+
+<!-- ============================= BOXES ======================== -->
+
+	<bean id="in1" class="domain.Box">
+		<property name="name" value="In" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="notification1" class="domain.Box">
+		<property name="name" value="Notification" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="out1" class="domain.Box">
+		<property name="name" value="Out" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="in2" class="domain.Box">
+		<property name="name" value="In" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="notification2" class="domain.Box">
+		<property name="name" value="Notification" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="out2" class="domain.Box">
+		<property name="name" value="Out" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="in3" class="domain.Box">
+		<property name="name" value="In" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="notification3" class="domain.Box">
+		<property name="name" value="Notification" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="out3" class="domain.Box">
+		<property name="name" value="Out" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="in4" class="domain.Box">
+		<property name="name" value="In" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="notification4" class="domain.Box">
+		<property name="name" value="Notification" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="out4" class="domain.Box">
+		<property name="name" value="Out" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="in5" class="domain.Box">
+		<property name="name" value="In" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="notification5" class="domain.Box">
+		<property name="name" value="Notification" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="out5" class="domain.Box">
+		<property name="name" value="Out" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="in6" class="domain.Box">
+		<property name="name" value="In" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="notification6" class="domain.Box">
+		<property name="name" value="Notification" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="out6" class="domain.Box">
+		<property name="name" value="Out" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="in7" class="domain.Box">
+		<property name="name" value="In" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="notification7" class="domain.Box">
+		<property name="name" value="Notification" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="out7" class="domain.Box">
+		<property name="name" value="Out" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+
+
+	<bean id="in8" class="domain.Box">
+		<property name="name" value="In" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="notification8" class="domain.Box">
+		<property name="name" value="Notification" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="out8" class="domain.Box">
+		<property name="name" value="Out" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+<!-- ******************************REGISTRATION************************************* -->	
+
+	<bean id="registration1" class="domain.Registration">
+			<property name="holderName" value="Author1 Author1"/>
+			<property name="makeName" value="VISA"/>
+			<property name="number" value="5083602396731598"/>
+			<property name="expirationYear" value="2025"/>
+			<property name="expirationMonth" value="12"/>
+			<property name="cvv" value="123"/>
+			
+			<property name="author" ref="author1" />
+			<property name="conference" ref="conference1" />
+	
+	</bean>
+	
+	<bean id="registration2" class="domain.Registration">
+			<property name="holderName" value="Author2 Author2"/>
+			<property name="makeName" value="VISA"/>
+			<property name="number" value="51233602396731598"/>
+			<property name="expirationYear" value="2025"/>
+			<property name="expirationMonth" value="12"/>
+			<property name="cvv" value="234"/>
+			
+			<property name="author" ref="author2" />
+			<property name="conference" ref="conference2" />
+	
+	</bean>
+	
+	<!-- ================== CONFERENCES ================= -->
+	<bean id="conference1" class="domain.Conference">
+			<property name="title" value="Conference about natural language processing"/>
+			<property name="acronym" value="CNLP"/>
+			<property name="venue" value="FIBES, Sevilla"/>
+			<property name="submissionDeadline" value="2019/11/11 10:00:00"/>
+			<property name="notificationDeadline" value="2019/11/13 10:00:00"/>
+			<property name="cameraReadyDeadline" value="2019/11/15 10:00:00"/>
+			<property name="startDate" value="2019/10/11 10:00:00"/>
+			<property name="endDate" value="2019/12/31 10:00:00"/>
+			<property name="summary" value="Conference about natural language processing on domain models"/>
+			<property name="fee" value="12"/>
+			<property name="finalMode" value="true"/>
+			
+			<property name="administrator" ref="admin1" />
+			<!-- <property name="conference" ref="" />  -->
+	
+	</bean>
+
+	<bean id="conference2" class="domain.Conference">
+			<property name="title" value="Conference about Artificial Intelligence"/>
+			<property name="acronym" value="CAI"/>
+			<property name="venue" value="FIBES, Sevilla"/>
+			<property name="submissionDeadline" value="2019/11/11 10:00:00"/>
+			<property name="notificationDeadline" value="2019/11/13 10:00:00"/>
+			<property name="cameraReadyDeadline" value="2019/11/15 10:00:00"/>
+			<property name="startDate" value="2019/10/11 10:00:00"/>
+			<property name="endDate" value="2019/12/31 10:00:00"/>
+			<property name="summary" value="Conference about natural artificial intelligence and new technologies"/>
+			<property name="fee" value="13"/>
+			<property name="finalMode" value="true"/>
+			
+			<property name="administrator" ref="admin1" />
+			<!-- <property name="conference" ref="" />  -->
+	
+	</bean>
 
 </beans>

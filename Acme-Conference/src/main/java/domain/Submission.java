@@ -1,7 +1,6 @@
 
 package domain;
 
-import java.awt.print.Paper;
 import java.util.Date;
 
 import javax.persistence.Access;
@@ -67,7 +66,7 @@ public class Submission extends DomainEntity {
 
 	//Relationships
 	private Author				author;
-	private Paper				paper;
+	private domain.Paper		paper;
 	private CameraReadyPaper	cameraReadyPaper;
 	private Conference			conference;
 
@@ -84,11 +83,11 @@ public class Submission extends DomainEntity {
 
 	@Valid
 	@OneToOne(optional = false)
-	public Paper getPaper() {
+	public domain.Paper getPaper() {
 		return this.paper;
 	}
 
-	public void setPaper(final Paper paper) {
+	public void setPaper(final domain.Paper paper) {
 		this.paper = paper;
 	}
 

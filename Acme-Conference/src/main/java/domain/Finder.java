@@ -8,6 +8,7 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -66,6 +67,7 @@ public class Finder extends DomainEntity {
 	}
 
 	@Valid
+	@ManyToOne(optional = true)
 	public Category getCategory() {
 		return this.category;
 	}

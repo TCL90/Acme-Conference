@@ -35,7 +35,6 @@ public class Sponsorship extends DomainEntity {
 
 	@URL
 	@NotBlank
-	@SafeHtml
 	public String getBanner() {
 		return this.banner;
 	}
@@ -44,21 +43,19 @@ public class Sponsorship extends DomainEntity {
 		this.banner = banner;
 	}
 
-	@URL
-	@NotBlank
-	@SafeHtml
-	public String getTargetUrl() {
-		return this.targetUrl;
-	}
-
-	public void setTargerUrl(final String targetUrl) {
-		this.targetUrl = targetUrl;
-	}
-
 	@NotBlank
 	@SafeHtml
 	public String getHolderName() {
 		return this.holderName;
+	}
+
+	public String getTargetUrl() {
+		return this.targetUrl;
+	}
+	@URL
+	@NotBlank
+	public void setTargetUrl(final String targetUrl) {
+		this.targetUrl = targetUrl;
 	}
 
 	public void setHolderName(final String holderName) {
