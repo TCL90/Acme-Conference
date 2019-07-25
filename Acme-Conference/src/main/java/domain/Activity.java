@@ -27,6 +27,7 @@ public class Activity extends Commentable {
 	private Collection<String>	speakers;
 	private Date				startMoment;
 	private Date				duration;
+	private Date				schedule;
 	private String				room;
 	private String				summary;
 	private Collection<String>	attachments;
@@ -64,8 +65,7 @@ public class Activity extends Commentable {
 	}
 
 	@NotNull
-	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "HH:mm:ss")
+	@Temporal(TemporalType.TIME)
 	public Date getDuration() {
 		return this.duration;
 	}
@@ -102,6 +102,17 @@ public class Activity extends Commentable {
 
 	public void setAttachments(final Collection<String> attachments) {
 		this.attachments = attachments;
+	}
+
+	@NotNull
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "HH:mm:ss")
+	public Date getSchedule() {
+		return this.schedule;
+	}
+
+	public void setSchedule(final Date schedule) {
+		this.schedule = schedule;
 	}
 
 

@@ -193,6 +193,7 @@
 			<property name="email" value="author@gmail.com" />
 			<property name="photo" value="http://wwww.photo2.com" />
 			<property name="userAccount" ref="userAccount4" />
+			<property name="finder" ref="finder1"/>
 	
 			<property name="Boxes">
 				<list>
@@ -213,6 +214,7 @@
 			<property name="photo" value="http://wwww.photo3.com" />
 			<property name="userAccount" ref="userAccount5" />
 	
+			<property name="finder" ref="finder2"/>
 			<property name="Boxes">
 				<list>
 					<ref bean="in3" />
@@ -604,5 +606,137 @@
 			<!-- <property name="conference" ref="" />  -->
 	
 	</bean>
+	
+	<!-- ============ CATEGORIES ============== -->
+	<bean id="category1" class="domain.Category">
+			<property name="titleIng" value="CONFERENCE"/>
+			<property name="titleEsp" value="CONFERENCIA"/>
+	</bean>
+	
+	<bean id="category2" class="domain.Category">
+			<property name="titleIng" value="Computer Science"/>
+			<property name="titleEsp" value="Ciencias de la computación"/>
+			
+			<property name="parent" ref="category1" />
+	</bean>
+	
+	<bean id="category3" class="domain.Category">
+			<property name="titleIng" value="Artificial Intelligence"/>
+			<property name="titleEsp" value="Inteligencia artificial"/>
+			
+			<property name="parent" ref="category2" />
+	</bean>
+	
+	<bean id="category4" class="domain.Category">
+			<property name="titleIng" value="Deep Learning"/>
+			<property name="titleEsp" value="Aprendizaje profundo"/>
+			
+			<property name="parent" ref="category3" />
+	</bean>
+	
 
+	
+	<bean id="category5" class="domain.Category">
+			<property name="titleIng" value="Instance-based learning"/>
+			<property name="titleEsp" value="Aprendizaje basado en instancias"/>
+			
+			<property name="parent" ref="category3" />
+	</bean>
+	
+	<bean id="category6" class="domain.Category">
+			<property name="titleIng" value="Regression"/>
+			<property name="titleEsp" value="Regresión"/>
+			
+			<property name="parent" ref="category3" />
+	</bean>
+	
+	
+		<!-- ======== FINDER ========== -->
+	
+	<bean id="finder1" class="domain.Finder">
+			<property name="keyword" value=""/>
+			<!-- 
+			<property name="startDate" value=""/>
+			<property name="endDate" value=""/>
+			<property name="maximumFee" value=""/>
+			-->
+	</bean>
+	
+	<bean id="finder2" class="domain.Finder">
+			<property name="keyword" value=""/>
+			<!-- 
+			<property name="startDate" value=""/>
+			<property name="endDate" value=""/>
+			<property name="maximumFee" value=""/>
+		-->
+	</bean>
+	
+	<!-- ======== SUBMISSION ========== -->
+	
+	<bean id="submission1" class="domain.Submission">
+			<property name="ticker" value="AAA-1234"/>
+			<property name="moment" value="2019/09/15 10:00:00"/>
+			<property name="status" value="UNDER-REVIEW"/>
+			
+			<property name="author" ref="author1"/>
+			<property name="conference" ref="conference1"/>
+			<property name="paper" ref="paper1"/>
+	</bean>
+	
+	<bean id="submission2" class="domain.Submission">
+			<property name="ticker" value="AAA-2345"/>
+			<property name="moment" value="2019/09/15 10:00:00"/>
+			<property name="status" value="UNDER-REVIEW"/>	
+					
+			<property name="author" ref="author1"/>
+			<property name="conference" ref="conference2"/>
+			<property name="paper" ref="paper2"/>
+	</bean>
+	
+	<!-- ======== PAPER ========== -->
+	
+	<bean id="paper1" class="domain.Paper">
+			<property name="title" value="Paper 1"/>
+			<property name="authors" value="Author nº1, Author nº2, Author nº3"/>
+			<property name="summary" value="Summary pap 1"/>
+			<property name="document" value="http://www.drive.google.com/paper1"/>
+	</bean>
+
+	<bean id="paper2" class="domain.Paper">
+			<property name="title" value="Paper 2"/>
+			<property name="authors" value="Author nº1, Author nº2, Author nº3"/>
+			<property name="summary" value="Summary pap 2"/>
+			<property name="document" value="http://www.drive.google.com/paper2"/>
+	</bean>
+
+		
+	<!-- ======== ACTIVITY ========== -->
+	
+	<bean id="activity1" class="domain.Activity">
+			<property name="title" value="Activity number 1"/>
+			<property name="speakers" value="Author nº1, Author nº2"/>
+			<property name="startMoment" value="2019/12/12 10:00:00"/>
+			<property name="duration" value="00:40:00"/>
+			<property name="schedule" value="2019/12/12 10:40:00"/>
+			<property name="room" value="A1.42"/>
+			<property name="summary" value="Summary activity 1"/>
+			<property name="attachments" value="http://drive.google.com/attach1, http://drive.google.com/attach2"/>
+	</bean>
+	
+	<bean id="activity2" class="domain.Activity">
+			<property name="title" value="Activity number 2"/>
+			<property name="speakers" value="Author nº1, Author nº2"/>
+			<property name="startMoment" value="2019/12/13 10:00:00"/>
+			<property name="duration" value="00:40:00"/>
+			<property name="schedule" value="2019/12/13 10:40:00"/>
+			<property name="room" value="A1.42"/>
+			<property name="summary" value="Summary activity 2"/>
+			<property name="attachments" value="http://drive.google.com/attach3, http://drive.google.com/attach4"/>
+	</bean>
+
+
+	
+	
+	
+	
 </beans>

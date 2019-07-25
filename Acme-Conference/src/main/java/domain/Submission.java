@@ -92,7 +92,7 @@ public class Submission extends DomainEntity {
 	}
 
 	@Valid
-	@OneToOne(optional = false)
+	@OneToOne(optional = true)
 	public CameraReadyPaper getCameraReadyPaper() {
 		return this.cameraReadyPaper;
 	}
