@@ -545,7 +545,7 @@
 	<bean id="registration1" class="domain.Registration">
 			<property name="holderName" value="Author1 Author1"/>
 			<property name="makeName" value="VISA"/>
-			<property name="number" value="5083602396731598"/>
+			<property name="number" value="1111222233334444"/>
 			<property name="expirationYear" value="2025"/>
 			<property name="expirationMonth" value="12"/>
 			<property name="cvv" value="123"/>
@@ -558,7 +558,7 @@
 	<bean id="registration2" class="domain.Registration">
 			<property name="holderName" value="Author2 Author2"/>
 			<property name="makeName" value="VISA"/>
-			<property name="number" value="51233602396731598"/>
+			<property name="number" value="1111222233334444"/>
 			<property name="expirationYear" value="2025"/>
 			<property name="expirationMonth" value="12"/>
 			<property name="cvv" value="234"/>

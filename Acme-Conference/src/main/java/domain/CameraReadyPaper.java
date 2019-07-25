@@ -1,7 +1,7 @@
 
 package domain;
 
-import java.util.List;
+import java.util.Collection;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -9,6 +9,7 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.SafeHtml;
 import org.hibernate.validator.constraints.URL;
 
@@ -16,10 +17,10 @@ import org.hibernate.validator.constraints.URL;
 @Access(AccessType.PROPERTY)
 public class CameraReadyPaper extends DomainEntity {
 
-	private String			title;
-	private List<String>	authors;
-	private String			summary;
-	private String			document;
+	private String				title;
+	private Collection<String>	authors;
+	private String				summary;
+	private String				document;
 
 
 	@NotBlank
@@ -32,13 +33,13 @@ public class CameraReadyPaper extends DomainEntity {
 		this.title = title;
 	}
 
-	@NotBlank
+	@NotEmpty
 	@ElementCollection(targetClass = String.class)
-	public List<String> getAuthors() {
+	public Collection<String> getAuthors() {
 		return this.authors;
 	}
 
-	public void setAuthors(final List<String> authors) {
+	public void setAuthors(final Collection<String> authors) {
 		this.authors = authors;
 	}
 

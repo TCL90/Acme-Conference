@@ -1,8 +1,8 @@
 
 package domain;
 
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -15,6 +15,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -22,13 +23,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Access(AccessType.PROPERTY)
 public class Activity extends Commentable {
 
-	private String			title;
-	private List<String>	speakers;
-	private Date			startMoment;
-	private Date			duration;
-	private String			room;
-	private String			summary;
-	private List<String>	attachments;
+	private String				title;
+	private Collection<String>	speakers;
+	private Date				startMoment;
+	private Date				duration;
+	private String				room;
+	private String				summary;
+	private Collection<String>	attachments;
 
 
 	@NotBlank
@@ -41,13 +42,13 @@ public class Activity extends Commentable {
 		this.title = title;
 	}
 
-	@NotBlank
+	@NotEmpty
 	@ElementCollection(targetClass = String.class)
-	public List<String> getSpeakers() {
+	public Collection<String> getSpeakers() {
 		return this.speakers;
 	}
 
-	public void setSpeakers(final List<String> speakers) {
+	public void setSpeakers(final Collection<String> speakers) {
 		this.speakers = speakers;
 	}
 
@@ -95,11 +96,11 @@ public class Activity extends Commentable {
 
 	@NotBlank
 	@ElementCollection(targetClass = String.class)
-	public List<String> getAttachments() {
+	public Collection<String> getAttachments() {
 		return this.attachments;
 	}
 
-	public void setAttachments(final List<String> attachments) {
+	public void setAttachments(final Collection<String> attachments) {
 		this.attachments = attachments;
 	}
 

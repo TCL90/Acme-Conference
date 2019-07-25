@@ -1,29 +1,29 @@
 
 package domain;
 
-import java.util.List;
+import java.util.Collection;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 
-import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Access(AccessType.PROPERTY)
 public class Reviewer extends Actor {
 
-	private List<String>	expertise;
+	private Collection<String>	expertise;
 
 
-	@NotBlank
+	@NotEmpty
 	@ElementCollection(targetClass = String.class)
-	public List<String> getExpertise() {
+	public Collection<String> getExpertise() {
 		return this.expertise;
 	}
 
-	public void setExpertise(final List<String> expertise) {
+	public void setExpertise(final Collection<String> expertise) {
 		this.expertise = expertise;
 	}
 

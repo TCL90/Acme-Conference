@@ -1,7 +1,7 @@
 
 package domain;
 
-import java.util.List;
+import java.util.Collection;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -17,17 +17,17 @@ import org.hibernate.validator.constraints.URL;
 public class Customisation extends DomainEntity {
 
 	//ATRIBUTOS DEL SISTEMA.
-	private String			systemName;
-	private String			bannerUrl;
-	private String			welcomeMessageEng;
-	private String			welcomeMessageEsp;
-	private String			phoneNumberCode;
-	private List<String>	buzzWordsIng;
-	private List<String>	buzzWordsEsp;
-	private List<String>	topicsIng;
-	private List<String>	topicsEsp;
+	private String				systemName;
+	private String				bannerUrl;
+	private String				welcomeMessageEng;
+	private String				welcomeMessageEsp;
+	private String				phoneNumberCode;
+	private Collection<String>	buzzWordsIng;
+	private Collection<String>	buzzWordsEsp;
+	private Collection<String>	topicsIng;
+	private Collection<String>	topicsEsp;
 
-	private List<String>	creditCardMakes;
+	private Collection<String>	creditCardMakes;
 
 
 	@NotBlank
@@ -79,47 +79,47 @@ public class Customisation extends DomainEntity {
 	}
 
 	@ElementCollection(targetClass = String.class)
-	public List<String> getBuzzWordsIng() {
+	public Collection<String> getBuzzWordsIng() {
 		return this.buzzWordsIng;
 	}
 
-	public void setBuzzWordsIng(final List<String> buzzWordsIng) {
+	public void setBuzzWordsIng(final Collection<String> buzzWordsIng) {
 		this.buzzWordsIng = buzzWordsIng;
 	}
 
 	@ElementCollection(targetClass = String.class)
-	public List<String> getBuzzWordsEsp() {
+	public Collection<String> getBuzzWordsEsp() {
 		return this.buzzWordsEsp;
 	}
 
-	public void setBuzzWordsEsp(final List<String> buzzWordsEsp) {
+	public void setBuzzWordsEsp(final Collection<String> buzzWordsEsp) {
 		this.buzzWordsEsp = buzzWordsEsp;
 	}
 
 	@ElementCollection(targetClass = String.class)
-	public List<String> getTopicsIng() {
+	public Collection<String> getTopicsIng() {
 		return this.topicsIng;
 	}
 
-	public void setTopicsIng(final List<String> topicsIng) {
+	public void setTopicsIng(final Collection<String> topicsIng) {
 		this.topicsIng = topicsIng;
 	}
 
 	@ElementCollection(targetClass = String.class)
-	public List<String> getTopicsEsp() {
+	public Collection<String> getTopicsEsp() {
 		return this.topicsEsp;
 	}
 
-	public void setTopicsEsp(final List<String> topicsEsp) {
+	public void setTopicsEsp(final Collection<String> topicsEsp) {
 		this.topicsEsp = topicsEsp;
 	}
 
 	@ElementCollection(targetClass = String.class)
-	public List<String> getCreditCardMakes() {
+	public Collection<String> getCreditCardMakes() {
 		return this.creditCardMakes;
 	}
 
-	public void setCreditCardMakes(final List<String> creditCardMakes) {
+	public void setCreditCardMakes(final Collection<String> creditCardMakes) {
 		this.creditCardMakes = creditCardMakes;
 	}
 
