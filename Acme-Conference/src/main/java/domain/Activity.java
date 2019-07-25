@@ -16,7 +16,6 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
-import org.hibernate.validator.constraints.URL;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -30,8 +29,6 @@ public class Activity extends Commentable {
 	private String			room;
 	private String			summary;
 	private List<String>	attachments;
-	private String			cameraReadyVersion;
-	private String			activityType;
 
 
 	@NotBlank
@@ -104,26 +101,6 @@ public class Activity extends Commentable {
 
 	public void setAttachments(final List<String> attachments) {
 		this.attachments = attachments;
-	}
-
-	@URL
-	@SafeHtml
-	public String getCameraReadyVersion() {
-		return this.cameraReadyVersion;
-	}
-
-	public void setCameraReadyVersion(final String cameraReadyVersion) {
-		this.cameraReadyVersion = cameraReadyVersion;
-	}
-
-	@NotBlank
-	@SafeHtml
-	public String getActivityType() {
-		return this.activityType;
-	}
-
-	public void setActivityType(final String activityType) {
-		this.activityType = activityType;
 	}
 
 

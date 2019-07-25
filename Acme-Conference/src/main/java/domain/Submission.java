@@ -19,7 +19,6 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
-import org.hibernate.validator.constraints.URL;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -28,7 +27,6 @@ public class Submission extends DomainEntity {
 
 	private String	ticker;
 	private Date	moment;
-	private String	cameraReadyVersion;
 	private String	status;
 
 
@@ -55,16 +53,6 @@ public class Submission extends DomainEntity {
 		this.moment = moment;
 	}
 
-	@URL
-	@SafeHtml
-	public String getCameraReadyVersion() {
-		return this.cameraReadyVersion;
-	}
-
-	public void setCameraReadyVersion(final String cameraReadyVersion) {
-		this.cameraReadyVersion = cameraReadyVersion;
-	}
-
 	@NotBlank
 	@SafeHtml
 	@Pattern(regexp = "^" + "ACCEPTED" + "|" + "UNDER-REVIEW" + "|" + "REJECTED" + "$")
@@ -78,9 +66,10 @@ public class Submission extends DomainEntity {
 
 
 	//Relationships
-	private Author		author;
-	private Paper		paper;
-	private Conference	conference;
+	private Author				author;
+	private Paper				paper;
+	private CameraReadyPaper	cameraReadyPaper;
+	private Conference			conference;
 
 
 	@Valid
@@ -101,6 +90,16 @@ public class Submission extends DomainEntity {
 
 	public void setPaper(final Paper paper) {
 		this.paper = paper;
+	}
+
+	@Valid
+	@OneToOne(optional = false)
+	public CameraReadyPaper getCameraReadyPaper() {
+		return this.cameraReadyPaper;
+	}
+
+	public void setCameraReadyPaper(final CameraReadyPaper cameraReadyPaper) {
+		this.cameraReadyPaper = cameraReadyPaper;
 	}
 
 	@Valid

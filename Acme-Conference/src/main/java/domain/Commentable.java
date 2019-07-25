@@ -16,11 +16,11 @@ public class Commentable extends DomainEntity {
 
 
 	@Valid
-	public List<Commentary> getComments() {
+	public List<Comment> getComments() {
 		return this.comments;
 	}
 
-	public void setComments(final List<Commentary> comments) {
+	public void setComments(final List<Comment> comments) {
 		this.comments = comments;
 	}
 

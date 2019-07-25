@@ -1,12 +1,9 @@
 
 package domain;
 
-import java.util.Collection;
-
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
@@ -16,14 +13,10 @@ import org.hibernate.validator.constraints.CreditCardNumber;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.SafeHtml;
-import org.hibernate.validator.constraints.URL;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Sponsorship extends DomainEntity {
-
-	private String	banner;
-	private String	targetUrl;
+public class Registration extends DomainEntity {
 
 	private String	holderName;
 	private String	makeName;
@@ -32,28 +25,6 @@ public class Sponsorship extends DomainEntity {
 	private Integer	expirationMonth;
 	private Integer	cvv;
 
-
-	@URL
-	@NotBlank
-	@SafeHtml
-	public String getBanner() {
-		return this.banner;
-	}
-
-	public void setBanner(final String banner) {
-		this.banner = banner;
-	}
-
-	@URL
-	@NotBlank
-	@SafeHtml
-	public String getTargetUrl() {
-		return this.targetUrl;
-	}
-
-	public void setTargerUrl(final String targetUrl) {
-		this.targetUrl = targetUrl;
-	}
 
 	@NotBlank
 	@SafeHtml
@@ -75,8 +46,8 @@ public class Sponsorship extends DomainEntity {
 		this.makeName = makeName;
 	}
 	@NotBlank
-	@SafeHtml
 	@CreditCardNumber
+	@SafeHtml
 	public String getNumber() {
 		return this.number;
 	}
@@ -115,27 +86,27 @@ public class Sponsorship extends DomainEntity {
 	}
 
 
-	//Relationships
-	private Sponsor					sponsor;
-	private Collection<Conference>	conference;
+	private Author		author;
+	private Conference	conference;
 
 
-	@Valid
 	@ManyToOne(optional = false)
-	public Sponsor getSponsor() {
-		return this.sponsor;
+	@Valid
+	public Author getAuthor() {
+		return this.author;
 	}
 
-	public void setSponsor(final Sponsor sponsor) {
-		this.sponsor = sponsor;
+	public void setAuthor(final Author author) {
+		this.author = author;
 	}
 
-	@ManyToMany
-	public Collection<Conference> getConference() {
+	@ManyToOne(optional = false)
+	@Valid
+	public Conference getConference() {
 		return this.conference;
 	}
 
-	public void setConference(final Collection<Conference> conference) {
+	public void setConference(final Conference conference) {
 		this.conference = conference;
 	}
 

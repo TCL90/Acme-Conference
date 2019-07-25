@@ -17,7 +17,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public abstract class Commentary extends DomainEntity {
+public abstract class Comment extends DomainEntity {
 
 	private String	title;
 	private Date	moment;

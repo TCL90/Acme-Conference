@@ -7,19 +7,19 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.validation.Valid;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
+import org.hibernate.validator.constraints.URL;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Section extends DomainEntity {
+public class CameraReadyPaper extends DomainEntity {
 
 	private String			title;
+	private List<String>	authors;
 	private String			summary;
-	private List<String>	pictures;
+	private String			document;
 
 
 	@NotBlank
@@ -33,6 +33,16 @@ public class Section extends DomainEntity {
 	}
 
 	@NotBlank
+	@ElementCollection(targetClass = String.class)
+	public List<String> getAuthors() {
+		return this.authors;
+	}
+
+	public void setAuthors(final List<String> authors) {
+		this.authors = authors;
+	}
+
+	@NotBlank
 	@SafeHtml
 	public String getSummary() {
 		return this.summary;
@@ -42,28 +52,15 @@ public class Section extends DomainEntity {
 		this.summary = summary;
 	}
 
-	@ElementCollection(targetClass = String.class)
-	public List<String> getPictures() {
-		return this.pictures;
+	@NotBlank
+	@SafeHtml
+	@URL
+	public String getDocument() {
+		return this.document;
 	}
 
-	public void setPictures(final List<String> pictures) {
-		this.pictures = pictures;
-	}
-
-
-	//Relationships
-	private Tutorial	tutorial;
-
-
-	@Valid
-	@ManyToOne(optional = false)
-	public Tutorial getTutorial() {
-		return this.tutorial;
-	}
-
-	public void setTutorial(final Tutorial tutorial) {
-		this.tutorial = tutorial;
+	public void setDocument(final String document) {
+		this.document = document;
 	}
 
 }

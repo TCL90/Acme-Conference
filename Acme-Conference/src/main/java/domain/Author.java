@@ -32,17 +32,17 @@ public class Author extends Actor {
 
 
 	//Relationships
-	private Collection<Conference>	conference;
+	private Collection<Conference>	conferences;
 	private Finder					finder;
 
 
 	@ManyToMany
-	public Collection<Conference> getConference() {
-		return this.conference;
+	public Collection<Conference> getConferences() {
+		return this.conferences;
 	}
 
-	public void setConference(final Collection<Conference> conference) {
-		this.conference = conference;
+	public void setConferences(final Collection<Conference> conferences) {
+		this.conferences = conferences;
 	}
 	@Valid
 	@OneToOne(optional = true)
