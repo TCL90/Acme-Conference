@@ -44,7 +44,7 @@ public class Activity extends Commentable {
 	}
 
 	@NotEmpty
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	public Collection<String> getSpeakers() {
 		return this.speakers;
 	}
@@ -65,7 +65,8 @@ public class Activity extends Commentable {
 	}
 
 	@NotNull
-	@Temporal(TemporalType.TIME)
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	public Date getDuration() {
 		return this.duration;
 	}
@@ -94,8 +95,8 @@ public class Activity extends Commentable {
 		this.summary = summary;
 	}
 
-	@NotBlank
-	@ElementCollection(targetClass = String.class)
+	@NotEmpty
+	@ElementCollection
 	public Collection<String> getAttachments() {
 		return this.attachments;
 	}

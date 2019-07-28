@@ -42,7 +42,7 @@ public class Section extends DomainEntity {
 		this.summary = summary;
 	}
 
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	public Collection<String> getPictures() {
 		return this.pictures;
 	}

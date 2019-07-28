@@ -49,17 +49,18 @@ public class Sponsorship extends DomainEntity {
 		return this.holderName;
 	}
 
+	public void setHolderName(final String holderName) {
+		this.holderName = holderName;
+	}
+
+	@URL
+	@NotBlank
 	public String getTargetUrl() {
 		return this.targetUrl;
 	}
-	@URL
-	@NotBlank
+
 	public void setTargetUrl(final String targetUrl) {
 		this.targetUrl = targetUrl;
-	}
-
-	public void setHolderName(final String holderName) {
-		this.holderName = holderName;
 	}
 
 	@NotBlank

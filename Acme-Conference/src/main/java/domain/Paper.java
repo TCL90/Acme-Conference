@@ -36,7 +36,7 @@ public class Paper extends DomainEntity {
 	}
 
 	@NotEmpty
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	public Collection<String> getAuthors() {
 		return this.authors;
 	}

@@ -78,7 +78,7 @@ public class Customisation extends DomainEntity {
 		this.phoneNumberCode = phoneNumberCode;
 	}
 
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	public Collection<String> getBuzzWordsIng() {
 		return this.buzzWordsIng;
 	}
@@ -87,7 +87,7 @@ public class Customisation extends DomainEntity {
 		this.buzzWordsIng = buzzWordsIng;
 	}
 
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	public Collection<String> getBuzzWordsEsp() {
 		return this.buzzWordsEsp;
 	}
@@ -96,7 +96,7 @@ public class Customisation extends DomainEntity {
 		this.buzzWordsEsp = buzzWordsEsp;
 	}
 
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	public Collection<String> getTopicsIng() {
 		return this.topicsIng;
 	}
@@ -105,7 +105,7 @@ public class Customisation extends DomainEntity {
 		this.topicsIng = topicsIng;
 	}
 
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	public Collection<String> getTopicsEsp() {
 		return this.topicsEsp;
 	}
@@ -114,7 +114,7 @@ public class Customisation extends DomainEntity {
 		this.topicsEsp = topicsEsp;
 	}
 
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	public Collection<String> getCreditCardMakes() {
 		return this.creditCardMakes;
 	}

@@ -675,7 +675,7 @@
 	
 	<bean id="submission1" class="domain.Submission">
 			<property name="ticker" value="AAA-1234"/>
-			<property name="moment" value="2019/09/15 10:00:00"/>
+			<property name="moment" value="2018/09/15 10:00:00"/>
 			<property name="status" value="UNDER-REVIEW"/>
 			
 			<property name="author" ref="author1"/>
@@ -685,7 +685,7 @@
 	
 	<bean id="submission2" class="domain.Submission">
 			<property name="ticker" value="AAA-2345"/>
-			<property name="moment" value="2019/09/15 10:00:00"/>
+			<property name="moment" value="2018/09/15 10:00:00"/>
 			<property name="status" value="UNDER-REVIEW"/>	
 					
 			<property name="author" ref="author1"/>
@@ -716,22 +716,26 @@
 			<property name="title" value="Activity number 1"/>
 			<property name="speakers" value="Author nº1, Author nº2"/>
 			<property name="startMoment" value="2019/12/12 10:00:00"/>
-			<property name="duration" value="00:40:00"/>
+			<property name="duration" value="2019/12/12 00:40:00"/>
 			<property name="schedule" value="2019/12/12 10:40:00"/>
 			<property name="room" value="A1.42"/>
 			<property name="summary" value="Summary activity 1"/>
 			<property name="attachments" value="http://drive.google.com/attach1, http://drive.google.com/attach2"/>
+			
+			<property name="conference" ref="conference1" />
 	</bean>
 	
 	<bean id="activity2" class="domain.Activity">
 			<property name="title" value="Activity number 2"/>
 			<property name="speakers" value="Author nº1, Author nº2"/>
 			<property name="startMoment" value="2019/12/13 10:00:00"/>
-			<property name="duration" value="00:40:00"/>
+			<property name="duration" value="2019/12/13 00:40:00"/>
 			<property name="schedule" value="2019/12/13 10:40:00"/>
 			<property name="room" value="A1.42"/>
 			<property name="summary" value="Summary activity 2"/>
 			<property name="attachments" value="http://drive.google.com/attach3, http://drive.google.com/attach4"/>
+	
+			<property name="conference" ref="conference1" />
 	</bean>
 
 

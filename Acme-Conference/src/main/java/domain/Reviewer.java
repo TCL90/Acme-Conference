@@ -18,7 +18,7 @@ public class Reviewer extends Actor {
 
 
 	@NotEmpty
-	@ElementCollection(targetClass = String.class)
+	@ElementCollection
 	public Collection<String> getExpertise() {
 		return this.expertise;
 	}
