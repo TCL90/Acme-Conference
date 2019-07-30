@@ -6,6 +6,7 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import repositories.ConferenceRepository;
 import domain.Conference;
@@ -38,6 +39,20 @@ public class ConferenceService {
 		return this.conferenceRepository.findAllKeyword(keyword);
 	}
 
+	public Conference findOne(final int conferenceId) {
+		final Conference c = this.conferenceRepository.findOne(conferenceId);
+		Assert.isTrue(c.isFinalMode());
+		Assert.notNull(c);
+		return c;
+	}
+
+	public int numberOfRegistrations(final Conference c) {
+		Assert.isTrue(c.isFinalMode());
+		Assert.notNull(c);
+
+		return this.conferenceRepository.numberOfRegistrations(c.getId());
+	}
+	
 	public Collection<Conference> findAllForthCommingNotRegistered(final int authorId) {
 		return this.conferenceRepository.findAllForthCommingNotRegistered(authorId);
 	}

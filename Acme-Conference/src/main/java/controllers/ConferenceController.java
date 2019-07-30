@@ -10,7 +10,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.ActivityService;
+import services.CommentService;
 import services.ConferenceService;
+import domain.Activity;
+import domain.Comment;
 import domain.Conference;
 
 @Controller
@@ -19,6 +23,12 @@ public class ConferenceController extends AbstractController {
 
 	@Autowired
 	private ConferenceService	conferenceService;
+
+	@Autowired
+	private ActivityService		activityService;
+
+	@Autowired
+	private CommentService		commentService;
 
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -134,4 +144,35 @@ public class ConferenceController extends AbstractController {
 
 		return result;
 	}
+
+	@RequestMapping(value = "/show", method = RequestMethod.GET)
+	public ModelAndView show(@RequestParam final int conferenceId) {
+		final ModelAndView result;
+		Conference conference;
+		int numberOfRegistrations;
+		Collection<Activity> activities;
+		final Collection<Comment> comments;
+
+		try {
+
+			conference = this.conferenceService.findOne(conferenceId);
+			numberOfRegistrations = this.conferenceService.numberOfRegistrations(conference);
+			activities = this.activityService.findAllByConference(conference);
+			comments = this.commentService.findByConference(conference);
+
+		} catch (final Throwable oops) {
+			result = new ModelAndView("welcome/index");
+			return result;
+		}
+
+		result = new ModelAndView("conference/show");
+		result.addObject("conference", conference);
+		result.addObject("numberOfR", numberOfRegistrations);
+		result.addObject("activities", activities);
+		result.addObject("comments", comments);
+		result.addObject("requestURI", "/conference/show.do?conferenceId=" + conference.getId());
+
+		return result;
+	}
+
 }

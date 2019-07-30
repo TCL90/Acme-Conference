@@ -57,12 +57,10 @@
 	<display:column property="title" titleKey="conference.title"/>
 	<display:column property="acronym" titleKey="conference.acronym"/>
 	<display:column property="venue" titleKey="conference.venue"/>
-	<display:column property="submissionDeadline" titleKey="conference.submissionDeadline"/>
-	<display:column property="notificationDeadline" titleKey="conference.notificationDeadline"/>
-	<display:column property="cameraReadyDeadline" titleKey="conference.cameraReadyDeadline"/>
+	
 	<display:column property="startDate" titleKey="conference.startDate"/>
 	<display:column property="endDate" titleKey="conference.endDate"/>
-	<display:column property="summary" titleKey="conference.summary"/>
+
 	<display:column property="fee" titleKey="conference.fee"/>
 	
 	<jstl:if test="${pageContext.response.locale.language=='es'}">
@@ -73,14 +71,6 @@
 	<display:column property="category.titleIng" titleKey="conference.category"/>
 	</jstl:if>
 	
-		
+	<display:column><a href="conference/show.do?conferenceId=${row.id }"><spring:message code="conference.show"/></a></display:column>
+	
 </display:table>
-
-
-
-
-
-
-
-
-

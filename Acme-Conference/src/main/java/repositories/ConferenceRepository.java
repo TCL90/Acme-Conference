@@ -28,7 +28,9 @@ public interface ConferenceRepository extends JpaRepository<Conference, Integer>
 	@Query("select c from Conference c where (c.title like %:keyword% or c.venue like %:keyword% or c.acronym like %:keyword% or c.summary like %:keyword%) and c.finalMode='1'")
 	Collection<Conference> findAllKeyword(@Param("keyword") String keyword);
 
+	@Query("select count(r) from Registration r where r.conference.id=?1")
+	int numberOfRegistrations(int conferenceId);
+	
 	@Query("select c from Conference c where c.startDate > NOW() and c.finalMode='1'")
 	Collection<Conference> findAllForthCommingNotRegistered(int authorId);
-
 }
