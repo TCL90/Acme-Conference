@@ -58,6 +58,7 @@ public class Authority implements GrantedAuthority {
 		this.authority = authority;
 	}
 
+	
 	public static Collection<Authority> listAuthorities() {
 		Collection<Authority> result;
 		Authority authority;
@@ -81,6 +82,7 @@ public class Authority implements GrantedAuthority {
 		result.add(authority);
 		return result;
 	}
+
 
 	// Object interface -------------------------------------------------------
 

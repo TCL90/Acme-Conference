@@ -29,6 +29,8 @@
 	
 		<value>/views/author/messages</value>
 		<value>/views/submission/messages</value>
+		
+		<value>/views/conference/messages</value>
 	
 	</util:list>
 

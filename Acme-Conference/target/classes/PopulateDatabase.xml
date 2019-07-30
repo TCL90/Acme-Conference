@@ -606,7 +606,82 @@
 			<!-- <property name="conference" ref="" />  -->
 	
 	</bean>
+
+	<bean id="conference3" class="domain.Conference">
+			<property name="title" value="Conference about deep learning"/>
+			<property name="acronym" value="CADP"/>
+			<property name="venue" value="FIBES, Sevilla"/>
+			<property name="submissionDeadline" value="2019/06/11 10:00:00"/>
+			<property name="notificationDeadline" value="2019/06/13 10:00:00"/>
+			<property name="cameraReadyDeadline" value="2019/06/15 10:00:00"/>
+			<property name="startDate" value="2019/06/22 10:00:00"/>
+			<property name="endDate" value="2019/06/25 10:00:00"/>
+			<property name="summary" value="Conference about deep learning"/>
+			<property name="fee" value="13"/>
+			<property name="finalMode" value="true"/>
+			
+			<property name="administrator" ref="admin1" />
+			<property name="category" ref="category1"/>
+			<!-- <property name="conference" ref="" />  -->
 	
+	</bean>	
+	
+	<bean id="conference4" class="domain.Conference">
+			<property name="title" value="Conference about IA"/>
+			<property name="acronym" value="IAMS"/>
+			<property name="venue" value="FIBES, Sevilla"/>
+			<property name="submissionDeadline" value="2019/06/20 10:00:00"/>
+			<property name="notificationDeadline" value="2019/06/25 10:00:00"/>
+			<property name="cameraReadyDeadline" value="2019/06/26 10:00:00"/>
+			<property name="startDate" value="2019/06/29 10:00:00"/>
+			<property name="endDate" value="2019/07/02 10:00:00"/>
+			<property name="summary" value="Conference about IA"/>
+			<property name="fee" value="13"/>
+			<property name="finalMode" value="true"/>
+			
+			<property name="administrator" ref="admin1" />
+			<property name="category" ref="category1"/>
+			<!-- <property name="conference" ref="" />  -->
+	
+	</bean>	
+	
+	<bean id="conference5" class="domain.Conference">
+			<property name="title" value="Conference about Spring"/>
+			<property name="acronym" value="SCGF"/>
+			<property name="venue" value="FIBES, Sevilla"/>
+			<property name="submissionDeadline" value="2019/07/25 10:00:00"/>
+			<property name="notificationDeadline" value="2019/07/26 10:00:00"/>
+			<property name="cameraReadyDeadline" value="2019/07/28 10:00:00"/>
+			<property name="startDate" value="2019/07/29 10:00:00"/>
+			<property name="endDate" value="2019/09/20 10:00:00"/>
+			<property name="summary" value="Conference about Spring framework"/>
+			<property name="fee" value="13"/>
+			<property name="finalMode" value="true"/>
+			
+			<property name="administrator" ref="admin1" />
+			<property name="category" ref="category1"/>
+			<!-- <property name="conference" ref="" />  -->
+	
+	</bean>	
+	
+	<bean id="conference6" class="domain.Conference">
+			<property name="title" value="Conference about Big Data"/>
+			<property name="acronym" value="CABD"/>
+			<property name="venue" value="FIBES, Sevilla"/>
+			<property name="submissionDeadline" value="2019/07/11 10:00:00"/>
+			<property name="notificationDeadline" value="2019/07/13 10:00:00"/>
+			<property name="cameraReadyDeadline" value="2019/07/15 10:00:00"/>
+			<property name="startDate" value="2019/07/29 10:00:00"/>
+			<property name="endDate" value="2019/09/20 10:00:00"/>
+			<property name="summary" value="Conference about big data"/>
+			<property name="fee" value="13"/>
+			<property name="finalMode" value="true"/>
+			
+			<property name="administrator" ref="admin1" />
+			<property name="category" ref="category1"/>
+			<!-- <property name="conference" ref="" />  -->
+	
+	</bean>	
 	<!-- ============ CATEGORIES ============== -->
 	<bean id="category1" class="domain.Category">
 			<property name="titleIng" value="CONFERENCE"/>
