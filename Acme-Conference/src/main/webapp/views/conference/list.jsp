@@ -73,6 +73,7 @@
 	<display:column property="category.titleIng" titleKey="conference.category"/>
 	</jstl:if>
 	
+		
 </display:table>
 
 

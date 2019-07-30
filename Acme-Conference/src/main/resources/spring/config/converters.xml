@@ -23,7 +23,14 @@
 			<bean class="converters.Class1ToClass2" /> 
 		-->
 		<bean class="converters.StringToAuthorityConverter" /> 
-  		<bean class="converters.AuthorityToStringConverter" /> 
+  		<bean class="converters.AuthorityToStringConverter" />
+  		 
+		<bean class="converters.StringToAuthorConverter" /> 
+  		<bean class="converters.AuthorToStringConverter" /> 
+  		
+  		<bean class="converters.StringToConferenceConverter" /> 
+  		<bean class="converters.ConferenceToStringConverter" /> 
+	
 		
 	</util:list>
 	

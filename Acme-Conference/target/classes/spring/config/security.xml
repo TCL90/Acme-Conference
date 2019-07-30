@@ -33,7 +33,24 @@
 		<security:intercept-url pattern="/images/**" access="permitAll" /> 
 		<security:intercept-url pattern="/scripts/**" access="permitAll" /> 
 		<security:intercept-url pattern="/styles/**" access="permitAll" /> 
-
+		
+		<!-- Anon -->
+		<security:intercept-url pattern="/author/register.do" access="permitAll" /> 
+		<security:intercept-url pattern="/conference/list.do" access="permitAll" />
+		<security:intercept-url pattern="/conference/pastList.do" access="permitAll" />
+		<security:intercept-url pattern="/conference/forthCommingList.do" access="permitAll" />
+		<security:intercept-url pattern="/conference/runningList.do" access="permitAll" />
+		<security:intercept-url pattern="/conference/search.do" access="permitAll" />
+		
+		<security:intercept-url pattern="/registration/show.do" access="permitAll" />
+		
+		<!-- Author -->
+		<security:intercept-url pattern="/registration/author/list.do" access="hasRole('AUTHOR')" />
+		<security:intercept-url pattern="/submission/author/list.do" access="hasRole('AUTHOR')" />
+		<security:intercept-url pattern="/registration/author/create.do" access="hasRole('AUTHOR')" />
+		<security:intercept-url pattern="/registration/author/edit.do" access="hasRole('AUTHOR')" />
+		
+		
 		<security:intercept-url pattern="/views/misc/index.jsp" access="permitAll" /> 
 
 		<security:intercept-url pattern="/security/login.do" access="permitAll" /> 
@@ -51,20 +68,7 @@
 		<security:intercept-url pattern="/profile/action-2.do" access="isAuthenticated()" /> 
 		<security:intercept-url pattern="/profile/action-3.do" access="isAuthenticated()" /> 
 	
-		<security:intercept-url pattern="/**" access="permitAll" />
-		
-		
-		
-		<!-- ANONYMOUS -->
-		<security:intercept-url pattern="/author/register.do" access="permitAll" />
-		
-		
-		
-		<!-- AUTHOR -->
-		<security:intercept-url pattern="/submission/author/list.do" access="permitAll" />
-		<security:intercept-url pattern="/submission/**" access="permitAll" /> 
-
-
+		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 
 		<security:form-login 
 			login-page="/security/login.do"

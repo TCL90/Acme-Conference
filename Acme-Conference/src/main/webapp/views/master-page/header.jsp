@@ -35,6 +35,7 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="submission/author/list.do"><spring:message code="master.page.author.submission" /></a></li>
+					<li><a href="registration/author/list.do"><spring:message code="master.page.author.registration" /></a></li>
 				</ul>
 			</li>
 		</security:authorize>

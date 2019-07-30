@@ -31,6 +31,7 @@
 		<value>/views/author/tiles.xml</value>
 		<value>/views/submission/tiles.xml</value>
 		<value>/views/conference/tiles.xml</value>
+		<value>/views/registration/tiles.xml</value>
 		
 	</util:list>
 

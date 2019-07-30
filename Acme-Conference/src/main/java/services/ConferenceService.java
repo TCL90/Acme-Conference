@@ -38,4 +38,8 @@ public class ConferenceService {
 		return this.conferenceRepository.findAllKeyword(keyword);
 	}
 
+	public Collection<Conference> findAllForthCommingNotRegistered(final int authorId) {
+		return this.conferenceRepository.findAllForthCommingNotRegistered(authorId);
+	}
+
 }
