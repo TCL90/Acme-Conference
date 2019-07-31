@@ -45,7 +45,7 @@
 		
 		<security:intercept-url pattern="/activity/show.do" access="permitAll" />
 
-		<security:intercept-url pattern="/registration/show.do" access="permitAll" />
+		<security:intercept-url pattern="/registration/show.do" access="hasRole('AUTHOR')||hasRole('ADMIN')" />
 		
 		<!-- Author -->
 		<security:intercept-url pattern="/registration/author/list.do" access="hasRole('AUTHOR')" />

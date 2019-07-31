@@ -21,9 +21,6 @@
 	<display:column property="holderName" titleKey="registration.holderName"/>
 	<display:column property="makeName" titleKey="registration.makeName"/>
 	<display:column property="number" titleKey="registration.number"/>
-	<display:column property="expirationYear" titleKey="registration.expirationYear"/>
-	<display:column property="expirationMonth" titleKey="registration.expirationMonth"/>
-	<display:column property="cvv" titleKey="registration.cvv"/>
 
 	<display:column property="conference.title" titleKey="registration.conference"/>
 

@@ -1,12 +1,15 @@
 
 package controllers.author;
 
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,10 +17,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.AuthorService;
 import services.ConferenceService;
+import services.CustomisationService;
 import services.RegistrationService;
 import controllers.AbstractController;
 import domain.Author;
 import domain.Conference;
+import domain.Customisation;
 import domain.Registration;
 
 @Controller
@@ -25,13 +30,16 @@ import domain.Registration;
 public class RegistrationAuthorController extends AbstractController {
 
 	@Autowired
-	private RegistrationService	registrationService;
+	private RegistrationService		registrationService;
 
 	@Autowired
-	private AuthorService		authorService;
+	private AuthorService			authorService;
 
 	@Autowired
-	private ConferenceService	conferenceService;
+	private ConferenceService		conferenceService;
+
+	@Autowired
+	private CustomisationService	customisationService;
 
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -75,11 +83,15 @@ public class RegistrationAuthorController extends AbstractController {
 		ModelAndView result;
 
 		final Author author = this.authorService.findByPrincipal();
-		final Collection<Conference> conferences = this.conferenceService.findAllForthComming();
+		final Collection<Conference> conferences = this.conferenceService.findAllForthCommingNotRegistered(author.getId());
+		final List<Customisation> cuss = (List<Customisation>) this.customisationService.findAll();
+		final Customisation cus = cuss.get(0);
+		final Collection<String> makes = cus.getCreditCardMakes();
 
 		result = new ModelAndView("registration/author/create");
 		result.addObject("registration", registration);
 		result.addObject("conferences", conferences);
+		result.addObject("makes", makes);
 
 		result.addObject("message", messageCode);
 
@@ -94,14 +106,25 @@ public class RegistrationAuthorController extends AbstractController {
 			result = this.createModelAndView(registration);
 		else
 			try {
-				//				final Collection<Registration> registrations = this.registrationService.findByAuthorAndConference(registration.getAuthor().getId(), registration.getConference().getId());
-				//				Assert.isTrue(this.registrationService.findByAuthorAndConference(registration.getAuthor().getId(), registration.getConference().getId()) != null, "registration sent");
+				Assert.notNull(registration.getConference(), "registration conference");
+
+				//Si hay registrations de ese author para esa conferencia, se muestra un error
+				final Collection<Registration> registrations = this.registrationService.findByAuthorAndConference(registration.getAuthor().getId(), registration.getConference().getId());
+				Assert.isTrue(this.registrationService.findByAuthorAndConference(registration.getAuthor().getId(), registration.getConference().getId()) != null, "registration sent");
+
+				final int month = Calendar.getInstance().getTime().getMonth();
+
+				Assert.isTrue(registration.getExpirationMonth() >= month, "registration month");
 
 				this.registrationService.save(registration);
 				result = new ModelAndView("redirect:list.do");
 			} catch (final Throwable oops) {
 				if (oops.getMessage() == "registration sent")
 					result = this.createModelAndView(registration, "registration.already.sent");
+				else if (oops.getMessage() == "registration conference")
+					result = this.createModelAndView(registration, "registration.conference.mandatory");
+				else if (oops.getMessage() == "registration month")
+					result = this.createModelAndView(registration, "registration.month");
 				else
 					result = this.createModelAndView(registration, "registration.commit.error");
 			}

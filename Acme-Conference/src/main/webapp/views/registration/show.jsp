@@ -43,14 +43,12 @@
 		<jstl:out value="${registration.expirationMonth}"/>
 	<br/>
 	
-	<b><spring:message code="registration.expirationMonth"/>: </b>
-		<jstl:out value="${registration.expirationMonth}"/>
-	<br/>
 	
-	<b><spring:message code="registration.cvv"/>: </b>
-		<jstl:out value="${registration.cvv}"/>
-	<br/>
-
+	<security:authorize access="hasRole('AUTHOR')">
+		<b><spring:message code="registration.cvv"/>: </b>
+			<jstl:out value="${registration.cvv}"/>
+		<br/>
+	</security:authorize>
 </fieldset>
 <br/>
 <fieldset>

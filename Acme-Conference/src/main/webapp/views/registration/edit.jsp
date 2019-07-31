@@ -21,7 +21,6 @@
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
 	<form:hidden path="author" />
-	<form:hidden path="conference" />
 
 <fieldset>
 
@@ -37,11 +36,13 @@
 	<br />
 	
 	<form:label path="makeName">
-	<spring:message code="registration.makeName"/>*:
-	</form:label>
-	<form:input path="makeName"/>
+		<spring:message code="registration.makeName"/>*:
+	</form:label>				
+	<form:select path="makeName">
+		<form:options items="${makes}" />
+		</form:select>
 	<form:errors cssClass="error" path="makeName" />
-	<br />
+	<br />		
 	
 	<form:label path="number">
 	<spring:message code="registration.number"/>*:
