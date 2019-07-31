@@ -31,6 +31,7 @@
 		<value>/views/submission/messages</value>
 		
 		<value>/views/conference/messages</value>
+		<value>/views/activity/messages</value>
 		<value>/views/registration/messages</value>
 	
 	</util:list>

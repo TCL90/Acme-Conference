@@ -2,6 +2,7 @@
 package services;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.RegistrationRepository;
+import domain.Customisation;
 import domain.Registration;
 
 @Service
@@ -20,6 +22,9 @@ public class RegistrationService {
 
 	@Autowired
 	private AuthorService			authorService;
+
+	@Autowired
+	private CustomisationService	customisationService;
 
 
 	//Constructor
@@ -41,7 +46,10 @@ public class RegistrationService {
 	public Registration save(final Registration registration) {
 		Assert.notNull(registration);
 
-		//Se comprueba que el author no ha enviado ya una registration a la conference
+		final List<Customisation> cuss = (List<Customisation>) this.customisationService.findAll();
+		final Customisation cus = cuss.get(0);
+		final Collection<String> makes = cus.getCreditCardMakes();
+		Assert.isTrue(makes.contains(registration.getMakeName()));
 
 		Registration res;
 
@@ -60,6 +68,10 @@ public class RegistrationService {
 
 	public Registration findOne(final int registrationId) {
 		return this.registrationRepository.findOne(registrationId);
+	}
+
+	public Collection<Registration> findByConference(final int conferenceId) {
+		return this.registrationRepository.findByConference(conferenceId);
 	}
 
 }

@@ -41,15 +41,17 @@
 		<security:intercept-url pattern="/conference/forthCommingList.do" access="permitAll" />
 		<security:intercept-url pattern="/conference/runningList.do" access="permitAll" />
 		<security:intercept-url pattern="/conference/search.do" access="permitAll" />
+		<security:intercept-url pattern="/conference/show.do" access="permitAll" />
 		
-		<security:intercept-url pattern="/registration/show.do" access="permitAll" />
+		<security:intercept-url pattern="/activity/show.do" access="permitAll" />
+
+		<security:intercept-url pattern="/registration/show.do" access="hasRole('AUTHOR')||hasRole('ADMIN')" />
 		
 		<!-- Author -->
 		<security:intercept-url pattern="/registration/author/list.do" access="hasRole('AUTHOR')" />
 		<security:intercept-url pattern="/submission/author/list.do" access="hasRole('AUTHOR')" />
 		<security:intercept-url pattern="/registration/author/create.do" access="hasRole('AUTHOR')" />
 		<security:intercept-url pattern="/registration/author/edit.do" access="hasRole('AUTHOR')" />
-		
 		
 		<security:intercept-url pattern="/views/misc/index.jsp" access="permitAll" /> 
 
