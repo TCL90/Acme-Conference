@@ -104,6 +104,8 @@ public class AuthorService {
 		Author res;
 
 		res = this.authorRepository.save(author);
+
+		this.authorRepository.flush();
 		return res;
 	}
 

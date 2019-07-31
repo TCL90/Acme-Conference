@@ -19,11 +19,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public abstract class Comment extends DomainEntity {
+public class Comment extends DomainEntity {
 
 	private String	title;
 	private Date	moment;
-	private String	author;
 	private String	text;
 
 
@@ -51,16 +50,6 @@ public abstract class Comment extends DomainEntity {
 
 	@NotBlank
 	@SafeHtml
-	public String getAuthor() {
-		return this.author;
-	}
-
-	public void setAuthor(final String author) {
-		this.author = author;
-	}
-
-	@NotBlank
-	@SafeHtml
 	public String getText() {
 		return this.text;
 	}
@@ -71,6 +60,7 @@ public abstract class Comment extends DomainEntity {
 
 
 	private Commentable	commentable;
+	private Actor		author;
 
 
 	@Valid
@@ -83,4 +73,13 @@ public abstract class Comment extends DomainEntity {
 		this.commentable = commentable;
 	}
 
+	@Valid
+	@ManyToOne(optional = true)
+	public Actor getAuthor() {
+		return this.author;
+	}
+
+	public void setAuthor(final Actor author) {
+		this.author = author;
+	}
 }

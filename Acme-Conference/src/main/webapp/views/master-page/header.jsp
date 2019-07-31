@@ -30,24 +30,32 @@
 			</li>
 		</security:authorize>
 		
-		<security:authorize access="hasRole('CUSTOMER')">
-			<li><a class="fNiv"><spring:message	code="master.page.customer" /></a>
+		<security:authorize access="hasRole('AUTHOR')">
+			<li><a class="fNiv"><spring:message	code="master.page.author" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="customer/action-1.do"><spring:message code="master.page.customer.action.1" /></a></li>
-					<li><a href="customer/action-2.do"><spring:message code="master.page.customer.action.2" /></a></li>					
+					<li><a href="submission/author/list.do"><spring:message code="master.page.author.submission" /></a></li>
+					<li><a href="registration/author/list.do"><spring:message code="master.page.author.registration" /></a></li>
 				</ul>
 			</li>
 		</security:authorize>
 		
 		<security:authorize access="isAnonymous()">
 			<li><a class="fNiv" href="author/register.do"><spring:message code="master.page.register.author" /></a></li>
+			<li><a class="fNiv" href="conference/list.do"><spring:message code="master.page.conference.list" /></a></li>
 			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
-		
+			<li><form action="conference/search.do"><div>
+    				<input type="search" id="mySearch" name="q"
+    				placeholder="Search for conferences..." size="30" required>
+    				<button>Search</button>
+  					  </div>
+				</form>
+			</li>
 		
 		</security:authorize>
 		
 		<security:authorize access="isAuthenticated()">
+		<li><a class="fNiv" href="conference/list.do"><spring:message code="master.page.conference.list" /></a></li>
 			<li>
 				<a class="fNiv"> 
 					<spring:message code="master.page.profile" /> 

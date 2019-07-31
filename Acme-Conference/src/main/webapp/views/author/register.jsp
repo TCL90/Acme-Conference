@@ -36,7 +36,7 @@
 		<br /> <br />
 
 		<form:label path="address">
-			<spring:message code="author.address" />:
+			<spring:message code="author.address" />*:
 		</form:label>
 		<form:input path="address" />
 		<form:errors cssClass="error" path="address" />
@@ -86,7 +86,6 @@
 	<br />
 
 
-	<br />
 	<fieldset>
 		<legend align="left">
 			<spring:message code="author.edit.userAccount" />
@@ -106,14 +105,9 @@
 		<form:errors cssClass="error" path="userAccount.password" />
 	</fieldset>
 
-	<form:label path="conditionsAccepted">
-		<spring:message code="author.conditions" />:
-	</form:label>
-	<form:checkbox path="conditionsAccepted" />
-	<form:errors cssClass="error" path="conditionsAccepted" />
 
 
-
+	<spring:message code="asterisco"/>
 	<br />
 	<br />
 	<input type="submit" name="save"

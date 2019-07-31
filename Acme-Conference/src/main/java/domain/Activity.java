@@ -12,21 +12,23 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Activity extends Commentable {
+public abstract class Activity extends Commentable {
 
 	private String				title;
 	private Collection<String>	speakers;
 	private Date				startMoment;
-	private Date				duration;
+	private int					duration;
 	private Date				schedule;
 	private String				room;
 	private String				summary;
@@ -65,13 +67,13 @@ public class Activity extends Commentable {
 	}
 
 	@NotNull
-	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	public Date getDuration() {
+	@Min(0)
+	@NumberFormat
+	public int getDuration() {
 		return this.duration;
 	}
 
-	public void setDuration(final Date duration) {
+	public void setDuration(final int duration) {
 		this.duration = duration;
 	}
 
