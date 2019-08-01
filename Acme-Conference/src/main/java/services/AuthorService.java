@@ -1,6 +1,8 @@
 
 package services;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -116,6 +118,10 @@ public class AuthorService {
 		res = this.authorRepository.findByUserAccountId(userAccount.getId());
 
 		return res;
+	}
+
+	public Collection<Author> findAll() {
+		return this.authorRepository.findAll();
 	}
 
 }

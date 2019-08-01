@@ -7,6 +7,8 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import javax.validation.Valid;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -62,6 +64,20 @@ public class CameraReadyPaper extends DomainEntity {
 
 	public void setDocument(final String document) {
 		this.document = document;
+	}
+
+
+	private Submission	submission;
+
+
+	@Valid
+	@OneToOne(optional = false)
+	public Submission getSubmission() {
+		return this.submission;
+	}
+
+	public void setSubmission(final Submission submission) {
+		this.submission = submission;
 	}
 
 }
