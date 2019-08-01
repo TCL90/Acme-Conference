@@ -17,38 +17,11 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 
-<form:form modelAttribute="submissionForm" action="submission/author/edit.do">
+<form:form modelAttribute="cameraReadyPaper" action="cameraReadyPaper/author/edit.do">
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
-	<form:hidden path="ticker" />
-	<form:hidden path="moment" />
-	<form:hidden path="status" />
-	<form:hidden path="author" />
-	
-	
+	<form:hidden path="submission"/>
 
-	<fieldset>
-
-	<legend align="left">
-		<spring:message code="submission" />
-	</legend>
-		<form:label path="conference">
-			<spring:message code="submission.conference"/>*:
-		</form:label>				
-		<form:select path="conference">
-			<form:option label="----" value="0" />
-			<form:options items="${conferences}"  itemLabel = "title"/>
-			</form:select>
-		<form:errors cssClass="error" path="conference" />
-		<br />			
-	</fieldset>
-	<br />
-	<fieldset>
-
-	<legend align="left">
-		<spring:message code="submission.paper" />
-	</legend>
-	
 		<form:label path="title">
 			<spring:message code="paper.title"/>*:
 		</form:label>
@@ -79,7 +52,6 @@
 		<form:errors cssClass="error" path="authors" />
 		<br />
 	
-	</fieldset>
 	
 	<br />
 	

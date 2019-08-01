@@ -34,4 +34,7 @@ public interface ConferenceRepository extends JpaRepository<Conference, Integer>
 	@Query("select c from Conference c where c.startDate > NOW() and c.finalMode='1' and c not in (select r.conference from Registration r where r.author.id=?1)")
 	Collection<Conference> findAllForthCommingNotRegistered(int authorId);
 
+	@Query("select c from Conference c where c.startDate > NOW() and c.finalMode='1' and c not in (select s.conference from Submission s where s.author.id=?1)")
+	Collection<Conference> findAllForthCommingNotSubmitted(int authorId);
+
 }

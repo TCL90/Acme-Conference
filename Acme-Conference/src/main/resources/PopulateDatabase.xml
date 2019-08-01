@@ -882,12 +882,12 @@
 	</bean>
 	
 	<!-- Camera Ready Paper -->
-	
-	<bean id="cameraReadyPaper1" class="domain.CameraReadyPaper">
+		<bean id="cameraReadyPaper1" class="domain.CameraReadyPaper">
 			<property name="title" value="Title 1"/>
 			<property name="authors" value="Author nº1, Author nº2"/>
 			<property name="summary" value="Summary example"/>
 			<property name="document" value="http://www.document1.com"/>
+			<property name="submission" ref="submission1"/>
 	</bean>
 	
 	<bean id="cameraReadyPaper2" class="domain.CameraReadyPaper">
@@ -895,5 +895,7 @@
 			<property name="authors" value="Author nº2, Author nº3"/>
 			<property name="summary" value="Summary example2"/>
 			<property name="document" value="http://www.document2.com"/>
+			<property name="submission" ref="submission2"/>
 	</bean>
+
 </beans>
