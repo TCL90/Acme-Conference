@@ -52,9 +52,13 @@ public class ConferenceService {
 
 		return this.conferenceRepository.numberOfRegistrations(c.getId());
 	}
-	
+
 	public Collection<Conference> findAllForthCommingNotRegistered(final int authorId) {
 		return this.conferenceRepository.findAllForthCommingNotRegistered(authorId);
+	}
+
+	public Collection<Conference> findAllForthCommingNotSubmitted(final int authorId) {
+		return this.conferenceRepository.findAllForthCommingNotSubmitted(authorId);
 	}
 
 }

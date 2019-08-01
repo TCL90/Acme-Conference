@@ -1,11 +1,13 @@
 
-package domain;
+package forms;
 
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -17,16 +19,28 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.SafeHtml;
+import org.hibernate.validator.constraints.URL;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import domain.Author;
+import domain.CameraReadyPaper;
+import domain.Conference;
+import domain.DomainEntity;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Submission extends DomainEntity {
+public class SubmissionForm extends DomainEntity {
 
-	private String	ticker;
-	private Date	moment;
-	private String	status;
+	private String				ticker;
+	private Date				moment;
+	private String				status;
+
+	private String				title;
+	private Collection<String>	authors;
+	private String				summary;
+	private String				document;
 
 
 	@NotBlank
@@ -65,9 +79,10 @@ public class Submission extends DomainEntity {
 
 
 	//Relationships
-	private Author			author;
-	private domain.Paper	paper;
-	private Conference		conference;
+	private Author				author;
+	private domain.Paper		paper;
+	private CameraReadyPaper	cameraReadyPaper;
+	private Conference			conference;
 
 
 	@Valid
@@ -91,6 +106,16 @@ public class Submission extends DomainEntity {
 	}
 
 	@Valid
+	@OneToOne(optional = true)
+	public CameraReadyPaper getCameraReadyPaper() {
+		return this.cameraReadyPaper;
+	}
+
+	public void setCameraReadyPaper(final CameraReadyPaper cameraReadyPaper) {
+		this.cameraReadyPaper = cameraReadyPaper;
+	}
+
+	@Valid
 	@ManyToOne(optional = false)
 	public Conference getConference() {
 		return this.conference;
@@ -98,6 +123,47 @@ public class Submission extends DomainEntity {
 
 	public void setConference(final Conference conference) {
 		this.conference = conference;
+	}
+
+	@NotBlank
+	@SafeHtml
+	public String getTitle() {
+		return this.title;
+	}
+
+	public void setTitle(final String title) {
+		this.title = title;
+	}
+
+	@NotEmpty
+	@ElementCollection
+	public Collection<String> getAuthors() {
+		return this.authors;
+	}
+
+	public void setAuthors(final Collection<String> authors) {
+		this.authors = authors;
+	}
+
+	@NotBlank
+	@SafeHtml
+	public String getSummary() {
+		return this.summary;
+	}
+
+	public void setSummary(final String summary) {
+		this.summary = summary;
+	}
+
+	@NotBlank
+	@SafeHtml
+	@URL
+	public String getDocument() {
+		return this.document;
+	}
+
+	public void setDocument(final String document) {
+		this.document = document;
 	}
 
 }

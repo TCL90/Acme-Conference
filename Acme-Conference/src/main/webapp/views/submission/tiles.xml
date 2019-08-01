@@ -21,5 +21,15 @@
 		<put-attribute name="body" value="/views/submission/list.jsp" />
 	</definition>
 	
+	<definition name="submission/author/create" extends="master.page">
+		<put-attribute name="title" value="Create submission" />
+		<put-attribute name="body" value="/views/submission/edit.jsp" />
+	</definition>
+	
+	<definition name="submission/author/edit" extends="master.page">
+		<put-attribute name="title" value="Create submission" />
+		<put-attribute name="body" value="/views/submission/edit.jsp" />
+	</definition>
+	
 
 </tiles-definitions>

@@ -52,6 +52,10 @@
 		<security:intercept-url pattern="/submission/author/list.do" access="hasRole('AUTHOR')" />
 		<security:intercept-url pattern="/registration/author/create.do" access="hasRole('AUTHOR')" />
 		<security:intercept-url pattern="/registration/author/edit.do" access="hasRole('AUTHOR')" />
+		<security:intercept-url pattern="/submission/author/create.do" access="hasRole('AUTHOR')" />
+		<security:intercept-url pattern="/submission/author/edit.do" access="hasRole('AUTHOR')" />
+		<security:intercept-url pattern="/cameraReadyPaper/author/create.do" access="hasRole('AUTHOR')" />
+		<security:intercept-url pattern="/cameraReadyPaper/author/edit.do" access="hasRole('AUTHOR')" />
 		
 		<security:intercept-url pattern="/views/misc/index.jsp" access="permitAll" /> 
 
