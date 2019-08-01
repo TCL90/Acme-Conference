@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.AuthorService;
@@ -40,12 +39,12 @@ public class CameraReadyPaperController extends AbstractController {
 
 
 	@RequestMapping(value = "/author/create", method = RequestMethod.GET)
-	public ModelAndView create(@RequestParam final int submissionId) {
+	public ModelAndView create() {
 
 		ModelAndView result;
 		final CameraReadyPaper cameraReadyPaper = new CameraReadyPaper();
-		final Submission submission = this.submissionService.findOne(submissionId);
-		cameraReadyPaper.setSubmission(submission);
+		//final Submission submission = this.submissionService.findOne(submissionId);
+		//cameraReadyPaper.setSubmission(submission);
 		result = this.createModelAndView(cameraReadyPaper);
 		return result;
 	}
@@ -65,9 +64,12 @@ public class CameraReadyPaperController extends AbstractController {
 		//		for (Author au : authors2)
 		//			authors.add(au.getName()+)
 
+		final Collection<Submission> submissions = this.submissionService.findAccepted(this.authorService.findByPrincipal().getId());
+
 		result = new ModelAndView("cameraReadyPaper/author/create");
 		result.addObject("cameraReadyPaper", cameraReadyPaper);
 		result.addObject("authors", authors);
+		result.addObject("submissions", submissions);
 		result.addObject("message", messageCode);
 
 		return result;

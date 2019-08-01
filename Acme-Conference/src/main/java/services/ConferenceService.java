@@ -61,4 +61,8 @@ public class ConferenceService {
 		return this.conferenceRepository.findAllForthCommingNotSubmitted(authorId);
 	}
 
+	public Collection<Conference> findAllForthCommingSubmitted(final int authorId) {
+		return this.conferenceRepository.findAllForthCommingSubmitted(authorId);
+	}
+
 }

@@ -33,16 +33,12 @@
 		</jstl:if>
 	</display:column>
 	
-	<display:column >
-		<jstl:if test="${row.status == 'ACCEPTED'}">
-			<a href="cameraReadyPaper/author/create.do?submissionId=${row.id}" >
-			<spring:message code="camera.create" /></a>
-		</jstl:if>
-	</display:column>
 </display:table>
 
 <a href="submission/author/create.do" ><spring:message code="submission.create" /></a>
-	
+<br/><br/>
+<a href="cameraReadyPaper/author/create.do" >
+<spring:message code="camera.create" /></a>	
 
 
 
