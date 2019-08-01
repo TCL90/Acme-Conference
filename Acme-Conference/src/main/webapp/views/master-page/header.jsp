@@ -34,14 +34,16 @@
 			<li><a class="fNiv"><spring:message	code="master.page.author" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="submission/author/list.do"><spring:message code="master.page.author.submission" /></a></li>
+					<li><a href="author/author/edit.do"><spring:message code="master.page.edit.author" /></a></li>
 					<li><a href="registration/author/list.do"><spring:message code="master.page.author.registration" /></a></li>
+					<li><a href="submission/author/list.do"><spring:message code="master.page.author.submission" /></a></li>
 				</ul>
 			</li>
 		</security:authorize>
 		
 		<security:authorize access="isAnonymous()">
 			<li><a class="fNiv" href="author/register.do"><spring:message code="master.page.register.author" /></a></li>
+			<li><a class="fNiv" href="reviewer/register.do"><spring:message code="master.page.register.reviewer" /></a></li>
 			<li><a class="fNiv" href="conference/list.do"><spring:message code="master.page.conference.list" /></a></li>
 			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
 			<li><form action="conference/search.do"><div>

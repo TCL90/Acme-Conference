@@ -20,7 +20,7 @@
 <form:form modelAttribute="cameraReadyPaper" action="cameraReadyPaper/author/edit.do">
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
-	<form:hidden path="submission"/>
+	<!-- <form:hidden path="submission"/> -->
 
 		<form:label path="title">
 			<spring:message code="paper.title"/>*:
@@ -52,6 +52,16 @@
 		<form:errors cssClass="error" path="authors" />
 		<br />
 	
+		<form:label path="submission">
+			<spring:message code="paper.submission"/>*:
+		</form:label>				
+		<form:select path="submission">
+			<form:options items="${submissions}" itemLabel="conference.title"/>
+			</form:select>
+		<form:errors cssClass="error" path="submission" />
+		<br />
+	
+		
 	
 	<br />
 	

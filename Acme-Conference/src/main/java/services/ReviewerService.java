@@ -9,33 +9,33 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import repositories.AuthorRepository;
+import repositories.ReviewerRepository;
 import security.Authority;
 import security.LoginService;
 import security.UserAccount;
-import domain.Author;
+import domain.Reviewer;
 
 @Service
 @Transactional
-public class AuthorService {
+public class ReviewerService {
 
 	@Autowired
-	private AuthorRepository	authorRepository;
+	private ReviewerRepository	authorRepository;
 
 
 	//Constructor
-	public AuthorService() {
+	public ReviewerService() {
 		super();
 	}
 
-	public Author create() {
+	public Reviewer create() {
 
-		Author result;
-		result = new Author();
+		Reviewer result;
+		result = new Reviewer();
 
 		final UserAccount newUser = new UserAccount();
 		final Authority f = new Authority();
-		f.setAuthority(Authority.AUTHOR);
+		f.setAuthority(Authority.REVIEWER);
 		newUser.addAuthority(f);
 		result.setUserAccount(newUser);
 
@@ -46,13 +46,13 @@ public class AuthorService {
 		result.setPhoneNumber("");
 		result.setPhoto("");
 
-		// Author
+		// Reviewer
 
 		return result;
 	}
 
-	public Author findByPrincipal() {
-		Author res;
+	public Reviewer findByPrincipal() {
+		Reviewer res;
 		UserAccount userAccount;
 
 		userAccount = LoginService.getPrincipal();
@@ -63,7 +63,7 @@ public class AuthorService {
 		return res;
 	}
 
-	public Author save(final Author author) {
+	public Reviewer save(final Reviewer author) {
 		Assert.notNull(author);
 
 		final String pnumber = author.getPhoneNumber();
@@ -74,45 +74,36 @@ public class AuthorService {
 		//			author.setPhoneNumber(cc.concat(pnumber));
 
 		//		if (author.getId() != 0) {
-		//			Assert.isTrue(this.actorService.checkAuthor());
+		//			Assert.isTrue(this.actorService.checkReviewer());
 		//
-		//			// Modified Author must be logged Author
-		//			final Author logAuthor;
-		//			logAuthor = this.findByPrincipal();
-		//			Assert.notNull(logAuthor);
-		//			Assert.notNull(logAuthor.getId());
+		//			// Modified Reviewer must be logged Reviewer
+		//			final Reviewer logReviewer;
+		//			logReviewer = this.findByPrincipal();
+		//			Assert.notNull(logReviewer);
+		//			Assert.notNull(logReviewer.getId());
 		//
 		//		} else {
 		//TODO: DESCOMENTAR
 		//			final Collection<Box> boxes = this.actorService1.createPredefinedBoxes();
 		//			author.setBoxes(boxes);
-		if (author.getId() == 0) {
-			final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
-			final String oldpass = author.getUserAccount().getPassword();
-			final String hash = encoder.encodePassword(oldpass, null);
+		final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+		final String oldpass = author.getUserAccount().getPassword();
+		final String hash = encoder.encodePassword(oldpass, null);
 
-			final UserAccount cuenta = author.getUserAccount();
-			cuenta.setPassword(hash);
-			author.setUserAccount(cuenta);
-		}
-		//TODO: DESCOMENTAR
-		//			final Finder find = new Finder();
-		//
-		//			find.setMoment(new Date());
-		//			final Finder find2 = this.finderRepository.save(find);
+		final UserAccount cuenta = author.getUserAccount();
+		cuenta.setPassword(hash);
+		author.setUserAccount(cuenta);
 
-		//			author.setFinder(find2);
-		//		}
-		// Restrictions
-		Author res;
+		Reviewer res;
 
 		res = this.authorRepository.save(author);
 
 		this.authorRepository.flush();
 		return res;
 	}
-	public Author findByUserAccount(final UserAccount userAccount) {
-		Author res;
+
+	public Reviewer findByUserAccount(final UserAccount userAccount) {
+		Reviewer res;
 		Assert.notNull(userAccount);
 
 		res = this.authorRepository.findByUserAccountId(userAccount.getId());
@@ -120,7 +111,7 @@ public class AuthorService {
 		return res;
 	}
 
-	public Collection<Author> findAll() {
+	public Collection<Reviewer> findAll() {
 		return this.authorRepository.findAll();
 	}
 

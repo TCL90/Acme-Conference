@@ -92,4 +92,9 @@ public class SubmissionService {
 	public Submission findOne(final int submissionId) {
 		return this.submissionRepository.findOne(submissionId);
 	}
+
+	public Collection<Submission> findAccepted(final int authorId) {
+		return this.submissionRepository.findAccepted(authorId);
+	}
+
 }
