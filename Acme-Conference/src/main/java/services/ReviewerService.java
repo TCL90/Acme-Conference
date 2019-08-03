@@ -20,7 +20,7 @@ import domain.Reviewer;
 public class ReviewerService {
 
 	@Autowired
-	private ReviewerRepository	authorRepository;
+	private ReviewerRepository	reviewerRepository;
 
 
 	//Constructor
@@ -63,17 +63,17 @@ public class ReviewerService {
 		return res;
 	}
 
-	public Reviewer save(final Reviewer author) {
-		Assert.notNull(author);
+	public Reviewer save(final Reviewer reviewer) {
+		Assert.notNull(reviewer);
 
-		final String pnumber = author.getPhoneNumber();
+		final String pnumber = reviewer.getPhoneNumber();
 		//TODO: DESCOMENTAR
 		//final Customisation cus = ((List<Customisation>) this.customisationService.findAll()).get(0);
 		//final String cc = cus.getPhoneNumberCode();
 		//		if (pnumber.matches("^[0-9]{4,}$"))
-		//			author.setPhoneNumber(cc.concat(pnumber));
+		//			reviewer.setPhoneNumber(cc.concat(pnumber));
 
-		//		if (author.getId() != 0) {
+		//		if (reviewer.getId() != 0) {
 		//			Assert.isTrue(this.actorService.checkReviewer());
 		//
 		//			// Modified Reviewer must be logged Reviewer
@@ -85,20 +85,23 @@ public class ReviewerService {
 		//		} else {
 		//TODO: DESCOMENTAR
 		//			final Collection<Box> boxes = this.actorService1.createPredefinedBoxes();
-		//			author.setBoxes(boxes);
-		final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
-		final String oldpass = author.getUserAccount().getPassword();
-		final String hash = encoder.encodePassword(oldpass, null);
+		//			reviewer.setBoxes(boxes);
 
-		final UserAccount cuenta = author.getUserAccount();
-		cuenta.setPassword(hash);
-		author.setUserAccount(cuenta);
+		if (reviewer.getId() == 0) {
+			final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+			final String oldpass = reviewer.getUserAccount().getPassword();
+			final String hash = encoder.encodePassword(oldpass, null);
+
+			final UserAccount cuenta = reviewer.getUserAccount();
+			cuenta.setPassword(hash);
+			reviewer.setUserAccount(cuenta);
+		}
 
 		Reviewer res;
 
-		res = this.authorRepository.save(author);
+		res = this.reviewerRepository.save(reviewer);
 
-		this.authorRepository.flush();
+		this.reviewerRepository.flush();
 		return res;
 	}
 
@@ -106,13 +109,13 @@ public class ReviewerService {
 		Reviewer res;
 		Assert.notNull(userAccount);
 
-		res = this.authorRepository.findByUserAccountId(userAccount.getId());
+		res = this.reviewerRepository.findByUserAccountId(userAccount.getId());
 
 		return res;
 	}
 
 	public Collection<Reviewer> findAll() {
-		return this.authorRepository.findAll();
+		return this.reviewerRepository.findAll();
 	}
 
 }
