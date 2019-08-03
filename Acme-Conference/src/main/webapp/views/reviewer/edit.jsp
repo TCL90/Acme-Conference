@@ -8,22 +8,21 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form action="author/author/edit.do"
-	modelAttribute="author">
+<form:form action="reviewer/reviewer/edit.do"
+	modelAttribute="reviewer">
 
 	<form:hidden path="userAccount" />
-	<form:hidden path="finder" />
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 
 
 	<fieldset>
 		<legend align="left">
-			<spring:message code="author.edit.contact" />
+			<spring:message code="reviewer.edit.contact" />
 		</legend>
 
 		<form:label path="name">
-			<spring:message code="author.name" />* :
+			<spring:message code="reviewer.name" />* :
 		</form:label>
 		<form:input path="name" />
 		<form:errors cssClass="error" path="name" />
@@ -31,7 +30,7 @@
 		<br /> <br />
 
 		<form:label path="surname">
-			<spring:message code="author.surname" />* :
+			<spring:message code="reviewer.surname" />* :
 		</form:label>
 		<form:input path="surname" />
 		<form:errors cssClass="error" path="surname" />
@@ -39,7 +38,7 @@
 		<br /> <br />
 
 		<form:label path="address">
-			<spring:message code="author.address" />*:
+			<spring:message code="reviewer.address" />*:
 		</form:label>
 		<form:input path="address" />
 		<form:errors cssClass="error" path="address" />
@@ -47,7 +46,7 @@
 		<br /> <br />
 
 		<form:label path="email">
-			<spring:message code="author.email" />*:
+			<spring:message code="reviewer.email" />*:
 		</form:label>
 		<form:input path="email"/>
 		<form:errors cssClass="error" path="email" />
@@ -55,7 +54,7 @@
 
 
 		<form:label path="phoneNumber">
-			<spring:message code="author.phoneNumber" />:
+			<spring:message code="reviewer.phoneNumber" />:
 		</form:label>
 		<form:input path="phoneNumber" onchange="check(this)"
 			pattern="^(\d|\(|\)| |\+)+$" />
@@ -71,17 +70,25 @@
 				var OK2 = re2.exec(input.value);
 				var OK3 = re3.exec(input.value);
 				if (!(OK || OK2 || OK3)) {
-					alert("<spring:message code="author.confirm" />");
+					alert("<spring:message code="reviewer.confirm" />");
 				}
 			}
 		</script>
 		<br /> <br />
 
 		<form:label path="photo">
-			<spring:message code="author.photo" />:
+			<spring:message code="reviewer.photo" />:
 		</form:label>
 		<form:input path="photo" />
 		<form:errors cssClass="error" path="photo" />
+
+		<br /> <br />
+		
+		<form:label path="expertise">
+			<spring:message code="reviewer.expertise" />:
+		</form:label>
+		<form:input path="expertise" />
+		<form:errors cssClass="error" path="expertise" />
 
 		<br /> <br />
 
@@ -92,9 +99,9 @@
 	<br />
 	<br />
 	<input type="submit" name="save"
-		value="<spring:message code="author.edit.save" />" />&nbsp;
+		value="<spring:message code="reviewer.edit.save" />" />&nbsp;
 	<input type="button" name="cancel"
 		onclick="javascript: window.location.replace('welcome/index.do')"
-		value="<spring:message code="author.edit.cancel" />" />
+		value="<spring:message code="reviewer.edit.cancel" />" />
 
 </form:form>

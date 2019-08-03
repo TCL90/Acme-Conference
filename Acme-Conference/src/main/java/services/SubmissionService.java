@@ -12,10 +12,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
+import repositories.ReportRepository;
 import repositories.SubmissionRepository;
 import utilities.TickerGenerator;
 import domain.Author;
 import domain.Paper;
+import domain.Report;
 import domain.Submission;
 import forms.SubmissionForm;
 
@@ -31,6 +33,9 @@ public class SubmissionService {
 
 	@Autowired
 	private PaperService			paperService;
+
+	@Autowired
+	private ReportRepository		reportRepository;
 
 
 	public Collection<Submission> findByAuthor(final int authorId) {
@@ -97,4 +102,37 @@ public class SubmissionService {
 		return this.submissionRepository.findAccepted(authorId);
 	}
 
+	public Collection<Submission> findUnderReview() {
+		return this.submissionRepository.findUnderReview();
+	}
+
+	public Collection<Submission> decisionProcedure() {
+		final Collection<Submission> submissions = this.submissionRepository.findUnderReview();
+		Collection<Report> reports = null;
+		int accept = 0;
+		int reject = 0;
+		int borderLine = 0;
+
+		for (final Submission s : submissions) {
+			accept = 0;
+			reject = 0;
+			borderLine = 0;
+			reports = this.reportRepository.findBySubmission(s.getId());
+			for (final Report r : reports)
+				if (r.getDecision().contains("ACCEPT"))
+					accept++;
+				else if (r.getDecision().contains("REJECT"))
+					reject++;
+				else if (r.getDecision().contains("BORDER-LINE"))
+					borderLine++;
+			if (reject > accept)
+				s.setStatus("REJECTED");
+			else
+				s.setStatus("ACCEPTED");
+			this.submissionRepository.save(s);
+			this.submissionRepository.flush();
+		}
+
+		return submissions;
+	}
 }

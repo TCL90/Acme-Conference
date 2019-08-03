@@ -137,6 +137,18 @@
 		</property>
 	</bean>
 	
+	<bean id="userAccount10" class="security.UserAccount">
+		<property name="username" value="reviewer3" />
+		<property name="password" value="315d31e7c8f3a136610aafa220d689be" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="REVIEWER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
 	<!-- ******************************ADMINISTRATOR************************************* -->	
 	
 	<bean id="admin1" class="domain.Administrator">
@@ -229,102 +241,125 @@
 
 
 <!-- ******************************REVIEWER************************************* -->	
-<bean id="reviewer1" class="domain.Reviewer">
-		<property name="name" value="reviewer1" />
-		<property name="middleName" value="RC" />
-		<property name="surname" value="Prueba3" />
-		<property name="phoneNumber" value="+34 654455557" />
-		<property name="address" value="C/ Saturday, nº 13" />
-		<property name="email" value="reviewer1@gmail.com" />
-		<property name="photo" value="http://wwww.photo4.com" />
-		<property name="userAccount" ref="userAccount6" />
+	<bean id="reviewer1" class="domain.Reviewer">
+			<property name="name" value="reviewer1" />
+			<property name="middleName" value="RC" />
+			<property name="surname" value="Prueba3" />
+			<property name="phoneNumber" value="+34 654455557" />
+			<property name="address" value="C/ Saturday, nº 13" />
+			<property name="email" value="reviewer1@gmail.com" />
+			<property name="photo" value="http://wwww.photo4.com" />
+			<property name="userAccount" ref="userAccount6" />
+	
+			<property name="Boxes">
+				<list>
+					<ref bean="in4" />
+					<ref bean="notification4" />
+					<ref bean="out4" />
+				</list>
+			</property>
+			<property name="expertise">
+				<list>
+					<value>research</value>
+					<value>reviews</value>
+				</list>
+			</property>
+	</bean>
 
-		<property name="Boxes">
-			<list>
-				<ref bean="in4" />
-				<ref bean="notification4" />
-				<ref bean="out4" />
-			</list>
-		</property>
-		<property name="expertise">
-			<list>
-				<value>research</value>
-				<value>reviews</value>
-			</list>
-		</property>
-</bean>
-
-<bean id="reviewer2" class="domain.Reviewer">
-		<property name="name" value="reviewer2" />
-		<property name="middleName" value="RC2" />
-		<property name="surname" value="Prueba4" />
-		<property name="phoneNumber" value="+34 654455558" />
-		<property name="address" value="C/ Saturday, nº 14" />
-		<property name="email" value="reviewer2@gmail.com" />
-		<property name="photo" value="http://wwww.photo5.com" />
-		<property name="userAccount" ref="userAccount7" />
-
-		<property name="Boxes">
-			<list>
-				<ref bean="in5" />
-				<ref bean="notification5" />
-				<ref bean="out5" />
-			</list>
-		</property>
-		
-		<property name="expertise">
-			<list>
-				<value>research</value>
-				<value>reviews</value>
-			</list>
-		</property>
-
-</bean>
+	<bean id="reviewer2" class="domain.Reviewer">
+			<property name="name" value="reviewer2" />
+			<property name="middleName" value="RC2" />
+			<property name="surname" value="Prueba4" />
+			<property name="phoneNumber" value="+34 654455558" />
+			<property name="address" value="C/ Saturday, nº 14" />
+			<property name="email" value="reviewer2@gmail.com" />
+			<property name="photo" value="http://wwww.photo5.com" />
+			<property name="userAccount" ref="userAccount7" />
+	
+			<property name="Boxes">
+				<list>
+					<ref bean="in5" />
+					<ref bean="notification5" />
+					<ref bean="out5" />
+				</list>
+			</property>
+			
+			<property name="expertise">
+				<list>
+					<value>research</value>
+					<value>reviews</value>
+				</list>
+			</property>
+	
+	</bean>
+	
+	<bean id="reviewer3" class="domain.Reviewer">
+			<property name="name" value="reviewer3" />
+			<property name="middleName" value="Rev 3" />
+			<property name="surname" value="Crítica 3" />
+			<property name="phoneNumber" value="+34 654412358" />
+			<property name="address" value="C/ Sunday, nº 14" />
+			<property name="email" value="reviewer3@gmail.com" />
+			<property name="photo" value="http://wwww.photo8.com" />
+			<property name="userAccount" ref="userAccount10" />
+	
+			<property name="Boxes">
+				<list>
+					<ref bean="in9" />
+					<ref bean="notification9" />
+					<ref bean="out9" />
+				</list>
+			</property>
+			
+			<property name="expertise">
+				<list>
+					<value>research</value>
+					<value>reviews</value>
+				</list>
+			</property>
+	</bean>
 
 <!-- ******************************SPONSOR************************************* -->	
-<bean id="sponsor1" class="domain.Sponsor">
-		<property name="name" value="Sponsor1" />
-		<property name="middleName" value="SP1" />
-		<property name="surname" value="Prueba5" />
-		<property name="phoneNumber" value="+34 654455559" />
-		<property name="address" value="C/ Saturday, nº 15" />
-		<property name="email" value="sponsor1@gmail.com" />
-		<property name="photo" value="http://wwww.photo6.com" />
-		<property name="userAccount" ref="userAccount2" />
-
-		<property name="Boxes">
-			<list>
-				<ref bean="in6" />
-				<ref bean="notification6" />
-				<ref bean="out6" />
-			</list>
-		</property>
-
-
+	<bean id="sponsor1" class="domain.Sponsor">
+			<property name="name" value="Sponsor1" />
+			<property name="middleName" value="SP1" />
+			<property name="surname" value="Prueba5" />
+			<property name="phoneNumber" value="+34 654455559" />
+			<property name="address" value="C/ Saturday, nº 15" />
+			<property name="email" value="sponsor1@gmail.com" />
+			<property name="photo" value="http://wwww.photo6.com" />
+			<property name="userAccount" ref="userAccount2" />
 	
-</bean>
-
-<bean id="sponsor2" class="domain.Sponsor">
-		<property name="name" value="Sponsor2" />
-		<property name="middleName" value="SP2" />
-		<property name="surname" value="Prueba6" />
-		<property name="phoneNumber" value="+34 654455560" />
-		<property name="address" value="C/ Saturday, nº 16" />
-		<property name="email" value="sponsor2@gmail.com" />
-		<property name="photo" value="http://wwww.photo7.com" />
-		<property name="userAccount" ref="userAccount3" />
-
-		<property name="Boxes">
-			<list>
-				<ref bean="in7" />
-				<ref bean="notification7" />
-				<ref bean="out7" />
-			</list>
-		</property>
+			<property name="Boxes">
+				<list>
+					<ref bean="in6" />
+					<ref bean="notification6" />
+					<ref bean="out6" />
+				</list>
+			</property>
+	
+	
 		
+	</bean>
 
-
-</bean>
+	<bean id="sponsor2" class="domain.Sponsor">
+			<property name="name" value="Sponsor2" />
+			<property name="middleName" value="SP2" />
+			<property name="surname" value="Prueba6" />
+			<property name="phoneNumber" value="+34 654455560" />
+			<property name="address" value="C/ Saturday, nº 16" />
+			<property name="email" value="sponsor2@gmail.com" />
+			<property name="photo" value="http://wwww.photo7.com" />
+			<property name="userAccount" ref="userAccount3" />
+	
+			<property name="Boxes">
+				<list>
+					<ref bean="in7" />
+					<ref bean="notification7" />
+					<ref bean="out7" />
+				</list>
+			</property>
+	</bean>
 
 
 
@@ -542,6 +577,28 @@
 			</list>
 		</property>
 	</bean>
+
+	<bean id="in9" class="domain.Box">
+		<property name="name" value="In" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="notification9" class="domain.Box">
+		<property name="name" value="Notification" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="out9" class="domain.Box">
+		<property name="name" value="Out" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
 <!-- ******************************REGISTRATION************************************* -->	
 
 	<bean id="registration1" class="domain.Registration">
@@ -709,8 +766,6 @@
 			<property name="parent" ref="category3" />
 	</bean>
 	
-
-	
 	<bean id="category5" class="domain.Category">
 			<property name="titleIng" value="Instance-based learning"/>
 			<property name="titleEsp" value="Aprendizaje basado en instancias"/>
@@ -723,6 +778,97 @@
 			<property name="titleEsp" value="Regresión"/>
 			
 			<property name="parent" ref="category3" />
+	</bean>
+	
+	<bean id="category7" class="domain.Category">
+			<property name="titleIng" value="Software Engineering"/>
+			<property name="titleEsp" value="Ingeniería del software"/>
+			
+			<property name="parent" ref="category2" />
+	</bean>
+	
+	<bean id="category8" class="domain.Category">
+			<property name="titleIng" value="Big Data"/>
+			<property name="titleEsp" value="Grandes datos (Big Data)"/>
+			
+			<property name="parent" ref="category7" />
+	</bean>	
+	
+	<bean id="category9" class="domain.Category">
+			<property name="titleIng" value="Big Processing"/>
+			<property name="titleEsp" value="Procesamiento de grandes datos (Big Processing)"/>
+			
+			<property name="parent" ref="category7" />
+	</bean>
+	
+	<bean id="category10" class="domain.Category">
+			<property name="titleIng" value="Methods"/>
+			<property name="titleEsp" value="Métodos"/>
+			
+			<property name="parent" ref="category7" />
+	</bean>
+	
+	<bean id="category11" class="domain.Category">
+			<property name="titleIng" value="Tools"/>
+			<property name="titleEsp" value="Herramientas"/>
+			
+			<property name="parent" ref="category7" />
+	</bean>
+	
+	<bean id="category12" class="domain.Category">
+			<property name="titleIng" value="Physics"/>
+			<property name="titleEsp" value="Física"/>
+			
+			<property name="parent" ref="category2" />
+	</bean>
+
+	<bean id="category13" class="domain.Category">
+			<property name="titleIng" value="Cinematic"/>
+			<property name="titleEsp" value="Cinemática"/>
+			
+			<property name="parent" ref="category12" />
+	</bean>
+
+	<bean id="category14" class="domain.Category">
+			<property name="titleIng" value="Electricity"/>
+			<property name="titleEsp" value="Electricidad"/>
+			
+			<property name="parent" ref="category12" />
+	</bean>
+	
+	<bean id="category15" class="domain.Category">
+			<property name="titleIng" value="Electronics"/>
+			<property name="titleEsp" value="Electrónica"/>
+			
+			<property name="parent" ref="category12" />
+	</bean>
+	
+	<bean id="category16" class="domain.Category">
+			<property name="titleIng" value="Biology"/>
+			<property name="titleEsp" value="Biología"/>
+			
+			<property name="parent" ref="category2" />
+	</bean>
+	
+	<bean id="category17" class="domain.Category">
+			<property name="titleIng" value="Animals"/>
+			<property name="titleEsp" value="Animales"/>
+			
+			<property name="parent" ref="category16" />
+	</bean>
+	
+	<bean id="category18" class="domain.Category">
+			<property name="titleIng" value="Plants"/>
+			<property name="titleEsp" value="Plantas"/>
+			
+			<property name="parent" ref="category16" />
+	</bean>
+	
+	<bean id="category19" class="domain.Category">
+			<property name="titleIng" value="Fungi"/>
+			<property name="titleEsp" value="Fungi"/>
+			
+			<property name="parent" ref="category16" />
 	</bean>
 	
 	
@@ -751,7 +897,7 @@
 	<bean id="submission1" class="domain.Submission">
 			<property name="ticker" value="AAA-1234"/>
 			<property name="moment" value="2018/09/15 10:00:00"/>
-			<property name="status" value="UNDER-REVIEW"/>
+			<property name="status" value="ACCEPTED"/>
 			
 			<property name="author" ref="author1"/>
 			<property name="conference" ref="conference1"/>
@@ -768,6 +914,38 @@
 			<property name="paper" ref="paper2"/>
 	</bean>
 	
+	<bean id="submission3" class="domain.Submission">
+			<property name="ticker" value="AAA-3456"/>
+			<property name="moment" value="2018/09/15 10:00:00"/>
+			<property name="status" value="UNDER-REVIEW"/>	
+					
+			<property name="author" ref="author1"/>
+			<property name="conference" ref="conference3"/>
+			<property name="paper" ref="paper3"/>
+	</bean>
+	
+	
+	<bean id="submission4" class="domain.Submission">
+			<property name="ticker" value="AAA-3458"/>
+			<property name="moment" value="2018/09/15 10:00:00"/>
+			<property name="status" value="ACCEPTED"/>	
+					
+			<property name="author" ref="author2"/>
+			<property name="conference" ref="conference3"/>
+			<property name="paper" ref="paper4"/>
+	</bean>
+	
+	<bean id="submission5" class="domain.Submission">
+			<property name="ticker" value="AAA-4567"></property>
+			<property name="moment" value="2018/09/15 10:00:00"/>
+			<property name="status" value="UNDER-REVIEW"/>	
+					
+			<property name="author" ref="author2"/>
+			<property name="conference" ref="conference4"/>
+			<property name="paper" ref="paper5"/>
+	</bean>
+	
+	
 	<!-- ======== PAPER ========== -->
 	
 	<bean id="paper1" class="domain.Paper">
@@ -782,6 +960,27 @@
 			<property name="authors" value="Author nº1, Author nº2, Author nº3"/>
 			<property name="summary" value="Summary pap 2"/>
 			<property name="document" value="http://www.drive.google.com/paper2"/>
+	</bean>
+
+	<bean id="paper3" class="domain.Paper">
+			<property name="title" value="Paper 3"/>
+			<property name="authors" value="Author nº1, Author nº2, Author nº3"/>
+			<property name="summary" value="Summary pap 3"/>
+			<property name="document" value="http://www.drive.google.com/paper3"/>
+	</bean>
+	
+	<bean id="paper4" class="domain.Paper">
+			<property name="title" value="Paper 4"/>
+			<property name="authors" value="Author nº1, Author nº2, Author nº3"/>
+			<property name="summary" value="Summary pap 4"/>
+			<property name="document" value="http://www.drive.google.com/paper4"/>
+	</bean>
+	
+	<bean id="paper5" class="domain.Paper">
+			<property name="title" value="Paper 5"/>
+			<property name="authors" value="Author nº1, Author nº2, Author nº3"/>
+			<property name="summary" value="Summary pap 5"/>
+			<property name="document" value="http://www.drive.google.com/paper5"/>
 	</bean>
 
 		
@@ -882,7 +1081,7 @@
 	</bean>
 	
 	<!-- Camera Ready Paper -->
-		<bean id="cameraReadyPaper1" class="domain.CameraReadyPaper">
+	<bean id="cameraReadyPaper1" class="domain.CameraReadyPaper">
 			<property name="title" value="Title 1"/>
 			<property name="authors" value="Author nº1, Author nº2"/>
 			<property name="summary" value="Summary example"/>
@@ -895,7 +1094,69 @@
 			<property name="authors" value="Author nº2, Author nº3"/>
 			<property name="summary" value="Summary example2"/>
 			<property name="document" value="http://www.document2.com"/>
+			<property name="submission" ref="submission4"/>
+	</bean>
+	
+	<!-- Reports -->
+
+	<bean id="report1" class="domain.Report">
+			<property name="originalityScore" value="6"/>
+			<property name="qualityScore" value="5"/>
+			<property name="readabilityScore" value="7"/>	
+			<property name="decision" value="ACCEPT"/>	
+			
+			<property name="reviewer" ref="reviewer1"/>
 			<property name="submission" ref="submission2"/>
+	</bean>
+	
+	<bean id="report2" class="domain.Report">
+			<property name="originalityScore" value="4"/>
+			<property name="qualityScore" value="6"/>
+			<property name="readabilityScore" value="8"/>	
+			<property name="decision" value="ACCEPT"/>	
+			
+			<property name="reviewer" ref="reviewer2"/>
+			<property name="submission" ref="submission2"/>
+	</bean>
+	
+	<bean id="report3" class="domain.Report">
+			<property name="originalityScore" value="2"/>
+			<property name="qualityScore" value="3"/>
+			<property name="readabilityScore" value="4"/>	
+			<property name="decision" value="REJECT"/>	
+			
+			<property name="reviewer" ref="reviewer3"/>
+			<property name="submission" ref="submission2"/>
+	</bean>
+	
+	<bean id="report4" class="domain.Report">
+			<property name="originalityScore" value="2"/>
+			<property name="qualityScore" value="3"/>
+			<property name="readabilityScore" value="4"/>	
+			<property name="decision" value="REJECT"/>	
+			
+			<property name="reviewer" ref="reviewer1"/>
+			<property name="submission" ref="submission3"/>
+	</bean>
+	
+	<bean id="report5" class="domain.Report">
+			<property name="originalityScore" value="3"/>
+			<property name="qualityScore" value="3"/>
+			<property name="readabilityScore" value="2"/>	
+			<property name="decision" value="REJECT"/>	
+			
+			<property name="reviewer" ref="reviewer2"/>
+			<property name="submission" ref="submission3"/>
+	</bean>
+	
+	<bean id="report6" class="domain.Report">
+			<property name="originalityScore" value="6"/>
+			<property name="qualityScore" value="5"/>
+			<property name="readabilityScore" value="5"/>	
+			<property name="decision" value="ACCEPT"/>	
+			
+			<property name="reviewer" ref="reviewer3"/>
+			<property name="submission" ref="submission3"/>
 	</bean>
 
 </beans>
