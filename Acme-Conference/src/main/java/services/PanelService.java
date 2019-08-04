@@ -17,6 +17,7 @@ public class PanelService {
 
 
 	public Panel findPanelByActivityId(final int id) {
-		return this.panelRepository.findPanelByActivityId(id);
+		final Panel p = this.panelRepository.findPanelByActivityId(id);
+		return p;
 	}
 }

@@ -16,6 +16,52 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
+<security:authorize access="hasRole('ADMIN')">
+<jstl:if test="${allA==true||sdElapsed==true||nDElapses==true||cRElapses==true||organisedS==true }">
+<p>
+<jstl:if test="${allA==true }">
+<b><spring:message code="conference.allA"/></b>|
+</jstl:if>
+
+<jstl:if test="${allA!=true }">
+<a href="conference/administrator/list.do"><spring:message code="conference.allA"/></a>|
+</jstl:if>
+
+<jstl:if test="${sdElapsed==true }">
+<b><spring:message code="conference.sdElapsed"/></b>|
+</jstl:if>
+
+<jstl:if test="${sdElapsed!=true }">
+<a href="conference/administrator/sdElapsedList.do"><spring:message code="conference.sdElapsed"/></a>|
+</jstl:if>
+
+<jstl:if test="${nDElapses==true }">
+<b><spring:message code="conference.nDElapses"/></b>|
+</jstl:if>
+
+<jstl:if test="${nDElapses!=true }">
+<a href="conference/administrator/nDElapsesSoonList.do"><spring:message code="conference.nDElapses"/></a>|
+</jstl:if>
+
+<jstl:if test="${cRElapses==true }">
+<b><spring:message code="conference.cRElapses"/></b>|
+</jstl:if>
+
+<jstl:if test="${cRElapses!=true }">
+<a href="conference/administrator/cRElapsesSoonList.do"><spring:message code="conference.cRElapses"/></a>|
+</jstl:if>
+
+<jstl:if test="${organisedS==true }">
+<b><spring:message code="conference.organisedS"/></b>
+</jstl:if>
+
+<jstl:if test="${organisedS!=true }">
+<a href="conference/administrator/organisedSoonList.do"><spring:message code="conference.organisedS"/></a>
+</jstl:if>
+</p>
+</jstl:if>
+</security:authorize>
+
 <jstl:if test="${all==true||forth==true||running==true||past==true }">
 <p>
 <jstl:if test="${all==true }">
@@ -35,7 +81,7 @@
 </jstl:if>
 
 <jstl:if test="${forth==true }">
-<b><spring:message code="conference.all"/></b>|
+<b><spring:message code="conference.forthComming"/></b>|
 </jstl:if>
 
 <jstl:if test="${forth!=true }">
@@ -71,6 +117,16 @@
 	<display:column property="category.titleIng" titleKey="conference.category"/>
 	</jstl:if>
 	
+	<security:authorize access="!hasRole('ADMIN')">
 	<display:column><a href="conference/show.do?conferenceId=${row.id }"><spring:message code="conference.show"/></a></display:column>
+	</security:authorize>
+	
+	<security:authorize access="hasRole('ADMIN')">
+	<display:column><a href="conference/administrator/show.do?conferenceId=${row.id }"><spring:message code="conference.show"/></a></display:column>
+	</security:authorize>
+	
 	
 </display:table>
+
+<br/>
+<a href="conference/administrator/create.do"><spring:message code="administrator.conference.create"/></a>

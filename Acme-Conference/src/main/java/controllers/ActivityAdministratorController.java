@@ -22,8 +22,8 @@ import domain.Section;
 import domain.Tutorial;
 
 @Controller
-@RequestMapping("/activity")
-public class ActivityController extends AbstractController {
+@RequestMapping("/activity/administrator")
+public class ActivityAdministratorController extends AbstractController {
 
 	@Autowired
 	private ActivityService		activityService;
@@ -93,4 +93,5 @@ public class ActivityController extends AbstractController {
 
 		return result;
 	}
+
 }

@@ -739,6 +739,64 @@
 			<!-- <property name="conference" ref="" />  -->
 	
 	</bean>	
+	
+	<bean id="conference7" class="domain.Conference">
+			<property name="title" value="Conference about Videogames"/>
+			<property name="acronym" value="CAVG"/>
+			<property name="venue" value="FIBES, Sevilla"/>
+			<property name="submissionDeadline" value="2019/07/01 10:00:00"/>
+			<property name="notificationDeadline" value="2019/07/01 10:00:00"/>
+			<property name="cameraReadyDeadline" value="2019/07/01 10:00:00"/>
+			<property name="startDate" value="2019/07/01 12:00:00"/>
+			<property name="endDate" value="2019/09/20 10:00:00"/>
+			<property name="summary" value="Conference about videogames"/>
+			<property name="fee" value="13"/>
+			<property name="finalMode" value="true"/>
+			
+			<property name="administrator" ref="admin1" />
+			<property name="category" ref="category1"/>
+			<!-- <property name="conference" ref="" />  -->
+	
+	</bean>	
+	
+	<bean id="conference8" class="domain.Conference">
+			<property name="title" value="Conference about Jane Eyre"/>
+			<property name="acronym" value="CAJE"/>
+			<property name="venue" value="FIBES, Sevilla"/>
+			<property name="submissionDeadline" value="2019/06/27 10:00:00"/>
+			<property name="notificationDeadline" value="2019/06/01 10:00:00"/>
+			<property name="cameraReadyDeadline" value="2019/06/01 10:00:00"/>
+			<property name="startDate" value="2019/06/01 12:00:00"/>
+			<property name="endDate" value="2019/09/20 10:00:00"/>
+			<property name="summary" value="Conference about Jane Eyre"/>
+			<property name="fee" value="13"/>
+			<property name="finalMode" value="true"/>
+			
+			<property name="administrator" ref="admin1" />
+			<property name="category" ref="category1"/>
+			<!-- <property name="conference" ref="" />  -->
+	
+	</bean>	
+	
+	<bean id="conference9" class="domain.Conference">
+			<property name="title" value="Conference about Pc components"/>
+			<property name="acronym" value="PCCF"/>
+			<property name="venue" value="FIBES, Sevilla"/>
+			<property name="submissionDeadline" value="2019/07/07 10:00:00"/>
+			<property name="notificationDeadline" value="2019/07/07 10:00:00"/>
+			<property name="cameraReadyDeadline" value="2019/07/07 10:00:00"/>
+			<property name="startDate" value="2019/07/07 12:00:00"/>
+			<property name="endDate" value="2019/09/20 10:00:00"/>
+			<property name="summary" value="Conference about PC"/>
+			<property name="fee" value="13"/>
+			<property name="finalMode" value="true"/>
+			
+			<property name="administrator" ref="admin1" />
+			<property name="category" ref="category1"/>
+			<!-- <property name="conference" ref="" />  -->
+	
+	</bean>	
+	
 	<!-- ============ CATEGORIES ============== -->
 	<bean id="category1" class="domain.Category">
 			<property name="titleIng" value="CONFERENCE"/>
@@ -765,6 +823,8 @@
 			
 			<property name="parent" ref="category3" />
 	</bean>
+	
+
 	
 	<bean id="category5" class="domain.Category">
 			<property name="titleIng" value="Instance-based learning"/>
@@ -1095,6 +1155,32 @@
 			<property name="summary" value="Summary example2"/>
 			<property name="document" value="http://www.document2.com"/>
 			<property name="submission" ref="submission4"/>
+	</bean>
+	
+	<!-- Tutorials -->
+	
+	<bean id="tutorial1" class="domain.Tutorial">
+			<property name="title" value="Tutorial number 1"/>
+			<property name="speakers" value="Author nº1, Author nº2"/>
+			<property name="startMoment" value="2019/12/12 10:00:00"/>
+			<property name="duration" value="40"/>
+			<property name="schedule" value="2019/12/12 10:40:00"/>
+			<property name="room" value="A1.45"/>
+			<property name="summary" value="Summary tutorial 1"/>
+			<property name="attachments" value="http://drive.google.com/attach12, http://drive.google.com/attach32"/>
+			
+			<property name="conference" ref="conference1" />
+			
+	</bean>
+	
+	<!-- SECTIONS -->
+	
+	<bean id="section1" class="domain.Section">
+			<property name="title" value="Section number 1"/>
+			<property name="summary" value="Summary section 1"/>
+			<property name="pictures" value="http://drive.google.com/picture6, http://drive.google.com/picture2"/>
+			
+			<property name="tutorial" ref="tutorial1" />
 	</bean>
 	
 	<!-- Reports -->

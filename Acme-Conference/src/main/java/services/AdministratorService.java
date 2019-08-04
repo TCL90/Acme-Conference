@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.AdministratorRepository;
+import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import domain.Administrator;
@@ -18,6 +19,14 @@ public class AdministratorService {
 	@Autowired
 	private AdministratorRepository	administratorRepository;
 
+	@Autowired
+	private ActorService			actorService;
+
+
+	//Constructor
+	public AdministratorService() {
+		super();
+	}
 
 	public Administrator findByPrincipal() {
 		Administrator res;
@@ -40,4 +49,15 @@ public class AdministratorService {
 		return res;
 	}
 
+	public boolean checkAdmin() {
+		boolean res = false;
+
+		final Authority a = new Authority();
+		a.setAuthority(Authority.ADMIN);
+
+		if (LoginService.getPrincipal().getAuthorities().contains(a))
+			res = true;
+		return res;
+
+	}
 }

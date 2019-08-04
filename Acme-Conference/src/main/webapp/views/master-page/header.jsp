@@ -25,6 +25,7 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="submission/administrator/decision.do"><spring:message code="master.page.administrator.decision.procedure" /></a></li>
+					<li><a href="conference/administrator/list.do"><spring:message code="master.page.administrator.conferences.list" /></a></li>
 				</ul>
 			</li>
 		</security:authorize>
@@ -56,10 +57,11 @@
 			<li><a class="fNiv" href="reviewer/register.do"><spring:message code="master.page.register.reviewer" /></a></li>
 			<li><a class="fNiv" href="conference/list.do"><spring:message code="master.page.conference.list" /></a></li>
 			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
+			<spring:message code="master.page.search.placeholder" var="placeholder"/>
 			<li><form action="conference/search.do"><div>
-    				<input type="search" id="mySearch" name="q"
-    				placeholder="Search for conferences..." size="30" required>
-    				<button>Search</button>
+    				<input type="search" id="search" name="q"
+    				placeholder="${placeholder }" size="20" required>
+    				<button><spring:message code="master.page.search"/></button>
   					  </div>
 				</form>
 			</li>
@@ -80,6 +82,14 @@
 					<li><a href="profile/action-3.do"><spring:message code="master.page.profile.action.3" /></a></li>					
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 				</ul>
+			</li>
+			<spring:message code="master.page.search.placeholder" var="placeholder"/>
+			<li><form action="conference/search.do"><div>
+    				<input type="search" id="search" name="q"
+    				placeholder="${placeholder }" size="20" required>
+    				<button><spring:message code="master.page.search"/></button>
+  					  </div>
+				</form>
 			</li>
 		</security:authorize>
 	</ul>

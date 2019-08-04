@@ -119,7 +119,7 @@
 	</h3>
 	<jstl:out value="${tutorial.attachments}"></jstl:out>
 	
-	<jstl:forEach items="sections" var="section">
+	<jstl:forEach items="${sections}" var="section">
 	
 	<h3 style="color:blue;">
 		<spring:message code="tutorial.section.list" />:
