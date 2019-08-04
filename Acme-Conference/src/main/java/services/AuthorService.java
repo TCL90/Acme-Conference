@@ -1,6 +1,8 @@
 
 package services;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -84,14 +86,15 @@ public class AuthorService {
 		//TODO: DESCOMENTAR
 		//			final Collection<Box> boxes = this.actorService1.createPredefinedBoxes();
 		//			author.setBoxes(boxes);
-		final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
-		final String oldpass = author.getUserAccount().getPassword();
-		final String hash = encoder.encodePassword(oldpass, null);
+		if (author.getId() == 0) {
+			final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+			final String oldpass = author.getUserAccount().getPassword();
+			final String hash = encoder.encodePassword(oldpass, null);
 
-		final UserAccount cuenta = author.getUserAccount();
-		cuenta.setPassword(hash);
-		author.setUserAccount(cuenta);
-
+			final UserAccount cuenta = author.getUserAccount();
+			cuenta.setPassword(hash);
+			author.setUserAccount(cuenta);
+		}
 		//TODO: DESCOMENTAR
 		//			final Finder find = new Finder();
 		//
@@ -108,7 +111,6 @@ public class AuthorService {
 		this.authorRepository.flush();
 		return res;
 	}
-
 	public Author findByUserAccount(final UserAccount userAccount) {
 		Author res;
 		Assert.notNull(userAccount);
@@ -116,6 +118,10 @@ public class AuthorService {
 		res = this.authorRepository.findByUserAccountId(userAccount.getId());
 
 		return res;
+	}
+
+	public Collection<Author> findAll() {
+		return this.authorRepository.findAll();
 	}
 
 }

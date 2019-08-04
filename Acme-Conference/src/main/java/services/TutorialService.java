@@ -21,7 +21,8 @@ public class TutorialService {
 
 
 	public Tutorial findTutorialByActivityId(final int id) {
-		return this.tutorialRepository.findTutorialByActivityId(id);
+		final Tutorial t = this.tutorialRepository.findTutorialByActivityId(id);
+		return t;
 	}
 
 	public Collection<Section> findSectionsByTutorial(final Tutorial tutorial) {

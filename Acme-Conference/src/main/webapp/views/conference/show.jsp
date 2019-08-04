@@ -92,9 +92,16 @@
 	<display:column property="room" titleKey="activity.room"/>
 	
 	<display:column>
+	<security:authorize access="hasRole('ADMIN')">
+	<a href="activity/administrator/show.do?activityId=${row.id }">
+	<spring:message code="activity.show"/>
+	</a>
+	</security:authorize>
+	<security:authorize access="!hasRole('ADMIN')">
 	<a href="activity/show.do?activityId=${row.id }">
 	<spring:message code="activity.show"/>
 	</a>
+	</security:authorize>
 	</display:column>
 	
 	</display:table>
@@ -127,8 +134,34 @@
 	
 	<br/>
 	<a href="comment/create.do?conferenceId=${conference.id }"><spring:message code="comment.create"/></a>
+	
 	<br/>
 	<br/>
 	
+	<security:authorize access="hasRole('ADMIN')">
+	
+	<h3 style="color:blue;">
+	<spring:message code="conference.listSponsorships"/>
+	</h3>
+	
+	<display:table name="sponsorships" id="row3" requestURI="${requestURI}" pagesize="5" class ="displaytag">
+	<display:column property="banner" titleKey="sponsorship.banner"/>
+	<display:column property="targetUrl" titleKey="sponsorship.targetUrl"/>
+	<display:column property="holderName" titleKey="sponsorship.holderName"/>
+	<display:column property="makeName" titleKey="sponsorship.makeName"/>
+	<display:column><a href="sponsorship/administrator/show.do"><spring:message code="sponshorship.show"/></a></display:column>
+	</display:table>
+	</security:authorize>
+	
+	<br/>
+	<br/>
+	
+	<security:authorize access="!hasRole('ADMIN')">
 	<input type="button" name="back" onclick="javascript: window.location.replace('conference/list.do')"
 		value="<spring:message code="conference.back" />" />
+	</security:authorize>
+	
+	<security:authorize access="hasRole('ADMIN')">
+	<input type="button" name="back" onclick="javascript: window.location.replace('conference/administrator/list.do')"
+		value="<spring:message code="conference.back" />" />
+	</security:authorize>

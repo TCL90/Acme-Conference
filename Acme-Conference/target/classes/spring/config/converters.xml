@@ -31,6 +31,12 @@
   		<bean class="converters.StringToConferenceConverter" /> 
   		<bean class="converters.ConferenceToStringConverter" /> 
 	
+		<bean class="converters.StringToSubmissionConverter" /> 
+  		<bean class="converters.SubmissionToStringConverter" /> 
+	
+		<bean class="converters.StringToUserAccountConverter" /> 
+  		<bean class="converters.UserAccountToStringConverter" /> 
+	
 		
 	</util:list>
 	

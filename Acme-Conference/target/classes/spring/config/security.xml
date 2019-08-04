@@ -36,19 +36,44 @@
 		
 		<!-- Anon -->
 		<security:intercept-url pattern="/author/register.do" access="permitAll" /> 
+		<security:intercept-url pattern="/reviewer/register.do" access="permitAll" /> 
 		<security:intercept-url pattern="/conference/list.do" access="permitAll" />
 		<security:intercept-url pattern="/conference/pastList.do" access="permitAll" />
 		<security:intercept-url pattern="/conference/forthCommingList.do" access="permitAll" />
 		<security:intercept-url pattern="/conference/runningList.do" access="permitAll" />
 		<security:intercept-url pattern="/conference/search.do" access="permitAll" />
+		<security:intercept-url pattern="/conference/show.do" access="permitAll" />
 		
-		<security:intercept-url pattern="/registration/show.do" access="permitAll" />
+		<security:intercept-url pattern="/activity/show.do" access="permitAll" />
+
+		<security:intercept-url pattern="/registration/show.do" access="hasRole('AUTHOR')||hasRole('ADMIN')" />
 		
 		<!-- Author -->
 		<security:intercept-url pattern="/registration/author/list.do" access="hasRole('AUTHOR')" />
 		<security:intercept-url pattern="/submission/author/list.do" access="hasRole('AUTHOR')" />
 		<security:intercept-url pattern="/registration/author/create.do" access="hasRole('AUTHOR')" />
 		<security:intercept-url pattern="/registration/author/edit.do" access="hasRole('AUTHOR')" />
+		<security:intercept-url pattern="/submission/author/create.do" access="hasRole('AUTHOR')" />
+		<security:intercept-url pattern="/submission/author/edit.do" access="hasRole('AUTHOR')" />
+		<security:intercept-url pattern="/cameraReadyPaper/author/create.do" access="hasRole('AUTHOR')" />
+		<security:intercept-url pattern="/cameraReadyPaper/author/edit.do" access="hasRole('AUTHOR')" />
+		<security:intercept-url pattern="/author/author/edit.do" access="hasRole('AUTHOR')" />
+		
+		
+		
+		
+		<!-- Reviewer -->
+		<security:intercept-url pattern="/reviewer/reviewer/edit.do" access="hasRole('REVIEWER')" />
+		
+		
+		
+		
+		
+		
+		<!-- Administrator -->
+		<security:intercept-url pattern="/submission/administrator/**" access="hasRole('ADMIN')" />
+		
+		
 		
 		
 		<security:intercept-url pattern="/views/misc/index.jsp" access="permitAll" /> 

@@ -33,6 +33,8 @@
 		<value>/views/conference/messages</value>
 		<value>/views/activity/messages</value>
 		<value>/views/registration/messages</value>
+		<value>/views/camerareadypaper/messages</value>
+		<value>/views/reviewer/messages</value>
 	
 	</util:list>
 

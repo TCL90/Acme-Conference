@@ -21,5 +21,26 @@
 		<put-attribute name="body" value="/views/submission/list.jsp" />
 	</definition>
 	
+	<definition name="submission/author/create" extends="master.page">
+		<put-attribute name="title" value="Create submission" />
+		<put-attribute name="body" value="/views/submission/edit.jsp" />
+	</definition>
+	
+	<definition name="submission/author/edit" extends="master.page">
+		<put-attribute name="title" value="Create submission" />
+		<put-attribute name="body" value="/views/submission/edit.jsp" />
+	</definition>
+	
+	<definition name="submission/administrator/decision" extends="master.page">
+		<put-attribute name="title" value="Decision procedure" />
+		<put-attribute name="body" value="/views/submission/decisionProcedure.jsp" />
+	</definition>
+	
+	<definition name="submission/administrator/procedure" extends="master.page">
+		<put-attribute name="title" value="Decision procedure executed" />
+		<put-attribute name="body" value="/views/submission/decisionProcedure.jsp" />
+	</definition>
+	
+
 
 </tiles-definitions>

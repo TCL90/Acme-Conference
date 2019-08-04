@@ -1,14 +1,19 @@
 
 package services;
 
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.ConferenceRepository;
+import security.Authority;
+import domain.Administrator;
 import domain.Conference;
 
 @Service
@@ -17,6 +22,9 @@ public class ConferenceService {
 
 	@Autowired
 	private ConferenceRepository	conferenceRepository;
+
+	@Autowired
+	private AdministratorService	administratorService;
 
 
 	public Collection<Conference> findAllFinalMode() {
@@ -41,20 +49,136 @@ public class ConferenceService {
 
 	public Conference findOne(final int conferenceId) {
 		final Conference c = this.conferenceRepository.findOne(conferenceId);
-		Assert.isTrue(c.isFinalMode());
+		final Collection<Authority> AuCollection = (Collection<Authority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+		final Authority au = new Authority();
+		au.setAuthority(Authority.ADMIN);
+
+		if (!AuCollection.contains(au))
+			Assert.isTrue(c.isFinalMode());
+
 		Assert.notNull(c);
 		return c;
 	}
 
 	public int numberOfRegistrations(final Conference c) {
-		Assert.isTrue(c.isFinalMode());
+		final Collection<Authority> AuCollection = (Collection<Authority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+		final Authority au = new Authority();
+		au.setAuthority(Authority.ADMIN);
+
+		if (!AuCollection.contains(au))
+			Assert.isTrue(c.isFinalMode());
+
 		Assert.notNull(c);
 
 		return this.conferenceRepository.numberOfRegistrations(c.getId());
 	}
-	
+
 	public Collection<Conference> findAllForthCommingNotRegistered(final int authorId) {
 		return this.conferenceRepository.findAllForthCommingNotRegistered(authorId);
+	}
+
+	public Collection<Conference> findAllForthCommingNotSubmitted(final int authorId) {
+		return this.conferenceRepository.findAllForthCommingNotSubmitted(authorId);
+	}
+
+	public Collection<Conference> findAllForthCommingSubmitted(final int authorId) {
+		return this.conferenceRepository.findAllForthCommingSubmitted(authorId);
+	}
+	
+	public Collection<Conference> findAllByAdmin(final Administrator a) {
+		Assert.isTrue(this.administratorService.checkAdmin());
+
+		final Collection<Conference> conferences = this.conferenceRepository.findAll();
+
+		//		for (final Conference c : conferences)
+		//			Assert.isTrue(c.getAdministrator().getId() == a.getId());
+		return conferences;
+	}
+
+	//List of the conferences created by the admin a whose submission deadline elapsed in the last 5 days
+	public Collection<Conference> findAllByAdminSDElapsed(final Administrator a) {
+		final Authority au = new Authority();
+		au.setAuthority(Authority.ADMIN);
+
+		Assert.isTrue(a.getUserAccount().getAuthorities().contains(au));
+
+		Date fiveDaysAgo;
+		final Calendar ca = Calendar.getInstance();
+		ca.add(Calendar.DAY_OF_YEAR, -5);
+		fiveDaysAgo = ca.getTime();
+
+		final Date today = Calendar.getInstance().getTime();
+
+		//		final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		//		final String fiveDaysAgoString = sdf.format(fiveDaysAgo);
+		//		final String todayString = sdf.format(today);
+		//				try {
+		//					fiveDaysAgo = sdf.parse(fiveDaysAgoString);
+		//				} catch (final ParseException e) {
+		//					fiveDaysAgo = null;
+		//				}
+
+		final Collection<Conference> conferences = this.conferenceRepository.findAllByAdminSDElapsed(fiveDaysAgo);
+
+		//		for (final Conference c : conferences)
+		//			Assert.isTrue(c.getAdministrator().getId() == a.getId());
+		return conferences;
+	}
+	//List of the conferences created by the admin a whose notification deadline elapses in the next 5 days
+	public Collection<Conference> findAllByAdminNDElapses(final Administrator a) {
+		final Authority au = new Authority();
+		au.setAuthority(Authority.ADMIN);
+
+		Assert.isTrue(a.getUserAccount().getAuthorities().contains(au));
+
+		final Date nextFiveDays;
+		final Calendar ca = Calendar.getInstance();
+		ca.add(Calendar.DAY_OF_YEAR, 5);
+		nextFiveDays = ca.getTime();
+
+		final Collection<Conference> conferences = this.conferenceRepository.findAllByAdminNDElapses(a.getId(), nextFiveDays);
+
+		for (final Conference c : conferences)
+			Assert.isTrue(c.getAdministrator().getId() == a.getId());
+		return conferences;
+	}
+
+	//List of the conferences created by the admin a whose camera-ready deadline elapses in the next 5 days
+	public Collection<Conference> findAllByAdminCRDElapses(final Administrator a) {
+		final Authority au = new Authority();
+		au.setAuthority(Authority.ADMIN);
+
+		Assert.isTrue(a.getUserAccount().getAuthorities().contains(au));
+
+		final Date nextFiveDays;
+		final Calendar ca = Calendar.getInstance();
+		ca.add(Calendar.DAY_OF_YEAR, 5);
+		nextFiveDays = ca.getTime();
+
+		final Collection<Conference> conferences = this.conferenceRepository.findAllByAdminCRDElapses(a.getId(), nextFiveDays);
+
+		for (final Conference c : conferences)
+			Assert.isTrue(c.getAdministrator().getId() == a.getId());
+		return conferences;
+	}
+
+	//List of the conferences created by the admin a and that will be organised in the next 5 days
+	public Collection<Conference> findAllByAdminOrganisedSoon(final Administrator a) {
+		final Authority au = new Authority();
+		au.setAuthority(Authority.ADMIN);
+
+		Assert.isTrue(a.getUserAccount().getAuthorities().contains(au));
+
+		final Date nextFiveDays;
+		final Calendar ca = Calendar.getInstance();
+		ca.add(Calendar.DAY_OF_YEAR, 5);
+		nextFiveDays = ca.getTime();
+
+		final Collection<Conference> conferences = this.conferenceRepository.findAllByAdminOrganisedSoon(a.getId(), nextFiveDays);
+
+		for (final Conference c : conferences)
+			Assert.isTrue(c.getAdministrator().getId() == a.getId());
+		return conferences;
 	}
 
 }

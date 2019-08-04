@@ -4,11 +4,13 @@ package services;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.ActivityRepository;
+import security.Authority;
 import domain.Activity;
 import domain.Conference;
 
@@ -17,17 +19,29 @@ import domain.Conference;
 public class ActivityService {
 
 	@Autowired
-	private ActivityRepository	activityRepository;
+	private ActivityRepository		activityRepository;
 
 	@Autowired
-	private PresentationService	presentationService;
+	private AdministratorService	administratorService;
 
 	@Autowired
-	private TutorialService		tutorialService;
+	private PresentationService		presentationService;
+
+	@Autowired
+	private TutorialService			tutorialService;
+
+	@Autowired
+	private PanelService			panelService;
 
 
 	public Collection<Activity> findAllByConference(final Conference c) {
-		Assert.isTrue(c.isFinalMode());
+		final Collection<Authority> AuCollection = (Collection<Authority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+		final Authority au = new Authority();
+		au.setAuthority(Authority.ADMIN);
+
+		if (!AuCollection.contains(au))
+			Assert.isTrue(c.isFinalMode());
+
 		Assert.notNull(c);
 
 		return this.activityRepository.findAllByConference(c.getId());
@@ -40,19 +54,15 @@ public class ActivityService {
 		return activity;
 	}
 
-	public String selectType(final Activity activity) {
+	public String selectType(final int activityId) {
 		String type = null;
-		Assert.isTrue(activity.getConference().isFinalMode());
-		Assert.notNull(activity);
 
-		//		if (this.findPanelByActivityId(activity.getId()) != null)
-		//			type = "panel";
-		if (this.presentationService.findPresentationByActivityId(activity.getId()) != null)
+		if (this.panelService.findPanelByActivityId(activityId) != null)
+			type = "panel";
+		if (this.presentationService.findPresentationByActivityId(activityId) != null)
 			type = "presentation";
-		else if (this.tutorialService.findTutorialByActivityId(activity.getId()) != null)
+		else if (this.tutorialService.findTutorialByActivityId(activityId) != null)
 			type = "tutorial";
-		else
-			type = "activity";
 
 		return type;
 	}

@@ -17,6 +17,7 @@ public class PresentationService {
 
 
 	public Presentation findPresentationByActivityId(final int id) {
-		return this.presentationRepository.findPresentationByActivityId(id);
+		final Presentation p = this.presentationRepository.findPresentationByActivityId(id);
+		return p;
 	}
 }

@@ -66,18 +66,18 @@ public class Report extends Commentable {
 
 
 	//Relationships
-	private Reviewer	reviwer;
+	private Reviewer	reviewer;
 	private Submission	submission;
 
 
 	@Valid
 	@ManyToOne(optional = false)
-	public Reviewer getReviwer() {
-		return this.reviwer;
+	public Reviewer getReviewer() {
+		return this.reviewer;
 	}
 
-	public void setReviwer(final Reviewer reviwer) {
-		this.reviwer = reviwer;
+	public void setReviewer(final Reviewer reviewer) {
+		this.reviewer = reviewer;
 	}
 
 	@Valid

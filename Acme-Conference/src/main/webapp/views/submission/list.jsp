@@ -22,20 +22,23 @@
 	<display:column property="moment" titleKey="submission.moment"/>
 	
 	<display:column titleKey="submission.status">
-		<jstl:if test="${row.status == 'UNDER-REVIEW'}">">
+		<jstl:if test="${row.status == 'UNDER-REVIEW'}">
 			<spring:message code="submission.under.review"/>
 		</jstl:if>
-		<jstl:if test="${row.status == 'ACCEPTED'}">">
+		<jstl:if test="${row.status == 'ACCEPTED'}">
 			<spring:message code="submission.accepted"/>
 		</jstl:if>
-		<jstl:if test="${row.status == 'REJECTED'}">">
+		<jstl:if test="${row.status == 'REJECTED'}">
 			<spring:message code="submission.rejected"/>
 		</jstl:if>
-		
-	
 	</display:column>
+	
 </display:table>
 
+<a href="submission/author/create.do" ><spring:message code="submission.create" /></a>
+<br/><br/>
+<a href="cameraReadyPaper/author/create.do" >
+<spring:message code="camera.create" /></a>	
 
 
 

@@ -31,7 +31,7 @@ public class Submission extends DomainEntity {
 
 	@NotBlank
 	@Column(unique = true)
-	@Pattern(regexp = "^[A-Z]{3}-[A-Z0-9_]{4}$")
+	@Pattern(regexp = "^[A-z]{3}-[A-Z0-9_]{4}$")
 	public String getTicker() {
 		return this.ticker;
 	}
@@ -65,10 +65,9 @@ public class Submission extends DomainEntity {
 
 
 	//Relationships
-	private Author				author;
-	private domain.Paper		paper;
-	private CameraReadyPaper	cameraReadyPaper;
-	private Conference			conference;
+	private Author			author;
+	private domain.Paper	paper;
+	private Conference		conference;
 
 
 	@Valid
@@ -89,16 +88,6 @@ public class Submission extends DomainEntity {
 
 	public void setPaper(final domain.Paper paper) {
 		this.paper = paper;
-	}
-
-	@Valid
-	@OneToOne(optional = true)
-	public CameraReadyPaper getCameraReadyPaper() {
-		return this.cameraReadyPaper;
-	}
-
-	public void setCameraReadyPaper(final CameraReadyPaper cameraReadyPaper) {
-		this.cameraReadyPaper = cameraReadyPaper;
 	}
 
 	@Valid

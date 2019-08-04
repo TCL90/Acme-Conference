@@ -33,6 +33,8 @@
 		<value>/views/conference/tiles.xml</value>
 		<value>/views/activity/tiles.xml</value>
 		<value>/views/registration/tiles.xml</value>
+		<value>/views/camerareadypaper/tiles.xml</value>
+		<value>/views/reviewer/tiles.xml</value>
 		
 	</util:list>
 
