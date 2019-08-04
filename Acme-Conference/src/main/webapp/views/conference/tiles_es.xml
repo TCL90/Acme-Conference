@@ -72,4 +72,9 @@
 		<put-attribute name="title" value="Conferencias se organizarán pronto" />
 		<put-attribute name="body" value="/views/conference/list.jsp" />
 	</definition>
+	
+	<definition name="conference/administrator/edit" extends="master.page">
+		<put-attribute name="title" value="Editar conferencia" />
+		<put-attribute name="body" value="/views/conference/edit.jsp" />
+	</definition>
 </tiles-definitions>

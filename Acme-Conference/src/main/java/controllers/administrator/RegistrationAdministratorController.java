@@ -5,7 +5,6 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,8 +14,6 @@ import repositories.ConferenceRepository;
 import services.AdministratorService;
 import services.RegistrationService;
 import controllers.AbstractController;
-import domain.Administrator;
-import domain.Conference;
 import domain.Registration;
 
 @Controller
@@ -41,9 +38,9 @@ public class RegistrationAdministratorController extends AbstractController {
 
 		try {
 			//Se comprueba que el admin loggeado es el propietario de la conference
-			final Administrator admin = this.administratorService.findByPrincipal();
-			final Conference conf = this.conferenceRepository.findOne(conferenceId);
-			Assert.isTrue(conf.getAdministrator().getId() == admin.getId());
+			//			final Administrator admin = this.administratorService.findByPrincipal();
+			//			final Conference conf = this.conferenceRepository.findOne(conferenceId);
+			//			Assert.isTrue(conf.getAdministrator().getId() == admin.getId());
 
 			registrations = this.registrationService.findByConference(conferenceId);
 		} catch (final Throwable oops) {

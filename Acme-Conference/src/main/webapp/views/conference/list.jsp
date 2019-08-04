@@ -122,7 +122,12 @@
 	</security:authorize>
 	
 	<security:authorize access="hasRole('ADMIN')">
-	<display:column><a href="conference/administrator/show.do?conferenceId=${row.id }"><spring:message code="conference.show"/></a></display:column>
+	<jstl:if test="${row.finalMode == false}">
+		<display:column> <a href="conference/administrator/edit.do?conferenceId=${row.id}"> <spring:message code="conference.edit"/></a></display:column>
+	</jstl:if>
+	
+	
+		<display:column><a href="conference/administrator/show.do?conferenceId=${row.id }"><spring:message code="conference.show"/></a></display:column>
 	</security:authorize>
 	
 	

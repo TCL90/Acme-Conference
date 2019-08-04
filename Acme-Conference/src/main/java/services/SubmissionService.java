@@ -106,8 +106,8 @@ public class SubmissionService {
 		return this.submissionRepository.findUnderReview();
 	}
 
-	public Collection<Submission> decisionProcedure() {
-		final Collection<Submission> submissions = this.submissionRepository.findUnderReview();
+	public Collection<Submission> decisionProcedure(final int conferenceId) {
+		final Collection<Submission> submissions = this.submissionRepository.findUnderReviewReported(conferenceId);
 		Collection<Report> reports = null;
 		int accept = 0;
 		int reject = 0;

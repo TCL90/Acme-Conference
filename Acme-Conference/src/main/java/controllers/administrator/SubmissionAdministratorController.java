@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.AdministratorService;
@@ -44,14 +45,14 @@ public class SubmissionAdministratorController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/procedure", method = RequestMethod.GET)
-	public ModelAndView procedure() {
+	public ModelAndView procedure(@RequestParam final int conferenceId) {
 		ModelAndView result;
 
 		Collection<Submission> submissions = null;
 
 		try {
 			Assert.notNull(this.administratorService.findByPrincipal());
-			submissions = this.submissionService.decisionProcedure();
+			submissions = this.submissionService.decisionProcedure(conferenceId);
 		} catch (final Throwable oops) {
 			result = new ModelAndView("welcome/index");
 			return result;
