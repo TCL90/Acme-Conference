@@ -21,7 +21,7 @@ public interface SubmissionRepository extends JpaRepository<Submission, Integer>
 	@Query("select s from Submission s where s.status = 'UNDER-REVIEW'")
 	Collection<Submission> findUnderReview();
 
-	@Query("select r.submission from Report r where r.submission.status = 'UNDER-REVIEW'")
-	Collection<Submission> findUnderReviewReported();
+	@Query("select distinct r.submission from Report r where r.submission.status = 'UNDER-REVIEW' and r.submission.conference.id=?1")
+	Collection<Submission> findUnderReviewReported(int conferenceId);
 
 }

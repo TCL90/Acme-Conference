@@ -641,7 +641,6 @@
 			<property name="fee" value="12"/>
 			<property name="finalMode" value="true"/>
 			
-			<property name="administrator" ref="admin1" />
 			<!-- <property name="conference" ref="" />  -->
 	
 	</bean>
@@ -659,7 +658,6 @@
 			<property name="fee" value="13"/>
 			<property name="finalMode" value="true"/>
 			
-			<property name="administrator" ref="admin1" />
 			<!-- <property name="conference" ref="" />  -->
 	
 	</bean>
@@ -677,7 +675,6 @@
 			<property name="fee" value="13"/>
 			<property name="finalMode" value="true"/>
 			
-			<property name="administrator" ref="admin1" />
 			<property name="category" ref="category1"/>
 			<!-- <property name="conference" ref="" />  -->
 	
@@ -696,7 +693,6 @@
 			<property name="fee" value="13"/>
 			<property name="finalMode" value="true"/>
 			
-			<property name="administrator" ref="admin1" />
 			<property name="category" ref="category1"/>
 			<!-- <property name="conference" ref="" />  -->
 	
@@ -715,7 +711,6 @@
 			<property name="fee" value="13"/>
 			<property name="finalMode" value="true"/>
 			
-			<property name="administrator" ref="admin1" />
 			<property name="category" ref="category1"/>
 			<!-- <property name="conference" ref="" />  -->
 	
@@ -734,7 +729,6 @@
 			<property name="fee" value="13"/>
 			<property name="finalMode" value="true"/>
 			
-			<property name="administrator" ref="admin1" />
 			<property name="category" ref="category1"/>
 			<!-- <property name="conference" ref="" />  -->
 	
@@ -753,7 +747,6 @@
 			<property name="fee" value="13"/>
 			<property name="finalMode" value="true"/>
 			
-			<property name="administrator" ref="admin1" />
 			<property name="category" ref="category1"/>
 			<!-- <property name="conference" ref="" />  -->
 	
@@ -772,7 +765,6 @@
 			<property name="fee" value="13"/>
 			<property name="finalMode" value="true"/>
 			
-			<property name="administrator" ref="admin1" />
 			<property name="category" ref="category1"/>
 			<!-- <property name="conference" ref="" />  -->
 	
@@ -791,7 +783,6 @@
 			<property name="fee" value="13"/>
 			<property name="finalMode" value="true"/>
 			
-			<property name="administrator" ref="admin1" />
 			<property name="category" ref="category1"/>
 			<!-- <property name="conference" ref="" />  -->
 	

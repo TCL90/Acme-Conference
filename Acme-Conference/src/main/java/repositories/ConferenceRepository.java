@@ -46,13 +46,13 @@ public interface ConferenceRepository extends JpaRepository<Conference, Integer>
 
 	@Query("select c from Conference c where c.submissionDeadline <= CURRENT_DATE and c.submissionDeadline in (select c.submissionDeadline from Conference c where c.submissionDeadline >= NOW()-5000000)")
 	Collection<Conference> findAllByAdminSDElapsed(Date fiveDaysAgo);
-
-	@Query("select c from Conference c where c.administrator.id=?1 and c.notificationDeadline<=?2 and c.notificationDeadline>=NOW()")
-	Collection<Conference> findAllByAdminNDElapses(int id, Date nextFiveDays);
-
-	@Query("select c from Conference c where c.administrator.id=?1 and c.cameraReadyDeadline<=?2 and c.cameraReadyDeadline>=NOW()")
-	Collection<Conference> findAllByAdminCRDElapses(int id, Date nextFiveDays);
-
-	@Query("select c from Conference c where c.administrator.id=?1 and c.startDate<=?2 and c.startDate>=NOW()")
-	Collection<Conference> findAllByAdminOrganisedSoon(int id, Date nextFiveDays);
+	//TODO: TOMAS
+	//	@Query("select c from Conference c where c.administrator.id=?1 and c.notificationDeadline<=?2 and c.notificationDeadline>=NOW()")
+	//	Collection<Conference> findAllByAdminNDElapses(int id, Date nextFiveDays);
+	//
+	//	@Query("select c from Conference c where c.administrator.id=?1 and c.cameraReadyDeadline<=?2 and c.cameraReadyDeadline>=NOW()")
+	//	Collection<Conference> findAllByAdminCRDElapses(int id, Date nextFiveDays);
+	//
+	//	@Query("select c from Conference c where c.administrator.id=?1 and c.startDate<=?2 and c.startDate>=NOW()")
+	//	Collection<Conference> findAllByAdminOrganisedSoon(int id, Date nextFiveDays);
 }

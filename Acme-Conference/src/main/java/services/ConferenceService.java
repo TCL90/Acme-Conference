@@ -84,7 +84,7 @@ public class ConferenceService {
 	public Collection<Conference> findAllForthCommingSubmitted(final int authorId) {
 		return this.conferenceRepository.findAllForthCommingSubmitted(authorId);
 	}
-	
+
 	public Collection<Conference> findAllByAdmin(final Administrator a) {
 		Assert.isTrue(this.administratorService.checkAdmin());
 
@@ -124,61 +124,89 @@ public class ConferenceService {
 		//			Assert.isTrue(c.getAdministrator().getId() == a.getId());
 		return conferences;
 	}
+
+	//TODO: TOMAS
 	//List of the conferences created by the admin a whose notification deadline elapses in the next 5 days
-	public Collection<Conference> findAllByAdminNDElapses(final Administrator a) {
-		final Authority au = new Authority();
-		au.setAuthority(Authority.ADMIN);
+	//	public Collection<Conference> findAllByAdminNDElapses(final Administrator a) {
+	//		final Authority au = new Authority();
+	//		au.setAuthority(Authority.ADMIN);
+	//
+	//		Assert.isTrue(a.getUserAccount().getAuthorities().contains(au));
+	//
+	//		final Date nextFiveDays;
+	//		final Calendar ca = Calendar.getInstance();
+	//		ca.add(Calendar.DAY_OF_YEAR, 5);
+	//		nextFiveDays = ca.getTime();
+	//
+	//		final Collection<Conference> conferences = this.conferenceRepository.findAllByAdminNDElapses(a.getId(), nextFiveDays);
+	//
+	//		//TODO: TOMAS
+	//		//		for (final Conference c : conferences)
+	//		//			Assert.isTrue(c.getAdministrator().getId() == a.getId());
+	//		return conferences;
+	//	}
+	//
+	//	//List of the conferences created by the admin a whose camera-ready deadline elapses in the next 5 days
+	//	public Collection<Conference> findAllByAdminCRDElapses(final Administrator a) {
+	//		final Authority au = new Authority();
+	//		au.setAuthority(Authority.ADMIN);
+	//
+	//		Assert.isTrue(a.getUserAccount().getAuthorities().contains(au));
+	//
+	//		final Date nextFiveDays;
+	//		final Calendar ca = Calendar.getInstance();
+	//		ca.add(Calendar.DAY_OF_YEAR, 5);
+	//		nextFiveDays = ca.getTime();
+	//
+	//		final Collection<Conference> conferences = this.conferenceRepository.findAllByAdminCRDElapses(a.getId(), nextFiveDays);
+	//
+	//		//TODO: TOMAS
+	//		//		for (final Conference c : conferences)
+	//		//			Assert.isTrue(c.getAdministrator().getId() == a.getId());
+	//		return conferences;
+	//	}
+	//
+	//	//List of the conferences created by the admin a and that will be organised in the next 5 days
+	//	public Collection<Conference> findAllByAdminOrganisedSoon(final Administrator a) {
+	//		final Authority au = new Authority();
+	//		au.setAuthority(Authority.ADMIN);
+	//
+	//		Assert.isTrue(a.getUserAccount().getAuthorities().contains(au));
+	//
+	//		final Date nextFiveDays;
+	//		final Calendar ca = Calendar.getInstance();
+	//		ca.add(Calendar.DAY_OF_YEAR, 5);
+	//		nextFiveDays = ca.getTime();
+	//
+	//		final Collection<Conference> conferences = this.conferenceRepository.findAllByAdminOrganisedSoon(a.getId(), nextFiveDays);
+	//
+	//		//TODO:TOMAS
+	//		//		for (final Conference c : conferences)
+	//		//			Assert.isTrue(c.getAdministrator().getId() == a.getId());
+	//		return conferences;
+	//	}
+	//
+	public Conference create() {
+		final Conference res = new Conference();
 
-		Assert.isTrue(a.getUserAccount().getAuthorities().contains(au));
+		res.setFinalMode(false);
 
-		final Date nextFiveDays;
-		final Calendar ca = Calendar.getInstance();
-		ca.add(Calendar.DAY_OF_YEAR, 5);
-		nextFiveDays = ca.getTime();
+		return res;
 
-		final Collection<Conference> conferences = this.conferenceRepository.findAllByAdminNDElapses(a.getId(), nextFiveDays);
-
-		for (final Conference c : conferences)
-			Assert.isTrue(c.getAdministrator().getId() == a.getId());
-		return conferences;
 	}
 
-	//List of the conferences created by the admin a whose camera-ready deadline elapses in the next 5 days
-	public Collection<Conference> findAllByAdminCRDElapses(final Administrator a) {
-		final Authority au = new Authority();
-		au.setAuthority(Authority.ADMIN);
+	public Conference save(final Conference conference) {
 
-		Assert.isTrue(a.getUserAccount().getAuthorities().contains(au));
+		Assert.isTrue(conference.getSubmissionDeadline().before(conference.getNotificationDeadline()), "submissionBeforeNotification");
 
-		final Date nextFiveDays;
-		final Calendar ca = Calendar.getInstance();
-		ca.add(Calendar.DAY_OF_YEAR, 5);
-		nextFiveDays = ca.getTime();
+		Assert.isTrue(conference.getNotificationDeadline().before(conference.getCameraReadyDeadline()), "notificationBeforeCamera");
 
-		final Collection<Conference> conferences = this.conferenceRepository.findAllByAdminCRDElapses(a.getId(), nextFiveDays);
+		Assert.isTrue(conference.getCameraReadyDeadline().before(conference.getStartDate()), "cameraBeforeStart");
 
-		for (final Conference c : conferences)
-			Assert.isTrue(c.getAdministrator().getId() == a.getId());
-		return conferences;
-	}
+		Assert.isTrue(conference.getStartDate().before(conference.getEndDate()), "startBeforeEnd");
 
-	//List of the conferences created by the admin a and that will be organised in the next 5 days
-	public Collection<Conference> findAllByAdminOrganisedSoon(final Administrator a) {
-		final Authority au = new Authority();
-		au.setAuthority(Authority.ADMIN);
+		return this.conferenceRepository.save(conference);
 
-		Assert.isTrue(a.getUserAccount().getAuthorities().contains(au));
-
-		final Date nextFiveDays;
-		final Calendar ca = Calendar.getInstance();
-		ca.add(Calendar.DAY_OF_YEAR, 5);
-		nextFiveDays = ca.getTime();
-
-		final Collection<Conference> conferences = this.conferenceRepository.findAllByAdminOrganisedSoon(a.getId(), nextFiveDays);
-
-		for (final Conference c : conferences)
-			Assert.isTrue(c.getAdministrator().getId() == a.getId());
-		return conferences;
 	}
 
 }

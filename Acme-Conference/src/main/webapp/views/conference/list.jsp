@@ -122,11 +122,40 @@
 	</security:authorize>
 	
 	<security:authorize access="hasRole('ADMIN')">
+	
+	<display:column>
+		<a href="submission/administrator/procedure.do?conferenceId=${row.id}">
+			<spring:message code="submission.evaluate"/>
+		</a>
+	</display:column>
+	
 	<display:column><a href="conference/administrator/show.do?conferenceId=${row.id }"><spring:message code="conference.show"/></a></display:column>
+	
+	
+	<jstl:if test="${row.finalMode == false}">
+		<display:column> <a href="conference/administrator/edit.do?conferenceId=${row.id}"> <spring:message code="conference.edit"/></a></display:column>
+	</jstl:if>
+	
+
 	</security:authorize>
 	
 	
 </display:table>
 
 <br/>
+<jstl:if test="${subEvaluated != null }">
+	<spring:message code="submissions.evaluated" />:
+	<jstl:out value="${subEvaluated}"></jstl:out>
+	
+	<spring:message code="submissions.accepted" />:
+	<jstl:out value="${subAccepted}"></jstl:out>
+	
+	<spring:message code="submissions.rejected" />:
+	<jstl:out value="${subRejected}"></jstl:out>
+</jstl:if>
+<br/>
+
 <a href="conference/administrator/create.do"><spring:message code="administrator.conference.create"/></a>
+
+
+
