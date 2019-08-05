@@ -33,12 +33,15 @@
 		</jstl:if>
 	</display:column>
 	
+
 </display:table>
 
+<security:authorize access="hasRole('AUTHOR')" >
 <a href="submission/author/create.do" ><spring:message code="submission.create" /></a>
 <br/><br/>
 <a href="cameraReadyPaper/author/create.do" >
 <spring:message code="camera.create" /></a>	
+</security:authorize>
 
 
 
