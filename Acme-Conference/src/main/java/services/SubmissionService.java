@@ -20,6 +20,7 @@ import domain.Author;
 import domain.Conference;
 import domain.Paper;
 import domain.Report;
+import domain.Reviewer;
 import domain.Submission;
 import forms.SubmissionForm;
 
@@ -45,6 +46,10 @@ public class SubmissionService {
 
 	public Collection<Submission> findByAuthor(final int authorId) {
 		return this.submissionRepository.findByAuthor(authorId);
+	}
+
+	public Collection<Submission> findByReviewer2(final Reviewer revi) {
+		return this.submissionRepository.findByReviewer2(revi);
 	}
 
 	public SubmissionForm create() {
