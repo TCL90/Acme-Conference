@@ -46,6 +46,8 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="reviewer/reviewer/edit.do"><spring:message code="master.page.edit.reviewer" /></a></li>
+					<li><a href="submission/reviewer/list.do"><spring:message code="master.page.reviewer.submission" /></a></li>
+					<li><a href="report/reviewer/list.do"><spring:message code="master.page.reviewer.report" /></a></li>
 				</ul>
 			</li>
 		</security:authorize>

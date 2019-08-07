@@ -136,6 +136,7 @@
 		<display:column> <a href="conference/administrator/edit.do?conferenceId=${row.id}"> <spring:message code="conference.edit"/></a></display:column>
 	</jstl:if>
 	
+
 	</security:authorize>
 	
 	
