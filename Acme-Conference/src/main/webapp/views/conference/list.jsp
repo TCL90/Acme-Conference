@@ -122,8 +122,6 @@
 	</security:authorize>
 	
 	<security:authorize access="hasRole('ADMIN')">
-<<<<<<< HEAD
-=======
 	
 	<display:column>
 		<a href="submission/administrator/procedure.do?conferenceId=${row.id}">
@@ -134,17 +132,11 @@
 	<display:column><a href="conference/administrator/show.do?conferenceId=${row.id }"><spring:message code="conference.show"/></a></display:column>
 	
 	
->>>>>>> CU-ManageConferences
 	<jstl:if test="${row.finalMode == false}">
 		<display:column> <a href="conference/administrator/edit.do?conferenceId=${row.id}"> <spring:message code="conference.edit"/></a></display:column>
 	</jstl:if>
 	
-<<<<<<< HEAD
-	
-		<display:column><a href="conference/administrator/show.do?conferenceId=${row.id }"><spring:message code="conference.show"/></a></display:column>
-=======
 
->>>>>>> CU-ManageConferences
 	</security:authorize>
 	
 	

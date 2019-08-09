@@ -33,6 +33,12 @@
 		</jstl:if>
 	</display:column>
 	
+	<display:column>
+	<a href="submission/show.do?submissionId=${row.id}" ><spring:message code="submission.show" /></a>
+			<br/><br/>
+	</display:column>
+	
+	
 	<security:authorize access="hasRole('REVIEWER')" >
 		<display:column>
 			<a href="report/reviewer/create.do?submissionId=${row.id}" ><spring:message code="report.create" /></a>

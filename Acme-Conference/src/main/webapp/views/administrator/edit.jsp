@@ -12,7 +12,6 @@
 	modelAttribute="administrator">
 
 	<form:hidden path="userAccount" />
-	<form:hidden path="finder" />
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 

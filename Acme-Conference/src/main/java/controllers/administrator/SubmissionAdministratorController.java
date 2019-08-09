@@ -63,9 +63,6 @@ public class SubmissionAdministratorController extends AbstractController {
 
 		try {
 			Assert.notNull(this.administratorService.findByPrincipal());
-<<<<<<< HEAD
-			submissions = this.submissionService.decisionProcedure(conferenceId);
-=======
 			final Collection<Submission> submissionsEvaluated = this.submissionRepository.findUnderReviewReported(conferenceId);
 			subEvaluated = submissionsEvaluated.size();
 
@@ -75,7 +72,6 @@ public class SubmissionAdministratorController extends AbstractController {
 					subAccepted++;
 				else
 					subRejected++;
->>>>>>> CU-ManageConferences
 		} catch (final Throwable oops) {
 			result = new ModelAndView("welcome/index");
 			return result;

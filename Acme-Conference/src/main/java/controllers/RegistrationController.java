@@ -30,6 +30,7 @@ public class RegistrationController extends AbstractController {
 
 		final Registration registration = this.registrationService.findOne(registrationId);
 
+		//TODO: hacking
 		//Se comprueba que el usuario es el author o el admin propietario de la conference
 		try {
 			//			final Collection<? extends GrantedAuthority> aus = SecurityContextHolder.getContext().getAuthentication().getAuthorities();

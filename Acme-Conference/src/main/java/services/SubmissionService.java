@@ -117,12 +117,9 @@ public class SubmissionService {
 	}
 
 	public Collection<Submission> decisionProcedure(final int conferenceId) {
-<<<<<<< HEAD
-=======
 		final Conference conference = this.conferenceRepository.findOne(conferenceId);
 		//TODO: COMPROBAR SUBMISSION 
 		//Assert.isTrue(conference.getSubmissionDeadline().before());
->>>>>>> CU-ManageConferences
 		final Collection<Submission> submissions = this.submissionRepository.findUnderReviewReported(conferenceId);
 		Collection<Report> reports = null;
 		int accept = 0;
