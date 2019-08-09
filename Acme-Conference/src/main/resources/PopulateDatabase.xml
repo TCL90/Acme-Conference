@@ -963,6 +963,13 @@
 			<property name="author" ref="author1"/>
 			<property name="conference" ref="conference2"/>
 			<property name="paper" ref="paper2"/>
+			<property name="reviewers">
+				<list>
+					<ref bean="reviewer1" />
+					<ref bean="reviewer2" />
+					<ref bean="reviewer3" />
+				</list>	
+			</property>
 	</bean>
 	
 	<bean id="submission3" class="domain.Submission">
@@ -973,6 +980,13 @@
 			<property name="author" ref="author1"/>
 			<property name="conference" ref="conference3"/>
 			<property name="paper" ref="paper3"/>
+			<property name="reviewers">
+				<list>
+					<ref bean="reviewer1" />
+					<ref bean="reviewer2" />
+					<ref bean="reviewer3" />
+				</list>	
+			</property>
 	</bean>
 	
 	

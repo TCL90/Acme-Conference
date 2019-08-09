@@ -33,12 +33,20 @@
 		</jstl:if>
 	</display:column>
 	
+	<security:authorize access="hasRole('REVIEWER')" >
+		<display:column>
+			<a href="report/reviewer/create.do?submissionId=${row.id}" ><spring:message code="report.create" /></a>
+			<br/><br/>
+		</display:column>
+	</security:authorize>
 </display:table>
 
+<security:authorize access="hasRole('AUTHOR')" >
 <a href="submission/author/create.do" ><spring:message code="submission.create" /></a>
 <br/><br/>
 <a href="cameraReadyPaper/author/create.do" >
 <spring:message code="camera.create" /></a>	
+</security:authorize>
 
 
 

@@ -12,12 +12,15 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
+import repositories.ConferenceRepository;
 import repositories.ReportRepository;
 import repositories.SubmissionRepository;
 import utilities.TickerGenerator;
 import domain.Author;
+import domain.Conference;
 import domain.Paper;
 import domain.Report;
+import domain.Reviewer;
 import domain.Submission;
 import forms.SubmissionForm;
 
@@ -37,9 +40,16 @@ public class SubmissionService {
 	@Autowired
 	private ReportRepository		reportRepository;
 
+	@Autowired
+	private ConferenceRepository	conferenceRepository;
+
 
 	public Collection<Submission> findByAuthor(final int authorId) {
 		return this.submissionRepository.findByAuthor(authorId);
+	}
+
+	public Collection<Submission> findByReviewer2(final Reviewer revi) {
+		return this.submissionRepository.findByReviewer2(revi);
 	}
 
 	public SubmissionForm create() {
@@ -107,6 +117,12 @@ public class SubmissionService {
 	}
 
 	public Collection<Submission> decisionProcedure(final int conferenceId) {
+<<<<<<< HEAD
+=======
+		final Conference conference = this.conferenceRepository.findOne(conferenceId);
+		//TODO: COMPROBAR SUBMISSION 
+		//Assert.isTrue(conference.getSubmissionDeadline().before());
+>>>>>>> CU-ManageConferences
 		final Collection<Submission> submissions = this.submissionRepository.findUnderReviewReported(conferenceId);
 		Collection<Report> reports = null;
 		int accept = 0;
@@ -134,5 +150,9 @@ public class SubmissionService {
 		}
 
 		return submissions;
+	}
+
+	public Collection<Submission> findAll() {
+		return this.submissionRepository.findAll();
 	}
 }
