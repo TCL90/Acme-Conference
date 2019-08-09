@@ -14,7 +14,9 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 
 <div>
-	<a href="#"><img src="images/logo.png" alt="Acme Conference Co., Inc." /></a>
+	<!-- <a href="#"><img src="images/logo.png" alt="Acme Conference Co., Inc." /></a> -->
+	
+	<a href="#"><img src="${customisation.bannerUrl}" alt="${customisation.systemName}" /></a>
 </div>
 
 <div>
@@ -24,8 +26,9 @@
 			<li><a class="fNiv"><spring:message	code="master.page.administrator" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="submission/administrator/decision.do"><spring:message code="master.page.administrator.decision.procedure" /></a></li>
 					<li><a href="conference/administrator/list.do"><spring:message code="master.page.administrator.conferences.list" /></a></li>
+					<li><a href="administrator/administrator/create.do"><spring:message code="master.page.administrator.create" /></a></li>
+					<li><a href="administrator/administrator/edit.do"><spring:message code="master.page.administrator.edit" /></a></li>
 				</ul>
 			</li>
 		</security:authorize>

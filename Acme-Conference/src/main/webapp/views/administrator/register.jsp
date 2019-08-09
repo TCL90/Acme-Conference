@@ -8,13 +8,10 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form action="administrator/administrator/edit.do"
+<form:form action="administrator/administrator/create.do"
 	modelAttribute="administrator">
 
-	<form:hidden path="userAccount" />
-	<form:hidden path="finder" />
-	<form:hidden path="id" />
-	<form:hidden path="version" />
+	<form:hidden path="userAccount.authorities" />
 
 
 	<fieldset>
@@ -87,6 +84,28 @@
 
 	</fieldset>
 	<br />
+
+
+	<fieldset>
+		<legend align="left">
+			<spring:message code="administrator.edit.userAccount" />
+		</legend>
+		<form:label path="userAccount.username">
+			<spring:message code="administrator.username" />* :
+		</form:label>
+		<form:input path="userAccount.username" />
+		<form:errors cssClass="error" path="userAccount.username" />
+
+		<br /> <br />
+
+		<form:label path="userAccount.password">
+			<spring:message code="administrator.password" />* :
+		</form:label>
+		<form:password path="userAccount.password" />
+		<form:errors cssClass="error" path="userAccount.password" />
+	</fieldset>
+
+
 
 	<spring:message code="asterisco"/>
 	<br />
