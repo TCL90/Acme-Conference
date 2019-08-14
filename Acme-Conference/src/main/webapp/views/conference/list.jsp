@@ -17,7 +17,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <security:authorize access="hasRole('ADMIN')">
-<jstl:if test="${allA==true||sdElapsed==true||nDElapses==true||cRElapses==true||organisedS==true }">
+<jstl:if test="${allA==true || sdElapsed==true || nDElapses==true || cRElapses==true || organisedS==true || past==true || forth==true || running==true}">
 <p>
 <jstl:if test="${allA==true }">
 <b><spring:message code="conference.allA"/></b>|
@@ -52,17 +52,42 @@
 </jstl:if>
 
 <jstl:if test="${organisedS==true }">
-<b><spring:message code="conference.organisedS"/></b>
+<b><spring:message code="conference.organisedS"/></b>|
 </jstl:if>
 
 <jstl:if test="${organisedS!=true }">
-<a href="conference/administrator/organisedSoonList.do"><spring:message code="conference.organisedS"/></a>
+<a href="conference/administrator/organisedSoonList.do"><spring:message code="conference.organisedS"/></a>|
+</jstl:if>
+
+<jstl:if test="${past==true }">
+<b><spring:message code="conference.past"/></b>|
+</jstl:if>
+
+<jstl:if test="${past!=true }">
+<a href="conference/administrator/pastList.do"><spring:message code="conference.past"/></a>|
+</jstl:if>
+
+<jstl:if test="${forth==true }">
+<b><spring:message code="conference.forthComming"/></b>|
+</jstl:if>
+
+<jstl:if test="${forth!=true }">
+<a href="conference/administrator/forthCommingList.do"><spring:message code="conference.forthComming"/></a>|
+</jstl:if>
+
+<jstl:if test="${running==true }">
+<b><spring:message code="conference.running"/></b>
+</jstl:if>
+
+<jstl:if test="${running!=true }">
+<a href="conference/administrator/runningList.do"><spring:message code="conference.running"/></a>
 </jstl:if>
 </p>
 </jstl:if>
 </security:authorize>
 
-<jstl:if test="${all==true||forth==true||running==true||past==true }">
+<security:authorize access="!hasRole('ADMIN')">
+<jstl:if test="${all==true || past==true || forth==true || running==true}">
 <p>
 <jstl:if test="${all==true }">
 <b><spring:message code="conference.all"/></b>|
@@ -96,8 +121,9 @@
 <a href="conference/runningList.do"><spring:message code="conference.running"/></a>
 </jstl:if>
 </p>
-
 </jstl:if>
+
+</security:authorize>
 
 <display:table name="conferences" id="row" requestURI="${requestURI}" pagesize="5" class ="displaytag">
 	<display:column property="title" titleKey="conference.title"/>

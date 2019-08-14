@@ -29,7 +29,7 @@
 					<li><a href="conference/administrator/list.do"><spring:message code="master.page.administrator.conferences.list" /></a></li>
 					<li><a href="administrator/administrator/create.do"><spring:message code="master.page.administrator.create" /></a></li>
 					<li><a href="administrator/administrator/edit.do"><spring:message code="master.page.administrator.edit" /></a></li>
-				</ul>
+					<li><a href="activity/administrator/list.do"><spring:message code="master.page.administrator.activities.list" /></a></li>				</ul>
 			</li>
 		</security:authorize>
 		
@@ -74,7 +74,9 @@
 		</security:authorize>
 		
 		<security:authorize access="isAuthenticated()">
-		<li><a class="fNiv" href="conference/list.do"><spring:message code="master.page.conference.list" /></a></li>
+			<security:authorize access="!hasRole('ADMIN')">
+				<li><a class="fNiv" href="conference/list.do"><spring:message code="master.page.conference.list" /></a></li>
+			</security:authorize>
 			<li>
 				<a class="fNiv"> 
 					<spring:message code="master.page.profile" /> 
@@ -88,14 +90,26 @@
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 				</ul>
 			</li>
+			
 			<spring:message code="master.page.search.placeholder" var="placeholder"/>
+			<security:authorize access="!hasRole('ADMIN')">
 			<li><form action="conference/search.do"><div>
     				<input type="search" id="search" name="q"
     				placeholder="${placeholder }" size="20" required>
     				<button><spring:message code="master.page.search"/></button>
   					  </div>
 				</form>
+			</security:authorize>
+			
+			<security:authorize access="hasRole('ADMIN')">
+			<li><form action="conference/administrator/search.do"><div>
+    				<input type="search" id="search" name="q"
+    				placeholder="${placeholder }" size="20" required>
+    				<button><spring:message code="master.page.search"/></button>
+  					  </div>
+				</form>
 			</li>
+			</security:authorize>
 		</security:authorize>
 	</ul>
 </div>
