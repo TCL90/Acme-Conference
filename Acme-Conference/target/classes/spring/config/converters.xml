@@ -34,6 +34,11 @@
 		<bean class="converters.StringToSubmissionConverter" /> 
   		<bean class="converters.SubmissionToStringConverter" /> 
 	
+		<bean class="converters.StringToUserAccountConverter" /> 
+  		<bean class="converters.UserAccountToStringConverter" /> 
+	
+		<bean class="converters.StringToReviewerConverter" /> 
+  		<bean class="converters.ReviewerToStringConverter" /> 
 		
 	</util:list>
 	

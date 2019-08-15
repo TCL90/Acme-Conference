@@ -34,8 +34,15 @@
 		<value>/views/activity/tiles.xml</value>
 		<value>/views/registration/tiles.xml</value>
 		<value>/views/camerareadypaper/tiles.xml</value>
+		<value>/views/reviewer/tiles.xml</value>
+		<value>/views/report/tiles.xml</value>
+		<value>/views/activity/tiles.xml</value>
+		<value>/views/section/tiles.xml</value>
 		<value>/views/messages/tiles.xml</value>
-		
+		<value>/views/comment/tiles.xml</value>
+			
+			
 	</util:list>
+	
 
 </beans>

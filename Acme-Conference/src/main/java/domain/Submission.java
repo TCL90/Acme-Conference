@@ -1,12 +1,14 @@
 
 package domain;
 
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -65,9 +67,10 @@ public class Submission extends DomainEntity {
 
 
 	//Relationships
-	private Author			author;
-	private domain.Paper	paper;
-	private Conference		conference;
+	private Author					author;
+	private domain.Paper			paper;
+	private Conference				conference;
+	private Collection<Reviewer>	reviewers;
 
 
 	@Valid
@@ -98,6 +101,15 @@ public class Submission extends DomainEntity {
 
 	public void setConference(final Conference conference) {
 		this.conference = conference;
+	}
+
+	@ManyToMany
+	public Collection<Reviewer> getReviewers() {
+		return this.reviewers;
+	}
+
+	public void setReviewers(final Collection<Reviewer> reviewers) {
+		this.reviewers = reviewers;
 	}
 
 }

@@ -1,6 +1,8 @@
 
 package services;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,10 @@ import domain.Message;
 import repositories.ActorRepository;
 import repositories.MessageRepository;
 import security.UserAccountRepository;
+import domain.Actor;
+import domain.Box;
+import domain.Message;
+import domain.Submission;
 
 @Service
 @Transactional
@@ -28,6 +34,13 @@ public class MessageService {
 
 	@Autowired
 	private ActorService			as;
+
+	@Autowired
+	private AdministratorService	ad;
+
+	@Autowired
+	private BoxService				mbs;
+
 
 	//
 	//	public Message create() {
@@ -177,10 +190,10 @@ public class MessageService {
 	//	}
 	//
 	//	public String getTemplateSecurityBreachNotificationMessage() {
-	//		return "Lamentamos informar de que hemos encontrado una posible brecha de seguridad" + " que podría afectar a los datos e información que usted como usuario ha ingresado"
-	//			+ " en nuestra web. Como consecuencia, sus datos, usuario y contraseña pueden haber sido" + " filtrados a personas ajenas a Acme. Por favor, le pedimos que cambie su contraseña lo antes posible, "
-	//			+ "y compruebe que su información está inalterada. \n \n Si necesita información sobre este asunto, por favor, "
-	//			+ "no dude en contactar con nosotros usando la dirección de correo support.madruga@acme.com o utilizando nuestro teléfono de asistencia al cliente."
+	//		return "Lamentamos informar de que hemos encontrado una posible brecha de seguridad" + " que podrï¿½a afectar a los datos e informaciï¿½n que usted como usuario ha ingresado"
+	//			+ " en nuestra web. Como consecuencia, sus datos, usuario y contraseï¿½a pueden haber sido" + " filtrados a personas ajenas a Acme. Por favor, le pedimos que cambie su contraseï¿½a lo antes posible, "
+	//			+ "y compruebe que su informaciï¿½n estï¿½ inalterada. \n \n Si necesita informaciï¿½n sobre este asunto, por favor, "
+	//			+ "no dude en contactar con nosotros usando la direcciï¿½n de correo support.madruga@acme.com o utilizando nuestro telï¿½fono de asistencia al cliente."
 	//			+ " La brecha de seguridad ha sido identificada y estamos trabajando para poder solucionar este problema lo antes posible. \n De nuevo, desde Acme, lamentamos lo sucedido."
 	//			+ " \n \n We are sorry to admit that we found a security breach that can affect the data and information you have introduced in our domain as an user."
 	//			+ "Due to this breach, your data, user and password may be filtered to people alien to Acme. Please, we ask you to change your password as soon as possible, and to check that your information and data are still intact."
@@ -211,4 +224,36 @@ public class MessageService {
 	//		this.messageRepository.delete(message);
 	//	}
 
+	public void NotificateMessage(final Submission s) {
+		final Message res = new Message();
+		String StatusEsp = null;
+		if (s.getStatus().contains("REJECTED"))
+			StatusEsp = "RECHAZADA";
+		else if (s.getStatus().contains("ACCEPTED"))
+			StatusEsp = "ACEPTADA";
+		res.setBody("Your submission " + s.getTicker() + ", has been " + s.getStatus() + "./n" + "Tu solicitud " + s.getTicker() + ", ha sido" + StatusEsp + ".");
+		res.setId(0);
+		res.setMoment(Calendar.getInstance().getTime());
+		final ArrayList<Actor> actors = new ArrayList<Actor>();
+		actors.add(s.getAuthor());
+		res.setRecipients(actors);
+		res.setSender(this.ad.findByPrincipal());
+		res.setSubject("Notification message, mensaje de notificaciï¿½n");
+		res.setTopic("SYSTEM");
+
+		final Message enviado = this.messageRepository.save(res);
+		final Collection<Box> boxes = s.getAuthor().getBoxes();
+		for (final Box b : boxes)
+			if (b.getName().contains("notification")) {
+				b.getMessages().add(enviado);
+				this.mbs.save(b);
+			}
+		final Collection<Box> boxes2 = this.ad.findByPrincipal().getBoxes();
+		for (final Box b2 : boxes2) {
+			if (b2.getName().contains("out"))
+				b2.getMessages().add(enviado);
+			this.mbs.save(b2);
+		}
+
+	}
 }

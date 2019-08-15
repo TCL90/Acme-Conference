@@ -15,7 +15,7 @@
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
        
 <tiles-definitions>
-
+	
 	<definition name="conference/list" extends="master.page">
 		<put-attribute name="title" value="Lista de conferencias" />
 		<put-attribute name="body" value="/views/conference/list.jsp" />
@@ -45,5 +45,36 @@
 		<put-attribute name="title" value="Ver conferencia" />
 		<put-attribute name="body" value="/views/conference/show.jsp" />
 	</definition>
-
+	
+	<!-- Administrator -->
+	
+	<definition name="conference/administrator/list" extends="master.page">
+		<put-attribute name="title" value="Conferencias" />
+		<put-attribute name="body" value="/views/conference/list.jsp" />
+	</definition>
+	
+	<definition name="conference/administrator/sdElapsedList" extends="master.page">
+		<put-attribute name="title" value="Conferencias cuya fecha limite de presentación pasó recientemente" />
+		<put-attribute name="body" value="/views/conference/list.jsp" />
+	</definition>
+	
+	<definition name="conference/administrator/nDElapsesSoonList" extends="master.page">
+		<put-attribute name="title" value="Conferencias cuya fecha limite de notificación terminará pronto" />
+		<put-attribute name="body" value="/views/conference/list.jsp" />
+	</definition>
+	
+	<definition name="conference/administrator/cRElapsesSoonList" extends="master.page">
+		<put-attribute name="title" value="Conferencias cuya fecha limite para presentar el documento definitivo terminará pronto" />
+		<put-attribute name="body" value="/views/conference/list.jsp" />
+	</definition>
+	
+	<definition name="conference/administrator/organisedSoonList" extends="master.page">
+		<put-attribute name="title" value="Conferencias se organizarán pronto" />
+		<put-attribute name="body" value="/views/conference/list.jsp" />
+	</definition>
+	
+	<definition name="conference/administrator/edit" extends="master.page">
+		<put-attribute name="title" value="Editar conferencia" />
+		<put-attribute name="body" value="/views/conference/edit.jsp" />
+	</definition>
 </tiles-definitions>

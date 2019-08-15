@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -159,6 +160,8 @@ public class ConferenceController extends AbstractController {
 			numberOfRegistrations = this.conferenceService.numberOfRegistrations(conference);
 			activities = this.activityService.findAllByConference(conference);
 			comments = this.commentService.findByConference(conference);
+
+			Assert.isTrue(conference.isFinalMode());
 
 		} catch (final Throwable oops) {
 			result = new ModelAndView("welcome/index");

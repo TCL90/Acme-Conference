@@ -30,5 +30,24 @@
 		<put-attribute name="title" value="Crear presentación" />
 		<put-attribute name="body" value="/views/submission/edit.jsp" />
 	</definition>
-
+	
+	<definition name="submission/administrator/decision" extends="master.page">
+		<put-attribute name="title" value="Procedimiento de decisión" />
+		<put-attribute name="body" value="/views/submission/decisionProcedure.jsp" />
+	</definition>
+	
+	<definition name="submission/administrator/procedure" extends="master.page">
+		<put-attribute name="title" value="Procedimiento de decisión ejecutado" />
+		<put-attribute name="body" value="/views/submission/decisionProcedure.jsp" />
+	</definition>
+	
+	<definition name="submission/reviewer/list" extends="master.page">
+		<put-attribute name="title" value="Lista de presentaciones" />
+		<put-attribute name="body" value="/views/submission/list.jsp" />
+	</definition>
+	
+	<definition name="submission/show" extends="master.page">
+		<put-attribute name="title" value="Ver presentación" />
+		<put-attribute name="body" value="/views/submission/show.jsp" />
+	</definition>
 </tiles-definitions>
