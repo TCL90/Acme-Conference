@@ -38,6 +38,9 @@ public class SubmissionService {
 	private PaperService			paperService;
 
 	@Autowired
+	private MessageService			messageService;
+
+	@Autowired
 	private ReportRepository		reportRepository;
 
 	@Autowired
@@ -138,17 +141,19 @@ public class SubmissionService {
 					reject++;
 				else if (r.getDecision().contains("BORDER-LINE"))
 					borderLine++;
-			if (reject > accept)
+			if (reject > accept) {
 				s.setStatus("REJECTED");
-			else
+				this.messageService.NotificateMessage(s);
+			} else {
 				s.setStatus("ACCEPTED");
+				this.messageService.NotificateMessage(s);
+			}
 			this.submissionRepository.save(s);
 			this.submissionRepository.flush();
 		}
 
 		return submissions;
 	}
-
 	public Collection<Submission> findAll() {
 		return this.submissionRepository.findAll();
 	}
