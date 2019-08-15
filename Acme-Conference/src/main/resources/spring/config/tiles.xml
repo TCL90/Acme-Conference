@@ -34,6 +34,7 @@
 		<value>/views/activity/tiles.xml</value>
 		<value>/views/registration/tiles.xml</value>
 		<value>/views/camerareadypaper/tiles.xml</value>
+		<value>/views/messages/tiles.xml</value>
 		
 	</util:list>
 

@@ -56,6 +56,7 @@
 		
 		<security:authorize access="isAuthenticated()">
 		<li><a class="fNiv" href="conference/list.do"><spring:message code="master.page.conference.list" /></a></li>
+			<li><a href="messages/list.do"><spring:message code="master.page.message.list" /></a></li>
 			<li>
 				<a class="fNiv"> 
 					<spring:message code="master.page.profile" /> 

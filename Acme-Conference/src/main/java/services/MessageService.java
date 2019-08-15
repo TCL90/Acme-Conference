@@ -1,10 +1,14 @@
 
 package services;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import domain.Actor;
+import domain.Message;
 import repositories.ActorRepository;
 import repositories.MessageRepository;
 import security.UserAccountRepository;
@@ -24,9 +28,6 @@ public class MessageService {
 
 	@Autowired
 	private ActorService			as;
-
-	@Autowired
-	private BoxService				mbs;
 
 	//
 	//	public Message create() {
@@ -186,9 +187,17 @@ public class MessageService {
 	//			+ "\n\n If you need further information about this issue, please be sure to contact us using the email support.madruga@acme.com or our customer service phone."
 	//			+ "The security breach has been identified and we are working hard to fix it. \n Once again, we are very sorry for this error. ";
 	//	}
-	//	public Collection<Message> findAll() {
-	//		return this.messageRepository.findAll();
-	//	}
+		public Collection<Message> findAll() {
+			return this.messageRepository.findAll();
+		}
+		
+		public Collection<Message> findAllMines(Actor actor){
+			return this.messageRepository.findByMy(actor);
+		}
+		
+		public Collection<Message> findBySender(Actor actor){
+			return this.messageRepository.findByActor(actor);
+		}
 	//
 	//	public Message findOne(final int messageId) {
 	//		return this.messageRepository.findOne(messageId);

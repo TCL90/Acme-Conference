@@ -73,6 +73,9 @@
 		<security:intercept-url pattern="/profile/action-1.do" access="isAuthenticated()" /> 
 		<security:intercept-url pattern="/profile/action-2.do" access="isAuthenticated()" /> 
 		<security:intercept-url pattern="/profile/action-3.do" access="isAuthenticated()" /> 
+		
+		<!-- Messages -->
+		<security:intercept-url pattern="/messages/list.do" access="isAuthenticated()" />
 	
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 

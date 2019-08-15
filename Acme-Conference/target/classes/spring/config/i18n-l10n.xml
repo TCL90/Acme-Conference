@@ -34,6 +34,7 @@
 		<value>/views/activity/messages</value>
 		<value>/views/registration/messages</value>
 		<value>/views/camerareadypaper/messages</value>
+		<value>/views/messages/messages</value>
 	
 	</util:list>
 

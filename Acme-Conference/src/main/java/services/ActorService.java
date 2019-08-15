@@ -20,8 +20,6 @@ public class ActorService {
 	@Autowired
 	private ActorRepository			actorRepository;
 
-	@Autowired
-	private BoxService				mbs;
 
 	@Autowired
 	private CustomisationService	cs;

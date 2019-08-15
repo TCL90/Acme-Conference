@@ -8,66 +8,44 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.Assert;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import repositories.ActorRepository;
-import repositories.MessageRepository;
-import security.LoginService;
-import security.UserAccount;
 import services.ActorService;
-import services.BoxService;
 import services.MessageService;
 import domain.Actor;
-import domain.Box;
 import domain.Message;
-//
-//@Controller
-//@RequestMapping("/messages")
-//public class MessageController extends AbstractController {
-//
-//	@Autowired
-//	private MessageService		ms;
-//
-//	@Autowired
-//	private MessageRepository	mr;
-//
-//	@Autowired
-//	private ActorService		as;
-//
-//	@Autowired
-//	private BoxService			mbs;
-//
-//	@Autowired
-//	private ActorRepository		ar;
-//
-//
-//	@RequestMapping(value = "/list", method = RequestMethod.GET)
-//	public ModelAndView list(@RequestParam final int boxId) {
-//
-//		ModelAndView result;
-//		final Collection<Message> mes;
-//
-//		final UserAccount actual = LoginService.getPrincipal();
-//		final Actor a = this.ar.getActor(actual);
-//		final Box listing = this.mbs.findOne(boxId);
-//
-//		Assert.isTrue(a.getBoxes().contains(listing));
-//
-//		mes = this.mbs.messagesByMessageBoxName(listing.getName());
-//		result = new ModelAndView("messages/list");
-//
-//		result.addObject("messages", mes);
-//
-//		result.addObject("requestURI", "/messages/list.do");
-//
-//		return result;
-//
-//	}
+
+@Controller
+@RequestMapping("/messages")
+public class MessageController extends AbstractController {
+
+	@Autowired
+	private MessageService		ms;
+
+	@Autowired
+	private ActorService		as;
+
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public ModelAndView list() {
+
+		ModelAndView result;
+		final Collection<Message> mes;
+		
+		final Actor a = this.as.findByPrincipal();
+
+		mes = ms.findAllMines(a);
+		result = new ModelAndView("messages/list");
+
+		result.addObject("messages", mes);
+
+		result.addObject("requestURI", "/messages/list.do");
+
+		return result;
+
+	}
+	
 //
 //	@RequestMapping(value = "/create", method = RequestMethod.GET)
 //	public ModelAndView create() {
@@ -489,4 +467,4 @@ import domain.Message;
 //	 * 
 //	 * }
 //	 */
-//}
+}

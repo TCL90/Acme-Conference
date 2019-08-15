@@ -30,7 +30,7 @@ public class Message extends DomainEntity {
 	private boolean				broadcast;
 
 	private Actor				sender;
-	private Collection<Actor>	recipients;	//DEBE SER UNA COLLECTION?
+	private Actor				recipient;
 
 
 	@NotNull
@@ -78,13 +78,14 @@ public class Message extends DomainEntity {
 	public void setSender(final Actor sender) {
 		this.sender = sender;
 	}
-
-	@ManyToMany
-	public Collection<Actor> getRecipients() {
-		return this.recipients;
+	
+	@Valid
+	@ManyToOne(optional = false)
+	public Actor getRecipient() {
+		return this.recipient;
 	}
-	public void setRecipients(final Collection<Actor> recipients) {
-		this.recipients = recipients;
+	public void setRecipient(final Actor recipient) {
+		this.recipient = recipient;
 	}
 
 	@SafeHtml

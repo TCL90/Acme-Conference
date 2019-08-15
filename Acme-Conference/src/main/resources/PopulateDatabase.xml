@@ -149,16 +149,6 @@
 		<property name="photo" value="http://wwww.photo1.com" />
 		<property name="userAccount" ref="userAccount1" />
 
-		<property name="Boxes">
-			<list>
-				<ref bean="in1" />
-				<ref bean="notification1" />
-				<ref bean="out1" />
-			</list>
-		</property>
-		
-
-
 	</bean>
 	
 	<bean id="admin2" class="domain.Administrator">
@@ -170,16 +160,6 @@
 		<property name="email" value="admin2@" />
 		<property name="photo" value="http://wwww.photo2.com" />
 		<property name="userAccount" ref="userAccount9" />
-
-		<property name="Boxes">
-			<list>
-				<ref bean="in8" />
-				<ref bean="notification8" />
-				<ref bean="out8" />
-			</list>
-		</property>
-		
-
 
 	</bean>
 
@@ -195,13 +175,6 @@
 			<property name="userAccount" ref="userAccount4" />
 			<property name="finder" ref="finder1"/>
 	
-			<property name="Boxes">
-				<list>
-					<ref bean="in2" />
-					<ref bean="notification2" />
-					<ref bean="out2" />
-				</list>
-			</property>
 	</bean>
 
 	<bean id="author2" class="domain.Author">
@@ -215,15 +188,6 @@
 			<property name="userAccount" ref="userAccount5" />
 	
 			<property name="finder" ref="finder2"/>
-			<property name="Boxes">
-				<list>
-					<ref bean="in3" />
-					<ref bean="notification3" />
-					<ref bean="out3" />
-				</list>
-			</property>
-	
-	
 	</bean>	
 
 
@@ -239,13 +203,6 @@
 		<property name="photo" value="http://wwww.photo4.com" />
 		<property name="userAccount" ref="userAccount6" />
 
-		<property name="Boxes">
-			<list>
-				<ref bean="in4" />
-				<ref bean="notification4" />
-				<ref bean="out4" />
-			</list>
-		</property>
 		<property name="expertise">
 			<list>
 				<value>research</value>
@@ -264,14 +221,6 @@
 		<property name="photo" value="http://wwww.photo5.com" />
 		<property name="userAccount" ref="userAccount7" />
 
-		<property name="Boxes">
-			<list>
-				<ref bean="in5" />
-				<ref bean="notification5" />
-				<ref bean="out5" />
-			</list>
-		</property>
-		
 		<property name="expertise">
 			<list>
 				<value>research</value>
@@ -291,16 +240,6 @@
 		<property name="email" value="sponsor1@gmail.com" />
 		<property name="photo" value="http://wwww.photo6.com" />
 		<property name="userAccount" ref="userAccount2" />
-
-		<property name="Boxes">
-			<list>
-				<ref bean="in6" />
-				<ref bean="notification6" />
-				<ref bean="out6" />
-			</list>
-		</property>
-
-
 	
 </bean>
 
@@ -313,16 +252,6 @@
 		<property name="email" value="sponsor2@gmail.com" />
 		<property name="photo" value="http://wwww.photo7.com" />
 		<property name="userAccount" ref="userAccount3" />
-
-		<property name="Boxes">
-			<list>
-				<ref bean="in7" />
-				<ref bean="notification7" />
-				<ref bean="out7" />
-			</list>
-		</property>
-		
-
 
 </bean>
 
@@ -364,184 +293,6 @@
 		</property>
 	</bean>
 
-<!-- ============================= BOXES ======================== -->
-
-	<bean id="in1" class="domain.Box">
-		<property name="name" value="In" /> 
-		<property name="messages">
-			<list>
-			</list>
-		</property>
-	</bean>
-	<bean id="notification1" class="domain.Box">
-		<property name="name" value="Notification" /> 
-		<property name="messages">
-			<list>
-			</list>
-		</property>
-	</bean>
-	<bean id="out1" class="domain.Box">
-		<property name="name" value="Out" /> 
-		<property name="messages">
-			<list>
-			</list>
-		</property>
-	</bean>
-
-	<bean id="in2" class="domain.Box">
-		<property name="name" value="In" /> 
-		<property name="messages">
-			<list>
-			</list>
-		</property>
-	</bean>
-	<bean id="notification2" class="domain.Box">
-		<property name="name" value="Notification" /> 
-		<property name="messages">
-			<list>
-			</list>
-		</property>
-	</bean>
-	<bean id="out2" class="domain.Box">
-		<property name="name" value="Out" /> 
-		<property name="messages">
-			<list>
-			</list>
-		</property>
-	</bean>
-
-	<bean id="in3" class="domain.Box">
-		<property name="name" value="In" /> 
-		<property name="messages">
-			<list>
-			</list>
-		</property>
-	</bean>
-	<bean id="notification3" class="domain.Box">
-		<property name="name" value="Notification" /> 
-		<property name="messages">
-			<list>
-			</list>
-		</property>
-	</bean>
-	<bean id="out3" class="domain.Box">
-		<property name="name" value="Out" /> 
-		<property name="messages">
-			<list>
-			</list>
-		</property>
-	</bean>
-
-	<bean id="in4" class="domain.Box">
-		<property name="name" value="In" /> 
-		<property name="messages">
-			<list>
-			</list>
-		</property>
-	</bean>
-	<bean id="notification4" class="domain.Box">
-		<property name="name" value="Notification" /> 
-		<property name="messages">
-			<list>
-			</list>
-		</property>
-	</bean>
-	<bean id="out4" class="domain.Box">
-		<property name="name" value="Out" /> 
-		<property name="messages">
-			<list>
-			</list>
-		</property>
-	</bean>
-
-	<bean id="in5" class="domain.Box">
-		<property name="name" value="In" /> 
-		<property name="messages">
-			<list>
-			</list>
-		</property>
-	</bean>
-	<bean id="notification5" class="domain.Box">
-		<property name="name" value="Notification" /> 
-		<property name="messages">
-			<list>
-			</list>
-		</property>
-	</bean>
-	<bean id="out5" class="domain.Box">
-		<property name="name" value="Out" /> 
-		<property name="messages">
-			<list>
-			</list>
-		</property>
-	</bean>
-
-	<bean id="in6" class="domain.Box">
-		<property name="name" value="In" /> 
-		<property name="messages">
-			<list>
-			</list>
-		</property>
-	</bean>
-	<bean id="notification6" class="domain.Box">
-		<property name="name" value="Notification" /> 
-		<property name="messages">
-			<list>
-			</list>
-		</property>
-	</bean>
-	<bean id="out6" class="domain.Box">
-		<property name="name" value="Out" /> 
-		<property name="messages">
-			<list>
-			</list>
-		</property>
-	</bean>
-
-	<bean id="in7" class="domain.Box">
-		<property name="name" value="In" /> 
-		<property name="messages">
-			<list>
-			</list>
-		</property>
-	</bean>
-	<bean id="notification7" class="domain.Box">
-		<property name="name" value="Notification" /> 
-		<property name="messages">
-			<list>
-			</list>
-		</property>
-	</bean>
-	<bean id="out7" class="domain.Box">
-		<property name="name" value="Out" /> 
-		<property name="messages">
-			<list>
-			</list>
-		</property>
-	</bean>
-
-
-	<bean id="in8" class="domain.Box">
-		<property name="name" value="In" /> 
-		<property name="messages">
-			<list>
-			</list>
-		</property>
-	</bean>
-	<bean id="notification8" class="domain.Box">
-		<property name="name" value="Notification" /> 
-		<property name="messages">
-			<list>
-			</list>
-		</property>
-	</bean>
-	<bean id="out8" class="domain.Box">
-		<property name="name" value="Out" /> 
-		<property name="messages">
-			<list>
-			</list>
-		</property>
-	</bean>
 <!-- ******************************REGISTRATION************************************* -->	
 
 	<bean id="registration1" class="domain.Registration">
@@ -897,5 +648,25 @@
 			<property name="document" value="http://www.document2.com"/>
 			<property name="submission" ref="submission2"/>
 	</bean>
+	
+	<!-- Some messages to display them -->
+	<bean id="message1" class="domain.Message">
+			<property name="moment" value="2018/12/12 10:40:00"/>
+			<property name="topic" value="tema random"/>
+			<property name="body" value="cosa cualquiera que mostrar"/>
+			<property name="subject" value="otro "/>
+			<property name="broadcast" value="false"/>
+			<property name="sender" ref="admin1"/>
+			<property name="recipient" ref="author1"/>
+	</bean>
 
+	<bean id="message2" class="domain.Message">
+			<property name="moment" value="2018/12/12 10:40:00"/>
+			<property name="topic" value="tema random"/>
+			<property name="body" value="cosa cualquiera que mostrar"/>
+			<property name="subject" value="cualquier cosa"/>
+			<property name="broadcast" value="false"/>
+			<property name="sender" ref="admin1"/>
+			<property name="recipient" ref="author2"/>
+	</bean>
 </beans>
