@@ -44,6 +44,17 @@
 			</li>
 		</security:authorize>
 		
+		
+		<security:authorize access="hasRole('SPONSOR')">
+			<li><a class="fNiv"><spring:message	code="master.page.author" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="sponsor/sponsor/edit.do"><spring:message code="master.page.edit.sponsor" /></a></li>
+					<li><a href="sponsorship/sponsor/list.do"><spring:message code="master.page.sponsor.sponsorship" /></a></li>
+				</ul>
+			</li>
+		</security:authorize>
+		
 		<security:authorize access="hasRole('REVIEWER')">
 			<li><a class="fNiv"><spring:message	code="master.page.reviewer" /></a>
 				<ul>
@@ -60,6 +71,7 @@
 		<security:authorize access="isAnonymous()">
 			<li><a class="fNiv" href="author/register.do"><spring:message code="master.page.register.author" /></a></li>
 			<li><a class="fNiv" href="reviewer/register.do"><spring:message code="master.page.register.reviewer" /></a></li>
+			<li><a class="fNiv" href="sponsor/register.do"><spring:message code="master.page.register.sponsor" /></a></li>
 			<li><a class="fNiv" href="conference/list.do"><spring:message code="master.page.conference.list" /></a></li>
 			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
 			<spring:message code="master.page.search.placeholder" var="placeholder"/>

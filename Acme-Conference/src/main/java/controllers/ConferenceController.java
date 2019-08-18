@@ -14,9 +14,11 @@ import org.springframework.web.servlet.ModelAndView;
 import services.ActivityService;
 import services.CommentService;
 import services.ConferenceService;
+import services.SponsorshipService;
 import domain.Activity;
 import domain.Comment;
 import domain.Conference;
+import domain.Sponsorship;
 
 @Controller
 @RequestMapping("/conference")
@@ -30,6 +32,9 @@ public class ConferenceController extends AbstractController {
 
 	@Autowired
 	private CommentService		commentService;
+
+	@Autowired
+	private SponsorshipService	sponsorshipService;
 
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -153,9 +158,9 @@ public class ConferenceController extends AbstractController {
 		int numberOfRegistrations;
 		Collection<Activity> activities;
 		final Collection<Comment> comments;
-
+		Sponsorship sponsorship;
 		try {
-
+			sponsorship = this.sponsorshipService.random();
 			conference = this.conferenceService.findOne(conferenceId);
 			numberOfRegistrations = this.conferenceService.numberOfRegistrations(conference);
 			activities = this.activityService.findAllByConference(conference);
@@ -173,6 +178,8 @@ public class ConferenceController extends AbstractController {
 		result.addObject("numberOfR", numberOfRegistrations);
 		result.addObject("activities", activities);
 		result.addObject("comments", comments);
+		result.addObject("banner", sponsorship.getBanner());
+		result.addObject("targetUrl", sponsorship.getTargetUrl());
 		result.addObject("requestURI", "/conference/show.do?conferenceId=" + conference.getId());
 
 		return result;

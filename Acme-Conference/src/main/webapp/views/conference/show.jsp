@@ -9,7 +9,10 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-
+	<a href="${targetUrl}">
+		<img src="${banner}"> 
+	</a>
+	
 	<h3 style="color:blue;">
 		<spring:message code="conference.title" />:
 	</h3>

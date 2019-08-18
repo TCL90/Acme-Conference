@@ -1,12 +1,9 @@
 
 package domain;
 
-import java.util.Collection;
-
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
@@ -114,8 +111,7 @@ public class Sponsorship extends DomainEntity {
 
 
 	//Relationships
-	private Sponsor					sponsor;
-	private Collection<Conference>	conference;
+	private Sponsor	sponsor;
 
 
 	@Valid
@@ -126,15 +122,6 @@ public class Sponsorship extends DomainEntity {
 
 	public void setSponsor(final Sponsor sponsor) {
 		this.sponsor = sponsor;
-	}
-
-	@ManyToMany
-	public Collection<Conference> getConference() {
-		return this.conference;
-	}
-
-	public void setConference(final Collection<Conference> conference) {
-		this.conference = conference;
 	}
 
 }

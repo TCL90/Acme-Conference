@@ -235,14 +235,14 @@ public class ConferenceAdministratorController extends AbstractController {
 		Collection<Activity> activities;
 		final Collection<Comment> comments;
 		final Collection<Sponsorship> sponsorships;
-
+		Sponsorship sponsorship;
 		try {
-
+			sponsorship = this.sponsorshipService.random();
 			conference = this.conferenceService.findOne(conferenceId);
 			numberOfRegistrations = this.conferenceService.numberOfRegistrations(conference);
 			activities = this.activityService.findAllByConference(conference);
 			comments = this.commentService.findByConference(conference);
-			sponsorships = this.sponsorshipService.findAllByConference(conference.getId());
+			//	sponsorships = this.sponsorshipService.findAllByConference(conference.getId());
 
 		} catch (final Throwable oops) {
 			result = new ModelAndView("welcome/index");
@@ -254,7 +254,9 @@ public class ConferenceAdministratorController extends AbstractController {
 		result.addObject("numberOfR", numberOfRegistrations);
 		result.addObject("activities", activities);
 		result.addObject("comments", comments);
-		result.addObject("sponsorships", sponsorships);
+		result.addObject("banner", sponsorship.getBanner());
+		result.addObject("targetUrl", sponsorship.getTargetUrl());
+		//result.addObject("sponsorships", sponsorships);
 		result.addObject("requestURI", "/conference/administrator/show.do?conferenceId=" + conference.getId());
 
 		return result;

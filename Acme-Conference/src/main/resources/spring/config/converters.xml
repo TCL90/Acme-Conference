@@ -64,6 +64,9 @@
 	
 		<bean class="converters.StringToReviewerConverter" /> 
   		<bean class="converters.ReviewerToStringConverter" /> 
+  		
+		<bean class="converters.StringToSponsorConverter" /> 
+  		<bean class="converters.SponsorToStringConverter" /> 
 		
 	</util:list>
 	
