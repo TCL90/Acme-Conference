@@ -190,3 +190,11 @@
 	<input type="button" name="back" onclick="javascript: window.location.replace('conference/administrator/list.do')"
 		value="<spring:message code="conference.back" />" />
 	</security:authorize>
+
+	<h3 style="color:blue;">
+		<a href="registration/administrator/list.do?conferenceId=${conference.id}">
+		<spring:message code="conference.registration" />
+		</a>
+	</h3>
+	
+	

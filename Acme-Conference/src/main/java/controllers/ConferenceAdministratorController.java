@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.ActivityService;
 import services.AdministratorService;
+import services.CategoryService;
 import services.CommentService;
 import services.ConferenceService;
 import services.SponsorshipService;
@@ -41,6 +42,9 @@ public class ConferenceAdministratorController extends AbstractController {
 
 	@Autowired
 	private SponsorshipService		sponsorshipService;
+
+	@Autowired
+	private CategoryService			categoryService;
 
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -345,11 +349,27 @@ public class ConferenceAdministratorController extends AbstractController {
 		ModelAndView result;
 
 		result = new ModelAndView("conference/administrator/edit");
-		result.addObject("conference", conference);
 
+		result.addObject("conference", conference);
 		result.addObject("message", messageCode);
+		result.addObject("categories", this.categoryService.findAll());
 
 		return result;
+	}
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
+	public ModelAndView delete(final Conference conf, final BindingResult binding) {
+		ModelAndView res;
+
+		try {
+
+			this.conferenceService.delete(conf);
+			res = new ModelAndView("redirect:list.do");
+		} catch (final Throwable oops) {
+			res = this.createEditModelAndView(conf, "error.delete");
+		}
+
+		return res;
 	}
 
 }

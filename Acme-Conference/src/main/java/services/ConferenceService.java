@@ -186,4 +186,11 @@ public class ConferenceService {
 
 	}
 
+	public void delete(final Conference conf) {
+		Assert.isTrue(!conf.isFinalMode());
+
+		this.conferenceRepository.delete(conf);
+
+	}
+
 }

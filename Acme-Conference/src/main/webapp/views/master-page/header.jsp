@@ -29,7 +29,8 @@
 					<li><a href="conference/administrator/list.do"><spring:message code="master.page.administrator.conferences.list" /></a></li>
 					<li><a href="administrator/administrator/create.do"><spring:message code="master.page.administrator.create" /></a></li>
 					<li><a href="administrator/administrator/edit.do"><spring:message code="master.page.administrator.edit" /></a></li>
-					<li><a href="activity/administrator/list.do"><spring:message code="master.page.administrator.activities.list" /></a></li>				</ul>
+					<li><a href="activity/administrator/list.do"><spring:message code="master.page.administrator.activities.list" /></a></li>
+					<li><a href="submission/administrator/list.do"><spring:message code="master.page.administrator.submission.list" /></a></li>				</ul>
 			</li>
 		</security:authorize>
 		

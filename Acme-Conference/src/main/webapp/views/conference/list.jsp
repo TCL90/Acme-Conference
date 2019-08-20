@@ -149,6 +149,17 @@
 	
 	<security:authorize access="hasRole('ADMIN')">
 	
+	<display:column titleKey="conference.finalMode">
+		<jstl:if test="${row.finalMode == false }">
+			<spring:message code="conference.no"/>
+		</jstl:if>
+		<jstl:if test="${row.finalMode == true }">
+			<spring:message code="conference.yes"/>
+		</jstl:if>
+				
+	</display:column>
+	
+	
 	<display:column>
 		<a href="submission/administrator/procedure.do?conferenceId=${row.id}">
 			<spring:message code="submission.evaluate"/>
@@ -157,11 +168,11 @@
 	
 	<display:column><a href="conference/administrator/show.do?conferenceId=${row.id }"><spring:message code="conference.show"/></a></display:column>
 	
-	
-	<jstl:if test="${row.finalMode == false}">
-		<display:column> <a href="conference/administrator/edit.do?conferenceId=${row.id}"> <spring:message code="conference.edit"/></a></display:column>
-	</jstl:if>
-	
+	<display:column>
+		<jstl:if test="${row.finalMode == false}">
+			<a href="conference/administrator/edit.do?conferenceId=${row.id}"> <spring:message code="conference.edit"/></a>
+		</jstl:if>
+	</display:column>
 
 	</security:authorize>
 	
@@ -181,7 +192,8 @@
 </jstl:if>
 <br/>
 
+	<security:authorize access="hasRole('ADMIN')">
 <a href="conference/administrator/create.do"><spring:message code="administrator.conference.create"/></a>
 
-
+</security:authorize>
 

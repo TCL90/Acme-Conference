@@ -68,6 +68,10 @@
 		<bean class="converters.StringToSponsorConverter" /> 
   		<bean class="converters.SponsorToStringConverter" /> 
 		
+		<bean class="converters.StringToCategoryConverter" /> 
+  		<bean class="converters.CategoryToStringConverter" /> 
+		
+		
 	</util:list>
 	
 </beans>
