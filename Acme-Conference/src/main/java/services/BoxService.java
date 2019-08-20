@@ -1,12 +1,19 @@
 
 package services;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import repositories.ActorRepository;
 import repositories.BoxRepository;
+import security.LoginService;
+import security.UserAccount;
+import domain.Actor;
+import domain.Box;
 
 @Service
 @Transactional
@@ -20,6 +27,7 @@ public class BoxService {
 
 	@Autowired
 	private MessageService	ms;
+
 
 	//
 	//	public Box create() {
@@ -51,20 +59,20 @@ public class BoxService {
 	//		return this.messageBoxRepository.findOne(messageBoxId);
 	//	}
 	//
-	//	public Box save(final Box messageBox) {
-	//		final UserAccount actual = LoginService.getPrincipal();
-	//		final Actor a = this.actorRepository.getActor(actual);
-	//		final Box mb = this.messageBoxRepository.save(messageBox);
-	//		if (!a.getBoxes().contains(messageBox)) {
-	//			final Collection<Box> mboxes = a.getBoxes();
-	//			mboxes.add(mb);
-	//			a.setBoxes(mboxes);
-	//			Assert.isTrue(a.getBoxes().contains(mb));
-	//
-	//		}
-	//		return mb;
-	//
-	//	}
+	public Box save(final Box messageBox) {
+		final UserAccount actual = LoginService.getPrincipal();
+		final Actor a = this.actorRepository.getActor(actual);
+		final Box mb = this.messageBoxRepository.save(messageBox);
+		if (!a.getBoxes().contains(messageBox)) {
+			final Collection<Box> mboxes = a.getBoxes();
+			mboxes.add(mb);
+			a.setBoxes(mboxes);
+			Assert.isTrue(a.getBoxes().contains(mb));
+
+		}
+		return mb;
+
+	}
 	//
 	//	public Box saveToRemote(final Box messageBox, final Administrator c) {
 	//

@@ -1,6 +1,10 @@
 
 package services;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,6 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 import repositories.ActorRepository;
 import repositories.MessageRepository;
 import security.UserAccountRepository;
+import domain.Actor;
+import domain.Box;
+import domain.Message;
+import domain.Submission;
 
 @Service
 @Transactional
@@ -26,7 +34,11 @@ public class MessageService {
 	private ActorService			as;
 
 	@Autowired
+	private AdministratorService	ad;
+
+	@Autowired
 	private BoxService				mbs;
+
 
 	//
 	//	public Message create() {
@@ -202,4 +214,36 @@ public class MessageService {
 	//		this.messageRepository.delete(message);
 	//	}
 
+	public void NotificateMessage(final Submission s) {
+		final Message res = new Message();
+		String StatusEsp = null;
+		if (s.getStatus().contains("REJECTED"))
+			StatusEsp = "RECHAZADA";
+		else if (s.getStatus().contains("ACCEPTED"))
+			StatusEsp = "ACEPTADA";
+		res.setBody("Your submission " + s.getTicker() + ", has been " + s.getStatus() + "./n" + "Tu solicitud " + s.getTicker() + ", ha sido" + StatusEsp + ".");
+		res.setId(0);
+		res.setMoment(Calendar.getInstance().getTime());
+		final ArrayList<Actor> actors = new ArrayList<Actor>();
+		actors.add(s.getAuthor());
+		res.setRecipients(actors);
+		res.setSender(this.ad.findByPrincipal());
+		res.setSubject("Notification message, mensaje de notificación");
+		res.setTopic("SYSTEM");
+
+		final Message enviado = this.messageRepository.save(res);
+		final Collection<Box> boxes = s.getAuthor().getBoxes();
+		for (final Box b : boxes)
+			if (b.getName().contains("notification")) {
+				b.getMessages().add(enviado);
+				this.mbs.save(b);
+			}
+		final Collection<Box> boxes2 = this.ad.findByPrincipal().getBoxes();
+		for (final Box b2 : boxes2) {
+			if (b2.getName().contains("out"))
+				b2.getMessages().add(enviado);
+			this.mbs.save(b2);
+		}
+
+	}
 }

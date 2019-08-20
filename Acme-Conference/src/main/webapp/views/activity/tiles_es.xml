@@ -16,6 +16,11 @@
        
 <tiles-definitions>
 
+	<definition name="activity/list" extends="master.page">
+		<put-attribute name="title" value="Lista de actividades" />
+		<put-attribute name="body" value="/views/activity/list.jsp" />
+	</definition>
+
 	<definition name="activity/presentationShow" extends="master.page">
 		<put-attribute name="title" value="Ver presentación" />
 		<put-attribute name="body" value="/views/activity/show.jsp" />
@@ -29,6 +34,26 @@
 	<definition name="activity/panelShow" extends="master.page">
 		<put-attribute name="title" value="Ver panel" />
 		<put-attribute name="body" value="/views/activity/show.jsp" />
+	</definition>
+	
+	<definition name="activity/editPresentation" extends="master.page">
+		<put-attribute name="title" value="Editar presentación" />
+		<put-attribute name="body" value="/views/activity/edit.jsp" />
+	</definition>
+	
+	<definition name="activity/editPresentation" extends="master.page">
+		<put-attribute name="title" value="Editar presentación" />
+		<put-attribute name="body" value="/views/activity/edit.jsp" />
+	</definition>
+	
+	<definition name="activity/editPanel" extends="master.page">
+		<put-attribute name="title" value="Editar panel" />
+		<put-attribute name="body" value="/views/activity/edit.jsp" />
+	</definition>
+	
+	<definition name="activity/editTutorial" extends="master.page">
+		<put-attribute name="title" value="Editar tutorial" />
+		<put-attribute name="body" value="/views/activity/edit.jsp" />
 	</definition>
 	
 </tiles-definitions>

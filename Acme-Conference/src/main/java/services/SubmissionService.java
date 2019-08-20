@@ -1,8 +1,10 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.ValidationException;
 
@@ -12,12 +14,15 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
+import repositories.ConferenceRepository;
 import repositories.ReportRepository;
 import repositories.SubmissionRepository;
 import utilities.TickerGenerator;
 import domain.Author;
+import domain.Conference;
 import domain.Paper;
 import domain.Report;
+import domain.Reviewer;
 import domain.Submission;
 import forms.SubmissionForm;
 
@@ -35,11 +40,24 @@ public class SubmissionService {
 	private PaperService			paperService;
 
 	@Autowired
+	private MessageService			messageService;
+
+	@Autowired
 	private ReportRepository		reportRepository;
+
+	@Autowired
+	private ConferenceRepository	conferenceRepository;
+
+	@Autowired
+	private ReviewerService			reviewerService;
 
 
 	public Collection<Submission> findByAuthor(final int authorId) {
 		return this.submissionRepository.findByAuthor(authorId);
+	}
+
+	public Collection<Submission> findByReviewer2(final Reviewer revi) {
+		return this.submissionRepository.findByReviewer2(revi);
 	}
 
 	public SubmissionForm create() {
@@ -107,6 +125,9 @@ public class SubmissionService {
 	}
 
 	public Collection<Submission> decisionProcedure(final int conferenceId) {
+		final Conference conference = this.conferenceRepository.findOne(conferenceId);
+		//TODO: COMPROBAR SUBMISSION 
+		//Assert.isTrue(conference.getSubmissionDeadline().before());
 		final Collection<Submission> submissions = this.submissionRepository.findUnderReviewReported(conferenceId);
 		Collection<Report> reports = null;
 		int accept = 0;
@@ -125,14 +146,48 @@ public class SubmissionService {
 					reject++;
 				else if (r.getDecision().contains("BORDER-LINE"))
 					borderLine++;
-			if (reject > accept)
+			if (reject > accept) {
 				s.setStatus("REJECTED");
-			else
+				this.messageService.NotificateMessage(s);
+			} else {
 				s.setStatus("ACCEPTED");
+				this.messageService.NotificateMessage(s);
+			}
 			this.submissionRepository.save(s);
 			this.submissionRepository.flush();
 		}
 
 		return submissions;
 	}
+	public Collection<Submission> findAll() {
+		return this.submissionRepository.findAll();
+	}
+
+	public Collection<Reviewer> assignReviewers(final Submission submission) {
+		//final Submission submission = this.submissionRepository.findOne(submissionId);
+		final Conference conference = submission.getConference();
+		final List<Reviewer> reviewers = (List<Reviewer>) this.reviewerService.findAll();
+		final List<Reviewer> res = new ArrayList<Reviewer>();
+
+		Reviewer r = null;
+
+		for (int i = 0; i < reviewers.size(); i++) {
+			r = reviewers.get(i);
+			if (r.getExpertise().contains(conference.getTitle()))
+				res.add(r);
+		}
+
+		int j = 0;
+		while (res.size() < 3) {
+			res.add(r);
+			j++;
+		}
+
+		submission.setReviewers(res);
+
+		this.save(submission);
+
+		return res;
+	}
+
 }

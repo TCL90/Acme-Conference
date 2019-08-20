@@ -37,6 +37,7 @@
 		<!-- Anon -->
 		<security:intercept-url pattern="/author/register.do" access="permitAll" /> 
 		<security:intercept-url pattern="/reviewer/register.do" access="permitAll" /> 
+		<security:intercept-url pattern="/sponsor/register.do" access="permitAll" /> 
 		<security:intercept-url pattern="/conference/list.do" access="permitAll" />
 		<security:intercept-url pattern="/conference/pastList.do" access="permitAll" />
 		<security:intercept-url pattern="/conference/forthCommingList.do" access="permitAll" />
@@ -46,6 +47,7 @@
 		
 	
 		<security:intercept-url pattern="/activity/show.do" access="permitAll" />
+		<security:intercept-url pattern="/comment/**" access="permitAll" />
 
 		<security:intercept-url pattern="/registration/show.do" access="hasRole('AUTHOR')||hasRole('ADMIN')" />
 		
@@ -59,13 +61,15 @@
 		<security:intercept-url pattern="/cameraReadyPaper/author/create.do" access="hasRole('AUTHOR')" />
 		<security:intercept-url pattern="/cameraReadyPaper/author/edit.do" access="hasRole('AUTHOR')" />
 		<security:intercept-url pattern="/author/author/edit.do" access="hasRole('AUTHOR')" />
+		<security:intercept-url pattern="/submission/show.do" access="hasRole('ADMIN')||hasRole('AUTHOR')||hasRole('REVIEWER')" />
 		
 		
 		
 		
 		<!-- Reviewer -->
 		<security:intercept-url pattern="/reviewer/reviewer/edit.do" access="hasRole('REVIEWER')" />
-		
+		<security:intercept-url pattern="/report/reviewer/**" access="hasRole('REVIEWER')" />
+		<security:intercept-url pattern="/submission/reviewer/**" access="hasRole('REVIEWER')" />
 		
 		
 		
@@ -74,7 +78,16 @@
 		<!-- Administrator -->
 		<security:intercept-url pattern="/submission/administrator/**" access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/conference/administrator/**" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/administrator/administrator/**" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/activity/administrator/**" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/section/administrator/**" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/camerareadypaper/administrator/**" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/registration/administrator/**" access="hasRole('ADMIN')" />
 		
+		
+		<!-- Sponsor -->
+		<security:intercept-url pattern="/sponsor/sponsor/edit.do" access="hasRole('SPONSOR')" />
+		<security:intercept-url pattern="/sponsorship/sponsor/**" access="hasRole('SPONSOR')" />
 		
 		
 		

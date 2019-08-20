@@ -9,7 +9,10 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-
+	<a href="${targetUrl}">
+		<img src="${banner}"> 
+	</a>
+	
 	<h3 style="color:blue;">
 		<spring:message code="conference.title" />:
 	</h3>
@@ -104,8 +107,29 @@
 	</security:authorize>
 	</display:column>
 	
+	<display:column>
+	<security:authorize access="hasRole('ADMIN')">
+	<jstl:if test="${row.conference.finalMode==false }">
+	<a href="activity/administrator/edit.do?activityId=${row.id }">
+	<spring:message code="activity.edit"/>
+	</a>
+	</jstl:if>
+	</security:authorize>
+	</display:column>
+	
 	</display:table>
 	
+	<security:authorize access="hasRole('ADMIN')">
+	<jstl:if test="${!conference.finalMode==true }">
+	<p>
+	<a href="activity/administrator/create.do?conferenceId=${conference.id }&type=panel"><spring:message code="conference.panel.create"/></a>
+	<a href="camerareadypaper/administrator/list.do?conferenceId=${conference.id }"><spring:message code="conference.presentation.create"/></a>
+	<a href="activity/administrator/create.do?conferenceId=${conference.id }&type=tutorial"><spring:message code="conference.tutorial.create"/></a>
+	</p>
+	</jstl:if>
+	</security:authorize>
+	
+	<jstl:if test="${conference.finalMode==true }">
 	<h3 style="color:blue;">
 	<spring:message code="conference.listComments"/>
 	</h3>
@@ -133,10 +157,11 @@
 	</display:table>
 	
 	<br/>
-	<a href="comment/create.do?conferenceId=${conference.id }"><spring:message code="comment.create"/></a>
+	<a href="comment/createC.do?conferenceId=${conference.id }"><spring:message code="comment.create"/></a>
 	
 	<br/>
 	<br/>
+	</jstl:if>
 	
 	<security:authorize access="hasRole('ADMIN')">
 	
@@ -165,3 +190,11 @@
 	<input type="button" name="back" onclick="javascript: window.location.replace('conference/administrator/list.do')"
 		value="<spring:message code="conference.back" />" />
 	</security:authorize>
+
+	<h3 style="color:blue;">
+		<a href="registration/administrator/list.do?conferenceId=${conference.id}">
+		<spring:message code="conference.registration" />
+		</a>
+	</h3>
+	
+	
