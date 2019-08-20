@@ -1,4 +1,3 @@
-
 package domain;
 
 import java.util.Collection;
@@ -19,6 +18,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.format.annotation.DateTimeFormat;
 
+
 @Entity
 @Access(AccessType.PROPERTY)
 public class Message extends DomainEntity {
@@ -30,7 +30,7 @@ public class Message extends DomainEntity {
 	private boolean				broadcast;
 
 	private Actor				sender;
-	private Actor				recipient;
+	private Collection<Actor>	recipients;	//DEBE SER UNA COLLECTION?
 
 
 	@NotNull
@@ -78,14 +78,13 @@ public class Message extends DomainEntity {
 	public void setSender(final Actor sender) {
 		this.sender = sender;
 	}
-	
-	@Valid
-	@ManyToOne(optional = false)
-	public Actor getRecipient() {
-		return this.recipient;
+
+	@ManyToMany
+	public Collection<Actor> getRecipients() {
+		return this.recipients;
 	}
-	public void setRecipient(final Actor recipient) {
-		this.recipient = recipient;
+	public void setRecipients(final Collection<Actor> recipients) {
+		this.recipients = recipients;
 	}
 
 	@SafeHtml
@@ -97,9 +96,6 @@ public class Message extends DomainEntity {
 	public void setTopic(final String topic) {
 		this.topic = topic;
 	}
-	@Override
-	public String toString() {
-		return "messageerror";
-	}
+
 
 }

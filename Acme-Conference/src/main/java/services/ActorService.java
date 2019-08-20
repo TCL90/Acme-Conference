@@ -2,6 +2,7 @@
 package services;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,8 @@ public class ActorService {
 	@Autowired
 	private ActorRepository			actorRepository;
 
+	@Autowired
+	private BoxService				mbs;
 
 	@Autowired
 	private CustomisationService	cs;
@@ -115,19 +118,6 @@ public class ActorService {
 	//
 	//	}
 	//
-	//	public boolean checkspammer(final String s) {
-	//		boolean res = false;
-	//		final List<String> spamwords = this.cs.getCustomisation().getSpamWords();
-	//
-	//		for (final String spamword : spamwords)
-	//			if (s.contains(spamword)) {
-	//				final UserAccount actual = LoginService.getPrincipal();
-	//				final Actor a = this.actorRepository.getActor(actual);
-	//				a.setFlagSpam(true);
-	//				res = true;
-	//			}
 
-	//		return res;
-	//	}
 
 }

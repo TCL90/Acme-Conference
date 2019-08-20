@@ -17,15 +17,29 @@
 <tiles-definitions>
 
 	<definition name="messages/list" extends="master.page">
-		<put-attribute name="title" value="Lista de mensajes" />
+		<put-attribute name="title" value="Lista de mensajes recibidos" />
 		<put-attribute name="body" value="/views/messages/list.jsp" />
 	</definition>
-	
-<!-- 	<definition name="conference/pastList" extends="master.page">
-		<put-attribute name="title" value="Lista de conferencias pasadas" />
-		<put-attribute name="body" value="/views/conference/list.jsp" />
-	</definition> -->
-	
+		
+	<definition name="messages/listOut" extends="master.page">
+		<put-attribute name="title" value="Lista de mensajes enviados" />
+		<put-attribute name="body" value="/views/messages/listOut.jsp" />
+	</definition>
+		
+	<definition name="messages/listNotification" extends="master.page">
+		<put-attribute name="title" value="Lista de notificaciones" />
+		<put-attribute name="body" value="/views/messages/listNotification.jsp" />
+	</definition>
+
+	<definition name="messages/display" extends="master.page">
+		<put-attribute name="title" value="Detalles del mensaje" />
+		<put-attribute name="body" value="/views/messages/display.jsp" />
+	</definition>	
+
+	<definition name="messages/newMessage" extends="master.page">
+		<put-attribute name="title" value="Nuevo mensaje" />
+		<put-attribute name="body" value="/views/messages/newMessage.jsp" />
+	</definition>	
 	
 
 </tiles-definitions>

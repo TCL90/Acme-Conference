@@ -4,20 +4,26 @@ package services;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import domain.Actor;
 import domain.Message;
 import repositories.ActorRepository;
 import repositories.MessageRepository;
+import security.LoginService;
+import security.UserAccount;
 import security.UserAccountRepository;
 import domain.Actor;
 import domain.Box;
 import domain.Message;
 import domain.Submission;
+
 
 @Service
 @Transactional
@@ -42,92 +48,89 @@ public class MessageService {
 	private BoxService				mbs;
 
 
-	//
-	//	public Message create() {
-	//		final Date date = new Date();
-	//		final Message m = new Message();
-	//		final UserAccount actual = LoginService.getPrincipal();
-	//		final Actor a = this.ar.getActor(actual);
-	//		m.setMoment(date);
-	//		m.setSender(a);
-	//		System.out.println("create servicio:");
-	//		System.out.println(m.getSender());
-	//		return m;
-	//	}
-	//
-	//	public void deleteMessage(final Message m) {
-	//		Assert.notNull(m);
-	//		Assert.isTrue(!(m.getId() == 0));
-	//		final UserAccount actual = LoginService.getPrincipal();
-	//		final Actor actorActual = this.ar.getActor(actual);
-	//		Assert.isTrue(!actorActual.getBan());
-	//
-	//		final List<Box> msgb = (List<Box>) actorActual.getBoxes();
-	//		final Box trash = msgb.get(3);
-	//		Boolean addToTrash = false;
-	//		if (trash.getMessages().contains(m)) {
-	//			final Collection<Message> mess = trash.getMessages();
-	//			mess.remove(m);
-	//			trash.setMessages(mess);
-	//			this.mbs.save(trash);
-	//			addToTrash = true;
-	//
-	//			Boolean bBorrar = true;
-	//			final Collection<Actor> actores = this.as.findAll();
-	//			actores.remove(actorActual);
-	//			for (final Actor a : actores) {
-	//				for (final Box mboxes : a.getBoxes()) {
-	//					for (final Message mes : mboxes.getMessages())
-	//						if (mes.getId() == m.getId()) {
-	//							bBorrar = false;
-	//							break;
-	//						}
-	//
-	//					if (!bBorrar)
-	//						break;
-	//				}
-	//				if (!bBorrar)
-	//					break;
-	//			}
-	//			if (bBorrar) {
-	//				this.delete(m);
-	//				return;
-	//			}
-	//		}
-	//		for (int i = 0; i < msgb.size(); i++)
-	//			if (msgb.get(i).getMessages().contains(m)) {
-	//				final Box boxm = msgb.get(i);
-	//
-	//				if (!boxm.getName().endsWith("trash box")) {
-	//					final Collection<Message> mthere = boxm.getMessages();
-	//					mthere.remove(m);
-	//					boxm.setMessages(mthere);
-	//					this.mbs.save(boxm);
-	//
-	//					if (addToTrash == false) {
-	//						final Box trashDestino = msgb.get(3);
-	//						final Collection<Message> tmessages = trashDestino.getMessages();
-	//						tmessages.add(m);
-	//						trashDestino.setMessages(tmessages);
-	//						this.mbs.save(trashDestino);
-	//					}
-	//				}
-	//			}
-	//	}
-	//	private void storeMessageOnTrashBox(final Message m, final Actor a) {
-	//		Assert.notNull(a);
-	//		Assert.notNull(m);
-	//		final Collection<Box> msgboxes = a.getBoxes();
-	//
-	//		for (final Box mbox : msgboxes)
-	//			if (mbox.getPredefined() == true && mbox.getName().endsWith("trash box")) {
-	//				final Collection<Message> messages = mbox.getMessages();
-	//				messages.add(m);
-	//				mbox.setMessages(messages);
-	//				Assert.notNull(mbox);
-	//
-	//			}
-	//	}
+	
+		public Message create() {
+			final Date date = new Date();
+			final Message m = new Message();
+			final UserAccount actual = LoginService.getPrincipal();
+			final Actor a = this.ar.getActor(actual);
+			m.setMoment(date);
+			m.setSender(a);
+			m.setRecipients(new ArrayList<Actor>());
+			System.out.println("create servicio:");
+			System.out.println(m.getSender().getName());
+			return m;
+		}
+	
+		public void deleteMessage(final Message m) {
+			Assert.notNull(m);
+			Assert.isTrue(!(m.getId() == 0));
+			final UserAccount actual = LoginService.getPrincipal();
+			final Actor actorActual = this.ar.getActor(actual);
+	
+			Message borrar = this.findOne(m.getId());
+			
+			final List<Box> msgb = (List<Box>) actorActual.getBoxes();
+			
+			if(borrar.getSender().equals(actorActual)) {
+				msgb.get(2).getMessages().remove(borrar);
+				mbs.save(msgb.get(0));
+			}else{
+				
+			}
+			
+//			final Box trash = msgb.get(3);
+//			Boolean addToTrash = false;
+//			if (trash.getMessages().contains(m)) {
+//				final Collection<Message> mess = trash.getMessages();
+//				mess.remove(m);
+//				trash.setMessages(mess);
+//				this.mbs.save(trash);
+//				addToTrash = true;
+//	
+//				Boolean bBorrar = true;
+//				final Collection<Actor> actores = this.as.findAll();
+//				actores.remove(actorActual);
+//				for (final Actor a : actores) {
+//					for (final Box mboxes : a.getBoxes()) {
+//						for (final Message mes : mboxes.getMessages())
+//							if (mes.getId() == m.getId()) {
+//								bBorrar = false;
+//								break;
+//							}
+//	
+//						if (!bBorrar)
+//							break;
+//					}
+//					if (!bBorrar)
+//						break;
+//				}
+//				if (bBorrar) {
+//					this.delete(m);
+//					return;
+//				}
+//			}
+//			for (int i = 0; i < msgb.size(); i++)
+//				if (msgb.get(i).getMessages().contains(m)) {
+//					final Box boxm = msgb.get(i);
+//	
+//					if (!boxm.getName().endsWith("trash box")) {
+//						final Collection<Message> mthere = boxm.getMessages();
+//						mthere.remove(m);
+//						boxm.setMessages(mthere);
+//						this.mbs.save(boxm);
+//	
+//						if (addToTrash == false) {
+//							final Box trashDestino = msgb.get(3);
+//							final Collection<Message> tmessages = trashDestino.getMessages();
+//							tmessages.add(m);
+//							trashDestino.setMessages(tmessages);
+//							this.mbs.save(trashDestino);
+//						}
+//					}
+//				}
+		}
+
 	//
 	//	public Message broadcastMessage(final Message msg) {
 	//		final UserAccount actual = LoginService.getPrincipal();
@@ -159,36 +162,6 @@ public class MessageService {
 	//
 	//	}
 	//
-	//	public Message broadcastSpamMessage(final Message msg) {
-	//		final UserAccount actual = LoginService.getPrincipal();
-	//		final Actor admin = this.ar.getActor(actual);
-	//		Assert.notNull(msg);
-	//		Assert.isTrue(!admin.getBan());
-	//
-	//		final Message result = this.save(msg);
-	//
-	//		final Collection<Box> aboxes = admin.getBoxes();
-	//		for (final Box abox : aboxes)
-	//			if (abox.getName().endsWith("out box") && abox.getPredefined() == true) {
-	//				final Collection<Message> ames = abox.getMessages();
-	//				ames.add(result);
-	//				abox.setMessages(ames);
-	//			}
-	//
-	//		final Collection<Actor> listaActores = this.as.findAll();
-	//		listaActores.remove(admin);
-	//		for (final Actor actors : listaActores)
-	//			for (final Box msb : actors.getBoxes())
-	//
-	//				if (msb.getName().endsWith("spam box") && msb.getPredefined() == true) {
-	//					final Collection<Message> rmes = msb.getMessages();
-	//					rmes.add(result);
-	//					msb.setMessages(rmes);
-	//				}
-	//		return result;
-	//
-	//	}
-	//
 	//	public String getTemplateSecurityBreachNotificationMessage() {
 	//		return "Lamentamos informar de que hemos encontrado una posible brecha de seguridad" + " que podr�a afectar a los datos e informaci�n que usted como usuario ha ingresado"
 	//			+ " en nuestra web. Como consecuencia, sus datos, usuario y contrase�a pueden haber sido" + " filtrados a personas ajenas a Acme. Por favor, le pedimos que cambie su contrase�a lo antes posible, "
@@ -204,25 +177,34 @@ public class MessageService {
 			return this.messageRepository.findAll();
 		}
 		
-		public Collection<Message> findAllMines(Actor actor){
-			return this.messageRepository.findByMy(actor);
+		public Collection<Message> findAllMines(Actor actor, String boxName){
+			Collection<Box> boxes = actor.getBoxes();
+			Box caja = null;
+			for (Box box : boxes) {
+				if(box.getName().equals(boxName)) {
+					caja = box;
+					break;
+				}
+			}
+			
+			return caja.getMessages();
 		}
 		
 		public Collection<Message> findBySender(Actor actor){
 			return this.messageRepository.findByActor(actor);
 		}
-	//
-	//	public Message findOne(final int messageId) {
-	//		return this.messageRepository.findOne(messageId);
-	//	}
-	//
-	//	public Message save(final Message message) {
-	//		return this.messageRepository.save(message);
-	//	}
-	//
-	//	public void delete(final Message message) {
-	//		this.messageRepository.delete(message);
-	//	}
+	
+		public Message findOne(final int messageId) {
+			return this.messageRepository.findOne(messageId);
+		}
+	
+		public Message save(final Message message) {
+			return this.messageRepository.save(message);
+		}
+	
+		public void delete(final Message message) {
+			this.messageRepository.delete(message);
+		}
 
 	public void NotificateMessage(final Submission s) {
 		final Message res = new Message();

@@ -1,4 +1,3 @@
-
 package domain;
 
 import java.util.Collection;
@@ -111,15 +110,15 @@ public abstract class Actor extends DomainEntity {
 	}
 
 
-//	private Collection<Box>	boxes;
-//
-//
-//	@OneToMany
-//	public Collection<Box> getBoxes() {
-//		return this.boxes;
-//	}
-//	public void setBoxes(final Collection<Box> boxes) {
-//		this.boxes = boxes;
-//	}
+	private Collection<Box>	boxes;
+
+
+	@OneToMany
+	public Collection<Box> getBoxes() {
+		return this.boxes;
+	}
+	public void setBoxes(final Collection<Box> boxes) {
+		this.boxes = boxes;
+	}
 
 }

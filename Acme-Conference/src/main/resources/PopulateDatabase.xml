@@ -419,6 +419,8 @@
 		<property name="name" value="Out" /> 
 		<property name="messages">
 			<list>
+				<ref bean="message1" />
+				<ref bean="message3" />
 			</list>
 		</property>
 	</bean>
@@ -427,6 +429,7 @@
 		<property name="name" value="In" /> 
 		<property name="messages">
 			<list>
+				<ref bean="message1"/>
 			</list>
 		</property>
 	</bean>
@@ -441,6 +444,7 @@
 		<property name="name" value="Out" /> 
 		<property name="messages">
 			<list>
+				<ref bean="message2"/>
 			</list>
 		</property>
 	</bean>
@@ -449,6 +453,8 @@
 		<property name="name" value="In" /> 
 		<property name="messages">
 			<list>
+				<ref bean="message2"/>
+				<ref bean="message3"/>
 			</list>
 		</property>
 	</bean>
@@ -1250,4 +1256,46 @@
 			<property name="submission" ref="submission3"/>
 	</bean>
 
+	<!-- Messages -->
+	<bean id="message1" class="domain.Message">
+		<property name="body" value="Este es el cuerpo del mensaje 1" />
+		<property name="broadcast" value="false" />
+		<property name="moment" value="2018/12/12 10:40:00" />
+		<property name="subject" value="subject1" />
+		<property name="topic" value="topic1" />
+		<property name="sender" ref="admin1" />
+		<property name="recipients">
+			<list>
+				<ref bean="author1" />
+			</list>
+		</property>
+	</bean>
+	<bean id="message2" class="domain.Message">
+		<property name="body" value="Este es el cuerpo del mensaje 2" />
+		<property name="broadcast" value="false" />
+		<property name="moment" value="2018/12/12 10:40:00" />
+		<property name="subject" value="subject2" />
+		<property name="topic" value="topic2" />
+		<property name="sender" ref="author1" />
+		<property name="recipients">
+			<list>
+				<ref bean="author2" />
+			</list>
+		</property>
+	</bean>
+	<bean id="message3" class="domain.Message">
+		<property name="body" value="Este es el cuerpo del mensaje 3" />
+		<property name="broadcast" value="false" />
+		<property name="moment" value="2018/12/12 10:40:00" />
+		<property name="subject" value="subject3" />
+		<property name="topic" value="topic3" />
+		<property name="sender" ref="admin1" />
+		<property name="recipients">
+			<list>
+				<ref bean="author2" />
+			</list>
+		</property>
+	</bean>
+	
+	
 </beans>

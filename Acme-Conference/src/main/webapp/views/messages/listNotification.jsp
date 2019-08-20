@@ -17,8 +17,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
  
 	<p>
-			<b><spring:message code="messages.all" /></b>|
-		
+			<b><spring:message code="messages.allNotification" /></b>|
 	</p>
 
 <display:table name="messages" id="row" requestURI="${requestURI}" pagesize="5" class ="displaytag">
@@ -28,6 +27,6 @@
 	<display:column property="subject" titleKey="message.subject"/>
 	<display:column property="moment" titleKey="message.moment"/>
 
-	<display:column><a href="messages/display.do?messageId=${row.id }"><spring:message code="message.show"/></a></display:column>
-	
+	<!--<display:column><a href="conference/show.do?conferenceId=${row.id }"><spring:message code="conference.show"/></a></display:column>
+	-->
 </display:table>

@@ -1,5 +1,5 @@
 <%--
- * list.jsp
+ * listOut.jsp
  *
  * Copyright (C) 2018 Universidad de Sevilla
  * 
@@ -17,13 +17,14 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
  
 	<p>
-			<b><spring:message code="messages.all" /></b>|
-		
+			<b><spring:message code="messages.allOut" /></b>|
 	</p>
+
+
 
 <display:table name="messages" id="row" requestURI="${requestURI}" pagesize="5" class ="displaytag">
 	
-	<display:column property="sender.name" titleKey="message.sender" sortable="true"/>
+	<display:column property="recipients[0].name" titleKey="message.recipients" sortable="true"/>
 	<display:column property="topic" titleKey="message.topic" sortable="true"/>
 	<display:column property="subject" titleKey="message.subject"/>
 	<display:column property="moment" titleKey="message.moment"/>
