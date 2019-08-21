@@ -75,11 +75,11 @@ public class SectionService {
 
 		return res;
 	}
-	public void save(final Section s) {
+	public Section save(final Section s) {
 		Assert.isTrue(this.administratorService.checkAdmin());
 		Assert.isTrue(s.getTutorial().getConference().isFinalMode() == false);
 
-		this.sectionRepository.save(s);
+		return this.sectionRepository.save(s);
 	}
 
 	public void delete(final Section s) {

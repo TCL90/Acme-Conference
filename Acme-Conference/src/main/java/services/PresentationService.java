@@ -97,11 +97,11 @@ public class PresentationService {
 		return res;
 	}
 
-	public void save(final Presentation p) {
+	public Presentation save(final Presentation p) {
 		Assert.isTrue(this.administratorService.checkAdmin());
 		Assert.isTrue(p.getConference().isFinalMode() == false);
 
-		this.presentationRepository.save(p);
+		return this.presentationRepository.save(p);
 	}
 
 	public void delete(final Presentation p) {
