@@ -170,6 +170,7 @@ public class ConferenceService {
 		res.setFinalMode(false);
 
 		return res;
+
 	}
 
 	public Conference save(final Conference conference) {

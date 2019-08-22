@@ -159,6 +159,7 @@ public class SubmissionService {
 
 		return submissions;
 	}
+
 	public Collection<Submission> findAll() {
 		return this.submissionRepository.findAll();
 	}

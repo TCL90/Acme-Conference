@@ -41,6 +41,9 @@
 		<value>/views/section/messages</value>
 		<value>/views/sponsor/messages</value>
 		<value>/views/sponsorship/messages</value>
+		<value>/views/dashboard/messages</value>
+		<value>/views/finder/messages</value>
+		<value>/views/customisation/messages</value>
 	
 	</util:list>
 

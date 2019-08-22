@@ -38,7 +38,9 @@
 		<value>/views/report/tiles.xml</value>
 		<value>/views/activity/tiles.xml</value>
 		<value>/views/section/tiles.xml</value>
-		
+		<value>/views/dashboard/tiles.xml</value>
+		<value>/views/finder/tiles.xml</value>
+		<value>/views/customisation/tiles.xml</value>
 		<value>/views/comment/tiles.xml</value>
 		<value>/views/sponsor/tiles.xml</value>
 		<value>/views/sponsorship/tiles.xml</value>

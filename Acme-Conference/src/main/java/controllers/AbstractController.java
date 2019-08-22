@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ClassUtils;
@@ -34,16 +35,15 @@ public class AbstractController {
 
 	@ModelAttribute
 	public void everyRequest(final WebRequest request, final Model model) {
-
+		
 		final List<Customisation> custList = (List<Customisation>) this.customisationService.findAll();
 
 		final Customisation customisation = custList.get(0);
 
-		model.addAttribute("customisation", customisation);
+		model.addAttribute("customisation", customisation);	
+		final String language = LocaleContextHolder.getLocale().getLanguage();
+		model.addAttribute("language", language);
 	}
-
-	// Panic handler ----------------------------------------------------------
-
 	@ExceptionHandler(Throwable.class)
 	public ModelAndView panic(final Throwable oops) {
 		ModelAndView result;
