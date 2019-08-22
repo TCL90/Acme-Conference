@@ -8,8 +8,8 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form action="administrator/administrator/edit.do"
-	modelAttribute="administrator">
+<form:form action="author/author/edit.do"
+	modelAttribute="author">
 
 	<form:hidden path="userAccount" />
 	<form:hidden path="finder" />
@@ -19,11 +19,11 @@
 
 	<fieldset>
 		<legend align="left">
-			<spring:message code="administrator.edit.contact" />
+			<spring:message code="author.edit.contact" />
 		</legend>
 
 		<form:label path="name">
-			<spring:message code="administrator.name" />* :
+			<spring:message code="author.name" />* :
 		</form:label>
 		<form:input path="name" />
 		<form:errors cssClass="error" path="name" />
@@ -31,7 +31,7 @@
 		<br /> <br />
 
 		<form:label path="surname">
-			<spring:message code="administrator.surname" />* :
+			<spring:message code="author.surname" />* :
 		</form:label>
 		<form:input path="surname" />
 		<form:errors cssClass="error" path="surname" />
@@ -39,7 +39,7 @@
 		<br /> <br />
 
 		<form:label path="address">
-			<spring:message code="administrator.address" />*:
+			<spring:message code="author.address" />*:
 		</form:label>
 		<form:input path="address" />
 		<form:errors cssClass="error" path="address" />
@@ -47,7 +47,7 @@
 		<br /> <br />
 
 		<form:label path="email">
-			<spring:message code="administrator.email" />*:
+			<spring:message code="author.email" />*:
 		</form:label>
 		<form:input path="email"/>
 		<form:errors cssClass="error" path="email" />
@@ -55,7 +55,7 @@
 
 
 		<form:label path="phoneNumber">
-			<spring:message code="administrator.phoneNumber" />:
+			<spring:message code="author.phoneNumber" />:
 		</form:label>
 		<form:input path="phoneNumber" onchange="check(this)"
 			pattern="^(\d|\(|\)| |\+)+$" />
@@ -71,14 +71,14 @@
 				var OK2 = re2.exec(input.value);
 				var OK3 = re3.exec(input.value);
 				if (!(OK || OK2 || OK3)) {
-					alert("<spring:message code="administrator.confirm" />");
+					alert("<spring:message code="author.confirm" />");
 				}
 			}
 		</script>
 		<br /> <br />
 
 		<form:label path="photo">
-			<spring:message code="administrator.photo" />:
+			<spring:message code="author.photo" />:
 		</form:label>
 		<form:input path="photo" />
 		<form:errors cssClass="error" path="photo" />
@@ -92,9 +92,9 @@
 	<br />
 	<br />
 	<input type="submit" name="save"
-		value="<spring:message code="administrator.edit.save" />" />&nbsp;
+		value="<spring:message code="author.edit.save" />" />&nbsp;
 	<input type="button" name="cancel"
 		onclick="javascript: window.location.replace('welcome/index.do')"
-		value="<spring:message code="administrator.edit.cancel" />" />
+		value="<spring:message code="author.edit.cancel" />" />
 
 </form:form>

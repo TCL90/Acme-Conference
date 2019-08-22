@@ -17,7 +17,7 @@
 		<form:label path="title">
 			<spring:message code="conference.title" />* :
 		</form:label>
-		<form:input path="title" placeholder="E.g.: Conference about ..."/>
+		<form:input path="title" />
 		<form:errors cssClass="error" path="title" />
 
 		<br /> <br />
@@ -25,7 +25,7 @@
 		<form:label path="acronym">
 			<spring:message code="conference.acronym" />* :
 		</form:label>
-		<form:input path="acronym"  placeholder="E.g.: CFD"/>
+		<form:input path="acronym" />
 		<form:errors cssClass="error" path="acronym" />
 
 		<br /> <br />
@@ -33,7 +33,7 @@
 		<form:label path="venue">
 			<spring:message code="conference.venue" />* :
 		</form:label>
-		<form:input path="venue" placeholder="E.g.: FIBES, Sevilla"/>
+		<form:input path="venue" />
 		<form:errors cssClass="error" path="venue" />
 
 		<br /> <br />
@@ -81,7 +81,7 @@
 		<form:label path="summary">
 			<spring:message code="conference.summary" />* :
 		</form:label>
-		<form:input path="summary" placeholder="E.g.: 1.- Presentación..."/>
+		<form:input path="summary" />
 		<form:errors cssClass="error" path="summary" />
 
 		<br /> <br />
@@ -112,22 +112,7 @@
 			</form:select>
 		</jstl:if>
 		<form:errors cssClass="error" path="finalMode" />
-			<br /> <br />
-		<form:label path="category">
-			<spring:message code="conference.category" />* :
-		</form:label>
-		
-		<form:select path="category" >
-			<jstl:if test="${pageContext.response.locale.language=='es'}">	
-				<form:options items="${categories}"  itemLabel = "titleEsp"/>	
-			</jstl:if>
-			<jstl:if test="${pageContext.response.locale.language=='en'}">	
-				<form:options items="${categories}"  itemLabel = "titleIng"/>	
-			</jstl:if>
-		</form:select>
-		<form:errors cssClass="error" path="category" />
 
-		
 		<br /> <br />
 		
 
@@ -142,9 +127,5 @@
 	<input type="button" name="cancel"
 		onclick="javascript: window.location.replace('welcome/index.do')"
 		value="<spring:message code="conference.edit.cancel" />" />
-	<jstl:if test="${conference.id != 0}">
-		<input type="submit" name="delete"
-			value="<spring:message code="conference.delete" />"
-			onclick="return confirm('<spring:message code="conference.confirm.delete" />')" />&nbsp;
-	</jstl:if>
+
 </form:form>

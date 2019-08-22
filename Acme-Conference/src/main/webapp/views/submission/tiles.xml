@@ -45,22 +45,5 @@
 		<put-attribute name="title" value="Submissions list" />
 		<put-attribute name="body" value="/views/submission/list.jsp" />
 	</definition>
-	
-	<definition name="submission/show" extends="master.page">
-		<put-attribute name="title" value="Show submission" />
-		<put-attribute name="body" value="/views/submission/show.jsp" />
-	</definition>
-	
-	<definition name="submission/administrator/assign" extends="master.page">
-		<put-attribute name="title" value="Assignatino procedure executed" />
-		<put-attribute name="body" value="/views/submission/edit.jsp" />
-	</definition>
-	
-	<definition name="submission/administrator/list" extends="master.page">
-		<put-attribute name="title" value="Submissions list" />
-		<put-attribute name="body" value="/views/submission/list.jsp" />
-	</definition>
-	
-	
 
 </tiles-definitions>

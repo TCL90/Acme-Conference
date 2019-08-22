@@ -49,6 +49,7 @@ public class ActivityService {
 
 	public Activity findOne(final int activityId) {
 		final Activity activity = this.activityRepository.findOne(activityId);
+		Assert.isTrue(activity.getConference().isFinalMode());
 		Assert.notNull(activity);
 		return activity;
 	}
@@ -64,11 +65,6 @@ public class ActivityService {
 			type = "tutorial";
 
 		return type;
-	}
-
-	public Collection<Activity> findAll() {
-		Assert.isTrue(this.administratorService.checkAdmin());
-		return this.activityRepository.findAll();
 	}
 
 }

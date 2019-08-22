@@ -71,13 +71,6 @@
 	</h3>
 	<jstl:out value="${presentation.cameraReadyPaper.summary}"></jstl:out>
 	
-	<security:authorize access="hasRole('ADMIN')">
-	<h3 style="color:blue;">
-		<spring:message code="presentation.camera.document" />:
-	</h3>
-	<jstl:out value="${presentation.cameraReadyPaper.document}"></jstl:out>
-	</security:authorize>
-	
 	</jstl:if>
 	
 	<jstl:if test="${type=='tutorial' }">
@@ -146,19 +139,9 @@
 		<spring:message code="tutorial.section.pictures" />:
 	</h3>
 	<jstl:out value="${section.pictures}"></jstl:out>
-	<security:authorize access="hasRole('ADMIN')">
-	<br/><br/>
-	<a href="section/administrator/edit.do?sectionId=${section.id }"><spring:message code="section.edit"/></a>
-	</security:authorize>
+	
 	</jstl:forEach>
-	<security:authorize access="hasRole('ADMIN')">
-	<br/><br/>
-	<a href="section/administrator/create.do?tutorialId=${tutorial.id}"><spring:message code="section.create"/></a>
-	</security:authorize>
-	<br/><br/>
 	</jstl:if>
-	
-	
 	
 	<jstl:if test="${type=='panel' }">
 	
@@ -208,7 +191,7 @@
 	<jstl:out value="${activity.attachments}"></jstl:out>
 	
 	</jstl:if>
-	<jstl:if test="${activity.conference.finalMode==true ||tutorial.conference.finalMode==true ||presentation.conference.finalMode==true }">
+	
 	<h3 style="color:blue;">
 	<spring:message code="activity.listComments"/>
 	</h3>
@@ -237,56 +220,11 @@
 	
 	<br/>
 	<br/>
-	<jstl:if test="${type=='presentation'}">
-	<a href="comment/createA.do?activityId=${presentation.id }"><spring:message code="comment.create"/></a>
-	</jstl:if>
-	<jstl:if test="${type=='tutorial'}">
-	<a href="comment/createA.do?activityId=${tutorial.id }"><spring:message code="comment.create"/></a>
-	</jstl:if>
-	<jstl:if test="${type=='panel'}">
-	<a href="comment/createA.do?activityId=${activity.id }"><spring:message code="comment.create"/></a>
-	</jstl:if>
+	
+	<a href="comment/create.do?activityId=${activity.id }"><spring:message code="comment.create"/></a>
+	
 	<br/>
 	<br/>
 	
-	</jstl:if>
-	
-	<jstl:if test="${type=='panel' }">
-	<jstl:if test="${activity.conference.finalMode==false }">
-	<form:form action="activity/administrator/edit.do" modelAttribute="activity">
-	<form:hidden path="id"/>
-	<input type="submit" name="deletePanel"
-		value="<spring:message code="activity.delete" />"
-		onclick="return confirm('<spring:message code="activity.confirm.delete" />')" />&nbsp;
-	</form:form>
-	</jstl:if>
-	</jstl:if>	
-	<jstl:if test="${type=='presentation' }">
-	<jstl:if test="${presentation.conference.finalMode==false }">
-	<form:form action="activity/administrator/edit.do" modelAttribute="presentation">
-	<form:hidden path="id"/>
-	<input type="submit" name="deletePresentation"
-		value="<spring:message code="activity.delete" />"
-		onclick="return confirm('<spring:message code="activity.confirm.delete" />')" />&nbsp;
-	</form:form>
-	</jstl:if>
-	</jstl:if>
-	<jstl:if test="${type=='tutorial' }">
-	<jstl:if test="${tutorial.conference.finalMode==false }">
-	<form:form action="activity/administrator/edit.do" modelAttribute="tutorial">
-	<form:hidden path="id"/>
-	<input type="submit" name="deleteTutorial"
-		value="<spring:message code="activity.delete" />"
-		onclick="return confirm('<spring:message code="activity.confirm.delete" />')" />&nbsp;
-	</form:form>
-	</jstl:if>
-	</jstl:if>
-	<security:authorize access="!hasRole('ADMIN')">
 	<input type="button" name="back" onclick="javascript: window.location.replace('conference/list.do')"
 		value="<spring:message code="activity.back" />" />
-	</security:authorize>
-	
-	<security:authorize access="hasRole('ADMIN')">
-	<input type="button" name="back" onclick="javascript: window.location.replace('conference/administrator/list.do')"
-		value="<spring:message code="activity.back" />" />
-	</security:authorize>

@@ -5,5 +5,3 @@
 /.settings/*
 /.classpath
 Acme-Conference/target/*
-target/
-target/*

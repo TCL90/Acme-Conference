@@ -1,12 +1,9 @@
 
 package services;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
 
 import repositories.CameraReadyPaperRepository;
 import domain.CameraReadyPaper;
@@ -18,14 +15,6 @@ public class CameraReadyPaperService {
 	@Autowired
 	private CameraReadyPaperRepository	cameraReadyPaperRepository;
 
-	@Autowired
-	private AdministratorService		administratorService;
-
-
-	public Collection<CameraReadyPaper> findAllByConferenceId(final int conferenceId) {
-		Assert.isTrue(this.administratorService.checkAdmin());
-		return this.cameraReadyPaperRepository.findAllByConferenceId(conferenceId);
-	}
 
 	public CameraReadyPaper save(final CameraReadyPaper camera) {
 		final CameraReadyPaper res = this.cameraReadyPaperRepository.save(camera);
@@ -35,10 +24,5 @@ public class CameraReadyPaperService {
 
 	public void flush() {
 		this.cameraReadyPaperRepository.flush();
-	}
-
-	public CameraReadyPaper findOne(final int paperId) {
-		Assert.isTrue(this.administratorService.checkAdmin());
-		return this.cameraReadyPaperRepository.findOne(paperId);
 	}
 }

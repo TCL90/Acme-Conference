@@ -1,10 +1,8 @@
 
 package services;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 import javax.validation.ValidationException;
 
@@ -40,16 +38,10 @@ public class SubmissionService {
 	private PaperService			paperService;
 
 	@Autowired
-	private MessageService			messageService;
-
-	@Autowired
 	private ReportRepository		reportRepository;
 
 	@Autowired
 	private ConferenceRepository	conferenceRepository;
-
-	@Autowired
-	private ReviewerService			reviewerService;
 
 
 	public Collection<Submission> findByAuthor(final int authorId) {
@@ -146,48 +138,18 @@ public class SubmissionService {
 					reject++;
 				else if (r.getDecision().contains("BORDER-LINE"))
 					borderLine++;
-			if (reject > accept) {
+			if (reject > accept)
 				s.setStatus("REJECTED");
-				this.messageService.NotificateMessage(s);
-			} else {
+			else
 				s.setStatus("ACCEPTED");
-				this.messageService.NotificateMessage(s);
-			}
 			this.submissionRepository.save(s);
 			this.submissionRepository.flush();
 		}
 
 		return submissions;
 	}
+
 	public Collection<Submission> findAll() {
 		return this.submissionRepository.findAll();
 	}
-
-	public Collection<Reviewer> assignReviewers(final Submission submission) {
-		//final Submission submission = this.submissionRepository.findOne(submissionId);
-		final Conference conference = submission.getConference();
-		final List<Reviewer> reviewers = (List<Reviewer>) this.reviewerService.findAll();
-		final List<Reviewer> res = new ArrayList<Reviewer>();
-
-		Reviewer r = null;
-
-		for (int i = 0; i < reviewers.size(); i++) {
-			r = reviewers.get(i);
-			if (r.getExpertise().contains(conference.getTitle()))
-				res.add(r);
-		}
-
-		int j = 0;
-		while (res.size() < 3) {
-			res.add(r);
-			j++;
-		}
-
-		submission.setReviewers(res);
-
-		this.save(submission);
-
-		return res;
-	}
-
 }

@@ -114,5 +114,4 @@ public class SubmissionAuthorController extends AbstractController {
 
 		return result;
 	}
-
 }

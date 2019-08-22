@@ -30,9 +30,8 @@
 	
 </display:table>
 
-<security:authorize access="hasRole('AUTHOR')">
-	<a href="registration/author/create.do" ><spring:message code="registration.create" /></a>
-</security:authorize>
+<a href="registration/author/create.do" ><spring:message code="registration.create" /></a>
+	
 
 
 

@@ -15,11 +15,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.ActivityService;
 import services.AdministratorService;
-import services.CategoryService;
 import services.CommentService;
 import services.ConferenceService;
 import services.SponsorshipService;
 import domain.Activity;
+import domain.Administrator;
 import domain.Comment;
 import domain.Conference;
 import domain.Sponsorship;
@@ -43,9 +43,6 @@ public class ConferenceAdministratorController extends AbstractController {
 	@Autowired
 	private SponsorshipService		sponsorshipService;
 
-	@Autowired
-	private CategoryService			categoryService;
-
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
@@ -55,7 +52,8 @@ public class ConferenceAdministratorController extends AbstractController {
 
 		try {
 
-			conferences = this.conferenceService.findAllByAdmin();
+			final Administrator a = this.administratorService.findByPrincipal();
+			conferences = this.conferenceService.findAllByAdmin(a);
 
 		} catch (final Throwable oops) {
 			result = new ModelAndView("welcome/index");
@@ -69,76 +67,6 @@ public class ConferenceAdministratorController extends AbstractController {
 
 		return result;
 	}
-
-	@RequestMapping(value = "/pastList", method = RequestMethod.GET)
-	public ModelAndView pastList() {
-		ModelAndView result;
-
-		Collection<Conference> conferences = null;
-
-		try {
-
-			conferences = this.conferenceService.findAllPastAdministrator();
-
-		} catch (final Throwable oops) {
-			result = new ModelAndView("welcome/index");
-			return result;
-		}
-
-		result = new ModelAndView("conference/pastList");
-		result.addObject("conferences", conferences);
-		result.addObject("requestURI", "/conference/pastList.do");
-		result.addObject("past", true);
-
-		return result;
-	}
-
-	@RequestMapping(value = "/forthCommingList", method = RequestMethod.GET)
-	public ModelAndView forthCommingList() {
-		ModelAndView result;
-
-		Collection<Conference> conferences = null;
-
-		try {
-
-			conferences = this.conferenceService.findAllForthCommingAdministrator();
-
-		} catch (final Throwable oops) {
-			result = new ModelAndView("welcome/index");
-			return result;
-		}
-
-		result = new ModelAndView("conference/forthCommingList");
-		result.addObject("conferences", conferences);
-		result.addObject("requestURI", "/conference/forthCommingList.do");
-		result.addObject("forth", true);
-
-		return result;
-	}
-
-	@RequestMapping(value = "/runningList", method = RequestMethod.GET)
-	public ModelAndView runningList() {
-		ModelAndView result;
-
-		Collection<Conference> conferences = null;
-
-		try {
-
-			conferences = this.conferenceService.findAllRunningAdministrator();
-
-		} catch (final Throwable oops) {
-			result = new ModelAndView("welcome/index");
-			return result;
-		}
-
-		result = new ModelAndView("conference/runningList");
-		result.addObject("conferences", conferences);
-		result.addObject("requestURI", "/conference/runningList.do");
-		result.addObject("running", true);
-
-		return result;
-	}
-
 	@RequestMapping(value = "/sdElapsedList", method = RequestMethod.GET)
 	public ModelAndView sdElapsedList() {
 		ModelAndView result;
@@ -147,7 +75,8 @@ public class ConferenceAdministratorController extends AbstractController {
 
 		try {
 
-			conferences = this.conferenceService.findAllByAdminSDElapsed();
+			final Administrator a = this.administratorService.findByPrincipal();
+			conferences = this.conferenceService.findAllByAdminSDElapsed(a);
 
 		} catch (final Throwable oops) {
 			result = new ModelAndView("welcome/index");
@@ -161,75 +90,78 @@ public class ConferenceAdministratorController extends AbstractController {
 
 		return result;
 	}
-
-	@RequestMapping(value = "/nDElapsesSoonList", method = RequestMethod.GET)
-	public ModelAndView nDElapsesSoonList() {
-		ModelAndView result;
-
-		Collection<Conference> conferences = null;
-
-		try {
-
-			conferences = this.conferenceService.findAllByAdminNDElapses();
-
-		} catch (final Throwable oops) {
-			result = new ModelAndView("welcome/index");
-			return result;
-		}
-
-		result = new ModelAndView("conference/administrator/nDElapsesSoonList");
-		result.addObject("conferences", conferences);
-		result.addObject("requestURI", "/conference/administrator/nDElapsesSoonList.do");
-		result.addObject("nDElapses", true);
-
-		return result;
-	}
-
-	@RequestMapping(value = "/cRElapsesSoonList", method = RequestMethod.GET)
-	public ModelAndView cRElapsesSoonList() {
-		ModelAndView result;
-
-		Collection<Conference> conferences = null;
-
-		try {
-
-			conferences = this.conferenceService.findAllByAdminCRDElapses();
-
-		} catch (final Throwable oops) {
-			result = new ModelAndView("welcome/index");
-			return result;
-		}
-
-		result = new ModelAndView("conference/administrator/cRElapsesSoonList");
-		result.addObject("conferences", conferences);
-		result.addObject("requestURI", "/conference/administrator/cRElapsesSoonList.do");
-		result.addObject("cRElapses", true);
-
-		return result;
-	}
-
-	@RequestMapping(value = "/organisedSoonList", method = RequestMethod.GET)
-	public ModelAndView organisedSoon() {
-		ModelAndView result;
-
-		Collection<Conference> conferences = null;
-
-		try {
-
-			conferences = this.conferenceService.findAllByAdminOrganisedSoon();
-
-		} catch (final Throwable oops) {
-			result = new ModelAndView("welcome/index");
-			return result;
-		}
-
-		result = new ModelAndView("conference/administrator/organisedSoonList");
-		result.addObject("conferences", conferences);
-		result.addObject("requestURI", "/conference/organisedSoonList.do");
-		result.addObject("organisedS", true);
-
-		return result;
-	}
+	//TODO: TOMAS
+	//	@RequestMapping(value = "/nDElapsesSoonList", method = RequestMethod.GET)
+	//	public ModelAndView nDElapsesSoonList() {
+	//		ModelAndView result;
+	//
+	//		Collection<Conference> conferences = null;
+	//
+	//		try {
+	//
+	//			final Administrator a = this.administratorService.findByPrincipal();
+	//			conferences = this.conferenceService.findAllByAdminNDElapses(a);
+	//
+	//		} catch (final Throwable oops) {
+	//			result = new ModelAndView("welcome/index");
+	//			return result;
+	//		}
+	//
+	//		result = new ModelAndView("conference/administrator/nDElapsesSoonList");
+	//		result.addObject("conferences", conferences);
+	//		result.addObject("requestURI", "/conference/administrator/nDElapsesSoonList.do");
+	//		result.addObject("nDElapses", true);
+	//
+	//		return result;
+	//	}
+	//
+	//	@RequestMapping(value = "/cRElapsesSoonList", method = RequestMethod.GET)
+	//	public ModelAndView runningList() {
+	//		ModelAndView result;
+	//
+	//		Collection<Conference> conferences = null;
+	//
+	//		try {
+	//
+	//			final Administrator a = this.administratorService.findByPrincipal();
+	//			conferences = this.conferenceService.findAllByAdminCRDElapses(a);
+	//
+	//		} catch (final Throwable oops) {
+	//			result = new ModelAndView("welcome/index");
+	//			return result;
+	//		}
+	//
+	//		result = new ModelAndView("conference/administrator/cRElapsesSoonList");
+	//		result.addObject("conferences", conferences);
+	//		result.addObject("requestURI", "/conference/administrator/cRElapsesSoonList.do");
+	//		result.addObject("cRElapses", true);
+	//
+	//		return result;
+	//	}
+	//
+	//	@RequestMapping(value = "/organisedSoonList", method = RequestMethod.GET)
+	//	public ModelAndView organisedSoon() {
+	//		ModelAndView result;
+	//
+	//		Collection<Conference> conferences = null;
+	//
+	//		try {
+	//
+	//			final Administrator a = this.administratorService.findByPrincipal();
+	//			conferences = this.conferenceService.findAllByAdminOrganisedSoon(a);
+	//
+	//		} catch (final Throwable oops) {
+	//			result = new ModelAndView("welcome/index");
+	//			return result;
+	//		}
+	//
+	//		result = new ModelAndView("conference/administrator/organisedSoonList");
+	//		result.addObject("conferences", conferences);
+	//		result.addObject("requestURI", "/conference/organisedSoonList.do");
+	//		result.addObject("organisedS", true);
+	//
+	//		return result;
+	//	}
 
 	@RequestMapping(value = "/show", method = RequestMethod.GET)
 	public ModelAndView show(@RequestParam final int conferenceId) {
@@ -239,14 +171,14 @@ public class ConferenceAdministratorController extends AbstractController {
 		Collection<Activity> activities;
 		final Collection<Comment> comments;
 		final Collection<Sponsorship> sponsorships;
-		Sponsorship sponsorship;
+
 		try {
-			sponsorship = this.sponsorshipService.random();
+
 			conference = this.conferenceService.findOne(conferenceId);
 			numberOfRegistrations = this.conferenceService.numberOfRegistrations(conference);
 			activities = this.activityService.findAllByConference(conference);
 			comments = this.commentService.findByConference(conference);
-			//	sponsorships = this.sponsorshipService.findAllByConference(conference.getId());
+			sponsorships = this.sponsorshipService.findAllByConference(conference.getId());
 
 		} catch (final Throwable oops) {
 			result = new ModelAndView("welcome/index");
@@ -258,32 +190,8 @@ public class ConferenceAdministratorController extends AbstractController {
 		result.addObject("numberOfR", numberOfRegistrations);
 		result.addObject("activities", activities);
 		result.addObject("comments", comments);
-		result.addObject("banner", sponsorship.getBanner());
-		result.addObject("targetUrl", sponsorship.getTargetUrl());
-		//result.addObject("sponsorships", sponsorships);
-		result.addObject("requestURI", "/conference/administrator/show.do?conferenceId=" + conference.getId());
-
-		return result;
-	}
-
-	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	public ModelAndView search(@RequestParam final String q) {
-		ModelAndView result;
-
-		Collection<Conference> conferences = null;
-
-		try {
-
-			conferences = this.conferenceService.findAllKeywordAdmin(q);
-
-		} catch (final Throwable oops) {
-			result = new ModelAndView("welcome/index");
-			return result;
-		}
-
-		result = new ModelAndView("conference/searchList");
-		result.addObject("conferences", conferences);
-		result.addObject("requestURI", "/conference/search.do");
+		result.addObject("sponsorships", sponsorships);
+		result.addObject("requestURI", "/conference/show.do?conferenceId=" + conference.getId());
 
 		return result;
 	}
@@ -349,27 +257,11 @@ public class ConferenceAdministratorController extends AbstractController {
 		ModelAndView result;
 
 		result = new ModelAndView("conference/administrator/edit");
-
 		result.addObject("conference", conference);
+
 		result.addObject("message", messageCode);
-		result.addObject("categories", this.categoryService.findAll());
 
 		return result;
-	}
-
-	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
-	public ModelAndView delete(final Conference conf, final BindingResult binding) {
-		ModelAndView res;
-
-		try {
-
-			this.conferenceService.delete(conf);
-			res = new ModelAndView("redirect:list.do");
-		} catch (final Throwable oops) {
-			res = this.createEditModelAndView(conf, "error.delete");
-		}
-
-		return res;
 	}
 
 }

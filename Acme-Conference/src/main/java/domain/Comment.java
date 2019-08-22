@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
@@ -62,6 +63,7 @@ public class Comment extends DomainEntity {
 	private Actor		author;
 
 
+	@Valid
 	@ManyToOne(optional = false)
 	public Commentable getCommentable() {
 		return this.commentable;
@@ -71,6 +73,7 @@ public class Comment extends DomainEntity {
 		this.commentable = commentable;
 	}
 
+	@Valid
 	@ManyToOne(optional = true)
 	public Actor getAuthor() {
 		return this.author;

@@ -336,7 +336,10 @@
 					<ref bean="notification6" />
 					<ref bean="out6" />
 				</list>
-			</property>	
+			</property>
+	
+	
+		
 	</bean>
 
 	<bean id="sponsor2" class="domain.Sponsor">
@@ -1246,61 +1249,5 @@
 			<property name="reviewer" ref="reviewer3"/>
 			<property name="submission" ref="submission3"/>
 	</bean>
-	
-	
-	<bean id="sponsorship1" class="domain.Sponsorship">
-			<property name="banner" value="http://g-ec2.images-amazon.com/images/G/01/social/api-share/amazon_logo_500500.png" />
-			<property name="targetUrl" value="https://www.amazon.es/" />
-			<property name="holderName" value="Sponsor1" />
-			<property name="makeName" value="VISA" />
-			<property name="number" value="4658308474901109" />
-			<property name="expirationYear" value="2021" />
-			<property name="expirationMonth" value="12" />
-			<property name="cvv" value="123" />
-	
-			<property name="sponsor" ref="sponsor1" />
-	</bean>
-
-	<bean id="sponsorship2" class="domain.Sponsorship">
-			<property name="banner" value="https://imagenes.universia.net/gc/net/images/educacion/g/go/goo/goodreads-1511531089262.jpg" />
-			<property name="targetUrl" value="https://www.goodreads.com/" />
-			<property name="holderName" value="Sponsor1" />
-			<property name="makeName" value="VISA" />
-			<property name="number" value="4658308474901109" />
-			<property name="expirationYear" value="2021" />
-			<property name="expirationMonth" value="12" />
-			<property name="cvv" value="123" />
-	
-			<property name="sponsor" ref="sponsor1" />
-	</bean>
-
-	<bean id="sponsorship3" class="domain.Sponsorship">
-			<property name="banner" value="http://static.t13.cl/images/sizes/1200x675/1532011025-vlcsnap-2018-07-19-10h36m13s76.jpg" />
-			<property name="targetUrl" value="https://www.youtube.com/" />
-			<property name="holderName" value="Sponsor2" />
-			<property name="makeName" value="MASTERCARD" />
-			<property name="number" value="4916697351767254" />
-			<property name="expirationYear" value="2020" />
-			<property name="expirationMonth" value="10" />
-			<property name="cvv" value="321" />
-	
-			<property name="sponsor" ref="sponsor2" />
-	</bean>
-
-	<bean id="sponsorship4" class="domain.Sponsorship">
-			<property name="banner" value="https://www.pcactual.com/medio/2018/11/21/google-drive_0e2d10f8.jpg" />
-			<property name="targetUrl" value="https://www.google.com/intl/es_ALL/drive/" />
-			<property name="holderName" value="Sponsor2" />
-			<property name="makeName" value="MASTERCARD" />
-			<property name="number" value="4916697351767254" />
-			<property name="expirationYear" value="2020" />
-			<property name="expirationMonth" value="10" />
-			<property name="cvv" value="321" />
-	
-			<property name="sponsor" ref="sponsor2" />
-	</bean>
-
-
-
 
 </beans>

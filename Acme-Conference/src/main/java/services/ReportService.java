@@ -45,8 +45,4 @@ public class ReportService {
 
 		return this.reportRepository.save(report);
 	}
-
-	public Report findOne(final int id) {
-		return this.reportRepository.findOne(id);
-	}
 }

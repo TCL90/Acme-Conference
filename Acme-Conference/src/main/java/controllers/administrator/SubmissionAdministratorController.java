@@ -16,7 +16,6 @@ import repositories.SubmissionRepository;
 import services.AdministratorService;
 import services.SubmissionService;
 import controllers.AbstractController;
-import domain.Reviewer;
 import domain.Submission;
 
 @Controller
@@ -85,50 +84,6 @@ public class SubmissionAdministratorController extends AbstractController {
 		result.addObject("subEvaluated", subEvaluated);
 		result.addObject("subAccepted", subAccepted);
 		result.addObject("subRejected", subRejected);
-
-		return result;
-	}
-
-	@RequestMapping(value = "/assign", method = RequestMethod.GET)
-	public ModelAndView assignReviewers(@RequestParam final int submissionId) {
-		ModelAndView result;
-		Collection<Reviewer> reviewers = null;
-
-		final Submission submission = this.submissionService.findOne(submissionId);
-
-		try {
-			Assert.notNull(this.administratorService.findByPrincipal());
-
-			reviewers = this.submissionService.assignReviewers(submission);
-
-		} catch (final Throwable oops) {
-			result = new ModelAndView("welcome/index");
-			return result;
-		}
-
-		result = new ModelAndView("submission/administrator/list");
-		result.addObject("requestURI", "/submission/administrator/list.do");
-		result.addObject("submissions", this.submissionService.findAll());
-		result.addObject("reviewers", reviewers);
-		return result;
-	}
-
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView list() {
-		ModelAndView result;
-
-		Collection<Submission> submissions = null;
-
-		try {
-			submissions = this.submissionService.findAll();
-		} catch (final Throwable oops) {
-			result = new ModelAndView("welcome/index");
-			return result;
-		}
-
-		result = new ModelAndView("submission/administrator/list");
-		result.addObject("submissions", submissions);
-		result.addObject("requestURI", "/submission/administrator/list.do");
 
 		return result;
 	}

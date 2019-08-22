@@ -33,20 +33,6 @@
 		</jstl:if>
 	</display:column>
 	
-	<display:column>
-	<a href="submission/show.do?submissionId=${row.id}" ><spring:message code="submission.show" /></a>
-			<br/><br/>
-	</display:column>
-	
-	<security:authorize access="hasRole('ADMIN')">
-		<display:column>
-			
-				<a href="submission/administrator/assign.do?submissionId=${row.id}" ><spring:message code="submission.assign" /></a>
-			
-		</display:column>
-	</security:authorize>
-	
-	
 	<security:authorize access="hasRole('REVIEWER')" >
 		<display:column>
 			<a href="report/reviewer/create.do?submissionId=${row.id}" ><spring:message code="report.create" /></a>
@@ -61,17 +47,6 @@
 <a href="cameraReadyPaper/author/create.do" >
 <spring:message code="camera.create" /></a>	
 </security:authorize>
-
-<jstl:if test="${reviewers != null }">
-
-	<spring:message code="submission.reviewers" />
-	<jstl:forEach items="${reviewers }" var="reviewer">
-		<jstl:out value="${reviewer.name}"></jstl:out>
-		<jstl:out value="${reviewer.surname}"></jstl:out>, 
-	</jstl:forEach>
-	<spring:message code="submission.assigned" />
-	
-</jstl:if>
 
 
 

@@ -17,37 +17,21 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
-<b><spring:message code="submission.ticker"/>: </b>
-	<jstl:out value="${submission.ticker}"/>
+<b><spring:message code="tip.title"/>: </b>
+<jstl:out value="${tip.title}"/>
 <br/>
 
-<b><spring:message code="submission.moment"/>: </b>
-	<jstl:out value="${submission.moment}"/>
+<b><spring:message code="tip.body"/>: </b>
+<jstl:out value="${tip.body}"/>
 <br/>
 
-<b><spring:message code="submission.status"/>: </b>
-	<jstl:if test="${submission.status == 'UNDER-REVIEW'}">
-			<spring:message code="submission.under.review"/>
-	</jstl:if>
-	<jstl:if test="${submission.status == 'ACCEPTED'}">
-		<spring:message code="submission.accepted"/>
-	</jstl:if>
-	<jstl:if test="${submission.status == 'REJECTED'}">
-		<spring:message code="submission.rejected"/>
-	</jstl:if>
+<b><spring:message code="tip.veterinarian"/>: </b>
+<jstl:out value="${tip.veterinarian.name}"/>
 <br/>
 
-<b><spring:message code="submission.author"/>: </b>
-	<jstl:out value="${submission.author.name}"/> <jstl:out value="${submission.author.surname}"/>
+<b><spring:message code="tip.petType"/>: </b>
+<c:forEach items="${tip.petTypes}" var="item">
+<jstl:out value="${item.name} / ${item.nombre }"/>
 <br/>
-
-<b><spring:message code="submission.conference"/>: </b>
-	<jstl:out value="${submission.conference.title}"/>
-<br/>
-
-<b><spring:message code="submission.reviewers"/>: </b>
-	<c:forEach items="${submission.reviewers}" var="reviewer">
-	<jstl:out value="${reviewer.name}"/> <jstl:out value="${reviewer.surname}"/>
-	<br/>
 </c:forEach>
 <br/>
