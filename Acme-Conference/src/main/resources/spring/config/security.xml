@@ -83,6 +83,7 @@
 		<security:intercept-url pattern="/section/administrator/**" access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/camerareadypaper/administrator/**" access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/registration/administrator/**" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/author/administrator/**" access="hasRole('ADMIN')" />
 		
 		
 		<!-- Sponsor -->

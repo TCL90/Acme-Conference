@@ -40,5 +40,14 @@ public class CameraReadyPaperService {
 	public CameraReadyPaper findOne(final int paperId) {
 		Assert.isTrue(this.administratorService.checkAdmin());
 		return this.cameraReadyPaperRepository.findOne(paperId);
+
+	}
+
+	public Collection<CameraReadyPaper> findAll() {
+		return this.cameraReadyPaperRepository.findAll();
+	}
+
+	public Collection<CameraReadyPaper> findByAuthorId(final int authorId) {
+		return this.cameraReadyPaperRepository.findByAuthorId(authorId);
 	}
 }
