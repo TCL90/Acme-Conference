@@ -33,7 +33,7 @@
 					<li><a href="submission/administrator/list.do"><spring:message code="master.page.administrator.submission.list" /></a></li>	
 					<li><a href="dashboard/administrator/dashboard.do"><spring:message code="master.page.dashboard"/></a></li>
 					<li><a href="customisation/administrator/edit.do"><spring:message code="master.page.configuration"/></a></li>
-				</ul>
+					<li><a href="author/administrator/list.do"><spring:message code="master.page.administrator.author.list" /></a></li>				</ul>
 			</li>
 		</security:authorize>
 		

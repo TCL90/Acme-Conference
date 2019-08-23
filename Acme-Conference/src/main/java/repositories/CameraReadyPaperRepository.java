@@ -15,4 +15,7 @@ public interface CameraReadyPaperRepository extends JpaRepository<CameraReadyPap
 	@Query("select c from CameraReadyPaper c where c.submission.conference.id=?1")
 	Collection<CameraReadyPaper> findAllByConferenceId(int conferenceId);
 
+	@Query("select c from CameraReadyPaper c where c.submission.author.id=?1")
+	Collection<CameraReadyPaper> findByAuthorId(int authorId);
+
 }

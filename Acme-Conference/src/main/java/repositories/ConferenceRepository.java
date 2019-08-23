@@ -3,6 +3,7 @@ package repositories;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -67,5 +68,11 @@ public interface ConferenceRepository extends JpaRepository<Conference, Integer>
 
 	@Query("select c from Conference c where c.startDate <= NOW() and c.endDate >= NOW()")
 	Collection<Conference> findAllRunningAdministrator();
+
+	@Query("select c.title from Conference c")
+	List<String> findTitles();
+
+	@Query("select c.summary from Conference c")
+	List<String> findSummaries();
 
 }

@@ -1,9 +1,14 @@
 
 package services;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,6 +29,9 @@ public class ConferenceService {
 
 	@Autowired
 	private AdministratorService	administratorService;
+
+	@Autowired
+	private CustomisationService	customisationService;
 
 
 	public Collection<Conference> findAllFinalMode() {
@@ -194,4 +202,48 @@ public class ConferenceService {
 
 	}
 
+	public List<String> findBuzzwords() {
+		//TODO: 12 MESES DE CONFERENCES
+		//TODO: ELIMINACIÓN DE BUZZWORDS
+		final List<String> findWords = this.conferenceRepository.findTitles();
+		findWords.addAll(this.conferenceRepository.findSummaries());
+		final List<String> wordsSplitted = new ArrayList<String>();
+
+		//Se separa en palabras
+		for (final String w : findWords)
+			wordsSplitted.addAll(Arrays.asList(w.split(" ")));
+
+		//Se eliminan las void words
+		final List<String> buzzs = this.customisationService.findBuzzWords();
+		final boolean funsiona = wordsSplitted.removeAll(buzzs);
+
+		//Las claves serán las palabras y los valores su frecuencia
+		final Map<String, Integer> stringCountMap = new TreeMap<String, Integer>();
+
+		//Para cada palabra, si no existía se introduce en el map 
+		//Si ya existía se aumenta su frecuencia en 1
+		for (final String s : wordsSplitted)
+			if (stringCountMap.containsKey(s))
+				stringCountMap.put(s, stringCountMap.get(s) + 1);
+			else
+				stringCountMap.put(s, 1);
+
+		//Se busca cuál es la palabra con mayor frecuencia
+		Integer ind = 0;
+		String buzztop = "";
+		for (final String st : stringCountMap.keySet())
+			if (stringCountMap.get(st) > ind) {
+				ind = stringCountMap.get(st);
+				buzztop = st;
+			}
+
+		//A partir de esta palabra se obtienen todas las buzzwords (20% más frecuentes)
+		final double buzzlimit = ind - 0.2 * ind;
+		final List<String> buzzwords = new ArrayList<String>();
+		for (final String st : stringCountMap.keySet())
+			if (stringCountMap.get(st) > buzzlimit)
+				buzzwords.add(st);
+
+		return buzzwords;
+	}
 }
