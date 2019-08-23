@@ -47,28 +47,28 @@
 	<form:label path="number">
 	<spring:message code="sponsorship.number"/>*:
 	</form:label>
-	<form:input path="number"/>
+	<form:input path="number" placeholder="E.g.: 1111222233334444" type="number"/>
 	<form:errors cssClass="error" path="number" />
 	<br />
 	
 	<form:label path="expirationYear">
 	<spring:message code="sponsorship.expirationYear"/>*:
 	</form:label>
-	<form:input path="expirationYear"/>
+	<form:input path="expirationYear" type="number" placeholder="E.g.: 2020"/>
 	<form:errors cssClass="error" path="expirationYear" />
 	<br />
 	
 	<form:label path="expirationMonth">
 	<spring:message code="sponsorship.expirationMonth"/>*:
 	</form:label>
-	<form:input path="expirationMonth"/>
+	<form:input path="expirationMonth" type="number" placeholder="E.g.: 01"/>
 	<form:errors cssClass="error" path="expirationMonth" />
 	<br />
 	
 	<form:label path="cvv">
 	<spring:message code="sponsorship.cvv"/>*:
 	</form:label>
-	<form:input path="cvv"/>
+	<form:input path="cvv" type="number" placeholder="E.g.: 123"/>
 	<form:errors cssClass="error" path="cvv" />
 	<br />
 	

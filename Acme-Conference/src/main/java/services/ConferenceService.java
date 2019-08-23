@@ -18,7 +18,6 @@ import org.springframework.util.Assert;
 
 import repositories.ConferenceRepository;
 import security.Authority;
-import domain.Administrator;
 import domain.Category;
 import domain.Conference;
 import domain.Finder;
@@ -250,7 +249,7 @@ public class ConferenceService {
 		return buzzwords;
 	}
 
-//FINDER
+	//FINDER
 	public List<Conference> finderKeyword(final String keyword) {
 		return this.conferenceRepository.finderKeyword(keyword);
 	}
@@ -272,7 +271,7 @@ public class ConferenceService {
 		return this.conferenceRepository.finderCategory(c);
 	}
 
-		public List<Conference> finderFee(final Integer fee) {
+	public List<Conference> finderFee(final Integer fee) {
 		return this.conferenceRepository.finderFee(fee);
 	}
 
@@ -286,8 +285,8 @@ public class ConferenceService {
 			res.retainAll(this.finderEndDate(finder.getEndDate()));
 		if (finder.getCategory() != null)
 			res.retainAll(this.finderCategory(finder.getCategory().getTitleIng()));
-		if (finder.getMaximumFee() != null)
-			res.retainAll(this.finderFee(finder.getMaximumFee()));
+		//		if (finder.getMaximumFee() != null)
+		//			res.retainAll(this.finderFee(finder.getMaximumFee()));
 		return res;
 	}
 }

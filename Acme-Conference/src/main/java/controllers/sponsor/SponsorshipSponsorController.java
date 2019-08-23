@@ -1,6 +1,7 @@
 
 package controllers.sponsor;
 
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
 
@@ -107,10 +108,17 @@ public class SponsorshipSponsorController extends AbstractController {
 		else
 			try {
 
+				final int month = Calendar.getInstance().getTime().getMonth();
+				if (sponsorship.getExpirationYear() == 2019)
+					Assert.isTrue(sponsorship.getExpirationMonth() >= month, "registration month");
+
 				this.sponsorshipService.save(sponsorship);
 				result = new ModelAndView("redirect:list.do");
 			} catch (final Throwable oops) {
-				result = this.createModelAndView(sponsorship, "sponsorship.commit.error");
+				if (oops.getMessage() == "registration month")
+					result = this.createModelAndView(sponsorship, "sponsorship.month");
+				else
+					result = this.createModelAndView(sponsorship, "sponsorship.commit.error");
 			}
 
 		return result;

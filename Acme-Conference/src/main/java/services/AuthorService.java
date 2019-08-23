@@ -154,4 +154,8 @@ public class AuthorService {
 		return authors;
 	}
 
+	public Author findOne(final int authorId) {
+		return this.authorRepository.findOne(authorId);
+	}
+
 }
