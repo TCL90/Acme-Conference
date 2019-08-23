@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import domain.Category;
 import domain.Conference;
 
 @Repository
@@ -35,6 +36,25 @@ public interface ConferenceRepository extends JpaRepository<Conference, Integer>
 
 	@Query("select count(r) from Registration r where r.conference.id=?1")
 	int numberOfRegistrations(int conferenceId);
+
+	//FINDER
+	@Query("select c from Conference c where (c.title like %?1% or c.acronym like %?1% or c.venue like %?1% or c.summary like %?1%) and c.finalMode=1")
+	List<Conference> finderKeyword(String keyword);
+
+	@Query("select c from Conference c where ?1 >= c.startDate and c.finalMode = 1")
+	List<Conference> finderStartDate(Date startDate);
+
+	@Query("select c from Conference c where ?1 <= c.endDate and c.finalMode =1")
+	List<Conference> finderEndDate(Date endDate);
+
+	@Query("select c from Category c where c.titleIng =?1 or c.titleEsp=?1")
+	Category categoryByTitle(String cat);
+
+	@Query("select c from Conference c where c = ?1 and c.finalMode=1")
+	List<Conference> finderCategory(Category category);
+
+	@Query("select c from Conference c where c.fee <= ?1")
+	List<Conference> finderFee(Integer fee);
 
 	@Query("select c from Conference c where c.startDate > NOW() and c.finalMode='1' and c not in (select r.conference from Registration r where r.author.id=?1)")
 	Collection<Conference> findAllForthCommingNotRegistered(int authorId);
