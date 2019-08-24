@@ -83,7 +83,7 @@ public class SponsorshipService {
 	}
 
 	public Sponsorship random() {
-		Assert.isTrue(this.administratorService.checkAdmin());
+	
 		final List<Sponsorship> sponsorships = this.sponsorshipRepository.findAll();
 		final int size = sponsorships.size();
 		final int randomNum = ThreadLocalRandom.current().nextInt(0, size);
