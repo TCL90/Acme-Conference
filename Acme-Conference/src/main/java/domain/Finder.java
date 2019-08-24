@@ -24,7 +24,7 @@ public class Finder extends DomainEntity {
 	private String		keyword;
 	private Date		startDate;
 	private Date		endDate;
-	private int			maximumFee;
+	private	Integer		maximumFee;
 	private Category	category;
 
 
@@ -58,11 +58,11 @@ public class Finder extends DomainEntity {
 	}
 
 	@Min(0)
-	public int getMaximumFee() {
+	public Integer getMaximumFee() {
 		return this.maximumFee;
 	}
 
-	public void setMaximumFee(final int maximumFee) {
+	public void setMaximumFee(final Integer maximumFee) {
 		this.maximumFee = maximumFee;
 	}
 
