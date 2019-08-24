@@ -2,9 +2,12 @@
 package services;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.ValidationException;
 
@@ -168,22 +171,38 @@ public class SubmissionService {
 		//final Submission submission = this.submissionRepository.findOne(submissionId);
 		final Conference conference = submission.getConference();
 		final List<Reviewer> reviewers = (List<Reviewer>) this.reviewerService.findAll();
-		final List<Reviewer> res = new ArrayList<Reviewer>();
+		final Set<Reviewer> res = new HashSet<Reviewer>();
+
+		final String[] title = conference.getTitle().split(" ");
+		final String[] summary = conference.getSummary().split(" ");
 
 		Reviewer r = null;
 
 		for (int i = 0; i < reviewers.size(); i++) {
 			r = reviewers.get(i);
-			if (r.getExpertise().contains(conference.getTitle()))
+
+			//En title2 se guardan todas las palabras de la conferencia
+			final List<String> title2 = new ArrayList<String>(Arrays.asList(title));
+			final List<String> summary2 = new ArrayList<String>(Arrays.asList(summary));
+			title2.addAll(summary2);
+
+			//Se comprueba si hay palabras en común entre title2 y el expertise
+			final Collection<String> expertise2 = r.getExpertise();
+			title2.retainAll(expertise2);
+
+			//Si hay palabras en común, se añade el reviewer
+			if (title2.size() > 0)
 				res.add(r);
+
 		}
 
-		int j = 0;
-		while (res.size() < 3) {
-			res.add(r);
-			j++;
-		}
-
+		//Si no hubiera suficientes reviewers, se completa hasta llegar a 3
+		if (res.size() < 3)
+			for (final Reviewer re : reviewers) {
+				res.add(re);
+				if (res.size() >= 3)
+					break;
+			}
 		submission.setReviewers(res);
 
 		this.save(submission);

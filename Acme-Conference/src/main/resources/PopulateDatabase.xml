@@ -149,6 +149,31 @@
 		</property>
 	</bean>
 	
+	<bean id="userAccount11" class="security.UserAccount">
+		<property name="username" value="reviewer4" />
+		<property name="password" value="5293e8663cbb7c157ff83eeae25177d3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="REVIEWER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount12" class="security.UserAccount">
+		<property name="username" value="reviewer5" />
+		<property name="password" value="86045e9e3b2e615d8d2484dc64b3f408" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="REVIEWER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	
 	<!-- ******************************ADMINISTRATOR************************************* -->	
 	
 	<bean id="admin1" class="domain.Administrator">
@@ -242,9 +267,9 @@
 
 <!-- ******************************REVIEWER************************************* -->	
 	<bean id="reviewer1" class="domain.Reviewer">
-			<property name="name" value="reviewer1" />
+			<property name="name" value="Manuel" />
 			<property name="middleName" value="RC" />
-			<property name="surname" value="Prueba3" />
+			<property name="surname" value="Pérez" />
 			<property name="phoneNumber" value="+34 654455557" />
 			<property name="address" value="C/ Saturday, nº 13" />
 			<property name="email" value="reviewer1@gmail.com" />
@@ -267,9 +292,9 @@
 	</bean>
 
 	<bean id="reviewer2" class="domain.Reviewer">
-			<property name="name" value="reviewer2" />
+			<property name="name" value="Mónica" />
 			<property name="middleName" value="RC2" />
-			<property name="surname" value="Prueba4" />
+			<property name="surname" value="Revilla" />
 			<property name="phoneNumber" value="+34 654455558" />
 			<property name="address" value="C/ Saturday, nº 14" />
 			<property name="email" value="reviewer2@gmail.com" />
@@ -294,9 +319,9 @@
 	</bean>
 	
 	<bean id="reviewer3" class="domain.Reviewer">
-			<property name="name" value="reviewer3" />
+			<property name="name" value="Antonio" />
 			<property name="middleName" value="Rev 3" />
-			<property name="surname" value="Crítica 3" />
+			<property name="surname" value="Losada" />
 			<property name="phoneNumber" value="+34 654412358" />
 			<property name="address" value="C/ Sunday, nº 14" />
 			<property name="email" value="reviewer3@gmail.com" />
@@ -315,6 +340,62 @@
 				<list>
 					<value>research</value>
 					<value>reviews</value>
+				</list>
+			</property>
+	</bean>
+	
+	<bean id="reviewer4" class="domain.Reviewer">
+			<property name="name" value="Carlos" />
+			<property name="middleName" value="Rev 4" />
+			<property name="surname" value="Cruz" />
+			<property name="phoneNumber" value="+34 654122358" />
+			<property name="address" value="C/ Tuesday, nº 14" />
+			<property name="email" value="reviewer4@gmail.com" />
+			<property name="photo" value="http://wwww.photo4.com" />
+			<property name="userAccount" ref="userAccount11" />
+	
+			<property name="Boxes">
+				<list>
+					<ref bean="in10" />
+					<ref bean="notification10" />
+					<ref bean="out10" />
+				</list>
+			</property>
+			
+			<property name="expertise">
+				<list>
+					<value>natural</value>
+					<value>language</value>
+					<value>intelligence</value>
+					<value>artificial</value>
+				</list>
+			</property>
+	</bean>
+	
+	<bean id="reviewer5" class="domain.Reviewer">
+			<property name="name" value="Nelson" />
+			<property name="middleName" value="Rev 5" />
+			<property name="surname" value="Muñiz" />
+			<property name="phoneNumber" value="+34 651222358" />
+			<property name="address" value="C/ Saturday, nº 14" />
+			<property name="email" value="reviewer5@gmail.com" />
+			<property name="photo" value="http://wwww.photo5.com" />
+			<property name="userAccount" ref="userAccount12" />
+	
+			<property name="Boxes">
+				<list>
+					<ref bean="in11" />
+					<ref bean="notification11" />
+					<ref bean="out11" />
+				</list>
+			</property>
+			
+			<property name="expertise">
+				<list>
+					<value>natural</value>
+					<value>language</value>
+					<value>intelligence</value>
+					<value>artificial</value>
 				</list>
 			</property>
 	</bean>
@@ -1020,6 +1101,50 @@
 			</list>
 		</property>
 	</bean>
+
+	<bean id="in10" class="domain.Box">
+		<property name="name" value="In" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="notification10" class="domain.Box">
+		<property name="name" value="Notification" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="out10" class="domain.Box">
+		<property name="name" value="Out" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="in11" class="domain.Box">
+		<property name="name" value="In" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="notification11" class="domain.Box">
+		<property name="name" value="Notification" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="out11" class="domain.Box">
+		<property name="name" value="Out" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
 <!-- ******************************REGISTRATION************************************* -->	
 
 	<bean id="registration1" class="domain.Registration">
@@ -1374,6 +1499,13 @@
 			<property name="author" ref="author1"/>
 			<property name="conference" ref="conference1"/>
 			<property name="paper" ref="paper1"/>
+			<property name="reviewers">
+				<list>
+					<ref bean="reviewer1" />
+					<ref bean="reviewer4" />
+					<ref bean="reviewer5" />
+				</list>	
+			</property>
 	</bean>
 	
 	<bean id="submission2" class="domain.Submission">
@@ -1386,9 +1518,7 @@
 			<property name="paper" ref="paper2"/>
 			<property name="reviewers">
 				<list>
-					<ref bean="reviewer1" />
-					<ref bean="reviewer2" />
-					<ref bean="reviewer3" />
+
 				</list>	
 			</property>
 	</bean>
@@ -1419,6 +1549,13 @@
 			<property name="author" ref="author2"/>
 			<property name="conference" ref="conference3"/>
 			<property name="paper" ref="paper4"/>
+			<property name="reviewers">
+				<list>
+					<ref bean="reviewer1" />
+					<ref bean="reviewer2" />
+					<ref bean="reviewer3" />
+				</list>	
+			</property>
 	</bean>
 	
 	<bean id="submission5" class="domain.Submission">
@@ -1429,6 +1566,7 @@
 			<property name="author" ref="author2"/>
 			<property name="conference" ref="conference4"/>
 			<property name="paper" ref="paper5"/>
+			
 	</bean>
 	
 	
