@@ -21,7 +21,7 @@ import utilities.AbstractTest;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml"
+	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml", "classpath:spring/junit.xml"
 })
 @Transactional
 public class ReportServiceTest  extends AbstractTest {
@@ -50,7 +50,7 @@ public class ReportServiceTest  extends AbstractTest {
 		report.setSubmission(subs.iterator().next());
 	
 		report.setReviewer(revi);
-		report.setDecision("Decision");
+		report.setDecision("REJECT");
 		report.setOriginalityScore(0);
 		report.setQualityScore(0);
 		report.setReadabilityScore(0);

@@ -16,7 +16,7 @@ import utilities.AbstractTest;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml"
+	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml", "classpath:spring/junit.xml"
 })
 @Transactional
 public class AuthorServiceTest extends AbstractTest {
@@ -38,7 +38,7 @@ public class AuthorServiceTest extends AbstractTest {
 		autor.setName("Author new");
 		autor.setMiddleName("Middle");
 		autor.setSurname("Surname");
-		autor.setPhoto("photo/url");
+		autor.setPhoto("http://www.flicker.es/url");
 		autor.setScore(0.0);
 		
 		Author finalAuthor = as.save(autor);

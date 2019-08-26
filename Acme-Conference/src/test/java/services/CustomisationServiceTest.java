@@ -17,7 +17,7 @@ import utilities.AbstractTest;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml"
+	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml", "classpath:spring/junit.xml"
 })
 @Transactional
 public class CustomisationServiceTest  extends AbstractTest {
@@ -38,7 +38,7 @@ public class CustomisationServiceTest  extends AbstractTest {
 		stringList.add("word3");
 		stringList.add("word4");
 		
-		custom.setBannerUrl("BannerUrl");
+		custom.setBannerUrl("http://www.somewhere.com");
 		custom.setBuzzWordsEsp(stringList);
 		custom.setBuzzWordsIng(stringList);
 		custom.setCreditCardMakes(stringList);

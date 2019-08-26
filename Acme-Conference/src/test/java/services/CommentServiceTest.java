@@ -20,7 +20,7 @@ import utilities.AbstractTest;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml"
+	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml", "classpath:spring/junit.xml"
 })
 @Transactional
 public class CommentServiceTest  extends AbstractTest {
@@ -40,7 +40,7 @@ public class CommentServiceTest  extends AbstractTest {
 		super.authenticate("author1");
 		
 		int conferenceId = 0;
-		Iterator<Conference> itConf = confService.findAllByAdmin().iterator();
+		Iterator<Conference> itConf = confService.findAllForthComming().iterator();
 		Conference c = itConf.next();
 		
 		Collection<Comment> initialComments = commentService.findByConference(c);
@@ -54,9 +54,11 @@ public class CommentServiceTest  extends AbstractTest {
 		comment.setTitle("Comment");
 		
 		final Date moment = new Date();
-		moment.setYear(2020);
-		moment.setMonth(8);
+		moment.setMonth(3);
 		moment.setDate(16);
+		moment.setHours(0);
+		moment.setMinutes(0);
+		moment.setSeconds(0);
 		comment.setMoment(moment);
 		
 		Comment finalC = commentService.save(comment);

@@ -18,7 +18,7 @@ import utilities.AbstractTest;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml"
+	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml", "classpath:spring/junit.xml"
 })
 @Transactional
 public class SponsorServiceTest  extends AbstractTest {
@@ -42,7 +42,6 @@ public class SponsorServiceTest  extends AbstractTest {
 		sponsor.setName("Author new");
 		sponsor.setMiddleName("Middle");
 		sponsor.setSurname("Surname");
-		sponsor.setPhoto("photo/url");
 		
 		Sponsor finalSpon = ss.save(sponsor);
 

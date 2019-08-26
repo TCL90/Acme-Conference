@@ -2,6 +2,7 @@ package services;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Iterator;
 
 import javax.transaction.Transactional;
 
@@ -20,7 +21,7 @@ import utilities.AbstractTest;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml"
+	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml", "classpath:spring/junit.xml"
 })
 @Transactional
 public class SectionServiceTest  extends AbstractTest {
@@ -46,7 +47,15 @@ public class SectionServiceTest  extends AbstractTest {
 		Collection<Conference> confs = cs.findAllByAdmin();
 		Conference conf = confs.iterator().next();
 		Collection<Activity> acts = as.findAllByConference(conf);
-		Activity act = acts.iterator().next();
+		Iterator<Activity> iter = acts.iterator();
+		Activity act = null;
+		while(iter.hasNext() ) {
+			act = iter.next();
+			if(act instanceof Tutorial) {
+				break;
+			}
+		}
+		
 		Tutorial tutorial = ts.findTutorialByActivityId(act.getId());
 		
 		Collection<Section> inicialSects = ss.findSectionsByTutorial(tutorial);
