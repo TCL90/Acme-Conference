@@ -40,18 +40,20 @@
 	
 	<security:authorize access="hasRole('ADMIN')">
 		<display:column>
-			
+			<jstl:if test="${empty row.reviewers }">
 				<a href="submission/administrator/assign.do?submissionId=${row.id}" ><spring:message code="submission.assign" /></a>
-			
+			</jstl:if>
 		</display:column>
 	</security:authorize>
 	
 	
 	<security:authorize access="hasRole('REVIEWER')" >
+	<!-- 
 		<display:column>
 			<a href="report/reviewer/create.do?submissionId=${row.id}" ><spring:message code="report.create" /></a>
 			<br/><br/>
 		</display:column>
+		-->
 	</security:authorize>
 </display:table>
 

@@ -28,7 +28,6 @@ public class BoxService {
 	@Autowired
 	private MessageService	ms;
 
-
 	//
 	//	public Box create() {
 	//

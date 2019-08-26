@@ -39,7 +39,6 @@ public class MessageService {
 	@Autowired
 	private BoxService				mbs;
 
-
 	//
 	//	public Message create() {
 	//		final Date date = new Date();

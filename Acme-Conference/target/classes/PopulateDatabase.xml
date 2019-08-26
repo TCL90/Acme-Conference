@@ -149,6 +149,31 @@
 		</property>
 	</bean>
 	
+	<bean id="userAccount11" class="security.UserAccount">
+		<property name="username" value="reviewer4" />
+		<property name="password" value="5293e8663cbb7c157ff83eeae25177d3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="REVIEWER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount12" class="security.UserAccount">
+		<property name="username" value="reviewer5" />
+		<property name="password" value="86045e9e3b2e615d8d2484dc64b3f408" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="REVIEWER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	
 	<!-- ******************************ADMINISTRATOR************************************* -->	
 	
 	<bean id="admin1" class="domain.Administrator">
@@ -242,9 +267,9 @@
 
 <!-- ******************************REVIEWER************************************* -->	
 	<bean id="reviewer1" class="domain.Reviewer">
-			<property name="name" value="reviewer1" />
+			<property name="name" value="Manuel" />
 			<property name="middleName" value="RC" />
-			<property name="surname" value="Prueba3" />
+			<property name="surname" value="Pérez" />
 			<property name="phoneNumber" value="+34 654455557" />
 			<property name="address" value="C/ Saturday, nº 13" />
 			<property name="email" value="reviewer1@gmail.com" />
@@ -267,9 +292,9 @@
 	</bean>
 
 	<bean id="reviewer2" class="domain.Reviewer">
-			<property name="name" value="reviewer2" />
+			<property name="name" value="Mónica" />
 			<property name="middleName" value="RC2" />
-			<property name="surname" value="Prueba4" />
+			<property name="surname" value="Revilla" />
 			<property name="phoneNumber" value="+34 654455558" />
 			<property name="address" value="C/ Saturday, nº 14" />
 			<property name="email" value="reviewer2@gmail.com" />
@@ -294,9 +319,9 @@
 	</bean>
 	
 	<bean id="reviewer3" class="domain.Reviewer">
-			<property name="name" value="reviewer3" />
+			<property name="name" value="Antonio" />
 			<property name="middleName" value="Rev 3" />
-			<property name="surname" value="Crítica 3" />
+			<property name="surname" value="Losada" />
 			<property name="phoneNumber" value="+34 654412358" />
 			<property name="address" value="C/ Sunday, nº 14" />
 			<property name="email" value="reviewer3@gmail.com" />
@@ -315,6 +340,62 @@
 				<list>
 					<value>research</value>
 					<value>reviews</value>
+				</list>
+			</property>
+	</bean>
+	
+	<bean id="reviewer4" class="domain.Reviewer">
+			<property name="name" value="Carlos" />
+			<property name="middleName" value="Rev 4" />
+			<property name="surname" value="Cruz" />
+			<property name="phoneNumber" value="+34 654122358" />
+			<property name="address" value="C/ Tuesday, nº 14" />
+			<property name="email" value="reviewer4@gmail.com" />
+			<property name="photo" value="http://wwww.photo4.com" />
+			<property name="userAccount" ref="userAccount11" />
+	
+			<property name="Boxes">
+				<list>
+					<ref bean="in10" />
+					<ref bean="notification10" />
+					<ref bean="out10" />
+				</list>
+			</property>
+			
+			<property name="expertise">
+				<list>
+					<value>natural</value>
+					<value>language</value>
+					<value>intelligence</value>
+					<value>artificial</value>
+				</list>
+			</property>
+	</bean>
+	
+	<bean id="reviewer5" class="domain.Reviewer">
+			<property name="name" value="Nelson" />
+			<property name="middleName" value="Rev 5" />
+			<property name="surname" value="Muñiz" />
+			<property name="phoneNumber" value="+34 651222358" />
+			<property name="address" value="C/ Saturday, nº 14" />
+			<property name="email" value="reviewer5@gmail.com" />
+			<property name="photo" value="http://wwww.photo5.com" />
+			<property name="userAccount" ref="userAccount12" />
+	
+			<property name="Boxes">
+				<list>
+					<ref bean="in11" />
+					<ref bean="notification11" />
+					<ref bean="out11" />
+				</list>
+			</property>
+			
+			<property name="expertise">
+				<list>
+					<value>natural</value>
+					<value>language</value>
+					<value>intelligence</value>
+					<value>artificial</value>
 				</list>
 			</property>
 	</bean>
@@ -1020,6 +1101,50 @@
 			</list>
 		</property>
 	</bean>
+
+	<bean id="in10" class="domain.Box">
+		<property name="name" value="In" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="notification10" class="domain.Box">
+		<property name="name" value="Notification" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="out10" class="domain.Box">
+		<property name="name" value="Out" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="in11" class="domain.Box">
+		<property name="name" value="In" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="notification11" class="domain.Box">
+		<property name="name" value="Notification" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="out11" class="domain.Box">
+		<property name="name" value="Out" /> 
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
 <!-- ******************************REGISTRATION************************************* -->	
 
 	<bean id="registration1" class="domain.Registration">
@@ -1058,16 +1183,16 @@
 			<property name="cameraReadyDeadline" value="2019/11/15 10:00:00"/>
 			<property name="startDate" value="2019/10/11 10:00:00"/>
 			<property name="endDate" value="2019/12/31 10:00:00"/>
-			<property name="summary" value="Conference about natural language processing on domain models"/>
+			<property name="summary" value="About natural language processing on domain models. Natural language processing is very important because..."/>
 			<property name="fee" value="12"/>
 			<property name="finalMode" value="true"/>
 			
-			<!-- <property name="conference" ref="" />  -->
-	
+			
+			<property name="category" ref="category3"/>
 	</bean>
 
 	<bean id="conference2" class="domain.Conference">
-			<property name="title" value="Conference about Artificial Intelligence"/>
+			<property name="title" value="Conference about artificial intelligence"/>
 			<property name="acronym" value="CAI"/>
 			<property name="venue" value="FIBES, Sevilla"/>
 			<property name="submissionDeadline" value="2019/11/11 10:00:00"/>
@@ -1075,16 +1200,17 @@
 			<property name="cameraReadyDeadline" value="2019/11/15 10:00:00"/>
 			<property name="startDate" value="2019/10/11 10:00:00"/>
 			<property name="endDate" value="2019/12/31 10:00:00"/>
-			<property name="summary" value="Conference about natural artificial intelligence and new technologies"/>
+			<property name="summary" value="About natural artificial intelligence and new technologies. Artificial intelligence is very important because..."/>
 			<property name="fee" value="13"/>
 			<property name="finalMode" value="true"/>
 			
-			<!-- <property name="conference" ref="" />  -->
+			
+			<property name="category" ref="category4"/>
 	
 	</bean>
 
 	<bean id="conference3" class="domain.Conference">
-			<property name="title" value="Conference about deep learning"/>
+			<property name="title" value="Conference about deep learning and artificial intelligence"/>
 			<property name="acronym" value="CADP"/>
 			<property name="venue" value="FIBES, Sevilla"/>
 			<property name="submissionDeadline" value="2019/06/11 10:00:00"/>
@@ -1092,17 +1218,17 @@
 			<property name="cameraReadyDeadline" value="2019/06/15 10:00:00"/>
 			<property name="startDate" value="2019/06/22 10:00:00"/>
 			<property name="endDate" value="2019/06/25 10:00:00"/>
-			<property name="summary" value="Conference about deep learning"/>
+			<property name="summary" value="About deep learning and artificial intelligence. Deep learning doesn't need a lot of artificial intelligence knoledge."/>
 			<property name="fee" value="13"/>
 			<property name="finalMode" value="true"/>
 			
-			<property name="category" ref="category1"/>
+			<property name="category" ref="category3"/>
 			<!-- <property name="conference" ref="" />  -->
 	
 	</bean>	
 	
 	<bean id="conference4" class="domain.Conference">
-			<property name="title" value="Conference about IA"/>
+			<property name="title" value="Conference about artificial intelligence"/>
 			<property name="acronym" value="IAMS"/>
 			<property name="venue" value="FIBES, Sevilla"/>
 			<property name="submissionDeadline" value="2019/06/20 10:00:00"/>
@@ -1110,17 +1236,17 @@
 			<property name="cameraReadyDeadline" value="2019/06/26 10:00:00"/>
 			<property name="startDate" value="2019/06/29 10:00:00"/>
 			<property name="endDate" value="2019/07/02 10:00:00"/>
-			<property name="summary" value="Conference about IA"/>
+			<property name="summary" value="Conference about artificial intelligence technologies. A lot of artificial intelligence technologies will be reviewed"/>
 			<property name="fee" value="13"/>
 			<property name="finalMode" value="true"/>
 			
-			<property name="category" ref="category1"/>
+			<property name="category" ref="category3"/>
 			<!-- <property name="conference" ref="" />  -->
 	
 	</bean>	
 	
 	<bean id="conference5" class="domain.Conference">
-			<property name="title" value="Conference about Spring"/>
+			<property name="title" value="Conference about Spring and natural language processing."/>
 			<property name="acronym" value="SCGF"/>
 			<property name="venue" value="FIBES, Sevilla"/>
 			<property name="submissionDeadline" value="2019/07/25 10:00:00"/>
@@ -1128,17 +1254,17 @@
 			<property name="cameraReadyDeadline" value="2019/07/28 10:00:00"/>
 			<property name="startDate" value="2019/07/29 10:00:00"/>
 			<property name="endDate" value="2019/09/20 10:00:00"/>
-			<property name="summary" value="Conference about Spring framework"/>
+			<property name="summary" value="Conference about Spring framework and natural language processing"/>
 			<property name="fee" value="13"/>
 			<property name="finalMode" value="true"/>
 			
-			<property name="category" ref="category1"/>
+			<property name="category" ref="category2"/>
 			<!-- <property name="conference" ref="" />  -->
 	
 	</bean>	
 	
 	<bean id="conference6" class="domain.Conference">
-			<property name="title" value="Conference about Big Data"/>
+			<property name="title" value="Conference about Big Data with artificial intelligence"/>
 			<property name="acronym" value="CABD"/>
 			<property name="venue" value="FIBES, Sevilla"/>
 			<property name="submissionDeadline" value="2019/07/11 10:00:00"/>
@@ -1146,11 +1272,11 @@
 			<property name="cameraReadyDeadline" value="2019/07/15 10:00:00"/>
 			<property name="startDate" value="2019/07/29 10:00:00"/>
 			<property name="endDate" value="2019/09/20 10:00:00"/>
-			<property name="summary" value="Conference about big data"/>
+			<property name="summary" value="About big data and artificial intelligence"/>
 			<property name="fee" value="13"/>
 			<property name="finalMode" value="true"/>
 			
-			<property name="category" ref="category1"/>
+			<property name="category" ref="category8"/>
 			<!-- <property name="conference" ref="" />  -->
 	
 	</bean>	
@@ -1182,7 +1308,7 @@
 			<property name="cameraReadyDeadline" value="2019/06/01 10:00:00"/>
 			<property name="startDate" value="2019/06/01 12:00:00"/>
 			<property name="endDate" value="2019/09/20 10:00:00"/>
-			<property name="summary" value="Conference about Jane Eyre"/>
+			<property name="summary" value="About most common facts about Jane Eyre"/>
 			<property name="fee" value="13"/>
 			<property name="finalMode" value="true"/>
 			
@@ -1200,11 +1326,11 @@
 			<property name="cameraReadyDeadline" value="2019/07/07 10:00:00"/>
 			<property name="startDate" value="2019/07/07 12:00:00"/>
 			<property name="endDate" value="2019/09/20 10:00:00"/>
-			<property name="summary" value="Conference about PC"/>
+			<property name="summary" value="Talk about PC"/>
 			<property name="fee" value="13"/>
 			<property name="finalMode" value="true"/>
 			
-			<property name="category" ref="category1"/>
+			<property name="category" ref="category2"/>
 			<!-- <property name="conference" ref="" />  -->
 	
 	</bean>	
@@ -1374,6 +1500,13 @@
 			<property name="author" ref="author1"/>
 			<property name="conference" ref="conference1"/>
 			<property name="paper" ref="paper1"/>
+			<property name="reviewers">
+				<list>
+					<ref bean="reviewer1" />
+					<ref bean="reviewer4" />
+					<ref bean="reviewer5" />
+				</list>	
+			</property>
 	</bean>
 	
 	<bean id="submission2" class="domain.Submission">
@@ -1386,9 +1519,7 @@
 			<property name="paper" ref="paper2"/>
 			<property name="reviewers">
 				<list>
-					<ref bean="reviewer1" />
-					<ref bean="reviewer2" />
-					<ref bean="reviewer3" />
+
 				</list>	
 			</property>
 	</bean>
@@ -1419,6 +1550,13 @@
 			<property name="author" ref="author2"/>
 			<property name="conference" ref="conference3"/>
 			<property name="paper" ref="paper4"/>
+			<property name="reviewers">
+				<list>
+					<ref bean="reviewer1" />
+					<ref bean="reviewer2" />
+					<ref bean="reviewer3" />
+				</list>	
+			</property>
 	</bean>
 	
 	<bean id="submission5" class="domain.Submission">
@@ -1429,6 +1567,7 @@
 			<property name="author" ref="author2"/>
 			<property name="conference" ref="conference4"/>
 			<property name="paper" ref="paper5"/>
+			
 	</bean>
 	
 	
@@ -1568,9 +1707,9 @@
 	
 	<!-- Camera Ready Paper -->
 	<bean id="cameraReadyPaper1" class="domain.CameraReadyPaper">
-			<property name="title" value="Title 1. Artificial intelligence..."/>
+			<property name="title" value="Title 1. Artificial intelligence in environments..."/>
 			<property name="authors" value="Author nº1, Author nº2"/>
-			<property name="summary" value="Summary 1. Natural language..."/>
+			<property name="summary" value="Summary 1. Natural language with artificial intelligence ..."/>
 			<property name="document" value="http://www.document1.com"/>
 			<property name="submission" ref="submission1"/>
 	</bean>
@@ -1582,6 +1721,8 @@
 			<property name="document" value="http://www.document2.com"/>
 			<property name="submission" ref="submission4"/>
 	</bean>
+	
+	
 	
 	<!-- Tutorials -->
 	

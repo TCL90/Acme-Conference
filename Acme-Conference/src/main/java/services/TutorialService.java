@@ -107,11 +107,11 @@ public class TutorialService {
 		return res;
 	}
 
-	public void save(final Tutorial t) {
+	public Tutorial save(final Tutorial t) {
 		Assert.isTrue(this.administratorService.checkAdmin());
 		Assert.isTrue(t.getConference().isFinalMode() == false);
 
-		this.tutorialRepository.save(t);
+		return this.tutorialRepository.save(t);
 	}
 
 	public void delete(final Tutorial t) {

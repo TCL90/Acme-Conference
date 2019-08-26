@@ -150,7 +150,7 @@ public class AdministratorAdministratorController extends AbstractController {
 		ModelAndView result;
 
 		if (binding.hasErrors())
-			result = this.createCreateModelAndView(administrator);
+			result = this.createEditModelAndView(administrator);
 		else
 			try {
 				final String vacia = "";

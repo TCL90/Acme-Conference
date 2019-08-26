@@ -132,5 +132,4 @@ public class SubmissionAdministratorController extends AbstractController {
 
 		return result;
 	}
-
 }

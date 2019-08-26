@@ -18,7 +18,9 @@ import org.springframework.util.Assert;
 
 import repositories.ConferenceRepository;
 import security.Authority;
+import domain.Category;
 import domain.Conference;
+import domain.Finder;
 
 @Service
 @Transactional
@@ -178,6 +180,7 @@ public class ConferenceService {
 		res.setFinalMode(false);
 
 		return res;
+
 	}
 
 	public Conference save(final Conference conference) {
@@ -203,7 +206,6 @@ public class ConferenceService {
 
 	public List<String> findBuzzwords() {
 		//TODO: 12 MESES DE CONFERENCES
-		//TODO: ELIMINACIÓN DE BUZZWORDS
 		final List<String> findWords = this.conferenceRepository.findTitles();
 		findWords.addAll(this.conferenceRepository.findSummaries());
 		final List<String> wordsSplitted = new ArrayList<String>();
@@ -244,5 +246,46 @@ public class ConferenceService {
 				buzzwords.add(st);
 
 		return buzzwords;
+	}
+
+	//FINDER
+	public List<Conference> finderKeyword(final String keyword) {
+		return this.conferenceRepository.finderKeyword(keyword);
+	}
+
+	public List<Conference> finderStartDate(final Date startDate) {
+		return this.conferenceRepository.finderStartDate(startDate);
+	}
+
+	public List<Conference> finderEndDate(final Date endDate) {
+		return this.conferenceRepository.finderStartDate(endDate);
+	}
+
+	public Category categoryByTitle(final String cat) {
+		return this.conferenceRepository.categoryByTitle(cat);
+	}
+
+	public List<Conference> finderCategory(final String cat) {
+		final Category c = this.categoryByTitle(cat);
+		return this.conferenceRepository.finderCategory(c);
+	}
+
+	public List<Conference> finderFee(final Integer fee) {
+		return this.conferenceRepository.finderFee(fee);
+	}
+
+	public List<Conference> finderResults(final Finder finder) {
+		final List<Conference> res = new ArrayList<>(this.conferenceRepository.findAllFinalMode());
+		if (finder.getKeyword() != null && finder.getKeyword() != "")
+			res.retainAll(this.finderKeyword(finder.getKeyword()));
+		if (finder.getStartDate() != null)
+			res.retainAll(this.finderStartDate(finder.getStartDate()));
+		if (finder.getEndDate() != null)
+			res.retainAll(this.finderEndDate(finder.getEndDate()));
+		if (finder.getCategory() != null)
+			res.retainAll(this.finderCategory(finder.getCategory().getTitleIng()));
+		//		if (finder.getMaximumFee() != null)
+		//			res.retainAll(this.finderFee(finder.getMaximumFee()));
+		return res;
 	}
 }

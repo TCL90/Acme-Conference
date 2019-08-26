@@ -91,6 +91,7 @@ public class AuthorAuthorController extends AbstractController {
 		result = new ModelAndView("author/author/edit");
 		result.addObject("author", author);
 		result.addObject("message", message);
+		result.addObject("boxes", author.getBoxes());
 
 		return result;
 	}

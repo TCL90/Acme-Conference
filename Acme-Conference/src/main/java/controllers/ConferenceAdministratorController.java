@@ -349,8 +349,8 @@ public class ConferenceAdministratorController extends AbstractController {
 		ModelAndView result;
 
 		result = new ModelAndView("conference/administrator/edit");
-
 		result.addObject("conference", conference);
+
 		result.addObject("message", messageCode);
 		result.addObject("categories", this.categoryService.findAll());
 

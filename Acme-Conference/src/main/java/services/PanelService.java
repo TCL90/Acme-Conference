@@ -92,11 +92,11 @@ public class PanelService {
 		return res;
 	}
 
-	public void save(final Panel p) {
+	public Panel save(final Panel p) {
 		Assert.isTrue(this.administratorService.checkAdmin());
 		Assert.isTrue(p.getConference().isFinalMode() == false);
 
-		this.panelRepository.save(p);
+		return this.panelRepository.save(p);
 	}
 
 	public void delete(final Panel p) {

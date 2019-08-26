@@ -12,6 +12,13 @@
 	<display:column property="surname" titleKey="author.surname"/>
 	<display:column property="middleName" titleKey="author.middleName"/>
 	<display:column property="score" titleKey="author.score"/>
+	
+	<display:column>
+	
+	<a href ="author/administrator/show.do?authorId=${row.id}" ><spring:message code="author.show" /></a>
+	
+	</display:column>
+	
 </display:table>
 
 <a href ="author/administrator/procedure.do" ><spring:message code="author.execute" /></a>

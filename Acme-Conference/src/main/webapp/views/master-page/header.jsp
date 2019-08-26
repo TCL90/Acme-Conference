@@ -30,7 +30,9 @@
 					<li><a href="administrator/administrator/create.do"><spring:message code="master.page.administrator.create" /></a></li>
 					<li><a href="administrator/administrator/edit.do"><spring:message code="master.page.administrator.edit" /></a></li>
 					<li><a href="activity/administrator/list.do"><spring:message code="master.page.administrator.activities.list" /></a></li>
-					<li><a href="submission/administrator/list.do"><spring:message code="master.page.administrator.submission.list" /></a></li>				
+					<li><a href="submission/administrator/list.do"><spring:message code="master.page.administrator.submission.list" /></a></li>	
+					<li><a href="dashboard/administrator/dashboard.do"><spring:message code="master.page.dashboard"/></a></li>
+					<li><a href="customisation/administrator/edit.do"><spring:message code="master.page.configuration"/></a></li>
 					<li><a href="author/administrator/list.do"><spring:message code="master.page.administrator.author.list" /></a></li>				</ul>
 			</li>
 		</security:authorize>
@@ -42,13 +44,14 @@
 					<li><a href="author/author/edit.do"><spring:message code="master.page.edit.author" /></a></li>
 					<li><a href="registration/author/list.do"><spring:message code="master.page.author.registration" /></a></li>
 					<li><a href="submission/author/list.do"><spring:message code="master.page.author.submission" /></a></li>
+					<li><a href="finder/author/show.do"><spring:message code="master.page.author.finder" /></a></li>
 				</ul>
 			</li>
 		</security:authorize>
 		
 		
 		<security:authorize access="hasRole('SPONSOR')">
-			<li><a class="fNiv"><spring:message	code="master.page.author" /></a>
+			<li><a class="fNiv"><spring:message	code="master.page.sponsor" /></a>
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="sponsor/sponsor/edit.do"><spring:message code="master.page.edit.sponsor" /></a></li>
@@ -98,9 +101,6 @@
 				</a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="profile/action-1.do"><spring:message code="master.page.profile.action.1" /></a></li>
-					<li><a href="profile/action-2.do"><spring:message code="master.page.profile.action.2" /></a></li>
-					<li><a href="profile/action-3.do"><spring:message code="master.page.profile.action.3" /></a></li>					
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 				</ul>
 			</li>
