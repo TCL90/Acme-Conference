@@ -1646,7 +1646,7 @@
 			<property name="title" value="Comment number 1"/>
 			<property name="moment" value="2019/06/12 10:00:00"/>
 			<property name="author" ref ="author1"/>
-			<property name="text" value="Free text"/>
+			<property name="text" value="I didn't like this conference"/>
 			<property name="commentable" ref="conference1"/>
 	</bean>
 	
@@ -1654,7 +1654,7 @@
 			<property name="title" value="Comment number 2"/>
 			<property name="moment" value="2019/06/12 10:20:00"/>
 
-			<property name="text" value="Free text2"/>
+			<property name="text" value="This conference was a w e s o m e"/>
 			<property name="commentable" ref="conference1"/>
 	</bean>
 	
@@ -1662,7 +1662,7 @@
 			<property name="title" value="Comment number 3"/>
 			<property name="moment" value="2019/06/12 10:30:00"/>
 
-			<property name="text" value="Free text3"/>
+			<property name="text" value="This conference was cool"/>
 			<property name="commentable" ref="conference1"/>
 	</bean>
 	
@@ -1670,7 +1670,7 @@
 			<property name="title" value="Comment number 4"/>
 			<property name="moment" value="2019/06/12 10:30:02"/>
 
-			<property name="text" value="Free text4"/>
+			<property name="text" value="It was funny"/>
 			<property name="commentable" ref="conference1"/>
 	</bean>
 	
@@ -1678,7 +1678,7 @@
 			<property name="title" value="Comment number 5"/>
 			<property name="moment" value="2019/06/12 10:31:00"/>
 
-			<property name="text" value="Free text5"/>
+			<property name="text" value="So bad organisation"/>
 			<property name="commentable" ref="conference1"/>
 	</bean>
 	
@@ -1686,9 +1686,36 @@
 			<property name="title" value="Comment number 6"/>
 			<property name="moment" value="2019/06/12 10:32:00"/>
 
-			<property name="text" value="Free text6"/>
+			<property name="text" value="It was cool but too quick"/>
 			<property name="commentable" ref="conference1"/>
 	</bean>
+	
+	<bean id="comment7" class="domain.Comment">
+			<property name="title" value="Comment number 7"/>
+			<property name="moment" value="2019/06/12 10:32:00"/>
+
+			<property name="text" value="It sounds great"/>
+			<property name="commentable" ref="panel1"/>
+	</bean>
+	
+	<bean id="comment8" class="domain.Comment">
+			<property name="title" value="Comment number 8"/>
+			<property name="moment" value="2019/06/12 10:32:00"/>
+
+			<property name="text" value="It will be very useful"/>
+			<property name="commentable" ref="tutorial1"/>
+	</bean>
+	
+	<bean id="comment9" class="domain.Comment">
+			<property name="title" value="Comment number 9"/>
+			<property name="moment" value="2019/06/12 10:32:00"/>
+
+			<property name="text" value="It will be very useful"/>
+			<property name="commentable" ref="tutorial1"/>
+	</bean>
+	
+	
+	
 	
 	<!-- PANELS -->
 	
