@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import domain.Author;
 import domain.Reviewer;
 import domain.Submission;
 
@@ -28,4 +29,6 @@ public interface SubmissionRepository extends JpaRepository<Submission, Integer>
 	@Query("select distinct r.submission from Report r where r.submission.status = 'UNDER-REVIEW' and r.submission.conference.id=?1")
 	Collection<Submission> findUnderReviewReported(int conferenceId);
 
+	@Query("select s.author from Submission s where s.conference.id = ?1")
+	Collection<Author> findAllAuthorsSubmissionConf(int conferenceId);
 }

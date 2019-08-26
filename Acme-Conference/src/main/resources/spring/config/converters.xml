@@ -25,7 +25,10 @@
 		
 		<bean class="converters.StringToAuthorityConverter" /> 
   		<bean class="converters.AuthorityToStringConverter" />
-  		 
+
+		<bean class="converters.StringToAdministratorConverter" /> 
+  		<bean class="converters.AdministratorToStringConverter" /> 
+  		  		 
 		<bean class="converters.StringToAuthorConverter" /> 
   		<bean class="converters.AuthorToStringConverter" /> 
   		
@@ -64,6 +67,9 @@
 	
 		<bean class="converters.StringToReviewerConverter" /> 
   		<bean class="converters.ReviewerToStringConverter" /> 
+  		
+  		<bean class="converters.StringToSponsorConverter" /> 
+  		<bean class="converters.SponsorToStringConverter" /> 
 		
 	</util:list>
 	

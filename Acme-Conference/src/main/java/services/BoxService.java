@@ -101,10 +101,11 @@ public class BoxService {
 					final Collection<Message> ames = abox.getMessages();
 					ames.add(result);
 					abox.setMessages(ames);
-	
+//					this.save(abox);
 				}
 	
 			final Collection<Actor> recipients = result.getRecipients();
+			recipients.remove(a);
 			for (final Actor r : recipients) {
 				final Collection<Box> rboxes = r.getBoxes();
 				for (final Box rbox : rboxes)
@@ -113,11 +114,9 @@ public class BoxService {
 						final Collection<Message> rmes = rbox.getMessages();
 						rmes.add(result);
 						rbox.setMessages(rmes);
-	
+//						this.save(rbox);
 					}
 			}
-			System.out.println();
-			System.out.println("Lo guarda");
 			return result;
 		}
 	

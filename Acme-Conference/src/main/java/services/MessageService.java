@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,73 +63,46 @@ public class MessageService {
 			return m;
 		}
 	
-		public void deleteMessage(final Message m) {
+		private Box findBoxToGo(Message m) {
+			final Actor me = this.as.findByPrincipal();
+			Box res = null;
+			Iterator<Box> x = me.getBoxes().iterator();
+			boolean encontrado = false;
+			while(x.hasNext() && !encontrado) {
+				Box b = x.next();
+				
+				if(b.getName().equals("Out") && m.getSender().getId() == me.getId()) {
+					if(b.getMessages().contains(m)) {
+						res = b;
+						encontrado = true;
+					}
+				} else if(b.getName().equals("Notification") && m.getSender().getId() != me.getId()) {
+					if(b.getMessages().contains(m)) {
+						res = b;
+						encontrado = true;
+					}
+				}else if(b.getName().equals("In") && m.getSender().getId() != me.getId()) {
+					if(b.getMessages().contains(m)) {
+						res = b;
+						encontrado = true;
+					}
+				}
+			}
+				
+			return res;
+		}
+		public String deleteMessage(final Message m) {
 			Assert.notNull(m);
 			Assert.isTrue(!(m.getId() == 0));
-			final UserAccount actual = LoginService.getPrincipal();
-			final Actor actorActual = this.ar.getActor(actual);
 	
 			Message borrar = this.findOne(m.getId());
 			
-			final List<Box> msgb = (List<Box>) actorActual.getBoxes();
+			Box boxToDelete = findBoxToGo(borrar);
+			boxToDelete.getMessages().remove(borrar);
+			mbs.save(boxToDelete);
 			
-			if(borrar.getSender().equals(actorActual)) {
-				msgb.get(2).getMessages().remove(borrar);
-				mbs.save(msgb.get(0));
-			}else{
-				
-			}
-			
-//			final Box trash = msgb.get(3);
-//			Boolean addToTrash = false;
-//			if (trash.getMessages().contains(m)) {
-//				final Collection<Message> mess = trash.getMessages();
-//				mess.remove(m);
-//				trash.setMessages(mess);
-//				this.mbs.save(trash);
-//				addToTrash = true;
-//	
-//				Boolean bBorrar = true;
-//				final Collection<Actor> actores = this.as.findAll();
-//				actores.remove(actorActual);
-//				for (final Actor a : actores) {
-//					for (final Box mboxes : a.getBoxes()) {
-//						for (final Message mes : mboxes.getMessages())
-//							if (mes.getId() == m.getId()) {
-//								bBorrar = false;
-//								break;
-//							}
-//	
-//						if (!bBorrar)
-//							break;
-//					}
-//					if (!bBorrar)
-//						break;
-//				}
-//				if (bBorrar) {
-//					this.delete(m);
-//					return;
-//				}
-//			}
-//			for (int i = 0; i < msgb.size(); i++)
-//				if (msgb.get(i).getMessages().contains(m)) {
-//					final Box boxm = msgb.get(i);
-//	
-//					if (!boxm.getName().endsWith("trash box")) {
-//						final Collection<Message> mthere = boxm.getMessages();
-//						mthere.remove(m);
-//						boxm.setMessages(mthere);
-//						this.mbs.save(boxm);
-//	
-//						if (addToTrash == false) {
-//							final Box trashDestino = msgb.get(3);
-//							final Collection<Message> tmessages = trashDestino.getMessages();
-//							tmessages.add(m);
-//							trashDestino.setMessages(tmessages);
-//							this.mbs.save(trashDestino);
-//						}
-//					}
-//				}
+			String boxn = boxToDelete.getName().equals("In") ? "" : boxToDelete.getName();
+			return boxn;
 		}
 
 	//

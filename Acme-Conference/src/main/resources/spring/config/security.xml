@@ -109,6 +109,9 @@
 		<security:intercept-url pattern="/messages/newMessage.do" access="isAuthenticated()" />
 		<security:intercept-url pattern="/messages/delete.do" access="isAuthenticated()" />
 		<security:intercept-url pattern="/messages/broadcastMessage.do" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/messages/createBroadcast.do" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/messages/broadcastLinks.do" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/messages/sendBroadcast.do" access="hasRole('ADMIN')" />
 	
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 

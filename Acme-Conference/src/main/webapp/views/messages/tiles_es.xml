@@ -41,5 +41,14 @@
 		<put-attribute name="body" value="/views/messages/newMessage.jsp" />
 	</definition>	
 	
-
+	<definition name="messages/broadcastLinks" extends="master.page">
+		<put-attribute name="title" value="Difundir un nuevo mensaje" />
+		<put-attribute name="body" value="/views/messages/broadcastLinks.jsp" />
+	</definition>	
+	
+	<definition name="messages/createBroadcast" extends="master.page">
+		<put-attribute name="title" value="Difundir un nuevo mensaje" />
+		<put-attribute name="body" value="/views/messages/createBroadcast.jsp" />
+	</definition>	
+	
 </tiles-definitions>

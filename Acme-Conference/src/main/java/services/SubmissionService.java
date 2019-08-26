@@ -118,6 +118,10 @@ public class SubmissionService {
 	public Collection<Submission> findUnderReview() {
 		return this.submissionRepository.findUnderReview();
 	}
+	
+	public Collection<Author> findAllAuthorSubmissionToConference(int conferenceId){
+		return this.submissionRepository.findAllAuthorsSubmissionConf(conferenceId);
+	}
 
 	public Collection<Submission> decisionProcedure(final int conferenceId) {
 		final Conference conference = this.conferenceRepository.findOne(conferenceId);

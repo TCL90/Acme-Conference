@@ -27,6 +27,6 @@
 	<display:column property="subject" titleKey="message.subject"/>
 	<display:column property="moment" titleKey="message.moment"/>
 
-	<!--<display:column><a href="conference/show.do?conferenceId=${row.id }"><spring:message code="conference.show"/></a></display:column>
-	-->
+	<display:column><a href="conference/show.do?conferenceId=${row.id}"><spring:message code="conference.show"/></a></display:column>
+	
 </display:table>

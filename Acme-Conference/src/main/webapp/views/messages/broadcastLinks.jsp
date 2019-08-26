@@ -1,5 +1,5 @@
 <%--
- * list.jsp
+ * newMessage.jsp
  *
  * Copyright (C) 2018 Universidad de Sevilla
  * 
@@ -15,19 +15,12 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
- 
-	<p>
-			<b><spring:message code="messages.all" /></b>|
-		
-	</p>
 
-<display:table name="messages" id="row" requestURI="${requestURI}" pagesize="5" class ="displaytag">
-	
-	<display:column property="sender.name" titleKey="message.sender" sortable="true"/>
-	<display:column property="topic" titleKey="message.topic" sortable="true"/>
-	<display:column property="subject" titleKey="message.subject"/>
-	<display:column property="moment" titleKey="message.moment"/>
 
-	<display:column><a href="messages/display.do?messageId=${row.id}"><spring:message code="message.show"/></a></display:column>
-	
-</display:table>
+<a href="messages/createBroadcast.do?type=subConf"><spring:message code="messages.broadcast.subConf" /></a>
+<br/>
+<a href="messages/createBroadcast.do?type=regConf"><spring:message code="messages.broadcast.regConf" /></a>
+<br/>
+<a href="messages/createBroadcast.do?type=authors"><spring:message code="messages.broadcast.authors" /></a>
+<br/>
+<a href="messages/createBroadcast.do?type=actors"><spring:message code="messages.broadcast.actors" /></a>

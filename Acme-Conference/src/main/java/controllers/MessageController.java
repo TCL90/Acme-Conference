@@ -16,14 +16,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import services.ActorService;
-import services.BoxService;
-import services.MessageService;
 import domain.Actor;
+import domain.Author;
 import domain.Box;
+import domain.Conference;
 import domain.Message;
+import forms.BroadcastForm;
 import security.LoginService;
 import security.UserAccount;
+import services.ActorService;
+import services.AuthorService;
+import services.BoxService;
+import services.ConferenceService;
+import services.MessageService;
+import services.RegistrationService;
+import services.SubmissionService;
 
 @Controller
 @RequestMapping("/messages")
@@ -37,6 +44,19 @@ public class MessageController extends AbstractController {
 
 	@Autowired
 	private ActorService		as;
+	
+	@Autowired
+	private ConferenceService 	cs;
+	
+	@Autowired
+	private SubmissionService 	ss;
+	
+	@Autowired
+	private AuthorService 		authorS;
+	
+	@Autowired
+	private RegistrationService rs;
+	
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
@@ -129,6 +149,97 @@ public class MessageController extends AbstractController {
 
 		return result;
 	}
+	
+	protected ModelAndView createBroadcastModelAndView(final Message m, final String type, final String messageCode) {
+ModelAndView result = new ModelAndView("messages/createBroadcast");
+		
+		BroadcastForm bf = new BroadcastForm();
+		bf.setMessage(m);
+		bf.setType(type);
+		result.addObject("bf" , bf);
+		result.addObject("type", type);
+		
+		if(type.equals("subConf") || type.equals("regConf")) {
+			Collection<Conference> cd = cs.findAllByAdmin();
+			result.addObject("conferences", cd);
+		}
+		
+		result.addObject("messError", messageCode);
+		
+		return result;
+	}
+	
+	@RequestMapping(value = "/broadcastMessage", method = RequestMethod.GET)
+	public ModelAndView broadcastMessage() {
+		ModelAndView result = new ModelAndView("messages/broadcastLinks");
+		return result;
+	}
+	
+	@RequestMapping(value = "/createBroadcast", method = RequestMethod.GET)
+	public ModelAndView createBroadcast(@RequestParam String type) {
+		
+		ModelAndView result = new ModelAndView("messages/createBroadcast");
+		
+		BroadcastForm bf = new BroadcastForm();
+		Message m = ms.create();
+		bf.setMessage(m);
+		bf.setType(type);
+		result.addObject("bf" , bf);
+		result.addObject("type", type);
+		
+		if(type.equals("subConf") || type.equals("regConf")) {
+			Collection<Conference> cd = cs.findAllByAdmin();
+			result.addObject("conferences", cd);
+		}
+		
+		return result;
+	}
+	
+	@RequestMapping(value = "/sendBroadcast", method = RequestMethod.POST, params = "send")
+	public ModelAndView sendBroadcast(@Valid final BroadcastForm bf, final BindingResult binding) {
+		
+		ModelAndView result;
+
+		final Actor a = this.as.findByPrincipal();
+
+		if (binding.hasErrors())
+			result = null;//this.createEditModelAndView(bf, binding.getAllErrors().get(0).getDefaultMessage());
+		else {
+			try {
+
+				Message message = bf.getMessage();
+				message.setMoment(new Date());
+				Collection<Actor> recipients = null;
+				
+				Collection<Author> recipientA = null;
+				
+				if(bf.getType().equals("subConf")) {
+					recipientA = ss.findAllAuthorSubmissionToConference(bf.getConference().getId());
+				}else if(bf.getType().equals("regConf")) {
+					recipientA = rs.findAuthorsRegisteredConf(bf.getConference().getId());
+				}else if(bf.getType().equals("authors")) {
+					recipientA = authorS.findAll();
+				}else {
+					recipients = as.findAll();
+				}
+				
+				if(recipients.isEmpty()) {
+					result = this.createEditModelAndView(message, "no.recipient.error");
+				}else {
+					message.setRecipients(recipients);
+					
+					this.mbs.sendMessage(message);
+					result = new ModelAndView("redirect:/messages/listOut.do");
+				}
+				
+			} catch (final Throwable oops) {
+				result = this.createBroadcastModelAndView(bf.getMessage(),bf.getType(), "messages.commit.error");
+			}
+
+		}
+			
+		return result;
+	}
 
 	@RequestMapping(value = "/newMessage", method = RequestMethod.POST, params = "send")
 	public ModelAndView send(@Valid final Message message, final BindingResult binding) {
@@ -138,17 +249,20 @@ public class MessageController extends AbstractController {
 		final Actor a = this.as.findByPrincipal();
 
 		if (binding.hasErrors())
-			result = this.createEditModelAndView(message);
+			result = this.createEditModelAndView(message, binding.getAllErrors().get(0).getDefaultMessage());
+		else if ( message.getRecipients().size()!= 1) {
+			//TODO modificar el mensaje
+			result = this.createEditModelAndView(message, "Seleccione un unico destinatario");
+		}
 		else
 			try {
-
 				final List<Box> mbox = (List<Box>) a.getBoxes();
 				final Integer id = mbox.get(2).getId();
 
 				message.setMoment(new Date());
 				this.mbs.sendMessage(message);
 
-				result = new ModelAndView("redirect:listOut.do");
+				result = new ModelAndView("redirect:/messages/listOut.do");
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(message, "messages.commit.error");
 			}
@@ -218,14 +332,17 @@ public class MessageController extends AbstractController {
 		return result;
 
 	}
+	
+	
 
-	@RequestMapping(value = "/delete", method = RequestMethod.POST, params = "delete")
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public ModelAndView delete(final Message message, final BindingResult binding) {
 		ModelAndView result;
 
 		try {
-			this.ms.deleteMessage(message);
-			result = new ModelAndView("redirect:/messages/list.do");
+			Message m = ms.findOne(message.getId());
+			String box = this.ms.deleteMessage(message);
+			result = new ModelAndView("redirect:/messages/list"+box+".do");
 		} catch (final Throwable oops) {
 			result = this.createDeleteModelAndView(message, "messages.commit.error");
 		}
