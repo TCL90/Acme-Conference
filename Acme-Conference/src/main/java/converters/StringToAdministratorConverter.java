@@ -1,3 +1,4 @@
+
 package converters;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,20 +7,20 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import repositories.BoxRepository;
-import domain.Box;
+import repositories.AdministratorRepository;
+import domain.Administrator;
 
 @Component
 @Transactional
-public class StringToBoxConverter implements Converter<String, Box> {
+public class StringToAdministratorConverter implements Converter<String, Administrator> {
 
 	@Autowired
-	BoxRepository	mr;
+	private AdministratorRepository	ar;
 
 
 	@Override
-	public Box convert(final String text) {
-		Box result;
+	public Administrator convert(final String text) {
+		Administrator result;
 		int id;
 
 		try {
@@ -27,12 +28,14 @@ public class StringToBoxConverter implements Converter<String, Box> {
 				result = null;
 			else {
 				id = Integer.valueOf(text);
-				result = this.mr.findOne(id);
+				result = this.ar.findOne(id);
+				if (result == null)
+					result = this.ar.findOne(id);
+
 			}
 		} catch (final Throwable oops) {
 			throw new IllegalArgumentException(oops);
 		}
 		return result;
-
 	}
 }

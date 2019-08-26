@@ -126,6 +126,10 @@ public class SubmissionService {
 	public Collection<Submission> findUnderReview() {
 		return this.submissionRepository.findUnderReview();
 	}
+	
+	public Collection<Author> findAllAuthorSubmissionToConference(int conferenceId){
+		return this.submissionRepository.findAllAuthorsSubmissionConf(conferenceId);
+	}
 
 	public Collection<Submission> decisionProcedure(final int conferenceId) {
 		final Conference conference = this.conferenceRepository.findOne(conferenceId);
@@ -186,11 +190,11 @@ public class SubmissionService {
 			final List<String> summary2 = new ArrayList<String>(Arrays.asList(summary));
 			title2.addAll(summary2);
 
-			//Se comprueba si hay palabras en común entre title2 y el expertise
+			//Se comprueba si hay palabras en comï¿½n entre title2 y el expertise
 			final Collection<String> expertise2 = r.getExpertise();
 			title2.retainAll(expertise2);
 
-			//Si hay palabras en común, se añade el reviewer
+			//Si hay palabras en comï¿½n, se aï¿½ade el reviewer
 			if (title2.size() > 0)
 				res.add(r);
 
