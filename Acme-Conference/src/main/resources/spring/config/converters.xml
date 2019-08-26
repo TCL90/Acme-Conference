@@ -71,6 +71,9 @@
 		<bean class="converters.StringToCategoryConverter" /> 
   		<bean class="converters.CategoryToStringConverter" /> 
 		
+		<bean class="converters.StringToBoxConverter" /> 
+  		<bean class="converters.BoxToStringConverter" /> 
+		
 		
 	</util:list>
 	

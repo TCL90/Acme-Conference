@@ -37,10 +37,10 @@
 		<br /> <br />
 
 		<form:label path="startMoment">
-			<spring:message code="activity.startMoment" />* (yyyy-MM-dd HH:mm:ss):
+			<spring:message code="activity.startMoment" />* (yyyy-MM-dd):
 		</form:label>
 		<form:input path="startMoment" />
-		<form:errors cssClass="error" path="startMoment" placeHolder="2019-05-02 10:00:00"/>
+		<form:errors cssClass="error" path="startMoment" placeHolder="2019-05-02"/>
 		<br /> <br />
 		
 		<form:label path="duration">
@@ -118,10 +118,10 @@
 		<br /> <br />
 
 		<form:label path="startMoment">
-			<spring:message code="activity.startMoment" />* (yyyy-MM-dd HH:mm:ss):
+			<spring:message code="activity.startMoment" />* (yyyy-MM-dd):
 		</form:label>
 		<form:input path="startMoment" />
-		<form:errors cssClass="error" path="startMoment" placeHolder="2019-05-02 10:00:00"/>
+		<form:errors cssClass="error" path="startMoment" placeHolder="2019-05-02"/>
 		<br /> <br />
 		
 		<form:label path="duration">
@@ -199,10 +199,10 @@
 		<br /> <br />
 
 		<form:label path="startMoment">
-			<spring:message code="activity.startMoment" />* (yyyy-MM-dd HH:mm:ss):
+			<spring:message code="activity.startMoment" />* (yyyy-MM-dd):
 		</form:label>
 		<form:input path="startMoment" />
-		<form:errors cssClass="error" path="startMoment" placeHolder="2019-05-02 10:00:00"/>
+		<form:errors cssClass="error" path="startMoment" placeHolder="2019-05-02"/>
 		<br /> <br />
 		
 		<form:label path="duration">

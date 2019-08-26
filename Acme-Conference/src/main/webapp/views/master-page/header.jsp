@@ -51,7 +51,7 @@
 		
 		
 		<security:authorize access="hasRole('SPONSOR')">
-			<li><a class="fNiv"><spring:message	code="master.page.author" /></a>
+			<li><a class="fNiv"><spring:message	code="master.page.sponsor" /></a>
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="sponsor/sponsor/edit.do"><spring:message code="master.page.edit.sponsor" /></a></li>

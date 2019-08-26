@@ -71,6 +71,7 @@
 		<security:intercept-url pattern="/reviewer/reviewer/edit.do" access="hasRole('REVIEWER')" />
 		<security:intercept-url pattern="/report/reviewer/**" access="hasRole('REVIEWER')" />
 		<security:intercept-url pattern="/submission/reviewer/**" access="hasRole('REVIEWER')" />
+		<security:intercept-url pattern="/reviewer/reviewer/**" access="hasRole('REVIEWER')" />
 		
 		
 		

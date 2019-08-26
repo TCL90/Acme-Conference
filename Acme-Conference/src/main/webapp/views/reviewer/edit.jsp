@@ -14,6 +14,8 @@
 	<form:hidden path="userAccount" />
 	<form:hidden path="id" />
 	<form:hidden path="version" />
+	<form:hidden path="boxes" />
+	
 
 
 	<fieldset>
@@ -36,6 +38,16 @@
 		<form:errors cssClass="error" path="surname" />
 
 		<br /> <br />
+
+		<form:label path="middleName">
+			<spring:message code="reviewer.middleName" />* :
+		</form:label>
+		<form:input path="middleName" />
+		<form:errors cssClass="error" path="middleName" />
+
+		<br /> <br />
+
+
 
 		<form:label path="address">
 			<spring:message code="reviewer.address" />*:

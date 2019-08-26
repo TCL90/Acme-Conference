@@ -1183,16 +1183,16 @@
 			<property name="cameraReadyDeadline" value="2019/11/15 10:00:00"/>
 			<property name="startDate" value="2019/10/11 10:00:00"/>
 			<property name="endDate" value="2019/12/31 10:00:00"/>
-			<property name="summary" value="Conference about natural language processing on domain models"/>
+			<property name="summary" value="About natural language processing on domain models. Natural language processing is very important because..."/>
 			<property name="fee" value="12"/>
 			<property name="finalMode" value="true"/>
 			
-			<!-- <property name="conference" ref="" />  -->
-	
+			
+			<property name="category" ref="category3"/>
 	</bean>
 
 	<bean id="conference2" class="domain.Conference">
-			<property name="title" value="Conference about Artificial Intelligence"/>
+			<property name="title" value="Conference about artificial intelligence"/>
 			<property name="acronym" value="CAI"/>
 			<property name="venue" value="FIBES, Sevilla"/>
 			<property name="submissionDeadline" value="2019/11/11 10:00:00"/>
@@ -1200,16 +1200,17 @@
 			<property name="cameraReadyDeadline" value="2019/11/15 10:00:00"/>
 			<property name="startDate" value="2019/10/11 10:00:00"/>
 			<property name="endDate" value="2019/12/31 10:00:00"/>
-			<property name="summary" value="Conference about natural artificial intelligence and new technologies"/>
+			<property name="summary" value="About natural artificial intelligence and new technologies. Artificial intelligence is very important because..."/>
 			<property name="fee" value="13"/>
 			<property name="finalMode" value="true"/>
 			
-			<!-- <property name="conference" ref="" />  -->
+			
+			<property name="category" ref="category4"/>
 	
 	</bean>
 
 	<bean id="conference3" class="domain.Conference">
-			<property name="title" value="Conference about deep learning"/>
+			<property name="title" value="Conference about deep learning and artificial intelligence"/>
 			<property name="acronym" value="CADP"/>
 			<property name="venue" value="FIBES, Sevilla"/>
 			<property name="submissionDeadline" value="2019/06/11 10:00:00"/>
@@ -1217,17 +1218,17 @@
 			<property name="cameraReadyDeadline" value="2019/06/15 10:00:00"/>
 			<property name="startDate" value="2019/06/22 10:00:00"/>
 			<property name="endDate" value="2019/06/25 10:00:00"/>
-			<property name="summary" value="Conference about deep learning"/>
+			<property name="summary" value="About deep learning and artificial intelligence. Deep learning doesn't need a lot of artificial intelligence knoledge."/>
 			<property name="fee" value="13"/>
 			<property name="finalMode" value="true"/>
 			
-			<property name="category" ref="category1"/>
+			<property name="category" ref="category3"/>
 			<!-- <property name="conference" ref="" />  -->
 	
 	</bean>	
 	
 	<bean id="conference4" class="domain.Conference">
-			<property name="title" value="Conference about IA"/>
+			<property name="title" value="Conference about artificial intelligence"/>
 			<property name="acronym" value="IAMS"/>
 			<property name="venue" value="FIBES, Sevilla"/>
 			<property name="submissionDeadline" value="2019/06/20 10:00:00"/>
@@ -1235,17 +1236,17 @@
 			<property name="cameraReadyDeadline" value="2019/06/26 10:00:00"/>
 			<property name="startDate" value="2019/06/29 10:00:00"/>
 			<property name="endDate" value="2019/07/02 10:00:00"/>
-			<property name="summary" value="Conference about IA"/>
+			<property name="summary" value="Conference about artificial intelligence technologies. A lot of artificial intelligence technologies will be reviewed"/>
 			<property name="fee" value="13"/>
 			<property name="finalMode" value="true"/>
 			
-			<property name="category" ref="category1"/>
+			<property name="category" ref="category3"/>
 			<!-- <property name="conference" ref="" />  -->
 	
 	</bean>	
 	
 	<bean id="conference5" class="domain.Conference">
-			<property name="title" value="Conference about Spring"/>
+			<property name="title" value="Conference about Spring and natural language processing."/>
 			<property name="acronym" value="SCGF"/>
 			<property name="venue" value="FIBES, Sevilla"/>
 			<property name="submissionDeadline" value="2019/07/25 10:00:00"/>
@@ -1253,17 +1254,17 @@
 			<property name="cameraReadyDeadline" value="2019/07/28 10:00:00"/>
 			<property name="startDate" value="2019/07/29 10:00:00"/>
 			<property name="endDate" value="2019/09/20 10:00:00"/>
-			<property name="summary" value="Conference about Spring framework"/>
+			<property name="summary" value="Conference about Spring framework and natural language processing"/>
 			<property name="fee" value="13"/>
 			<property name="finalMode" value="true"/>
 			
-			<property name="category" ref="category1"/>
+			<property name="category" ref="category2"/>
 			<!-- <property name="conference" ref="" />  -->
 	
 	</bean>	
 	
 	<bean id="conference6" class="domain.Conference">
-			<property name="title" value="Conference about Big Data"/>
+			<property name="title" value="Conference about Big Data with artificial intelligence"/>
 			<property name="acronym" value="CABD"/>
 			<property name="venue" value="FIBES, Sevilla"/>
 			<property name="submissionDeadline" value="2019/07/11 10:00:00"/>
@@ -1271,11 +1272,11 @@
 			<property name="cameraReadyDeadline" value="2019/07/15 10:00:00"/>
 			<property name="startDate" value="2019/07/29 10:00:00"/>
 			<property name="endDate" value="2019/09/20 10:00:00"/>
-			<property name="summary" value="Conference about big data"/>
+			<property name="summary" value="About big data and artificial intelligence"/>
 			<property name="fee" value="13"/>
 			<property name="finalMode" value="true"/>
 			
-			<property name="category" ref="category1"/>
+			<property name="category" ref="category8"/>
 			<!-- <property name="conference" ref="" />  -->
 	
 	</bean>	
@@ -1307,7 +1308,7 @@
 			<property name="cameraReadyDeadline" value="2019/06/01 10:00:00"/>
 			<property name="startDate" value="2019/06/01 12:00:00"/>
 			<property name="endDate" value="2019/09/20 10:00:00"/>
-			<property name="summary" value="Conference about Jane Eyre"/>
+			<property name="summary" value="About most common facts about Jane Eyre"/>
 			<property name="fee" value="13"/>
 			<property name="finalMode" value="true"/>
 			
@@ -1325,11 +1326,11 @@
 			<property name="cameraReadyDeadline" value="2019/07/07 10:00:00"/>
 			<property name="startDate" value="2019/07/07 12:00:00"/>
 			<property name="endDate" value="2019/09/20 10:00:00"/>
-			<property name="summary" value="Conference about PC"/>
+			<property name="summary" value="Talk about PC"/>
 			<property name="fee" value="13"/>
 			<property name="finalMode" value="true"/>
 			
-			<property name="category" ref="category1"/>
+			<property name="category" ref="category2"/>
 			<!-- <property name="conference" ref="" />  -->
 	
 	</bean>	
@@ -1706,9 +1707,9 @@
 	
 	<!-- Camera Ready Paper -->
 	<bean id="cameraReadyPaper1" class="domain.CameraReadyPaper">
-			<property name="title" value="Title 1. Artificial intelligence..."/>
+			<property name="title" value="Title 1. Artificial intelligence in environments..."/>
 			<property name="authors" value="Author nº1, Author nº2"/>
-			<property name="summary" value="Summary 1. Natural language..."/>
+			<property name="summary" value="Summary 1. Natural language with artificial intelligence ..."/>
 			<property name="document" value="http://www.document1.com"/>
 			<property name="submission" ref="submission1"/>
 	</bean>
@@ -1720,6 +1721,8 @@
 			<property name="document" value="http://www.document2.com"/>
 			<property name="submission" ref="submission4"/>
 	</bean>
+	
+	
 	
 	<!-- Tutorials -->
 	

@@ -135,6 +135,7 @@ public class AuthorService {
 		final Collection<Author> authors = this.authorRepository.findAll();
 		Collection<CameraReadyPaper> cams = null;
 		int score = 0;
+		double scoreRedondeado = 0;
 		for (final Author a : authors) {
 			score = 0;
 			//Se comienza con el score a 0
@@ -142,16 +143,29 @@ public class AuthorService {
 			cams = this.cameraReadyPaperService.findByAuthorId(a.getId());
 			//Para cada camera ready paper se comprueban las palabras
 			for (final CameraReadyPaper cam : cams) {
-				final List<String> title = new ArrayList<String>(Arrays.asList(cam.getTitle().split(" ")));
+				final String[] titAr = cam.getTitle().split(" ");
+				final List<String> titLi = new ArrayList<String>(Arrays.asList(titAr));
+				//				final List<String> title = new ArrayList<String>(Arrays.asList(cam.getTitle().split(" ")));
 				//El número de palabras que coinciden se obtiene con retain
-				title.retainAll(buzzwords);
+				titLi.retainAll(buzzwords);
 				//Por cada palabra se incrementa en un punto el score
-				score = title.size() + score;
+				score = titLi.size() + score;
 			}
+			scoreRedondeado = AuthorService.redondearDecimales(score, 2);
 			a.setScore(score);
 			this.save(a);
 		}
 		return authors;
+	}
+
+	public static double redondearDecimales(final double valorInicial, final int numeroDecimales) {
+		double parteEntera, resultado;
+		resultado = valorInicial;
+		parteEntera = Math.floor(resultado);
+		resultado = (resultado - parteEntera) * Math.pow(10, numeroDecimales);
+		resultado = Math.round(resultado);
+		resultado = (resultado / Math.pow(10, numeroDecimales)) + parteEntera;
+		return resultado;
 	}
 
 	public Author findOne(final int authorId) {

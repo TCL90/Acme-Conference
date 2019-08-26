@@ -206,7 +206,6 @@ public class ConferenceService {
 
 	public List<String> findBuzzwords() {
 		//TODO: 12 MESES DE CONFERENCES
-		//TODO: ELIMINACIÓN DE BUZZWORDS
 		final List<String> findWords = this.conferenceRepository.findTitles();
 		findWords.addAll(this.conferenceRepository.findSummaries());
 		final List<String> wordsSplitted = new ArrayList<String>();
