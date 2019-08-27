@@ -22,7 +22,7 @@ import utilities.AbstractTest;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml"
+	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml", "classpath:spring/junit.xml"
 })
 @Transactional
 public class PresentationServiceTest  extends AbstractTest {
@@ -42,7 +42,7 @@ public class PresentationServiceTest  extends AbstractTest {
 		
 		super.authenticate("admin");
 		Presentation p ;
-		Collection<Conference> confs = cs.findAllFinalMode();
+		Collection<Conference> confs = cs.findAllForthComming();
 		Conference conf = confs.iterator().next();
 		
 		Collection<String> stringList = new ArrayList<String>();

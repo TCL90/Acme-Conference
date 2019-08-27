@@ -18,7 +18,7 @@ import utilities.AbstractTest;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml"
+	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml", "classpath:spring/junit.xml"
 })
 @Transactional
 public class ReviewerServiceTest  extends AbstractTest {
@@ -42,7 +42,6 @@ public class ReviewerServiceTest  extends AbstractTest {
 		rv.setName("Author new");
 		rv.setMiddleName("Middle");
 		rv.setSurname("Surname");
-		rv.setPhoto("photo/url");
 		
 		Collection<String> expertise = new ArrayList<String>();
 		expertise.add("word1");

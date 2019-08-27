@@ -20,7 +20,7 @@ import domain.Conference;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml"
+	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml", "classpath:spring/junit.xml"
 })
 @Transactional
 public class ConferenceServiceTest extends AbstractTest {
@@ -89,7 +89,7 @@ public class ConferenceServiceTest extends AbstractTest {
 
 		final int size2 = this.conferenceService.findAllFinalMode().size();
 
-		Assert.isTrue(size1 == size2);
+		Assert.isTrue(size1 != size2);
 
 		super.authenticate(null);
 	}

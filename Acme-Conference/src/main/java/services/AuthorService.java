@@ -16,6 +16,7 @@ import repositories.AuthorRepository;
 import security.Authority;
 import security.LoginService;
 import security.UserAccount;
+import domain.Actor;
 import domain.Author;
 import domain.CameraReadyPaper;
 
@@ -129,6 +130,10 @@ public class AuthorService {
 
 	public Collection<Author> findAll() {
 		return this.authorRepository.findAll();
+	}
+
+	public Collection<Actor> findAll2() {
+		return this.authorRepository.findAll2();
 	}
 
 	public Collection<Author> score(final List<String> buzzwords) {

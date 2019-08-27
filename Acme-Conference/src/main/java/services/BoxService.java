@@ -14,10 +14,12 @@ import security.LoginService;
 import security.UserAccount;
 import domain.Actor;
 import domain.Box;
+import domain.Message;
 
 @Service
 @Transactional
 public class BoxService {
+
 
 	@Autowired
 	private BoxRepository	messageBoxRepository;
@@ -28,15 +30,9 @@ public class BoxService {
 	@Autowired
 	private MessageService	ms;
 
-	//
-	//	public Box create() {
-	//
-	//		final Box msgbox = new Box();
-	//
-	//		msgbox.setPredefined(false);
-	//		return msgbox;
-	//	}
-	//
+
+
+	
 	//	public Collection<Message> messagesByMessageBoxName(final String boxName) {
 	//		final UserAccount actual = LoginService.getPrincipal();
 	//		final Actor a = this.actorRepository.getActor(actual);
@@ -92,40 +88,38 @@ public class BoxService {
 	//		this.messageBoxRepository.delete(messageBox);
 	//	}
 	//
-	//	public Message sendMessage(final Message msg) {
-	//		final UserAccount actual = LoginService.getPrincipal();
-	//		final Actor a = this.actorRepository.getActor(actual);
-	//		Assert.notNull(msg);
-	//		Assert.isTrue(!a.getBan());
-	//
-	//		final Message result = this.ms.save(msg);
-	//
-	//		final Collection<Box> aboxes = a.getBoxes();
-	//		for (final Box abox : aboxes)
-	//			if (abox.getName().endsWith("out box") && abox.getPredefined() == true) {
-	//				final Collection<Message> ames = abox.getMessages();
-	//				ames.add(result);
-	//				abox.setMessages(ames);
-	//
-	//			}
-	//
-	//		final Collection<Actor> recipients = result.getRecipients();
-	//		for (final Actor r : recipients) {
-	//			final Collection<Box> rboxes = r.getBoxes();
-	//			for (final Box rbox : rboxes)
-	//
-	//				if (rbox.getName().endsWith("in box") && rbox.getPredefined() == true) {
-	//					final Collection<Message> rmes = rbox.getMessages();
-	//					rmes.add(result);
-	//					rbox.setMessages(rmes);
-	//
-	//				}
-	//		}
-	//		System.out.println();
-	//		System.out.println("Lo guarda");
-	//		return result;
-	//	}
-	//
+		public Message sendMessage(final Message msg) {
+			final UserAccount actual = LoginService.getPrincipal();
+			final Actor a = this.actorRepository.getActor(actual);
+			Assert.notNull(msg);
+	
+			final Message result = this.ms.save(msg);
+	
+			final Collection<Box> aboxes = a.getBoxes();
+			for (final Box abox : aboxes)
+				if (abox.getName().endsWith("Out")) {
+					final Collection<Message> ames = abox.getMessages();
+					ames.add(result);
+					abox.setMessages(ames);
+//					this.save(abox);
+				}
+	
+			final Collection<Actor> recipients = result.getRecipients();
+			recipients.remove(a);
+			for (final Actor r : recipients) {
+				final Collection<Box> rboxes = r.getBoxes();
+				for (final Box rbox : rboxes)
+	
+					if (rbox.getName().endsWith("In")) {
+						final Collection<Message> rmes = rbox.getMessages();
+						rmes.add(result);
+						rbox.setMessages(rmes);
+//						this.save(rbox);
+					}
+			}
+			return result;
+		}
+	
 	//	public Message sendSpamMessage(final Message msg) {
 	//		final UserAccount actual = LoginService.getPrincipal();
 	//		final Actor a = this.actorRepository.getActor(actual);

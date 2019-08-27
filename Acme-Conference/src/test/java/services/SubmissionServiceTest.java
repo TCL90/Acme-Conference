@@ -21,7 +21,7 @@ import utilities.AbstractTest;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml"
+	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml", "classpath:spring/junit.xml"
 })
 @Transactional
 public class SubmissionServiceTest  extends AbstractTest {
@@ -50,15 +50,15 @@ public class SubmissionServiceTest  extends AbstractTest {
 		
 		final Submission res = new Submission();
 		res.setAuthor(autor);
-		res.setStatus("Status");
-		res.setTicker("Ticker");
+		res.setStatus("REJECTED");
+		res.setTicker("ADC-D396");
 		res.setMoment(new Date());
 		res.setConference(confs.iterator().next());
 
 		final Paper pap = new Paper();
 
 		pap.setAuthors(Arrays.asList("author1", "Author2"));
-		pap.setDocument("Some document");
+		pap.setDocument("http://wwww.someurl.es");
 		pap.setSummary("Summary");
 		pap.setTitle("Title");
 

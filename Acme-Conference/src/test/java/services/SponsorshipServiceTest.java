@@ -17,7 +17,7 @@ import utilities.AbstractTest;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml"
+	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml", "classpath:spring/junit.xml"
 })
 @Transactional
 public class SponsorshipServiceTest  extends AbstractTest {
@@ -37,11 +37,11 @@ public class SponsorshipServiceTest  extends AbstractTest {
 		Collection<Sponsorship> ssini = ss.findBySponsor(spon.getId());
 		
 		Sponsorship sship = ss.create();
-		sship.setBanner("banner");
-		sship.setTargetUrl("url");
+		sship.setBanner("http://www.some.com");
+		sship.setTargetUrl("http://www.other.com");
 		sship.setHolderName("Holdername");
-		sship.setMakeName("Makename");
-		sship.setNumber("ES8200000000000000");
+		sship.setMakeName("VISA");
+		sship.setNumber("1111222233334444");
 		sship.setExpirationYear(2020);
 		sship.setExpirationMonth(4);
 		sship.setCvv(123);

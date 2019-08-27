@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.RegistrationRepository;
+import domain.Actor;
 import domain.Customisation;
 import domain.Registration;
 
@@ -72,6 +73,11 @@ public class RegistrationService {
 
 	public Collection<Registration> findByConference(final int conferenceId) {
 		return this.registrationRepository.findByConference(conferenceId);
+	}
+
+	//	public Collection<Author> findAuthorsRegisteredConf(final int conferenceId){
+	public Collection<Actor> findAuthorsRegisteredConf(final int conferenceId) {
+		return this.registrationRepository.findAuthorsRegisteredConf(conferenceId);
 	}
 
 }

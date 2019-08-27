@@ -284,8 +284,8 @@ public class ConferenceService {
 			res.retainAll(this.finderEndDate(finder.getEndDate()));
 		if (finder.getCategory() != null)
 			res.retainAll(this.finderCategory(finder.getCategory().getTitleIng()));
-		//		if (finder.getMaximumFee() != null)
-		//			res.retainAll(this.finderFee(finder.getMaximumFee()));
+		if (finder.getMaximumFee() != null)
+			res.retainAll(this.finderFee(finder.getMaximumFee()));
 		return res;
 	}
 }

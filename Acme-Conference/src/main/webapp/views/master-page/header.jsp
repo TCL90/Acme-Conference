@@ -95,6 +95,21 @@
 				<li><a class="fNiv" href="conference/list.do"><spring:message code="master.page.conference.list" /></a></li>
 			</security:authorize>
 			<li>
+				<a class="fNiv">
+					<spring:message code="master.page.message.list" /> 
+				</a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="messages/list.do"><spring:message code="master.page.message.inBox" /></a></li>
+					<li><a href="messages/listOut.do"><spring:message code="master.page.message.outBox" /></a></li>
+					<li><a href="messages/listNotification.do"><spring:message code="master.page.message.notificationBox" /></a></li>
+					<li><a href="messages/create.do"><spring:message code="master.page.message.sendMess" /></a></li>
+					<security:authorize access="hasRole('ADMIN')">
+						<li><a href="messages/broadcastMessage.do"><spring:message code="master.page.message.broadcastMess" /></a></li>
+					</security:authorize>
+				</ul>
+			</li>
+			<li>
 				<a class="fNiv"> 
 					<spring:message code="master.page.profile" /> 
 			        (<security:authentication property="principal.username" />)

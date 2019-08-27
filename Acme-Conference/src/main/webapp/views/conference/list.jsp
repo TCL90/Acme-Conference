@@ -183,15 +183,15 @@
 <jstl:if test="${subEvaluated != null }">
 	<spring:message code="submissions.evaluated" />:
 	<jstl:out value="${subEvaluated}"></jstl:out>
-	
+	<br/>
 	<spring:message code="submissions.accepted" />:
 	<jstl:out value="${subAccepted}"></jstl:out>
-	
+	<br/>
 	<spring:message code="submissions.rejected" />:
 	<jstl:out value="${subRejected}"></jstl:out>
 </jstl:if>
 <br/>
-
+<br/>
 	<security:authorize access="hasRole('ADMIN')">
 <a href="conference/administrator/create.do"><spring:message code="administrator.conference.create"/></a>
 

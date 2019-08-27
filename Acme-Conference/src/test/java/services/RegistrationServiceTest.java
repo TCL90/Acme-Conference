@@ -18,7 +18,7 @@ import utilities.AbstractTest;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml"
+	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml", "classpath:spring/junit.xml"
 })
 @Transactional
 public class RegistrationServiceTest  extends AbstractTest {
@@ -44,8 +44,8 @@ public class RegistrationServiceTest  extends AbstractTest {
 		
 		Registration r = rs.create();
 		r.setHolderName("Holdername");
-		r.setMakeName("Makename");
-		r.setNumber("ES8200000000000000");
+		r.setMakeName("VISA");
+		r.setNumber("1111222233334444");
 		r.setExpirationYear(2020);
 		r.setExpirationMonth(4);
 		r.setCvv(123);
