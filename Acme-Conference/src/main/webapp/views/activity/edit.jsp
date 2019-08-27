@@ -227,7 +227,7 @@
 		<br /> <br />
 
 		<form:label path="attachments">
-		<spring:message code="activity.attachments" /> :
+		<spring:message code="activity.attachments" />* :
 		</form:label>
 		<form:textarea path="attachments" />
 		<form:errors cssClass="error" path="attachments" />
