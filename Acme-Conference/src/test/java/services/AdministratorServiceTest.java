@@ -1,6 +1,7 @@
 package services;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -11,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 
+import domain.Administrator;
 import domain.Author;
 import utilities.AbstractTest;
 
@@ -27,29 +29,27 @@ public class AdministratorServiceTest  extends AbstractTest {
 	@Test
 	public void testSaveAdministrator() {
 		
-//		super.authenticate("admin");
-//		int initialSize = as.findAll().size();
-//		
-//		Author autor = as.create();
-//		
-//		autor.setAddress("Any address");
-//		autor.setEmail("email@es.es");
-//		autor.setPhoneNumber("666555444");
-//		autor.setName("Author new");
-//		autor.setMiddleName("Middle");
-//		autor.setSurname("Surname");
-//		autor.setPhoto("photo/url");
-//		autor.setScore(0.0);
-////		autor.set
-//		
-//		Author finalAuthor = as.save(autor);
-//
-//		Collection<Author> authors = as.findAll();
-//		
-//		Assert.isTrue(initialSize != authors.size());
-//		Assert.isTrue(authors.contains(finalAuthor));
-//		
-//		super.authenticate(null);
+		super.authenticate("admin");
+		List<Administrator> initia = as.findAll();
+		
+		Administrator admin = as.create();
+		
+		admin.setAddress("Any address");
+		admin.setEmail("email@es.es");
+		admin.setPhoneNumber("666555444");
+		admin.setName("Admin new");
+		admin.setMiddleName("Middle");
+		admin.setSurname("Surname");
+		admin.setPhoto("http://wwww.whereiam.com/photo");
+		
+		Administrator finalAdmin = as.save(admin);
+
+		List<Administrator> admins = as.findAll();
+		
+		Assert.isTrue(initia.size() != admins.size());
+		Assert.isTrue(admins.contains(finalAdmin));
+		
+		super.authenticate(null);
 		
 	}
 }

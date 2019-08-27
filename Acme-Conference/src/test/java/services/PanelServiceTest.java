@@ -37,7 +37,7 @@ public class PanelServiceTest  extends AbstractTest {
 		
 		super.authenticate("admin");
 		Panel p ;
-		Collection<Conference> confs = cs.findAllFinalMode();
+		Collection<Conference> confs = cs.findAllNotFinalMode();
 		Conference conf = confs.iterator().next();
 		
 		Collection<String> stringList = new ArrayList<String>();
@@ -68,10 +68,8 @@ public class PanelServiceTest  extends AbstractTest {
 		p.setSummary("Panel summary");
 		
 		Panel finalP = ps.save(p);
-		Panel finalList = ps.findPanelByActivityId(p.getId());
-		
-		Assert.isTrue(finalList != null );
-		Assert.isTrue(finalP.getId() == finalList.getId());
+	
+		Assert.isTrue(finalP != null && finalP.getId() != 0 );
 		
 		super.authenticate(null);
 		

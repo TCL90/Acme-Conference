@@ -203,10 +203,15 @@ public class MessageController extends AbstractController {
 		result.addObject("bf", bf);
 		result.addObject("type", type);
 
-		if (type.equals("subConf") || type.equals("regConf")) {
-			final Collection<Conference> cd = this.cs.findAllByAdmin();
+
+		if (type.equals("subConf")) {
+			final Collection<Conference> cd = this.cs.findAllWithAuthorSubmission();
+			result.addObject("conferences", cd);
+		}else if (type.equals("regConf")) {
+			final Collection<Conference> cd = this.cs.findAllWithAuthorRegistered();
 			result.addObject("conferences", cd);
 		}
+		
 
 		return result;
 	}
@@ -233,15 +238,13 @@ public class MessageController extends AbstractController {
 		}
 
 		if (binding.hasErrors())
-			result = null;//this.createEditModelAndView(bf, binding.getAllErrors().get(0).getDefaultMessage());
+			result = this.createBroadcastModelAndView(bf.getMessage(), bf.getType(), null);
 		else
 			try {
 
 				final Message message = bf.getMessage();
 				message.setMoment(new Date());
 				Collection<Actor> recipients = null;
-
-				final Collection<Author> recipientA = null;
 
 				if (bf.getType().equals("subConf"))
 					recipients = this.ss.findAllAuthorSubmissionToConference(bf.getConference().getId());
@@ -252,15 +255,12 @@ public class MessageController extends AbstractController {
 				else
 					recipients = this.as.findAll();
 
-				if (recipients.isEmpty())
-					result = this.createEditModelAndView(message, "no.recipient.error");
-				else {
-					message.setRecipients(recipients);
+				
+				message.setRecipients(recipients);
 
-					this.mbs.sendMessage(message);
-					result = new ModelAndView("redirect:/messages/listOut.do");
-				}
-
+				this.mbs.sendMessage(message);
+				result = new ModelAndView("redirect:/messages/listOut.do");
+		
 			} catch (final Throwable oops) {
 				result = this.createBroadcastModelAndView(bf.getMessage(), bf.getType(), "messages.commit.error");
 			}
@@ -293,7 +293,6 @@ public class MessageController extends AbstractController {
 		}
 
 		if (binding.hasErrors())
-			//result = this.createEditModelAndView(message, binding.getAllErrors().get(0).getDefaultMessage());
 			result = this.createEditModelAndView(message);
 		else if (message.getRecipients().size() != 1)
 			//TODO modificar el mensaje

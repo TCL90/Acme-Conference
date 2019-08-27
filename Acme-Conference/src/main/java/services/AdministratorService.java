@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +10,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import domain.Administrator;
+import domain.Customisation;
 import repositories.AdministratorRepository;
 import security.Authority;
 import security.LoginService;
 import security.UserAccount;
-import domain.Administrator;
-import domain.Customisation;
 
 @Service
 @Transactional
@@ -33,6 +34,29 @@ public class AdministratorService {
 	//Constructor
 	public AdministratorService() {
 		super();
+	}
+	
+	public Administrator create() {
+
+		Administrator result;
+		result = new Administrator();
+
+		final UserAccount newUser = new UserAccount();
+		final Authority f = new Authority();
+		f.setAuthority(Authority.ADMIN);
+		newUser.addAuthority(f);
+		result.setUserAccount(newUser);
+
+		result.setName("");
+		result.setEmail("");
+		result.setAddress("");
+		result.setSurname("");
+		result.setPhoneNumber("");
+		result.setPhoto("");
+
+		// admin
+
+		return result;
 	}
 
 	public Administrator save(final Administrator administrator) {
@@ -106,5 +130,9 @@ public class AdministratorService {
 			res = true;
 		return res;
 
+	}
+
+	public List<Administrator> findAll() {
+		return this.administratorRepository.findAll();
 	}
 }

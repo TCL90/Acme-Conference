@@ -21,6 +21,9 @@ public class SponsorService {
 
 	@Autowired
 	private SponsorRepository	sponsorRepository;
+	
+	@Autowired
+	private BoxService 			boxService;
 
 
 	public Sponsor findByPrincipal() {
@@ -54,6 +57,8 @@ public class SponsorService {
 		f.setAuthority(Authority.SPONSOR);
 		newUser.addAuthority(f);
 		result.setUserAccount(newUser);
+		
+		result.setBoxes(this.boxService.createBoxesForNewActor());
 
 		result.setName("");
 		result.setEmail("");

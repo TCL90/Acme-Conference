@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import repositories.CategoryRepository;
 import domain.Category;
+import domain.Comment;
 
 @Service
 @Transactional
@@ -22,6 +23,11 @@ public class CategoryService {
 
 	public List<Category> findAll() {
 		return this.categoryRepository.findAll();
+	}
+	
+	public Category save(final Category c) {
+
+		return this.categoryRepository.save(c);
 	}
 
 	//	public Collection<Category> findAll() {
