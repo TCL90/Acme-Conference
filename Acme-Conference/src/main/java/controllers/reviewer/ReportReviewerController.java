@@ -80,7 +80,7 @@ public class ReportReviewerController extends AbstractController {
 				this.reportService.save(report);
 				result = new ModelAndView("redirect:list.do");
 			} catch (final Throwable oops) {
-				result = this.createModelAndView(report, "report.commit.error");
+				result = this.createModelAndView2(report, "report.commit.error");
 			}
 
 		return result;
@@ -120,7 +120,7 @@ public class ReportReviewerController extends AbstractController {
 
 	protected ModelAndView createModelAndView2(final Report report) {
 		ModelAndView result;
-		result = this.createModelAndView(report, null);
+		result = this.createModelAndView2(report, null);
 
 		return result;
 	}
@@ -130,7 +130,12 @@ public class ReportReviewerController extends AbstractController {
 
 		final Reviewer reviewer = this.reviewerService.findByPrincipal();
 
-		final Collection<Submission> submissions = this.submissionService.findByReviewer2(reviewer);
+		final Collection<Submission> submissions = this.submissionService.findByReviewerUnderReview(reviewer);
+
+		final Collection<Report> reports = this.reportService.findByReviewer(reviewer.getId());
+
+		for (final Report r : reports)
+			submissions.remove(r.getSubmission());
 
 		result = new ModelAndView("report/reviewer/create");
 		result.addObject("report", report);

@@ -21,7 +21,6 @@
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
 	<form:hidden path="reviewer" />
-	<form:hidden path="submission" />
 
 <fieldset>
 
@@ -68,16 +67,14 @@
 	<br />
 	
 	
-	<jstl:if test="${report.submission == null }">
 		<form:label path="submission">
 			<spring:message code="report.submission"/>*:
 		</form:label>				
 		<form:select path="submission">
-			<form:options items="${submissions}"  itemLabel = "title"/>
+			<form:options items="${submissions}"  itemLabel = "ticker"/>
 		</form:select>
 		<form:errors cssClass="error" path="submission" />
 		<br />	
-	</jstl:if>
 	
 	</fieldset>
 	<spring:message code="asterisco"/>
