@@ -64,6 +64,10 @@ public class SubmissionService {
 		return this.submissionRepository.findByReviewer2(revi);
 	}
 
+	public Collection<Submission> findByReviewerUnderReview(final Reviewer revi) {
+		return this.submissionRepository.findByReviewerUnderReview(revi);
+	}
+
 	public SubmissionForm create() {
 
 		final SubmissionForm res = new SubmissionForm();

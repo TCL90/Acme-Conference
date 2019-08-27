@@ -46,15 +46,7 @@
 		</display:column>
 	</security:authorize>
 	
-	
-	<security:authorize access="hasRole('REVIEWER')" >
-	<!-- 
-		<display:column>
-			<a href="report/reviewer/create.do?submissionId=${row.id}" ><spring:message code="report.create" /></a>
-			<br/><br/>
-		</display:column>
-		-->
-	</security:authorize>
+
 </display:table>
 
 <security:authorize access="hasRole('AUTHOR')" >
