@@ -5,6 +5,7 @@ import javax.validation.ValidationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -98,17 +99,20 @@ public class CommentController extends AbstractController {
 		ModelAndView res;
 
 		try {
-
+			Assert.isTrue(c.getText() != "", "notBlank");
+			Assert.isTrue(c.getTitle() != "", "notBlank");
 			c = this.commentService.save(c);
 
 			res = new ModelAndView("redirect:../conference/list.do");
 		} catch (final ValidationException oops) {
 			res = this.createEditModelAndView(c);
 		} catch (final Throwable oops) {
-			res = this.createEditModelAndView(c, "error.comment");
+			if (oops.getMessage() == "notBlank")
+				res = this.createEditModelAndView(c, "comment.notBlank");
+			else
+				res = this.createEditModelAndView(c, "error.comment");
 		}
 
 		return res;
 	}
-
 }
