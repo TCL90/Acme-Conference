@@ -24,8 +24,11 @@
 		<form:hidden path="type" />
 		
 		<jstl:if test="${type=='subConf' or type == 'regConf'}">
+			<form:label path="conference">
+				<spring:message code="message.conference" />* :
+			</form:label>
+			
 			<form:select path="conference">
-				<form:option label="----" value="0" />
 				<form:options items="${conferences}" itemLabel = "title" />
 			</form:select>
 			<form:errors cssClass="error" path="conference" />

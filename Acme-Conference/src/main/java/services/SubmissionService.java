@@ -21,6 +21,7 @@ import repositories.ConferenceRepository;
 import repositories.ReportRepository;
 import repositories.SubmissionRepository;
 import utilities.TickerGenerator;
+import domain.Actor;
 import domain.Author;
 import domain.Conference;
 import domain.Paper;
@@ -128,6 +129,11 @@ public class SubmissionService {
 	}
 	
 	public Collection<Author> findAllAuthorSubmissionToConference(int conferenceId){
+		return this.submissionRepository.findAllAuthorsSubmissionConf(conferenceId);
+	}
+
+	//public Collection<Author> findAllAuthorSubmissionToConference(int conferenceId){
+	public Collection<Actor> findAllAuthorSubmissionToConference(final int conferenceId) {
 		return this.submissionRepository.findAllAuthorsSubmissionConf(conferenceId);
 	}
 

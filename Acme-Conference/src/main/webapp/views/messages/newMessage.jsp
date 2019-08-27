@@ -27,18 +27,24 @@
 			<spring:message code="message.recipients"/>*:
 		</form:label>			
 		<form:select path="recipients">
-			<form:option label="----" value="0" />
 			<form:options items="${recipient}" itemLabel = "name" />
 		</form:select>
 		<form:errors cssClass="error" path="recipients" />
-		<br />
+		<br />		<br />
 
 		<form:label path="topic">
 			<spring:message code="message.topic" />* :
 		</form:label>
-		<form:input path="topic" />
-		<form:errors cssClass="error" path="topic" />
-		<br /> <br />
+		
+		<form:select path="topic" >
+			<jstl:if test="${pageContext.response.locale.language=='es'}">	
+				<form:options items="${topicsEsp}"  />	
+			</jstl:if>
+			<jstl:if test="${pageContext.response.locale.language=='en'}">	
+				<form:options items="${topicsIng}"  />	
+			</jstl:if>
+		</form:select>
+				<br />		<br />
 
 		<form:label path="subject">
 			<spring:message code="message.subject" />* :
