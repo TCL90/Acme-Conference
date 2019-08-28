@@ -16,6 +16,9 @@ import repositories.AdministratorRepository;
 import security.Authority;
 import security.LoginService;
 import security.UserAccount;
+import domain.Administrator;
+import domain.Box;
+import domain.Customisation;
 
 @Service
 @Transactional
@@ -29,6 +32,9 @@ public class AdministratorService {
 
 	@Autowired
 	private CustomisationService	customisationService;
+
+	@Autowired
+	private BoxService				boxService;
 
 
 	//Constructor
@@ -59,12 +65,34 @@ public class AdministratorService {
 		return result;
 	}
 
+	public Administrator create() {
+
+		Administrator result;
+		result = new Administrator();
+
+		final UserAccount newUser = new UserAccount();
+		final Authority f = new Authority();
+		f.setAuthority(Authority.ADMIN);
+		newUser.addAuthority(f);
+		result.setUserAccount(newUser);
+
+		result.setName("");
+		result.setEmail("");
+		result.setAddress("");
+		result.setSurname("");
+		result.setPhoneNumber("");
+		result.setPhoto("");
+
+		// admin
+
+		return result;
+	}
+
 	public Administrator save(final Administrator administrator) {
 
 		Assert.notNull(administrator);
 
 		final String pnumber = administrator.getPhoneNumber();
-		//TODO: DESCOMENTAR
 		final Customisation cus = ((List<Customisation>) this.customisationService.findAll()).get(0);
 		final String cc = cus.getPhoneNumberCode();
 		if (pnumber.matches("^[0-9]{4,}$"))
@@ -79,10 +107,12 @@ public class AdministratorService {
 			Assert.notNull(logAdmin);
 			Assert.notNull(logAdmin.getId());
 		}
-		//TODO: DESCOMENTAR
-		//			final Collection<Box> boxes = this.actorService1.createPredefinedBoxes();
-		//			author.setBoxes(boxes);
+
 		if (administrator.getId() == 0) {
+
+			final Collection<Box> boxes = this.boxService.createBoxesForNewActor();
+			administrator.setBoxes(boxes);
+
 			final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 			final String oldpass = administrator.getUserAccount().getPassword();
 			final String hash = encoder.encodePassword(oldpass, null);
