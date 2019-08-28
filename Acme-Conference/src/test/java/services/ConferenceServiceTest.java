@@ -2,7 +2,9 @@
 package services;
 
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -15,6 +17,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
+import domain.Author;
 import domain.Category;
 import domain.Conference;
 
@@ -91,6 +94,32 @@ public class ConferenceServiceTest extends AbstractTest {
 
 		Assert.isTrue(size1 != size2);
 
+		super.authenticate(null);
+	}
+	
+	
+	@Test
+	public void testDeleteConference() {
+		
+		super.authenticate("admin");
+		
+		Collection<Conference> initial = this.conferenceService.findAllNotFinalMode();
+		
+		boolean encontrado = false;
+		Iterator<Conference> it = initial.iterator();
+		Conference delete = null;
+		while(it.hasNext() && !encontrado) {
+			delete = it.next();
+			if(delete.getAcronym().equals("CTTD")) {
+				break;
+			}
+		}
+		
+		this.conferenceService.delete(delete);
+		Collection<Conference> finalCs = this.conferenceService.findAllNotFinalMode();
+		
+		Assert.isTrue(initial.size() != finalCs.size());
+		
 		super.authenticate(null);
 	}
 }

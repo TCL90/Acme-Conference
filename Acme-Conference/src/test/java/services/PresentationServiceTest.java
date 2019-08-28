@@ -42,7 +42,7 @@ public class PresentationServiceTest  extends AbstractTest {
 		
 		super.authenticate("admin");
 		Presentation p ;
-		Collection<Conference> confs = cs.findAllForthComming();
+		Collection<Conference> confs = cs.findAllNotFinalMode();
 		Conference conf = confs.iterator().next();
 		
 		Collection<String> stringList = new ArrayList<String>();
@@ -50,6 +50,7 @@ public class PresentationServiceTest  extends AbstractTest {
 		stringList.add("word2");
 		stringList.add("word3");
 		stringList.add("word4");
+		
 		
 		Collection<CameraReadyPaper> cameras = crs.findAllByConferenceId(conf.getId());
 		CameraReadyPaper cam = cameras.iterator().next();

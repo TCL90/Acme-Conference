@@ -2,6 +2,7 @@
 package services;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
@@ -13,6 +14,8 @@ import repositories.SponsorRepository;
 import security.Authority;
 import security.LoginService;
 import security.UserAccount;
+import domain.Box;
+import domain.Customisation;
 import domain.Sponsor;
 
 @Service
@@ -20,7 +23,13 @@ import domain.Sponsor;
 public class SponsorService {
 
 	@Autowired
-	private SponsorRepository	sponsorRepository;
+	private SponsorRepository		sponsorRepository;
+
+	@Autowired
+	private BoxService				boxService;
+
+	@Autowired
+	private CustomisationService	customisationService;
 
 
 	public Sponsor findByPrincipal() {
@@ -69,26 +78,16 @@ public class SponsorService {
 		Assert.notNull(sponsor);
 
 		final String pnumber = sponsor.getPhoneNumber();
-		//TODO: DESCOMENTAR
-		//final Customisation cus = ((List<Customisation>) this.customisationService.findAll()).get(0);
-		//final String cc = cus.getPhoneNumberCode();
-		//		if (pnumber.matches("^[0-9]{4,}$"))
-		//			sponsor.setPhoneNumber(cc.concat(pnumber));
+		final Customisation cus = ((List<Customisation>) this.customisationService.findAll()).get(0);
+		final String cc = cus.getPhoneNumberCode();
+		if (pnumber.matches("^[0-9]{4,}$"))
+			sponsor.setPhoneNumber(cc.concat(pnumber));
 
-		//		if (sponsor.getId() != 0) {
-		//			Assert.isTrue(this.actorService.checkSponsor());
-		//
-		//			// Modified Sponsor must be logged Sponsor
-		//			final Sponsor logSponsor;
-		//			logSponsor = this.findByPrincipal();
-		//			Assert.notNull(logSponsor);
-		//			Assert.notNull(logSponsor.getId());
-		//
-		//		} else {
-		//TODO: DESCOMENTAR
-		//			final Collection<Box> boxes = this.actorService1.createPredefinedBoxes();
-		//			sponsor.setBoxes(boxes);
 		if (sponsor.getId() == 0) {
+
+			final Collection<Box> boxes = this.boxService.createBoxesForNewActor();
+			sponsor.setBoxes(boxes);
+
 			final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 			final String oldpass = sponsor.getUserAccount().getPassword();
 			final String hash = encoder.encodePassword(oldpass, null);
@@ -97,15 +96,7 @@ public class SponsorService {
 			cuenta.setPassword(hash);
 			sponsor.setUserAccount(cuenta);
 		}
-		//TODO: DESCOMENTAR
-		//			final Finder find = new Finder();
-		//
-		//			find.setMoment(new Date());
-		//			final Finder find2 = this.finderRepository.save(find);
 
-		//			sponsor.setFinder(find2);
-		//		}
-		// Restrictions
 		Sponsor res;
 
 		res = this.sponsorRepository.save(sponsor);

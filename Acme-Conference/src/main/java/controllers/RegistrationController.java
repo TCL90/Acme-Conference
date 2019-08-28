@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import services.ActorService;
-import services.RegistrationService;
 import domain.Actor;
 import domain.Registration;
+import services.ActorService;
+import services.RegistrationService;
 
 @Controller
 @RequestMapping("/registration")

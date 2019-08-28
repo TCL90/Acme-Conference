@@ -57,9 +57,12 @@ public class CameraReadyPaperServiceTest  extends AbstractTest {
 		pap.setSummary("Summary");
 		pap.setTitle("Title");
 		
-		Presentation p = createPresentation(pap);	
-		
+//		Presentation p = createPresentation(pap);	
 		pap.setSubmission(sub);
+//		
+//		Collection<Conference> notFinal = this.cs.findAllNotFinalMode();
+//		Conference conf = notFinal.iterator().next();
+		
 	
 		CameraReadyPaper pap2 = crps.save(pap);
 		

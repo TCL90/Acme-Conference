@@ -42,9 +42,9 @@ public class SectionServiceTest  extends AbstractTest {
 	@Test
 	public void testSaveSection() {
 		
-		super.authenticate("admin");
+		super.authenticate("author1");
 	
-		Collection<Conference> confs = cs.findAllByAdmin();
+		Collection<Conference> confs = cs.findAllNotFinalMode();
 		Conference conf = confs.iterator().next();
 		Collection<Activity> acts = as.findAllByConference(conf);
 		Iterator<Activity> iter = acts.iterator();

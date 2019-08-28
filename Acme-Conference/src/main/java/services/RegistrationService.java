@@ -74,6 +74,10 @@ public class RegistrationService {
 	public Collection<Registration> findByConference(final int conferenceId) {
 		return this.registrationRepository.findByConference(conferenceId);
 	}
+	
+//	public Collection<Author> findAuthorsRegisteredConf(final int conferenceId){
+//		return this.registrationRepository.findAuthorsRegisteredConf(conferenceId);
+//	}
 
 	//	public Collection<Author> findAuthorsRegisteredConf(final int conferenceId){
 	public Collection<Actor> findAuthorsRegisteredConf(final int conferenceId) {

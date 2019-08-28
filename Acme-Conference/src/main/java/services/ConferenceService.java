@@ -40,6 +40,10 @@ public class ConferenceService {
 		return this.conferenceRepository.findAllFinalMode();
 	}
 
+	public Collection<Conference> findAllNotFinalMode() {
+		return this.conferenceRepository.findAllNotFinalMode();
+	}
+	
 	public Collection<Conference> findAllPast() {
 		return this.conferenceRepository.findAllPast();
 	}
@@ -287,5 +291,15 @@ public class ConferenceService {
 		if (finder.getMaximumFee() != null)
 			res.retainAll(this.finderFee(finder.getMaximumFee()));
 		return res;
+	}
+
+	public Collection<Conference> findAllWithAuthorSubmission() {
+		
+		return this.conferenceRepository.findAllWithAuthorSubmission();
+	}
+	
+	public Collection<Conference> findAllWithAuthorRegistered() {
+		
+		return this.conferenceRepository.findAllWithAuthorRegistered();
 	}
 }
