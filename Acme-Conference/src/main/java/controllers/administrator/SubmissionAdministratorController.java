@@ -2,7 +2,9 @@
 package controllers.administrator;
 
 import java.util.Collection;
+import java.util.Date;
 
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
@@ -16,6 +18,7 @@ import repositories.SubmissionRepository;
 import services.AdministratorService;
 import services.SubmissionService;
 import controllers.AbstractController;
+import domain.Conference;
 import domain.Reviewer;
 import domain.Submission;
 
@@ -57,12 +60,20 @@ public class SubmissionAdministratorController extends AbstractController {
 	public ModelAndView procedure(@RequestParam final int conferenceId) {
 		ModelAndView result;
 
+		final Conference conf = this.conferenceRepository.findOne(conferenceId);
+
 		Collection<Submission> submissions = null;
 		int subEvaluated = 0;
 		int subAccepted = 0;
 		int subRejected = 0;
 
 		try {
+			final DateTime fechaAhora = DateTime.now();
+			final Date fechaAhoraDate = fechaAhora.toDate();
+
+			//Se comprueba que la fecha de submission es anterior a hoy
+			Assert.isTrue(conf.getSubmissionDeadline().before(fechaAhoraDate));
+
 			Assert.notNull(this.administratorService.findByPrincipal());
 			final Collection<Submission> submissionsEvaluated = this.submissionRepository.findUnderReviewReported(conferenceId);
 			subEvaluated = submissionsEvaluated.size();
@@ -78,7 +89,11 @@ public class SubmissionAdministratorController extends AbstractController {
 			return result;
 		}
 
+		final DateTime fechaAhora = DateTime.now();
+		final Date fechaAhoraDate = fechaAhora.toDate();
+
 		result = new ModelAndView("conference/administrator/list");
+		result.addObject("fechaAhoraDate", fechaAhoraDate);
 		result.addObject("requestURI", "/conference/administrator/list.do");
 		result.addObject("conferences", this.conferenceRepository.findAll());
 		result.addObject("submissions", submissions);

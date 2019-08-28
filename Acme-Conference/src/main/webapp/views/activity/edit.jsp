@@ -39,7 +39,7 @@
 		<form:label path="startMoment">
 			<spring:message code="activity.startMoment" />* (yyyy-MM-dd):
 		</form:label>
-		<form:input path="startMoment" />
+		<form:input path="startMoment" placeholder="yyyy-MM-dd HH:mm:ss" />
 		<form:errors cssClass="error" path="startMoment" placeHolder="2019-05-02"/>
 		<br /> <br />
 		
@@ -65,10 +65,11 @@
 		<br /> <br />
 
 		<form:label path="attachments">
-		<spring:message code="activity.attachments" /> :
+		<spring:message code="activity.attachments" />* :
 		</form:label>
 		<form:textarea path="attachments" />
 		<form:errors cssClass="error" path="attachments" />
+		<spring:message code="commas" />
 		<br /> <br />
 	</fieldset>
 	<br />
