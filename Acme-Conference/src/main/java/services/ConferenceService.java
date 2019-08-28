@@ -43,7 +43,6 @@ public class ConferenceService {
 	public Collection<Conference> findAllNotFinalMode() {
 		return this.conferenceRepository.findAllNotFinalMode();
 	}
-
 	public Collection<Conference> findAllPast() {
 		return this.conferenceRepository.findAllPast();
 	}

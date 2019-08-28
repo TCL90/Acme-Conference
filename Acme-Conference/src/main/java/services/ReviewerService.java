@@ -2,6 +2,7 @@
 package services;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
@@ -13,6 +14,8 @@ import repositories.ReviewerRepository;
 import security.Authority;
 import security.LoginService;
 import security.UserAccount;
+import domain.Box;
+import domain.Customisation;
 import domain.Reviewer;
 
 @Service
@@ -20,7 +23,13 @@ import domain.Reviewer;
 public class ReviewerService {
 
 	@Autowired
-	private ReviewerRepository	reviewerRepository;
+	private ReviewerRepository		reviewerRepository;
+
+	@Autowired
+	private BoxService				boxService;
+
+	@Autowired
+	private CustomisationService	customisationService;
 
 
 	//Constructor
@@ -67,27 +76,15 @@ public class ReviewerService {
 		Assert.notNull(reviewer);
 
 		final String pnumber = reviewer.getPhoneNumber();
-		//TODO: DESCOMENTAR
-		//final Customisation cus = ((List<Customisation>) this.customisationService.findAll()).get(0);
-		//final String cc = cus.getPhoneNumberCode();
-		//		if (pnumber.matches("^[0-9]{4,}$"))
-		//			reviewer.setPhoneNumber(cc.concat(pnumber));
-
-		//		if (reviewer.getId() != 0) {
-		//			Assert.isTrue(this.actorService.checkReviewer());
-		//
-		//			// Modified Reviewer must be logged Reviewer
-		//			final Reviewer logReviewer;
-		//			logReviewer = this.findByPrincipal();
-		//			Assert.notNull(logReviewer);
-		//			Assert.notNull(logReviewer.getId());
-		//
-		//		} else {
-		//TODO: DESCOMENTAR
-		//			final Collection<Box> boxes = this.actorService1.createPredefinedBoxes();
-		//			reviewer.setBoxes(boxes);
+		final Customisation cus = ((List<Customisation>) this.customisationService.findAll()).get(0);
+		final String cc = cus.getPhoneNumberCode();
+		if (pnumber.matches("^[0-9]{4,}$"))
+			reviewer.setPhoneNumber(cc.concat(pnumber));
 
 		if (reviewer.getId() == 0) {
+			final Collection<Box> boxes = this.boxService.createBoxesForNewActor();
+			reviewer.setBoxes(boxes);
+
 			final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 			final String oldpass = reviewer.getUserAccount().getPassword();
 			final String hash = encoder.encodePassword(oldpass, null);

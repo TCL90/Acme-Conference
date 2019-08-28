@@ -1,8 +1,9 @@
 
 package services;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,6 @@ import domain.Message;
 @Transactional
 public class BoxService {
 
-
 	@Autowired
 	private BoxRepository	messageBoxRepository;
 
@@ -31,22 +31,30 @@ public class BoxService {
 	@Autowired
 	private MessageService	ms;
 
+	
+
 	public Collection<Box> createBoxesForNewActor() {
-		
-		Box bIn = new Box();
-		bIn.setId(0);
+
+		final Box bIn = new Box();
 		bIn.setName("In");
-		
-		Box bNotif = new Box();
-		bNotif.setId(0);
+
+		final Box bNotif = new Box();
 		bNotif.setName("Notification");
-		
-		Box bOut = new Box();
-		bOut.setId(0);
+
+		final Box bOut = new Box();
 		bOut.setName("Out");
-		
-		
-		return Arrays.asList(bIn, bNotif, bOut);
+
+		final List<Box> boxes = new ArrayList<Box>();
+		boxes.add(bIn);
+		boxes.add(bNotif);
+		boxes.add(bOut);
+
+		final List<Box> res = new ArrayList<Box>();
+
+		for (final Box b : boxes)
+			res.add(this.messageBoxRepository.save(b));
+
+		return res;
 	}
 
 	public Box save(final Box messageBox) {

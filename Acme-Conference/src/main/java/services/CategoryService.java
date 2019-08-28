@@ -15,6 +15,7 @@ import security.LoginService;
 import security.UserAccount;
 import domain.Category;
 import domain.Conference;
+import domain.Comment;
 
 @Service
 @Transactional
@@ -36,6 +37,11 @@ public class CategoryService {
 
 	public List<Category> findAll() {
 		return this.categoryRepository.findAll();
+	}
+	
+	public Category save(final Category c) {
+
+		return this.categoryRepository.save(c);
 	}
 
 	//	public Collection<Category> findAll() {
