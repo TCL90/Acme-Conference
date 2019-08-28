@@ -159,12 +159,16 @@
 				
 	</display:column>
 	
-	
+	<jstl:set var="momentoAhoraMenosColumna" 
+	value="${(fechaAhoraDate.time - row.submissionDeadline.time) / (1000*60*60*24) }"/>
 	<display:column>
-		<a href="submission/administrator/procedure.do?conferenceId=${row.id}">
+		<jstl:if test="${momentoAhoraMenosColumna > 0 }">
+			<a href="submission/administrator/procedure.do?conferenceId=${row.id}">
 			<spring:message code="submission.evaluate"/>
-		</a>
+			</a>
+		</jstl:if>
 	</display:column>
+
 	
 	<display:column><a href="conference/administrator/show.do?conferenceId=${row.id }"><spring:message code="conference.show"/></a></display:column>
 	

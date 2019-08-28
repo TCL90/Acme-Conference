@@ -2,9 +2,11 @@
 package controllers;
 
 import java.util.Collection;
+import java.util.Date;
 
 import javax.validation.Valid;
 
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -62,7 +64,11 @@ public class ConferenceAdministratorController extends AbstractController {
 			return result;
 		}
 
+		final DateTime fechaAhora = DateTime.now();
+		final Date fechaAhoraDate = fechaAhora.toDate();
+
 		result = new ModelAndView("conference/administrator/list");
+		result.addObject("fechaAhoraDate", fechaAhoraDate);
 		result.addObject("conferences", conferences);
 		result.addObject("requestURI", "/conference/administrator/list.do");
 		result.addObject("allA", true);
