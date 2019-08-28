@@ -134,14 +134,15 @@
 	<display:column property="endDate" titleKey="conference.endDate"/>
 
 	<display:column property="fee" titleKey="conference.fee"/>
-	
+	<security:authorize access="isAuthenticated()">
 	<jstl:if test="${pageContext.response.locale.language=='es'}">
-	<display:column property="category.titleEsp" titleKey="conference.category"/>
+	<display:column sortable="true" property="category.titleEsp" titleKey="conference.category"/>
 	</jstl:if>
 	
 	<jstl:if test="${pageContext.response.locale.language=='en'}">
-	<display:column property="category.titleIng" titleKey="conference.category"/>
+	<display:column sortable="true" property="category.titleIng" titleKey="conference.category"/>
 	</jstl:if>
+	</security:authorize>
 	
 	<security:authorize access="!hasRole('ADMIN')">
 	<display:column><a href="conference/show.do?conferenceId=${row.id }"><spring:message code="conference.show"/></a></display:column>

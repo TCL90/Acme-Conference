@@ -27,7 +27,7 @@ public interface ConferenceRepository extends JpaRepository<Conference, Integer>
 
 	@Query("select c from Conference c where c.finalMode='1'")
 	Collection<Conference> findAllFinalMode();
-	
+
 	@Query("select c from Conference c where c.finalMode='0'")
 	Collection<Conference> findAllNotFinalMode();
 
@@ -44,16 +44,13 @@ public interface ConferenceRepository extends JpaRepository<Conference, Integer>
 	@Query("select c from Conference c where (c.title like %?1% or c.acronym like %?1% or c.venue like %?1% or c.summary like %?1%) and c.finalMode=1")
 	List<Conference> finderKeyword(String keyword);
 
-	@Query("select c from Conference c where ?1 >= c.startDate and c.finalMode = 1")
+	@Query("select c from Conference c where c.startDate >= ?1 and c.finalMode = 1")
 	List<Conference> finderStartDate(Date startDate);
 
-	@Query("select c from Conference c where ?1 <= c.endDate and c.finalMode =1")
+	@Query("select c from Conference c where c.endDate <= ?1 and c.finalMode =1")
 	List<Conference> finderEndDate(Date endDate);
 
-	@Query("select c from Category c where c.titleIng =?1 or c.titleEsp=?1")
-	Category categoryByTitle(String cat);
-
-	@Query("select c from Conference c where c = ?1 and c.finalMode=1")
+	@Query("select c from Conference c where c.category = ?1 and c.finalMode=1")
 	List<Conference> finderCategory(Category category);
 
 	@Query("select c from Conference c where c.fee <= ?1")
@@ -97,10 +94,13 @@ public interface ConferenceRepository extends JpaRepository<Conference, Integer>
 
 	@Query("select c.summary from Conference c")
 	List<String> findSummaries();
-	
+
 	@Query("select c from Conference c where c in (select s.conference from Submission s )")
 	List<Conference> findAllWithAuthorSubmission();
 
 	@Query("select c from Conference c where c in (select r.conference from Registration r)")
 	List<Conference> findAllWithAuthorRegistered();
+
+	@Query("select c from Conference c where c.category = ?1")
+	List<Conference> conferencesByCategory(Category category);
 }

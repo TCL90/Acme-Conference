@@ -43,7 +43,7 @@ public class ConferenceService {
 	public Collection<Conference> findAllNotFinalMode() {
 		return this.conferenceRepository.findAllNotFinalMode();
 	}
-	
+
 	public Collection<Conference> findAllPast() {
 		return this.conferenceRepository.findAllPast();
 	}
@@ -222,18 +222,18 @@ public class ConferenceService {
 		final List<String> buzzs = this.customisationService.findBuzzWords();
 		final boolean funsiona = wordsSplitted.removeAll(buzzs);
 
-		//Las claves serán las palabras y los valores su frecuencia
+		//Las claves serï¿½n las palabras y los valores su frecuencia
 		final Map<String, Integer> stringCountMap = new TreeMap<String, Integer>();
 
-		//Para cada palabra, si no existía se introduce en el map 
-		//Si ya existía se aumenta su frecuencia en 1
+		//Para cada palabra, si no existï¿½a se introduce en el map
+		//Si ya existï¿½a se aumenta su frecuencia en 1
 		for (final String s : wordsSplitted)
 			if (stringCountMap.containsKey(s))
 				stringCountMap.put(s, stringCountMap.get(s) + 1);
 			else
 				stringCountMap.put(s, 1);
 
-		//Se busca cuál es la palabra con mayor frecuencia
+		//Se busca cuï¿½l es la palabra con mayor frecuencia
 		Integer ind = 0;
 		String buzztop = "";
 		for (final String st : stringCountMap.keySet())
@@ -242,7 +242,7 @@ public class ConferenceService {
 				buzztop = st;
 			}
 
-		//A partir de esta palabra se obtienen todas las buzzwords (20% más frecuentes)
+		//A partir de esta palabra se obtienen todas las buzzwords (20% mï¿½s frecuentes)
 		final double buzzlimit = ind - 0.2 * ind;
 		final List<String> buzzwords = new ArrayList<String>();
 		for (final String st : stringCountMap.keySet())
@@ -265,13 +265,8 @@ public class ConferenceService {
 		return this.conferenceRepository.finderStartDate(endDate);
 	}
 
-	public Category categoryByTitle(final String cat) {
-		return this.conferenceRepository.categoryByTitle(cat);
-	}
-
-	public List<Conference> finderCategory(final String cat) {
-		final Category c = this.categoryByTitle(cat);
-		return this.conferenceRepository.finderCategory(c);
+	public List<Conference> finderCategory(final Category cat) {
+		return this.conferenceRepository.finderCategory(cat);
 	}
 
 	public List<Conference> finderFee(final Integer fee) {
@@ -287,19 +282,23 @@ public class ConferenceService {
 		if (finder.getEndDate() != null)
 			res.retainAll(this.finderEndDate(finder.getEndDate()));
 		if (finder.getCategory() != null)
-			res.retainAll(this.finderCategory(finder.getCategory().getTitleIng()));
+			res.retainAll(this.finderCategory(finder.getCategory()));
 		if (finder.getMaximumFee() != null)
 			res.retainAll(this.finderFee(finder.getMaximumFee()));
 		return res;
 	}
 
+	List<Conference> conferencesByCategory(final Category category) {
+		return this.conferenceRepository.conferencesByCategory(category);
+	}
+
 	public Collection<Conference> findAllWithAuthorSubmission() {
-		
+
 		return this.conferenceRepository.findAllWithAuthorSubmission();
 	}
-	
+
 	public Collection<Conference> findAllWithAuthorRegistered() {
-		
+
 		return this.conferenceRepository.findAllWithAuthorRegistered();
 	}
 }
