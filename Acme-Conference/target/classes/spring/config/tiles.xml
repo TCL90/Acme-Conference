@@ -46,6 +46,9 @@
 		<value>/views/sponsorship/tiles.xml</value>
 		<value>/views/category/tiles.xml</value>
 			
+		<value>/views/messages/tiles.xml</value>
+
+
 	</util:list>
 	
 

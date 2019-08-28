@@ -1228,7 +1228,7 @@
 	</bean>	
 	
 	<bean id="conference4" class="domain.Conference">
-			<property name="title" value="Conference about artificial intelligence"/>
+			<property name="title" value="Conference about artificial intelligence II"/>
 			<property name="acronym" value="IAMS"/>
 			<property name="venue" value="FIBES, Sevilla"/>
 			<property name="submissionDeadline" value="2019/06/20 10:00:00"/>
@@ -1238,7 +1238,7 @@
 			<property name="endDate" value="2019/07/02 10:00:00"/>
 			<property name="summary" value="Conference about artificial intelligence technologies. A lot of artificial intelligence technologies will be reviewed"/>
 			<property name="fee" value="13"/>
-			<property name="finalMode" value="true"/>
+			<property name="finalMode" value="false"/>
 			
 			<property name="category" ref="category3"/>
 			<!-- <property name="conference" ref="" />  -->
@@ -1334,6 +1334,23 @@
 			<!-- <property name="conference" ref="" />  -->
 	
 	</bean>	
+	
+	<bean id="conference10" class="domain.Conference">
+			<property name="title" value="Conference to test Delete"/>
+			<property name="acronym" value="CTTD"/>
+			<property name="venue" value="FIBES, Sevilla"/>
+			<property name="submissionDeadline" value="2019/11/11 10:00:00"/>
+			<property name="notificationDeadline" value="2019/11/13 10:00:00"/>
+			<property name="cameraReadyDeadline" value="2019/11/15 10:00:00"/>
+			<property name="startDate" value="2019/10/11 10:00:00"/>
+			<property name="endDate" value="2019/12/31 10:00:00"/>
+			<property name="summary" value="About natural language processing on domain models. Natural language processing is very important because..."/>
+			<property name="fee" value="12"/>
+			<property name="finalMode" value="false"/>
+			
+			
+			<property name="category" ref="category3"/>
+	</bean>
 	
 	<!-- ============ CATEGORIES ============== -->
 	<bean id="category1" class="domain.Category">

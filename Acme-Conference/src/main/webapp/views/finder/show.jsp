@@ -28,7 +28,7 @@
 	<jstl:out value="${finder.category.titleEsp}" />
 	</jstl:if>
 	<jstl:if test="${language=='en'}">
-	<jstl:out value="${finder.category.titleEng}" />
+	<jstl:out value="${finder.category.titleIng}" />
 	</jstl:if>
 	<br />
 
