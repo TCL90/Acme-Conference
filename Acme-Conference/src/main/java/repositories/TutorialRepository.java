@@ -2,6 +2,7 @@
 package repositories;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -18,5 +19,8 @@ public interface TutorialRepository extends JpaRepository<Tutorial, Integer> {
 
 	@Query("select s from Section s where s.tutorial.id=?1")
 	Collection<Section> findSectionsByTutorialId(int id);
+
+	@Query("select t from Tutorial t where t.conference.id = ?1")
+	List<Tutorial> findAllTutorialsByConferenceId(int id);
 
 }

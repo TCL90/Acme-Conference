@@ -39,10 +39,10 @@ public class CategoryService {
 		return this.categoryRepository.findAll();
 	}
 	
-	public Category save(final Category c) {
-
-		return this.categoryRepository.save(c);
-	}
+//	public Category save(final Category c) {
+//
+//		return this.categoryRepository.save(c);
+//	}
 
 	//	public Collection<Category> findAll() {
 	//		return this.categoryRepository.findAll();
@@ -81,5 +81,9 @@ public class CategoryService {
 	}
 	public List<Category> findChilds(final Category parent) {
 		return this.categoryRepository.findChilds(parent);
+	}
+	
+	public List<Category> findAllEmpty() {
+		return this.categoryRepository.findAllEmpty();
 	}
 }

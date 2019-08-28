@@ -3,6 +3,7 @@ package services;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.ValidationException;
 
@@ -13,8 +14,8 @@ import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
-import repositories.PanelRepository;
 import domain.Panel;
+import repositories.PanelRepository;
 
 @Service
 @Transactional
@@ -104,5 +105,9 @@ public class PanelService {
 		Assert.isTrue(p.getConference().isFinalMode() == false);
 
 		this.panelRepository.delete(p);
+	}
+	
+	public List<Panel> findAllFromConferenceNotFinal(){
+		return this.panelRepository.findAllFromConferenceNotFinal();
 	}
 }

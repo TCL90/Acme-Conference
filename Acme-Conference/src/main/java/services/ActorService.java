@@ -37,9 +37,6 @@ public class ActorService {
 	public Actor save(final Actor actor) {
 		return this.actorRepository.save(actor);
 	}
-	public void delete(final Actor actor) {
-		this.actorRepository.delete(actor);
-	}
 
 	public Actor findByPrincipal() {
 		Actor res;

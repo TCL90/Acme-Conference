@@ -3,6 +3,7 @@ package services;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -71,5 +72,16 @@ public class SectionServiceTest  extends AbstractTest {
 		Assert.isTrue(finalSects.contains(finalSection));
 		
 		super.authenticate(null);
+	}
+	
+	@Test
+	public void testDeleteSection() {
+		
+		super.authenticate("admin");
+		
+		Collection<Conference> confs = cs.findAllNotFinalMode();
+		Conference conf = confs.iterator().next();
+		List<Tutorial> lista = ts.findAllTutorialsByConferenceId(conf.getId());
+		
 	}
 }

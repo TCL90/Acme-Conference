@@ -1,5 +1,7 @@
 package services;
 
+import java.util.Arrays;
+
 import javax.transaction.Transactional;
 
 import org.junit.Test;
@@ -7,8 +9,11 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.util.Assert;
 
+import domain.Actor;
 import domain.Message;
+import domain.Sponsor;
 import utilities.AbstractTest;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -22,14 +27,28 @@ public class MessageServiceTest  extends AbstractTest {
 	private MessageService ms;
 	
 	@Autowired
-	private SponsorService ss;
+	private ActorService as;
+	
+	@Autowired
+	private BoxService bs;
 	
 	@Test
 	public void testSaveMessage() {
 		
 		super.authenticate("author1");
 		
-		ss.findAll();
+		Actor s = as.findAll().iterator().next();
+		final Actor me = this.as.findByPrincipal();
+		
 		Message m = ms.create();
+		m.setSubject("Subject message");
+		m.setTopic("Topic");
+		m.setBody("Message body");
+		m.setBroadcast(false);
+		m.setRecipients(Arrays.asList(s));
+		
+		Message m2 = bs.sendMessage(m);
+		
+		Assert.isTrue(m2.getId() != m.getId());
 	}
 }

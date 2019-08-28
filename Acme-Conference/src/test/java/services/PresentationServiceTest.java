@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -76,14 +77,22 @@ public class PresentationServiceTest  extends AbstractTest {
 		p.setSummary("Panel summary");
 		
 		Presentation finalP = ps.save(p);
-		Presentation finalList = ps.findPresentationByActivityId(p.getId());
 		
-		Assert.isTrue(finalList != null );
-		Assert.isTrue(finalP.getId() == finalList.getId());
+		Assert.isTrue(finalP.getId() != 0);
 		
-		super.authenticate(null);
+		super.authenticate(null);		
+	}
+	
+	@Test
+	public void testDeletePresentation() {
 		
+		super.authenticate("admin");
 		
+		List<Presentation> lista = ps.findAllFromConferenceNFM();
+		ps.delete(lista.get(0));
+		List<Presentation> lfin = ps.findAllFromConferenceNFM();
+		
+		Assert.isTrue(lfin.size() != lista.size());
 	}
 	
 }

@@ -104,48 +104,7 @@ public class MessageService {
 			return boxn;
 		}
 
-	//
-	//	public Message broadcastMessage(final Message msg) {
-	//		final UserAccount actual = LoginService.getPrincipal();
-	//		final Actor admin = this.ar.getActor(actual);
-	//		Assert.notNull(msg);
-	//		Assert.isTrue(!admin.getBan());
-	//
-	//		final Message result = this.save(msg);
-	//
-	//		final Collection<Box> aboxes = admin.getBoxes();
-	//		for (final Box abox : aboxes)
-	//			if (abox.getName().endsWith("out box") && abox.getPredefined() == true) {
-	//				final Collection<Message> ames = abox.getMessages();
-	//				ames.add(result);
-	//				abox.setMessages(ames);
-	//			}
-	//
-	//		final Collection<Actor> listaActores = this.as.findAll();
-	//		listaActores.remove(admin);
-	//		for (final Actor actors : listaActores)
-	//			for (final Box msb : actors.getBoxes())
-	//
-	//				if (msb.getName().endsWith("notification box") && msb.getPredefined() == true) {
-	//					final Collection<Message> rmes = msb.getMessages();
-	//					rmes.add(result);
-	//					msb.setMessages(rmes);
-	//				}
-	//		return result;
-	//
-	//	}
-	//
-	//	public String getTemplateSecurityBreachNotificationMessage() {
-	//		return "Lamentamos informar de que hemos encontrado una posible brecha de seguridad" + " que podr�a afectar a los datos e informaci�n que usted como usuario ha ingresado"
-	//			+ " en nuestra web. Como consecuencia, sus datos, usuario y contrase�a pueden haber sido" + " filtrados a personas ajenas a Acme. Por favor, le pedimos que cambie su contrase�a lo antes posible, "
-	//			+ "y compruebe que su informaci�n est� inalterada. \n \n Si necesita informaci�n sobre este asunto, por favor, "
-	//			+ "no dude en contactar con nosotros usando la direcci�n de correo support.madruga@acme.com o utilizando nuestro tel�fono de asistencia al cliente."
-	//			+ " La brecha de seguridad ha sido identificada y estamos trabajando para poder solucionar este problema lo antes posible. \n De nuevo, desde Acme, lamentamos lo sucedido."
-	//			+ " \n \n We are sorry to admit that we found a security breach that can affect the data and information you have introduced in our domain as an user."
-	//			+ "Due to this breach, your data, user and password may be filtered to people alien to Acme. Please, we ask you to change your password as soon as possible, and to check that your information and data are still intact."
-	//			+ "\n\n If you need further information about this issue, please be sure to contact us using the email support.madruga@acme.com or our customer service phone."
-	//			+ "The security breach has been identified and we are working hard to fix it. \n Once again, we are very sorry for this error. ";
-	//	}
+	
 		public Collection<Message> findAll() {
 			return this.messageRepository.findAll();
 		}
@@ -175,10 +134,6 @@ public class MessageService {
 			return this.messageRepository.save(message);
 		}
 	
-		public void delete(final Message message) {
-			this.messageRepository.delete(message);
-		}
-
 	public void NotificateMessage(final Submission s) {
 		final Message res = new Message();
 		String StatusEsp = null;

@@ -4,6 +4,7 @@ package services;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.ValidationException;
 
@@ -15,10 +16,10 @@ import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
-import repositories.TutorialRepository;
-import security.Authority;
 import domain.Section;
 import domain.Tutorial;
+import repositories.TutorialRepository;
+import security.Authority;
 
 @Service
 @Transactional
@@ -40,6 +41,10 @@ public class TutorialService {
 	public Tutorial findTutorialByActivityId(final int id) {
 		final Tutorial t = this.tutorialRepository.findTutorialByActivityId(id);
 		return t;
+	}
+	
+	public List<Tutorial> findAllTutorialsByConferenceId(final int id){
+		return this.tutorialRepository.findAllTutorialsByConferenceId(id);
 	}
 
 	public Collection<Section> findSectionsByTutorial(final Tutorial tutorial) {

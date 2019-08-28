@@ -31,7 +31,7 @@ public class CategoryServiceTest  extends AbstractTest {
 		super.authenticate("admin");
 		
 		List<Category> initialCs = cs.findAll();
-		Category cat = new Category();
+		Category cat = cs.create();
 		
 		cat.setTitleEsp("Titulo en español");
 		cat.setTitleIng("Inglish title");
@@ -42,6 +42,23 @@ public class CategoryServiceTest  extends AbstractTest {
 		
 		Assert.isTrue(finalCs.size()!= initialCs.size());
 		Assert.isTrue(finalCs.contains(cat2));
+		
+		super.authenticate(null);
+	}
+	
+	@Test
+	public void testDeleteCategory() {
+		
+		super.authenticate("admin");
+		
+		List<Category> initialCs = cs.findAllEmpty();
+		
+		Category cat = initialCs.get(0);
+		cs.delete(cat);
+		
+		List<Category> finalCs = cs.findAllEmpty();
+		Assert.isTrue(initialCs.size() != finalCs.size());
+		Assert.isTrue(!finalCs.contains(cat));
 		
 		super.authenticate(null);
 	}

@@ -41,29 +41,6 @@ public class AdministratorService {
 	public AdministratorService() {
 		super();
 	}
-	
-	public Administrator create() {
-
-		Administrator result;
-		result = new Administrator();
-
-		final UserAccount newUser = new UserAccount();
-		final Authority f = new Authority();
-		f.setAuthority(Authority.ADMIN);
-		newUser.addAuthority(f);
-		result.setUserAccount(newUser);
-
-		result.setName("");
-		result.setEmail("");
-		result.setAddress("");
-		result.setSurname("");
-		result.setPhoneNumber("");
-		result.setPhoto("");
-
-		// admin
-
-		return result;
-	}
 
 	public Administrator create() {
 

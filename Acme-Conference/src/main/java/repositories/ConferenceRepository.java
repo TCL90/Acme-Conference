@@ -31,9 +31,6 @@ public interface ConferenceRepository extends JpaRepository<Conference, Integer>
 	@Query("select c from Conference c where c.finalMode='0'")
 	Collection<Conference> findAllNotFinalMode();
 
-	@Query("select c from Conference c where c.finalMode='0'")
-	Collection<Conference> findAllNotFinalMode();
-
 	@Query("select c from Conference c where (c.title like %:keyword% or c.venue like %:keyword% or c.acronym like %:keyword% or c.summary like %:keyword%) and c.finalMode='1'")
 	Collection<Conference> findAllKeyword(@Param("keyword") String keyword);
 
@@ -98,9 +95,6 @@ public interface ConferenceRepository extends JpaRepository<Conference, Integer>
 	@Query("select c.summary from Conference c")
 	List<String> findSummaries();
 	
-	@Query("select c from Conference c where c in (select s.conference from Submission s )")
-	List<Conference> findAllWithAuthorSubmission();
-
 	@Query("select c from Conference c where c in (select s.conference from Submission s )")
 	List<Conference> findAllWithAuthorSubmission();
 

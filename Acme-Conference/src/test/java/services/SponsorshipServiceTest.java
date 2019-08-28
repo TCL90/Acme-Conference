@@ -57,4 +57,21 @@ public class SponsorshipServiceTest  extends AbstractTest {
 	
 	
 	}
+	
+	@Test
+	public void testDeleteSponsorship() {
+		
+		super.authenticate("sponsor1");
+		Sponsor s =  sponsorS.findByPrincipal();
+		
+		Collection<Sponsorship> lista = ss.findBySponsor(s.getId());
+		Sponsorship delete = lista.iterator().next();
+		ss.delete(delete);
+		
+		Collection<Sponsorship> listaFin = ss.findBySponsor(s.getId());
+		
+		Assert.isTrue(lista.size() != listaFin.size());
+		
+		super.authenticate(null);
+	}
 }
