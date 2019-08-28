@@ -22,11 +22,15 @@
 			Add your own converters using entries of the following form: 
 			<bean class="converters.Class1ToClass2" /> 
 		-->
+		
 		<bean class="converters.StringToAuthorityConverter" /> 
   		<bean class="converters.AuthorityToStringConverter" />
   		 
 		<bean class="converters.StringToAuthorConverter" /> 
   		<bean class="converters.AuthorToStringConverter" /> 
+  		
+  		<bean class="converters.StringToActorConverter" /> 
+  		<bean class="converters.ActorToStringConverter" /> 
   		
   		<bean class="converters.StringToConferenceConverter" /> 
   		<bean class="converters.ConferenceToStringConverter" /> 
@@ -36,9 +40,40 @@
 	
 		<bean class="converters.StringToUserAccountConverter" /> 
   		<bean class="converters.UserAccountToStringConverter" /> 
+  		
+  		<bean class="converters.StringToPanelConverter" /> 
+  		<bean class="converters.PanelToStringConverter" /> 
+  		
+  		<bean class="converters.StringToPresentationConverter" /> 
+  		<bean class="converters.PresentationToStringConverter" /> 
+  		
+  		<bean class="converters.StringToTutorialConverter" /> 
+  		<bean class="converters.TutorialToStringConverter" />
+  		
+  		<bean class="converters.StringToSectionConverter" /> 
+  		<bean class="converters.SectionToStringConverter" /> 
+  		
+  		<bean class="converters.StringToCommentConverter" /> 
+  		<bean class="converters.CommentToStringConverter" />  
+  		
+  		<bean class="converters.StringToCommentableConverter" /> 
+  		<bean class="converters.CommentableToStringConverter" /> 
+  		
+  		<bean class="converters.StringToCameraReadyPaperConverter" /> 
+  		<bean class="converters.CameraReadyPaperToStringConverter" /> 
 	
 		<bean class="converters.StringToReviewerConverter" /> 
   		<bean class="converters.ReviewerToStringConverter" /> 
+  		
+		<bean class="converters.StringToSponsorConverter" /> 
+  		<bean class="converters.SponsorToStringConverter" /> 
+		
+		<bean class="converters.StringToCategoryConverter" /> 
+  		<bean class="converters.CategoryToStringConverter" /> 
+		
+		<bean class="converters.StringToBoxConverter" /> 
+  		<bean class="converters.BoxToStringConverter" /> 
+		
 		
 	</util:list>
 	

@@ -15,6 +15,7 @@
 	<form:hidden path="finder" />
 	<form:hidden path="id" />
 	<form:hidden path="version" />
+	<form:hidden path="boxes" />
 
 
 	<fieldset>
@@ -35,6 +36,14 @@
 		</form:label>
 		<form:input path="surname" />
 		<form:errors cssClass="error" path="surname" />
+
+		<br /> <br />
+		
+		<form:label path="middleName">
+			<spring:message code="author.middleName" />* :
+		</form:label>
+		<form:input path="middleName" />
+		<form:errors cssClass="error" path="middleName" />
 
 		<br /> <br />
 

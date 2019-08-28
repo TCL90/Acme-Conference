@@ -9,6 +9,8 @@ import org.springframework.util.StringUtils;
 
 import repositories.ActorRepository;
 import repositories.AdministratorRepository;
+import repositories.ReviewerRepository;
+import repositories.SponsorRepository;
 import domain.Actor;
 
 @Component
@@ -20,6 +22,12 @@ public class StringToActorConverter implements Converter<String, Actor> {
 
 	@Autowired
 	private AdministratorRepository	as;
+
+	@Autowired
+	private ReviewerRepository		rs;
+
+	@Autowired
+	private SponsorRepository		sr;
 
 
 	@Override
@@ -35,6 +43,10 @@ public class StringToActorConverter implements Converter<String, Actor> {
 				result = this.as.findOne(id);
 				if (result == null)
 					result = this.ar.findOne(id);
+				if (result == null)
+					result = this.rs.findOne(id);
+				if (result == null)
+					result = this.sr.findOne(id);
 
 			}
 		} catch (final Throwable oops) {

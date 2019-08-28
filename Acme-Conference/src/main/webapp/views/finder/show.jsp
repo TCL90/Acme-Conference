@@ -24,7 +24,12 @@
 	<br />
 
 	<strong><spring:message code="finder.category" />:</strong>
-	<jstl:out value="${finder.category}" />
+	<jstl:if test="${language=='es'}">
+	<jstl:out value="${finder.category.titleEsp}" />
+	</jstl:if>
+	<jstl:if test="${language=='en'}">
+	<jstl:out value="${finder.category.titleEng}" />
+	</jstl:if>
 	<br />
 
 	<strong><spring:message code="finder.maximumFee" />:</strong>

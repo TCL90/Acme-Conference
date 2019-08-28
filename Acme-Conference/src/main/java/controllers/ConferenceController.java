@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,9 +14,11 @@ import org.springframework.web.servlet.ModelAndView;
 import services.ActivityService;
 import services.CommentService;
 import services.ConferenceService;
+import services.SponsorshipService;
 import domain.Activity;
 import domain.Comment;
 import domain.Conference;
+import domain.Sponsorship;
 
 @Controller
 @RequestMapping("/conference")
@@ -29,6 +32,9 @@ public class ConferenceController extends AbstractController {
 
 	@Autowired
 	private CommentService		commentService;
+
+	@Autowired
+	private SponsorshipService	sponsorshipService;
 
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -152,13 +158,15 @@ public class ConferenceController extends AbstractController {
 		int numberOfRegistrations;
 		Collection<Activity> activities;
 		final Collection<Comment> comments;
-
+		Sponsorship sponsorship;
 		try {
-
+			sponsorship = this.sponsorshipService.random();
 			conference = this.conferenceService.findOne(conferenceId);
 			numberOfRegistrations = this.conferenceService.numberOfRegistrations(conference);
 			activities = this.activityService.findAllByConference(conference);
 			comments = this.commentService.findByConference(conference);
+
+			Assert.isTrue(conference.isFinalMode());
 
 		} catch (final Throwable oops) {
 			result = new ModelAndView("welcome/index");
@@ -170,6 +178,8 @@ public class ConferenceController extends AbstractController {
 		result.addObject("numberOfR", numberOfRegistrations);
 		result.addObject("activities", activities);
 		result.addObject("comments", comments);
+		result.addObject("banner", sponsorship.getBanner());
+		result.addObject("targetUrl", sponsorship.getTargetUrl());
 		result.addObject("requestURI", "/conference/show.do?conferenceId=" + conference.getId());
 
 		return result;

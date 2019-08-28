@@ -26,5 +26,14 @@
 		<put-attribute name="body" value="/views/camerareadypaper/edit.jsp" />
 	</definition>
 	
+	<definition name="camerareadypaper/list" extends="master.page">
+		<put-attribute name="title" value="List camera ready papers" />
+		<put-attribute name="body" value="/views/camerareadypaper/list.jsp" />
+	</definition>
+	
+	<definition name="camerareadypaper/show" extends="master.page">
+		<put-attribute name="title" value="Show camera ready paper" />
+		<put-attribute name="body" value="/views/camerareadypaper/show.jsp" />
+	</definition>
 
 </tiles-definitions>

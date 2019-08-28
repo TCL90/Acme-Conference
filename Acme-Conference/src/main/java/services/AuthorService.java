@@ -1,7 +1,10 @@
 
 package services;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
@@ -13,14 +16,19 @@ import repositories.AuthorRepository;
 import security.Authority;
 import security.LoginService;
 import security.UserAccount;
+import domain.Actor;
 import domain.Author;
+import domain.CameraReadyPaper;
 
 @Service
 @Transactional
 public class AuthorService {
 
 	@Autowired
-	private AuthorRepository	authorRepository;
+	private AuthorRepository		authorRepository;
+
+	@Autowired
+	private CameraReadyPaperService	cameraReadyPaperService;
 
 
 	//Constructor
@@ -122,6 +130,51 @@ public class AuthorService {
 
 	public Collection<Author> findAll() {
 		return this.authorRepository.findAll();
+	}
+
+	public Collection<Actor> findAll2() {
+		return this.authorRepository.findAll2();
+	}
+
+	public Collection<Author> score(final List<String> buzzwords) {
+		final Collection<Author> authors = this.authorRepository.findAll();
+		Collection<CameraReadyPaper> cams = null;
+		int score = 0;
+		double scoreRedondeado = 0;
+		for (final Author a : authors) {
+			score = 0;
+			//Se comienza con el score a 0
+			a.setScore(0);
+			cams = this.cameraReadyPaperService.findByAuthorId(a.getId());
+			//Para cada camera ready paper se comprueban las palabras
+			for (final CameraReadyPaper cam : cams) {
+				final String[] titAr = cam.getTitle().split(" ");
+				final List<String> titLi = new ArrayList<String>(Arrays.asList(titAr));
+				//				final List<String> title = new ArrayList<String>(Arrays.asList(cam.getTitle().split(" ")));
+				//El número de palabras que coinciden se obtiene con retain
+				titLi.retainAll(buzzwords);
+				//Por cada palabra se incrementa en un punto el score
+				score = titLi.size() + score;
+			}
+			scoreRedondeado = AuthorService.redondearDecimales(score, 2);
+			a.setScore(score);
+			this.save(a);
+		}
+		return authors;
+	}
+
+	public static double redondearDecimales(final double valorInicial, final int numeroDecimales) {
+		double parteEntera, resultado;
+		resultado = valorInicial;
+		parteEntera = Math.floor(resultado);
+		resultado = (resultado - parteEntera) * Math.pow(10, numeroDecimales);
+		resultado = Math.round(resultado);
+		resultado = (resultado / Math.pow(10, numeroDecimales)) + parteEntera;
+		return resultado;
+	}
+
+	public Author findOne(final int authorId) {
+		return this.authorRepository.findOne(authorId);
 	}
 
 }

@@ -1,4 +1,3 @@
-
 package domain;
 
 import java.util.Collection;
@@ -18,6 +17,7 @@ import javax.validation.constraints.Past;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -96,9 +96,6 @@ public class Message extends DomainEntity {
 	public void setTopic(final String topic) {
 		this.topic = topic;
 	}
-	@Override
-	public String toString() {
-		return "messageerror";
-	}
+
 
 }

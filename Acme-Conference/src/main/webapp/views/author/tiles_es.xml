@@ -26,4 +26,14 @@
 		<put-attribute name="body" value="/views/author/edit.jsp" />
 	</definition>
 	
+	<definition name="author/administrator/list" extends="master.page">	
+		<put-attribute name="title" value="Lista de autores" />
+		<put-attribute name="body" value="/views/author/list.jsp" />
+	</definition>
+	
+	<definition name="author/administrator/show" extends="master.page">	
+		<put-attribute name="title" value="Mostrar autor/a" />
+		<put-attribute name="body" value="/views/author/show.jsp" />
+	</definition>
+	
 </tiles-definitions>

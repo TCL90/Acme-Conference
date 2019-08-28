@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 
 import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,7 +24,7 @@ public class Finder extends DomainEntity {
 	private String		keyword;
 	private Date		startDate;
 	private Date		endDate;
-	private Integer		maximumFee;
+	private	Integer		maximumFee;
 	private Category	category;
 
 
@@ -56,6 +57,7 @@ public class Finder extends DomainEntity {
 		this.endDate = endDate;
 	}
 
+	@Min(0)
 	public Integer getMaximumFee() {
 		return this.maximumFee;
 	}

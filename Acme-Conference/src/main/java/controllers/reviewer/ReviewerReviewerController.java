@@ -91,6 +91,7 @@ public class ReviewerReviewerController extends AbstractController {
 		result = new ModelAndView("reviewer/reviewer/edit");
 		result.addObject("reviewer", reviewer);
 		result.addObject("message", message);
+		result.addObject("boxes", reviewer.getBoxes());
 
 		return result;
 	}

@@ -86,7 +86,7 @@ public class CameraReadyPaperController extends AbstractController {
 
 				this.cameraReadyPaperService.save(camera);
 
-				result = new ModelAndView("redirect:submission/author/list.do");
+				result = new ModelAndView("redirect:../../submission/author/list.do");
 			} catch (final Throwable oops) {
 				result = this.createModelAndView(camera, "submission.commit.error");
 			}

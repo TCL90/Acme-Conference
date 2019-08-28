@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -60,13 +61,16 @@ public class ActivityController extends AbstractController {
 			if (activityType == "presentation") {
 				presentation = this.presentationService.findPresentationByActivityId(activityId);
 				comments = this.commentService.findByPresentation(presentation);
+				Assert.isTrue(presentation.getConference().isFinalMode());
 			} else if (activityType == "tutorial") {
 				tutorial = this.tutorialService.findTutorialByActivityId(activityId);
 				sections = this.tutorialService.findSectionsByTutorial(tutorial);
 				comments = this.commentService.findByTutorial(tutorial);
+				Assert.isTrue(tutorial.getConference().isFinalMode());
 			} else {
 				panel = this.panelService.findPanelByActivityId(activityId);
 				comments = this.commentService.findByPanel(panel);
+				Assert.isTrue(panel.getConference().isFinalMode());
 			}
 
 		} catch (final Throwable oops) {

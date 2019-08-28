@@ -8,6 +8,8 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 	
 	<jstl:if test="${type=='presentation' }">
 	
@@ -22,9 +24,12 @@
 	<jstl:out value="${presentation.title}"></jstl:out>
 	
 	<h3 style="color:blue;">
-		<spring:message code="activity.speakers" />:
+		<spring:message code="activity.speakers2" />:
 	</h3>
-	<jstl:out value="${presentation.speakers}"></jstl:out>
+	
+	<jstl:forEach var="speakers" items="${presentation.speakers }">
+    <jstl:out value="${speakers}"/>
+	</jstl:forEach>
 	
 	<h3 style="color:blue;">
 		<spring:message code="activity.startMoment" />:
@@ -52,9 +57,13 @@
 	<jstl:out value="${presentation.summary}"></jstl:out>
 	
 	<h3 style="color:blue;">
-		<spring:message code="activity.attachments" />:
+		<spring:message code="activity.attachments2" />:
 	</h3>
-	<jstl:out value="${presentation.attachments}"></jstl:out>
+	<jstl:forEach var="attachs" items="${presentation.attachments }">
+	<jstl:forEach var="splt" items="${fn:split(attachs,',')}">
+    <a href="${splt}"><jstl:out value="${splt}"/></a> 
+	</jstl:forEach>
+	</jstl:forEach>
 	
 	<h3 style="color:blue;">
 		<spring:message code="presentation.camera.title" />:
@@ -64,12 +73,21 @@
 	<h3 style="color:blue;">
 		<spring:message code="presentation.camera.authors" />:
 	</h3>
-	<jstl:out value="${presentation.cameraReadyPaper.authors}"></jstl:out>
+	<jstl:forEach var="authors" items="${presentation.cameraReadyPaper.authors }">
+    <jstl:out value="${authors}"/>
+	</jstl:forEach>
 	
 	<h3 style="color:blue;">
 		<spring:message code="presentation.camera.summary" />:
 	</h3>
 	<jstl:out value="${presentation.cameraReadyPaper.summary}"></jstl:out>
+	
+	<security:authorize access="hasRole('ADMIN')">
+	<h3 style="color:blue;">
+		<spring:message code="presentation.camera.document" />:
+	</h3>
+	<a href="${presentation.cameraReadyPaper.document}"><jstl:out value="${presentation.cameraReadyPaper.document}"/></a>
+	</security:authorize>
 	
 	</jstl:if>
 	
@@ -85,9 +103,11 @@
 	<jstl:out value="${tutorial.title}"></jstl:out>
 	
 	<h3 style="color:blue;">
-		<spring:message code="activity.speakers" />:
+		<spring:message code="activity.speakers2" />:
 	</h3>
-	<jstl:out value="${tutorial.speakers}"></jstl:out>
+	<jstl:forEach var="speakers" items="${tutorial.speakers }">
+    <jstl:out value="${speakers}"/>
+	</jstl:forEach>
 	
 	<h3 style="color:blue;">
 		<spring:message code="activity.startMoment" />:
@@ -115,9 +135,13 @@
 	<jstl:out value="${tutorial.summary}"></jstl:out>
 	
 	<h3 style="color:blue;">
-		<spring:message code="activity.attachments" />:
+		<spring:message code="activity.attachments2" />:
 	</h3>
-	<jstl:out value="${tutorial.attachments}"></jstl:out>
+	<jstl:forEach var="attachs" items="${tutorial.attachments }">
+	<jstl:forEach var="splt" items="${fn:split(attachs,',')}">
+    <a href="${splt}"><jstl:out value="${splt}"/></a> 
+	</jstl:forEach>
+	</jstl:forEach>
 	
 	<jstl:forEach items="${sections}" var="section">
 	
@@ -138,10 +162,25 @@
 	<h3 style="color:blue;">
 		<spring:message code="tutorial.section.pictures" />:
 	</h3>
-	<jstl:out value="${section.pictures}"></jstl:out>
-	
+	<jstl:forEach var="pictures" items="${section.pictures }">
+	<jstl:forEach var="pc" items="${fn:split(pictures,',')}">
+    <a href="${pc}"><jstl:out value="${pc}"/></a> 
 	</jstl:forEach>
+	</jstl:forEach>
+	
+	<security:authorize access="hasRole('ADMIN')">
+	<br/><br/>
+	<a href="section/administrator/edit.do?sectionId=${section.id }"><spring:message code="section.edit"/></a>
+	</security:authorize>
+	</jstl:forEach>
+	<security:authorize access="hasRole('ADMIN')">
+	<br/><br/>
+	<a href="section/administrator/create.do?tutorialId=${tutorial.id}"><spring:message code="section.create"/></a>
+	</security:authorize>
+	<br/>
 	</jstl:if>
+	
+	
 	
 	<jstl:if test="${type=='panel' }">
 	
@@ -158,7 +197,9 @@
 	<h3 style="color:blue;">
 		<spring:message code="activity.speakers" />:
 	</h3>
-	<jstl:out value="${activity.speakers}"></jstl:out>
+	<jstl:forEach var="speakers" items="${activity.speakers }">
+    <jstl:out value="${speakers}"/>
+	</jstl:forEach>
 	
 	<h3 style="color:blue;">
 		<spring:message code="activity.startMoment" />:
@@ -186,12 +227,15 @@
 	<jstl:out value="${activity.summary}"></jstl:out>
 	
 	<h3 style="color:blue;">
-		<spring:message code="activity.attachments" />:
+		<spring:message code="activity.attachments2" />:
 	</h3>
-	<jstl:out value="${activity.attachments}"></jstl:out>
-	
+	<jstl:forEach var="attachs" items="${activity.attachments }">
+	<jstl:forEach var="splt" items="${fn:split(attachs,',')}">
+    <a href="${splt}"><jstl:out value="${splt}"/></a> 
+	</jstl:forEach>
+	</jstl:forEach>
 	</jstl:if>
-	
+	<jstl:if test="${activity.conference.finalMode==true ||tutorial.conference.finalMode==true ||presentation.conference.finalMode==true }">
 	<h3 style="color:blue;">
 	<spring:message code="activity.listComments"/>
 	</h3>
@@ -220,11 +264,29 @@
 	
 	<br/>
 	<br/>
+	<jstl:if test="${type=='presentation'}">
+	<a href="comment/createA.do?activityId=${presentation.id }"><spring:message code="comment.create"/></a>
+	</jstl:if>
+	<jstl:if test="${type=='tutorial'}">
+	<a href="comment/createA.do?activityId=${tutorial.id }"><spring:message code="comment.create"/></a>
+	</jstl:if>
+	<jstl:if test="${type=='panel'}">
+	<a href="comment/createA.do?activityId=${activity.id }"><spring:message code="comment.create"/></a>
+	</jstl:if>
+	<br/>
+	<br/>
 	
-	<a href="comment/create.do?activityId=${activity.id }"><spring:message code="comment.create"/></a>
+	</jstl:if>
 	
 	<br/>
 	<br/>
 	
+	<security:authorize access="!hasRole('ADMIN')">
 	<input type="button" name="back" onclick="javascript: window.location.replace('conference/list.do')"
 		value="<spring:message code="activity.back" />" />
+	</security:authorize>
+	
+	<security:authorize access="hasRole('ADMIN')">
+	<input type="button" name="back" onclick="javascript: window.location.replace('conference/administrator/list.do')"
+		value="<spring:message code="activity.back" />" />
+	</security:authorize>

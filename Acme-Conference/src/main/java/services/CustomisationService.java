@@ -50,4 +50,11 @@ public class CustomisationService {
 		return res;
 
 	}
+
+	public List<String> findBuzzWords() {
+		final List<String> buzzs = this.customisationRepository.findBuzzEng();
+		buzzs.addAll(this.customisationRepository.findBuzzEsp());
+
+		return buzzs;
+	}
 }

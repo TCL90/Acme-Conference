@@ -1,16 +1,21 @@
 
 package services;
 
+import java.util.Collection;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import domain.Administrator;
+import domain.Customisation;
 import repositories.AdministratorRepository;
 import security.Authority;
 import security.LoginService;
 import security.UserAccount;
-import domain.Administrator;
 
 @Service
 @Transactional
@@ -22,12 +27,78 @@ public class AdministratorService {
 	@Autowired
 	private ActorService			actorService;
 
+	@Autowired
+	private CustomisationService	customisationService;
+
 
 	//Constructor
 	public AdministratorService() {
 		super();
 	}
+	
+	public Administrator create() {
 
+		Administrator result;
+		result = new Administrator();
+
+		final UserAccount newUser = new UserAccount();
+		final Authority f = new Authority();
+		f.setAuthority(Authority.ADMIN);
+		newUser.addAuthority(f);
+		result.setUserAccount(newUser);
+
+		result.setName("");
+		result.setEmail("");
+		result.setAddress("");
+		result.setSurname("");
+		result.setPhoneNumber("");
+		result.setPhoto("");
+
+		// admin
+
+		return result;
+	}
+
+	public Administrator save(final Administrator administrator) {
+
+		Assert.notNull(administrator);
+
+		final String pnumber = administrator.getPhoneNumber();
+		//TODO: DESCOMENTAR
+		final Customisation cus = ((List<Customisation>) this.customisationService.findAll()).get(0);
+		final String cc = cus.getPhoneNumberCode();
+		if (pnumber.matches("^[0-9]{4,}$"))
+			administrator.setPhoneNumber(cc.concat(pnumber));
+
+		if (administrator.getId() != 0) {
+			Assert.isTrue(this.checkAdmin());
+
+			// Modified Author must be logged Author
+			final Administrator logAdmin;
+			logAdmin = this.findByPrincipal();
+			Assert.notNull(logAdmin);
+			Assert.notNull(logAdmin.getId());
+		}
+		//TODO: DESCOMENTAR
+		//			final Collection<Box> boxes = this.actorService1.createPredefinedBoxes();
+		//			author.setBoxes(boxes);
+		if (administrator.getId() == 0) {
+			final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+			final String oldpass = administrator.getUserAccount().getPassword();
+			final String hash = encoder.encodePassword(oldpass, null);
+
+			final UserAccount cuenta = administrator.getUserAccount();
+			cuenta.setPassword(hash);
+			administrator.setUserAccount(cuenta);
+		}
+
+		Administrator res;
+
+		res = this.administratorRepository.save(administrator);
+
+		this.administratorRepository.flush();
+		return res;
+	}
 	public Administrator findByPrincipal() {
 		Administrator res;
 		UserAccount userAccount;
@@ -59,5 +130,9 @@ public class AdministratorService {
 			res = true;
 		return res;
 
+	}
+
+	public List<Administrator> findAll() {
+		return this.administratorRepository.findAll();
 	}
 }

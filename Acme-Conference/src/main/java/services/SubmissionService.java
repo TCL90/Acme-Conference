@@ -1,8 +1,13 @@
 
 package services;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.validation.ValidationException;
 
@@ -16,6 +21,7 @@ import repositories.ConferenceRepository;
 import repositories.ReportRepository;
 import repositories.SubmissionRepository;
 import utilities.TickerGenerator;
+import domain.Actor;
 import domain.Author;
 import domain.Conference;
 import domain.Paper;
@@ -38,10 +44,16 @@ public class SubmissionService {
 	private PaperService			paperService;
 
 	@Autowired
+	private MessageService			messageService;
+
+	@Autowired
 	private ReportRepository		reportRepository;
 
 	@Autowired
 	private ConferenceRepository	conferenceRepository;
+
+	@Autowired
+	private ReviewerService			reviewerService;
 
 
 	public Collection<Submission> findByAuthor(final int authorId) {
@@ -50,6 +62,10 @@ public class SubmissionService {
 
 	public Collection<Submission> findByReviewer2(final Reviewer revi) {
 		return this.submissionRepository.findByReviewer2(revi);
+	}
+
+	public Collection<Submission> findByReviewerUnderReview(final Reviewer revi) {
+		return this.submissionRepository.findByReviewerUnderReview(revi);
 	}
 
 	public SubmissionForm create() {
@@ -115,6 +131,15 @@ public class SubmissionService {
 	public Collection<Submission> findUnderReview() {
 		return this.submissionRepository.findUnderReview();
 	}
+//	
+//	public Collection<Author> findAllAuthorSubmissionToConference(int conferenceId){
+//		return this.submissionRepository.findAllAuthorsSubmissionConf(conferenceId);
+//	}
+
+	//public Collection<Author> findAllAuthorSubmissionToConference(int conferenceId){
+	public Collection<Actor> findAllAuthorSubmissionToConference(final int conferenceId) {
+		return this.submissionRepository.findAllAuthorsSubmissionConf(conferenceId);
+	}
 
 	public Collection<Submission> decisionProcedure(final int conferenceId) {
 		final Conference conference = this.conferenceRepository.findOne(conferenceId);
@@ -138,10 +163,13 @@ public class SubmissionService {
 					reject++;
 				else if (r.getDecision().contains("BORDER-LINE"))
 					borderLine++;
-			if (reject > accept)
+			if (reject > accept) {
 				s.setStatus("REJECTED");
-			else
+				this.messageService.NotificateMessage(s);
+			} else {
 				s.setStatus("ACCEPTED");
+				this.messageService.NotificateMessage(s);
+			}
 			this.submissionRepository.save(s);
 			this.submissionRepository.flush();
 		}
@@ -152,4 +180,48 @@ public class SubmissionService {
 	public Collection<Submission> findAll() {
 		return this.submissionRepository.findAll();
 	}
+
+	public Collection<Reviewer> assignReviewers(final Submission submission) {
+		//final Submission submission = this.submissionRepository.findOne(submissionId);
+		final Conference conference = submission.getConference();
+		final List<Reviewer> reviewers = (List<Reviewer>) this.reviewerService.findAll();
+		final Set<Reviewer> res = new HashSet<Reviewer>();
+
+		final String[] title = conference.getTitle().split(" ");
+		final String[] summary = conference.getSummary().split(" ");
+
+		Reviewer r = null;
+
+		for (int i = 0; i < reviewers.size(); i++) {
+			r = reviewers.get(i);
+
+			//En title2 se guardan todas las palabras de la conferencia
+			final List<String> title2 = new ArrayList<String>(Arrays.asList(title));
+			final List<String> summary2 = new ArrayList<String>(Arrays.asList(summary));
+			title2.addAll(summary2);
+
+			//Se comprueba si hay palabras en com�n entre title2 y el expertise
+			final Collection<String> expertise2 = r.getExpertise();
+			title2.retainAll(expertise2);
+
+			//Si hay palabras en com�n, se a�ade el reviewer
+			if (title2.size() > 0)
+				res.add(r);
+
+		}
+
+		//Si no hubiera suficientes reviewers, se completa hasta llegar a 3
+		if (res.size() < 3)
+			for (final Reviewer re : reviewers) {
+				res.add(re);
+				if (res.size() >= 3)
+					break;
+			}
+		submission.setReviewers(res);
+
+		this.save(submission);
+
+		return res;
+	}
+
 }

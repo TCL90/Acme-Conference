@@ -64,7 +64,8 @@
 		
 	
 	<br />
-	
+	<spring:message code="camera.not.submission"/>
+	<br />
 	<spring:message code="asterisco"/>
 	<br /><br />
 	
