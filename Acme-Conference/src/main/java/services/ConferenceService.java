@@ -261,7 +261,7 @@ public class ConferenceService {
 	}
 
 	public List<Conference> finderEndDate(final Date endDate) {
-		return this.conferenceRepository.finderStartDate(endDate);
+		return this.conferenceRepository.finderEndDate(endDate);
 	}
 
 	public List<Conference> finderCategory(final Category cat) {
