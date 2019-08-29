@@ -1861,6 +1861,14 @@
 			<property name="summary" value="Summary section 2"/>
 			<property name="pictures" value="http://drive.google.com/picture6, http://drive.google.com/picture2"/>
 			
+			<property name="tutorial" ref="tutorial2" />
+	</bean>
+	
+		<bean id="section3" class="domain.Section">
+			<property name="title" value="Section number 3"/>
+			<property name="summary" value="Summary section 3"/>
+			<property name="pictures" value="http://drive.google.com/picture6, http://drive.google.com/picture2"/>
+			
 			<property name="tutorial" ref="tutorial3" />
 	</bean>
 	
