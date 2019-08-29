@@ -907,6 +907,7 @@
 		<property name="name" value="In" /> 
 		<property name="messages">
 			<list>
+			<ref bean="message1"/>
 			</list>
 		</property>
 	</bean>
@@ -943,6 +944,7 @@
 		<property name="name" value="Out" /> 
 		<property name="messages">
 			<list>
+			<ref bean="message1"/>
 			</list>
 		</property>
 	</bean>
@@ -1977,7 +1979,19 @@
 			<property name="sponsor" ref="sponsor2" />
 	</bean>
 
-
+	<bean id="message1" class="domain.Message">
+  		<property name="body" value="Prueba" /> 
+  		<property name="broadcast" value="FALSE" /> 
+  		<property name="moment" value="10/10/2018 00:00:00" /> 
+  		<property name="recipients">
+  		<list>
+  		<ref bean="author1"/>
+  		</list>
+  		</property> 
+  		<property name="sender" ref="author1" /> 
+  		<property name="subject" value="Prueba" /> 
+  		<property name="topic" value="Prueba" /> 
+  </bean>
 
 
 </beans>

@@ -72,6 +72,14 @@ public class BoxService {
 
 	}
 	
+	public void saveNotification(final Box messageBox) {
+		final UserAccount actual = LoginService.getPrincipal();
+		final Actor a = this.actorRepository.getActor(actual);
+		Assert.isTrue(a.getBoxes().contains(messageBox) || this.administratorService.checkAdmin());
+		this.messageBoxRepository.save(messageBox);
+
+	}
+	
 	public Message sendMessage(final Message msg) {
 		final UserAccount actual = LoginService.getPrincipal();
 		final Actor a = this.actorRepository.getActor(actual);
