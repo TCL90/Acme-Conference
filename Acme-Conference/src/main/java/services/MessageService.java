@@ -141,7 +141,7 @@ public class MessageService {
 		actors.add(s.getAuthor());
 		res.setRecipients(actors);
 		res.setSender(this.ad.findByPrincipal());
-		res.setSubject("Notification message, mensaje de notificación);
+		res.setSubject("Notification message, mensaje de notificación");
 		res.setTopic("SYSTEM");
 
 		final Message enviado = this.messageRepository.save(res);
