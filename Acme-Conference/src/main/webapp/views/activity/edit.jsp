@@ -36,11 +36,11 @@
 		<form:errors cssClass="error" path="speakers" />
 		<br /> <br />
 
-		<form:label path="startMoment">
+	<form:label path="startMoment">
 			<spring:message code="activity.startMoment" />*:
 		</form:label>
 		<form:input path="startMoment" placeholder="yyyy-MM-dd HH:mm:ss" />
-		<form:errors cssClass="error" path="startMoment" placeHolder="2019-05-02"/>
+		<form:errors cssClass="error" path="startMoment" placeHolder="2019-05-02 10:00:00"/>
 		<br /> <br />
 		
 		<form:label path="duration">
@@ -69,7 +69,6 @@
 		</form:label>
 		<form:textarea path="attachments" />
 		<form:errors cssClass="error" path="attachments" />
-		<spring:message code="commas" />
 		<br /> <br />
 	</fieldset>
 	<br />
@@ -119,10 +118,10 @@
 		<br /> <br />
 
 		<form:label path="startMoment">
-			<spring:message code="activity.startMoment" />* :
+			<spring:message code="activity.startMoment" />*:
 		</form:label>
-		<form:input path="startMoment" placeholder="yyyy-MM-dd HH:mm:ss"/>
-		<form:errors cssClass="error" path="startMoment" placeHolder="2019-05-02"/>
+		<form:input path="startMoment" placeholder="yyyy-MM-dd HH:mm:ss" />
+		<form:errors cssClass="error" path="startMoment" placeHolder="2019-05-02 10:00:00"/>
 		<br /> <br />
 		
 		<form:label path="duration">
@@ -152,7 +151,6 @@
 		<form:textarea path="attachments" />
 		<form:errors cssClass="error" path="attachments" />
 		<br /> <br />
-			<spring:message code="commas" />
 	</fieldset>
 	<br />
 	<br />
@@ -201,10 +199,10 @@
 		<br /> <br />
 
 		<form:label path="startMoment">
-			<spring:message code="activity.startMoment" />* :
+			<spring:message code="activity.startMoment" />*:
 		</form:label>
-		<form:input path="startMoment" placeholder="yyyy-MM-dd HH:mm:ss"/>
-		<form:errors cssClass="error" path="startMoment" placeHolder="2019-05-02"/>
+		<form:input path="startMoment" placeholder="yyyy-MM-dd HH:mm:ss" />
+		<form:errors cssClass="error" path="startMoment" placeHolder="2019-05-02 10:00:00"/>
 		<br /> <br />
 		
 		<form:label path="duration">
@@ -234,7 +232,6 @@
 		<form:textarea path="attachments" />
 		<form:errors cssClass="error" path="attachments" />
 		<br /> <br />
-			<spring:message code="commas" />
 	</fieldset>
 	<br />
 	<br />

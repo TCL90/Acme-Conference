@@ -24,7 +24,7 @@ public class Finder extends DomainEntity {
 	private String		keyword;
 	private Date		startDate;
 	private Date		endDate;
-	private	Integer		maximumFee;
+	private Integer		maximumFee;
 	private Category	category;
 
 
@@ -37,8 +37,8 @@ public class Finder extends DomainEntity {
 		this.keyword = keyword;
 	}
 
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
 	public Date getStartDate() {
 		return this.startDate;
 	}
@@ -47,8 +47,8 @@ public class Finder extends DomainEntity {
 		this.startDate = startDate;
 	}
 
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
 	public Date getEndDate() {
 		return this.endDate;
 	}

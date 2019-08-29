@@ -32,7 +32,7 @@
 		<jstl:out value="${buzzword }"></jstl:out>
 		,
 	</jstl:forEach>
-	.
+	
 </jstl:if>
 
 </security:authorize>

@@ -27,7 +27,7 @@ public interface ConferenceRepository extends JpaRepository<Conference, Integer>
 
 	@Query("select c from Conference c where c.finalMode='1'")
 	Collection<Conference> findAllFinalMode();
-	
+
 	@Query("select c from Conference c where c.finalMode='0'")
 	Collection<Conference> findAllNotFinalMode();
 
@@ -53,7 +53,7 @@ public interface ConferenceRepository extends JpaRepository<Conference, Integer>
 	@Query("select c from Conference c where c.category = ?1 and c.finalMode=1")
 	List<Conference> finderCategory(Category category);
 
-	@Query("select c from Conference c where c.fee <= ?1")
+	@Query("select c from Conference c where c.fee <= ?1 and c.finalMode = 1")
 	List<Conference> finderFee(Integer fee);
 
 	@Query("select c from Conference c where c.startDate > NOW() and c.finalMode='1' and c not in (select r.conference from Registration r where r.author.id=?1)")
@@ -80,7 +80,7 @@ public interface ConferenceRepository extends JpaRepository<Conference, Integer>
 	@Query("select c from Conference c where c.startDate between NOW() and :nextFiveDays")
 	Collection<Conference> findAllByAdminOrganisedSoon(@Param("nextFiveDays") Date nextFiveDays);
 
-	@Query("select c from Conference c where c.endDate < NOW()")
+	@Query("select c from Conference c where c.startDate between NOW() and :nextFiveDays")
 	Collection<Conference> findAllPastAdministrator();
 
 	@Query("select c from Conference c where c.startDate > NOW()")
@@ -89,12 +89,12 @@ public interface ConferenceRepository extends JpaRepository<Conference, Integer>
 	@Query("select c from Conference c where c.startDate <= NOW() and c.endDate >= NOW()")
 	Collection<Conference> findAllRunningAdministrator();
 
-	@Query("select c.title from Conference c")
-	List<String> findTitles();
+	@Query("select c.title from Conference c where c.startDate >= :lastTwelveMonths ")
+	List<String> findTitles(@Param("lastTwelveMonths") Date lastTwelveMonths);
 
-	@Query("select c.summary from Conference c")
-	List<String> findSummaries();
-	
+	@Query("select c.summary from Conference c where c.startDate >= :lastTwelveMonths")
+	List<String> findSummaries(@Param("lastTwelveMonths") Date lastTwelveMonths);
+
 	@Query("select c from Conference c where c in (select s.conference from Submission s )")
 	List<Conference> findAllWithAuthorSubmission();
 
