@@ -209,8 +209,14 @@ public class ConferenceService {
 
 	public List<String> findBuzzwords() {
 		//TODO: 12 MESES DE CONFERENCES
-		final List<String> findWords = this.conferenceRepository.findTitles();
-		findWords.addAll(this.conferenceRepository.findSummaries());
+
+		final Date lastTwelveMonths;
+		final Calendar ca = Calendar.getInstance();
+		ca.add(Calendar.DAY_OF_YEAR, -365);
+		lastTwelveMonths = ca.getTime();
+
+		final List<String> findWords = this.conferenceRepository.findTitles(lastTwelveMonths);
+		findWords.addAll(this.conferenceRepository.findSummaries(lastTwelveMonths));
 		final List<String> wordsSplitted = new ArrayList<String>();
 
 		//Se separa en palabras

@@ -25,7 +25,13 @@
 <display:table name="messages" id="row" requestURI="${requestURI}" pagesize="5" class ="displaytag">
 	
 	
-	<display:column property="recipients[0].name" titleKey="message.recipients" sortable="true"/>
+	<display:column titleKey="message.recipients" sortable ="true">
+		<jstl:forEach items="${row.recipients}" var="rec">
+			<jstl:out value="${rec.name}"></jstl:out> <jstl:out value="${rec.surname}"></jstl:out>,  
+			
+		</jstl:forEach>
+	
+	</display:column>
 	<display:column property="topic" titleKey="message.topic" sortable="true"/>
 	<display:column property="subject" titleKey="message.subject"/>
 	<display:column property="moment" titleKey="message.moment"/>
