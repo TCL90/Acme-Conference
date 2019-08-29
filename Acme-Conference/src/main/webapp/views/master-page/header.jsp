@@ -2,9 +2,9 @@
  * header.jsp
  *
  * Copyright (C) 2019 Universidad de Sevilla
- * 
- * The use of this project is hereby constrained to the conditions of the 
- * TDG Licence, a copy of which you may download from 
+ *
+ * The use of this project is hereby constrained to the conditions of the
+ * TDG Licence, a copy of which you may download from
  * http://www.tdg-seville.info/License.html
  --%>
 
@@ -15,7 +15,7 @@
 
 <div>
 	<!-- <a href="#"><img src="images/logo.png" alt="Acme Conference Co., Inc." /></a> -->
-	
+
 	<a href="#"><img src="${customisation.bannerUrl}" alt="${customisation.systemName}" /></a>
 </div>
 
@@ -30,13 +30,15 @@
 					<li><a href="administrator/administrator/create.do"><spring:message code="master.page.administrator.create" /></a></li>
 					<li><a href="administrator/administrator/edit.do"><spring:message code="master.page.administrator.edit" /></a></li>
 					<li><a href="activity/administrator/list.do"><spring:message code="master.page.administrator.activities.list" /></a></li>
-					<li><a href="submission/administrator/list.do"><spring:message code="master.page.administrator.submission.list" /></a></li>	
+					<li><a href="submission/administrator/list.do"><spring:message code="master.page.administrator.submission.list" /></a></li>
 					<li><a href="dashboard/administrator/dashboard.do"><spring:message code="master.page.dashboard"/></a></li>
 					<li><a href="customisation/administrator/edit.do"><spring:message code="master.page.configuration"/></a></li>
-					<li><a href="author/administrator/list.do"><spring:message code="master.page.administrator.author.list" /></a></li>				</ul>
+					<li><a href="author/administrator/list.do"><spring:message code="master.page.administrator.author.list" /></a></li>
+					<li><a href="category/administrator/list.do"><spring:message code="master.page.category.list" /></a></li>
+				</ul>
 			</li>
 		</security:authorize>
-		
+
 		<security:authorize access="hasRole('AUTHOR')">
 			<li><a class="fNiv"><spring:message	code="master.page.author" /></a>
 				<ul>
@@ -48,8 +50,8 @@
 				</ul>
 			</li>
 		</security:authorize>
-		
-		
+
+
 		<security:authorize access="hasRole('SPONSOR')">
 			<li><a class="fNiv"><spring:message	code="master.page.sponsor" /></a>
 				<ul>
@@ -59,7 +61,7 @@
 				</ul>
 			</li>
 		</security:authorize>
-		
+
 		<security:authorize access="hasRole('REVIEWER')">
 			<li><a class="fNiv"><spring:message	code="master.page.reviewer" /></a>
 				<ul>
@@ -70,9 +72,9 @@
 				</ul>
 			</li>
 		</security:authorize>
-		
-		
-		
+
+
+
 		<security:authorize access="isAnonymous()">
 			<li><a class="fNiv" href="author/register.do"><spring:message code="master.page.register.author" /></a></li>
 			<li><a class="fNiv" href="reviewer/register.do"><spring:message code="master.page.register.reviewer" /></a></li>
@@ -87,16 +89,16 @@
   					  </div>
 				</form>
 			</li>
-		
+
 		</security:authorize>
-		
+
 		<security:authorize access="isAuthenticated()">
 			<security:authorize access="!hasRole('ADMIN')">
 				<li><a class="fNiv" href="conference/list.do"><spring:message code="master.page.conference.list" /></a></li>
 			</security:authorize>
 			<li>
 				<a class="fNiv">
-					<spring:message code="master.page.message.list" /> 
+					<spring:message code="master.page.message.list" />
 				</a>
 				<ul>
 					<li class="arrow"></li>
@@ -110,8 +112,8 @@
 				</ul>
 			</li>
 			<li>
-				<a class="fNiv"> 
-					<spring:message code="master.page.profile" /> 
+				<a class="fNiv">
+					<spring:message code="master.page.profile" />
 			        (<security:authentication property="principal.username" />)
 				</a>
 				<ul>
@@ -119,7 +121,7 @@
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 				</ul>
 			</li>
-			
+
 			<spring:message code="master.page.search.placeholder" var="placeholder"/>
 			<security:authorize access="!hasRole('ADMIN')">
 			<li><form action="conference/search.do"><div>
@@ -129,7 +131,7 @@
   					  </div>
 				</form>
 			</security:authorize>
-			
+
 			<security:authorize access="hasRole('ADMIN')">
 			<li><form action="conference/administrator/search.do"><div>
     				<input type="search" id="search" name="q"
@@ -146,4 +148,3 @@
 <div>
 	<a href="?language=en">en</a> | <a href="?language=es">es</a>
 </div>
-

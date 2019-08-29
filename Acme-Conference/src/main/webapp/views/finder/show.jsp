@@ -24,7 +24,12 @@
 	<br />
 
 	<strong><spring:message code="finder.category" />:</strong>
-	<jstl:out value="${finder.category}" />
+	<jstl:if test="${language=='es'}">
+	<jstl:out value="${finder.category.titleEsp}" />
+	</jstl:if>
+	<jstl:if test="${language=='en'}">
+	<jstl:out value="${finder.category.titleIng}" />
+	</jstl:if>
 	<br />
 
 	<strong><spring:message code="finder.maximumFee" />:</strong>
@@ -43,7 +48,7 @@
 		<display:column property="acronym" titleKey="finder.acronym" />
 		<jstl:if test="${language=='es'}">
 			<display:column property="category.titleEsp" titleKey="finder.category"/>
-				
+
 		</jstl:if>
 		<jstl:if test="${language=='en'}">
 			<display:column property="category.titleIng" titleKey="finder.category" />

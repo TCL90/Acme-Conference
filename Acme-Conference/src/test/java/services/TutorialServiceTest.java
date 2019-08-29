@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -76,6 +77,23 @@ public class TutorialServiceTest  extends AbstractTest {
 		super.authenticate(null);
 		
 		
+	}
+	
+	@Test
+	public void testDeleteTutorial() {
+		
+		super.authenticate("admin");
+		
+		Collection<Conference> confs = cs.findAllNotFinalMode();
+		Conference conf = confs.iterator().next();
+		List<Tutorial> lista = ts.findAllTutorialsByConferenceId(conf.getId());
+		
+		ts.delete(lista.get(0));
+		List<Tutorial> listaFin = ts.findAllTutorialsByConferenceId(conf.getId());
+		
+		Assert.isTrue(lista.size() != listaFin.size());
+		
+		super.authenticate(null);
 	}
 	
 }

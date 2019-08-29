@@ -143,10 +143,14 @@
 	</jstl:forEach>
 	</jstl:forEach>
 	
-	<jstl:forEach items="${sections}" var="section">
-	
 	<h3 style="color:blue;">
 		<spring:message code="tutorial.section.list" />:
+	</h3>
+	
+	<jstl:set var="tuto" value="1"/>
+	<jstl:forEach items="${sections}" var="section">
+	<h3 style="color:blue;">
+	Tutorial <jstl:out value="${tuto }"/>:
 	</h3>
 	
 	<h3 style="color:blue;">
@@ -158,7 +162,7 @@
 		<spring:message code="tutorial.section.summary" />:
 	</h3>
 	<jstl:out value="${section.summary}"></jstl:out>
-	
+	<jstl:if test="${!empty section.pictures}">
 	<h3 style="color:blue;">
 		<spring:message code="tutorial.section.pictures" />:
 	</h3>
@@ -167,11 +171,19 @@
     <a href="${pc}"><jstl:out value="${pc}"/></a> 
 	</jstl:forEach>
 	</jstl:forEach>
+	</jstl:if>
+	
+	<br/>
+	<br/>
+	<jstl:if test="${empty section.pictures}">
+	<h4 style="color:blue;"><spring:message code="section.noImages"/></h4>
+	</jstl:if>
 	
 	<security:authorize access="hasRole('ADMIN')">
-	<br/><br/>
+	<br/>
 	<a href="section/administrator/edit.do?sectionId=${section.id }"><spring:message code="section.edit"/></a>
 	</security:authorize>
+	<jstl:set var="tuto" value="${tuto +1}"/>
 	</jstl:forEach>
 	<security:authorize access="hasRole('ADMIN')">
 	<br/><br/>

@@ -17,6 +17,23 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <security:authorize access="hasRole('ADMIN')">
+
+
+<jstl:if test="${showAllLinks == true}">
+
+	<b><spring:message code="conference.allA"/></b>|
+	<a href="conference/administrator/sdElapsedList.do"><spring:message code="conference.sdElapsed"/></a>|
+	<a href="conference/administrator/nDElapsesSoonList.do"><spring:message code="conference.nDElapses"/></a>|
+	<a href="conference/administrator/cRElapsesSoonList.do"><spring:message code="conference.cRElapses"/></a>|
+	<a href="conference/administrator/organisedSoonList.do"><spring:message code="conference.organisedS"/></a>|
+	<a href="conference/administrator/pastList.do"><spring:message code="conference.past"/></a>|
+	<a href="conference/administrator/forthCommingList.do"><spring:message code="conference.forthComming"/></a>|
+	<a href="conference/administrator/runningList.do"><spring:message code="conference.running"/></a>
+
+
+</jstl:if>
+
+
 <jstl:if test="${allA==true || sdElapsed==true || nDElapses==true || cRElapses==true || organisedS==true || past==true || forth==true || running==true}">
 <p>
 <jstl:if test="${allA==true }">
@@ -26,6 +43,9 @@
 <jstl:if test="${allA!=true }">
 <a href="conference/administrator/list.do"><spring:message code="conference.allA"/></a>|
 </jstl:if>
+
+
+
 
 <jstl:if test="${sdElapsed==true }">
 <b><spring:message code="conference.sdElapsed"/></b>|
@@ -134,14 +154,15 @@
 	<display:column property="endDate" titleKey="conference.endDate"/>
 
 	<display:column property="fee" titleKey="conference.fee"/>
-	
+	<security:authorize access="isAuthenticated()">
 	<jstl:if test="${pageContext.response.locale.language=='es'}">
-	<display:column property="category.titleEsp" titleKey="conference.category"/>
+	<display:column sortable="true" property="category.titleEsp" titleKey="conference.category"/>
 	</jstl:if>
 	
 	<jstl:if test="${pageContext.response.locale.language=='en'}">
-	<display:column property="category.titleIng" titleKey="conference.category"/>
+	<display:column sortable="true" property="category.titleIng" titleKey="conference.category"/>
 	</jstl:if>
+	</security:authorize>
 	
 	<security:authorize access="!hasRole('ADMIN')">
 	<display:column><a href="conference/show.do?conferenceId=${row.id }"><spring:message code="conference.show"/></a></display:column>
@@ -162,7 +183,7 @@
 	<jstl:set var="momentoAhoraMenosColumna" 
 	value="${(fechaAhoraDate.time - row.submissionDeadline.time) / (1000*60*60*24) }"/>
 	<display:column>
-		<jstl:if test="${momentoAhoraMenosColumna > 0 }">
+		<jstl:if test="${momentoAhoraMenosColumna > 0 && row.finalMode == true}">
 			<a href="submission/administrator/procedure.do?conferenceId=${row.id}">
 			<spring:message code="submission.evaluate"/>
 			</a>

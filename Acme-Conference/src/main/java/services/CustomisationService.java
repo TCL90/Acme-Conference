@@ -36,10 +36,6 @@ public class CustomisationService {
 		return this.customisationRepository.save(customisation);
 	}
 
-	public void delete(final Customisation customisation) {
-		this.customisationRepository.delete(customisation);
-	}
-
 	public Customisation getCustomisation() {
 		final List<Customisation> x = new ArrayList<Customisation>();
 		x.addAll(this.findAll());

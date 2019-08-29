@@ -143,7 +143,11 @@ public class AuthorService {
 		final Collection<Author> authors = this.authorRepository.findAll();
 		Collection<CameraReadyPaper> cams = null;
 		int score = 0;
+		double highestScore = 0;
 		double scoreRedondeado = 0;
+		double ratio = 0;
+		String cleanTitle = "";
+		String cleanSummary = "";
 		for (final Author a : authors) {
 			score = 0;
 			//Se comienza con el score a 0
@@ -151,17 +155,33 @@ public class AuthorService {
 			cams = this.cameraReadyPaperService.findByAuthorId(a.getId());
 			//Para cada camera ready paper se comprueban las palabras
 			for (final CameraReadyPaper cam : cams) {
-				final String[] titAr = cam.getTitle().split(" ");
+				//Se limpian las palabras
+				cleanTitle = cam.getTitle().replace(".", "");
+				cleanSummary = cam.getSummary().replace(".", "");
+				final String[] titAr = cleanTitle.split(" ");
+				final String[] sumAr = cleanSummary.split(" ");
 				final List<String> titLi = new ArrayList<String>(Arrays.asList(titAr));
-				//				final List<String> title = new ArrayList<String>(Arrays.asList(cam.getTitle().split(" ")));
+				final List<String> sumLi = new ArrayList<String>(Arrays.asList(sumAr));
+				//Se limpian las palabras
+				//				for (final String word : titLi)
+				//					word.replace(".", "");
+				titLi.addAll(sumLi);
 				//El número de palabras que coinciden se obtiene con retain
 				titLi.retainAll(buzzwords);
 				//Por cada palabra se incrementa en un punto el score
 				score = titLi.size() + score;
+
 			}
-			scoreRedondeado = AuthorService.redondearDecimales(score, 2);
+
+			if (score > highestScore)
+				highestScore = score;
 			a.setScore(score);
-			this.save(a);
+			//this.save(a);
+		}
+		for (final Author a : authors) {
+			ratio = (a.getScore() / highestScore) * 10;
+			scoreRedondeado = AuthorService.redondearDecimales(ratio, 2);
+			a.setScore(scoreRedondeado);
 		}
 		return authors;
 	}

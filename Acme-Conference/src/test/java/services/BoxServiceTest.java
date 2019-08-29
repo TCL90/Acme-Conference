@@ -33,22 +33,25 @@ public class BoxServiceTest  extends AbstractTest {
 	public void testSaveBox() {
 		
 		super.authenticate("admin");
-		Collection<Box> boxes = bs.createBoxesForNewActor();
 		
-		Iterator<Author> autors = as.findAll().iterator();
-		Author autor = autors.next();
 		
-		Collection<Box> initialBoxes = autor.getBoxes();
+		Author autor = as.create();
 		
-		autor.getBoxes().addAll(boxes);
-		for (Box box : autor.getBoxes()) {
-			bs.save(box);
-		}
+		autor.setAddress("Any address");
+		autor.setEmail("email@es.es");
+		autor.setPhoneNumber("666555444");
+		autor.setName("Author new");
+		autor.setMiddleName("Middle");
+		autor.setSurname("Surname");
+		autor.setPhoto("http://www.flicker.es/url");
+		autor.setScore(0.0);
 		
-		Author a2 = as.save(autor);
-		Collection<Box> finalBoxes = a2.getBoxes();
+		//Dentro del metodo save del autor se crean las boxes
+		Author finalAuthor = as.save(autor);
+		as.save(finalAuthor);
+		Collection<Box> finalBoxes = finalAuthor.getBoxes();
 		
-		Assert.isTrue(finalBoxes.size() != initialBoxes.size());
+		Assert.isTrue(finalBoxes.size() == 3);
 		super.authenticate(null);
 	}
 }

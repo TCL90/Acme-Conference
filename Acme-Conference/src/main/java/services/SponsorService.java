@@ -63,6 +63,8 @@ public class SponsorService {
 		f.setAuthority(Authority.SPONSOR);
 		newUser.addAuthority(f);
 		result.setUserAccount(newUser);
+		
+		result.setBoxes(this.boxService.createBoxesForNewActor());
 
 		result.setName("");
 		result.setEmail("");

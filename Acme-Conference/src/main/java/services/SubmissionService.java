@@ -224,4 +224,9 @@ public class SubmissionService {
 		return res;
 	}
 
+	public Collection<Submission> findAllWithoutCRP() {
+		
+		return this.submissionRepository.findAllWithoutCRP();
+	}
+
 }

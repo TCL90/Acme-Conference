@@ -101,6 +101,8 @@ public class SubmissionAdministratorController extends AbstractController {
 		result.addObject("subAccepted", subAccepted);
 		result.addObject("subRejected", subRejected);
 
+		result.addObject("showAllLinks", true);
+
 		return result;
 	}
 

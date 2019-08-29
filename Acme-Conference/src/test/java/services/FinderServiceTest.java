@@ -1,6 +1,6 @@
 package services;
 
-import java.util.Arrays;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -11,9 +11,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 
-import domain.Actor;
-import domain.Message;
-import domain.Sponsor;
+import domain.Category;
+import domain.Finder;
 import utilities.AbstractTest;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -21,34 +20,33 @@ import utilities.AbstractTest;
 	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml", "classpath:spring/junit.xml"
 })
 @Transactional
-public class MessageServiceTest  extends AbstractTest {
+public class FinderServiceTest  extends AbstractTest {
 
 	@Autowired
-	private MessageService ms;
+	private FinderService fs;
 	
-	@Autowired
-	private ActorService as;
-	
-	@Autowired
-	private BoxService bs;
+	@Autowired 
+	private CategoryService cs;
 	
 	@Test
-	public void testSaveMessage() {
+	public void testSaveFinder() {
 		
 		super.authenticate("author1");
 		
-		Actor s = as.findAll().iterator().next();
-		final Actor me = this.as.findByPrincipal();
+		Finder f = fs.getFinder();
+		final int confs = f.getConferences().size(); 
 		
-		Message m = ms.create();
-		m.setSubject("Subject message");
-		m.setTopic("Topic");
-		m.setBody("Message body");
-		m.setBroadcast(false);
-		m.setRecipients(Arrays.asList(s));
+		List<Category> cats = cs.findAll();
 		
-		Message m2 = bs.sendMessage(m);
+		Category cat = cats.get(0);
+		if(cat.equals(f.getCategory())) {
+			cat = cats.get(1);
+		}
+		f.setCategory(cat);
+		Finder fin = fs.save(f);
+		final int confsFin = fin.getConferences().size();
+		Assert.isTrue(confs != confsFin);
 		
-		Assert.isTrue(m2.getId() != m.getId());
+		super.authenticate(null);
 	}
 }

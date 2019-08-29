@@ -21,7 +21,7 @@
 	<display:column property="ticker" titleKey="submission.ticker"/>
 	<display:column property="moment" titleKey="submission.moment"/>
 	
-	<display:column titleKey="submission.status">
+	<display:column titleKey="submission.status" sortable="true">
 		<jstl:if test="${row.status == 'UNDER-REVIEW'}">
 			<spring:message code="submission.under.review"/>
 		</jstl:if>

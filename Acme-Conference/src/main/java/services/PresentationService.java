@@ -3,6 +3,7 @@ package services;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.ValidationException;
 
@@ -13,8 +14,8 @@ import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
-import repositories.PresentationRepository;
 import domain.Presentation;
+import repositories.PresentationRepository;
 
 @Service
 @Transactional
@@ -111,4 +112,7 @@ public class PresentationService {
 		this.presentationRepository.delete(p);
 	}
 
+	public List<Presentation> findAllFromConferenceNFM() {
+		return this.presentationRepository.findAllFromConferenceNFM();
+	}
 }

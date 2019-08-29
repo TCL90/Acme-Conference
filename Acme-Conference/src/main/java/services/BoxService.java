@@ -23,7 +23,7 @@ import domain.Message;
 public class BoxService {
 
 	@Autowired
-	private BoxRepository	messageBoxRepository;
+	private BoxRepository	boxRepository;
 
 	@Autowired
 	private ActorRepository	actorRepository;
@@ -31,6 +31,7 @@ public class BoxService {
 	@Autowired
 	private MessageService	ms;
 
+	
 
 	public Collection<Box> createBoxesForNewActor() {
 
@@ -51,7 +52,7 @@ public class BoxService {
 		final List<Box> res = new ArrayList<Box>();
 
 		for (final Box b : boxes)
-			res.add(this.messageBoxRepository.save(b));
+			res.add(this.boxRepository.save(b));
 
 		return res;
 	}
@@ -59,7 +60,7 @@ public class BoxService {
 	public Box save(final Box messageBox) {
 		final UserAccount actual = LoginService.getPrincipal();
 		final Actor a = this.actorRepository.getActor(actual);
-		final Box mb = this.messageBoxRepository.save(messageBox);
+		final Box mb = this.boxRepository.save(messageBox);
 		if (!a.getBoxes().contains(messageBox)) {
 			final Collection<Box> mboxes = a.getBoxes();
 			mboxes.add(mb);
@@ -70,7 +71,7 @@ public class BoxService {
 		return mb;
 
 	}
-
+	
 	public Message sendMessage(final Message msg) {
 		final UserAccount actual = LoginService.getPrincipal();
 		final Actor a = this.actorRepository.getActor(actual);
@@ -100,5 +101,7 @@ public class BoxService {
 		}
 		return result;
 	}
+	
+	
 
 }

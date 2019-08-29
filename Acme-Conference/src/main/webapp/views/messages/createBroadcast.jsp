@@ -39,9 +39,16 @@
 		<form:label path="message.topic">
 			<spring:message code="message.topic" />* :
 		</form:label>
-		<form:input path="message.topic" />
-		<form:errors cssClass="error" path="message.topic" />
-		<br /> <br />
+		
+		<form:select path="message.topic" >
+			<jstl:if test="${pageContext.response.locale.language=='es'}">	
+				<form:options items="${topicsEsp}"  />	
+			</jstl:if>
+			<jstl:if test="${pageContext.response.locale.language=='en'}">	
+				<form:options items="${topicsIng}"  />	
+			</jstl:if>
+		</form:select>
+				<br />		<br />
 
 		<form:label path="message.subject">
 			<spring:message code="message.subject" />* :

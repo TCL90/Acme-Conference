@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -74,5 +75,22 @@ public class PanelServiceTest  extends AbstractTest {
 		super.authenticate(null);
 		
 		
+	}
+	
+	@Test
+	public void testDeletePanel() {
+		
+		super.authenticate("admin");
+		
+		List<Panel> initialPanels = ps.findAllFromConferenceNotFinal();
+		
+		Panel delete = initialPanels.get(0);
+		ps.delete(delete);
+		
+		List<Panel> finalP = ps.findAllFromConferenceNotFinal();
+		
+		Assert.isTrue(initialPanels.size() != finalP.size());
+		
+		super.authenticate(null);
 	}
 }

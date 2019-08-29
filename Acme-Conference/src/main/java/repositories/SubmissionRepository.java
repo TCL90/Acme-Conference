@@ -34,6 +34,9 @@ public interface SubmissionRepository extends JpaRepository<Submission, Integer>
 	Collection<Submission> findUnderReviewReported(int conferenceId);
 
 	@Query("select s.author from Submission s where s.conference.id = ?1")
-	//Collection<Author> findAllAuthorsSubmissionConf(int conferenceId);
 	Collection<Actor> findAllAuthorsSubmissionConf(int conferenceId);
+
+	@Query("select s from Submission s where s not in "
+			+ "(select crp.submission from CameraReadyPaper crp)")
+	Collection<Submission> findAllWithoutCRP();
 }
