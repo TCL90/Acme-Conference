@@ -40,7 +40,7 @@
 		<br /> <br />
 
 		<form:label path="middleName">
-			<spring:message code="reviewer.middleName" />* :
+			<spring:message code="reviewer.middleName" />:
 		</form:label>
 		<form:input path="middleName" />
 		<form:errors cssClass="error" path="middleName" />
@@ -50,7 +50,7 @@
 
 
 		<form:label path="address">
-			<spring:message code="reviewer.address" />*:
+			<spring:message code="reviewer.address" />:
 		</form:label>
 		<form:input path="address" />
 		<form:errors cssClass="error" path="address" />

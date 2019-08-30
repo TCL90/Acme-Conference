@@ -34,9 +34,17 @@
 		<form:errors cssClass="error" path="surname" />
 
 		<br /> <br />
+		
+		<form:label path="middleName">
+			<spring:message code="administrator.middleName" /> :
+		</form:label>
+		<form:input path="middleName" />
+		<form:errors cssClass="error" path="middleName" />
+
+		<br /> <br />
 
 		<form:label path="address">
-			<spring:message code="administrator.address" />*:
+			<spring:message code="administrator.address" />:
 		</form:label>
 		<form:input path="address" />
 		<form:errors cssClass="error" path="address" />

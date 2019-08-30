@@ -26,7 +26,14 @@
 		<form:errors cssClass="error" path="name" />
 
 		<br /> <br />
+		
+		<form:label path="middleName">
+			<spring:message code="author.middleName" />:
+		</form:label>
+		<form:input path="middleName" />
+		<form:errors cssClass="error" path="middleName" />
 
+		<br /> <br />
 		<form:label path="surname">
 			<spring:message code="author.surname" />* :
 		</form:label>
@@ -36,7 +43,7 @@
 		<br /> <br />
 
 		<form:label path="address">
-			<spring:message code="author.address" />*:
+			<spring:message code="author.address" />:
 		</form:label>
 		<form:input path="address" />
 		<form:errors cssClass="error" path="address" />

@@ -35,8 +35,16 @@
 
 		<br /> <br />
 
+		<form:label path="middleName">
+			<spring:message code="reviewer.middleName" />:
+		</form:label>
+		<form:input path="middleName" />
+		<form:errors cssClass="error" path="middleName" />
+
+		<br /> <br />
+
 		<form:label path="address">
-			<spring:message code="reviewer.address" />*:
+			<spring:message code="reviewer.address" />:
 		</form:label>
 		<form:input path="address" />
 		<form:errors cssClass="error" path="address" />
@@ -85,7 +93,7 @@
 		<form:label path="expertise">
 			<spring:message code="reviewer.expertise" />:
 		</form:label>
-		<form:input path="expertise" />
+		<form:input path="expertise" placeholder="artificial intelligence, big data"/>
 		<form:errors cssClass="error" path="expertise" />
 
 		<br /> <br />
