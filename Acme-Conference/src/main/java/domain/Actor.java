@@ -1,3 +1,4 @@
+
 package domain;
 
 import java.util.Collection;
@@ -56,7 +57,6 @@ public abstract class Actor extends DomainEntity {
 		this.phoneNumber = phoneNumber;
 	}
 
-	@NotBlank
 	@SafeHtml
 	public String getAddress() {
 		return this.address;

@@ -40,7 +40,7 @@
 		<br /> <br />
 		
 		<form:label path="middleName">
-			<spring:message code="author.middleName" />* :
+			<spring:message code="author.middleName" />:
 		</form:label>
 		<form:input path="middleName" />
 		<form:errors cssClass="error" path="middleName" />
@@ -48,7 +48,7 @@
 		<br /> <br />
 
 		<form:label path="address">
-			<spring:message code="author.address" />*:
+			<spring:message code="author.address" />:
 		</form:label>
 		<form:input path="address" />
 		<form:errors cssClass="error" path="address" />

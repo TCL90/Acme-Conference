@@ -38,7 +38,7 @@
 		<br /> <br />
 
 		<form:label path="middleName">
-			<spring:message code="sponsor.middleName" />* :
+			<spring:message code="sponsor.middleName" /> :
 		</form:label>
 		<form:input path="middleName" />
 		<form:errors cssClass="error" path="middleName" />
@@ -46,7 +46,7 @@
 		<br /> <br />
 
 		<form:label path="address">
-			<spring:message code="sponsor.address" />*:
+			<spring:message code="sponsor.address" />:
 		</form:label>
 		<form:input path="address" />
 		<form:errors cssClass="error" path="address" />
