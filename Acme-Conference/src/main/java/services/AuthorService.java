@@ -66,7 +66,8 @@ public class AuthorService {
 		result.setSurname("");
 		result.setPhoneNumber("");
 		result.setPhoto("");
-
+		final Finder finder = new Finder();
+		result.setFinder(finder);
 		// Author
 
 		return result;
