@@ -77,7 +77,7 @@
 	<input type="submit" name="savePresentation"
 		value="<spring:message code="activity.save" />" />&nbsp;
 	<jstl:if test="${presentation.id!=0 }">
-	<jstl:if test="${presentation.conference.finalMode==false}">
+	<jstl:if test="${presentation.conference.finalMode==true}">
 	<input type="submit" name="deletePresentation"
 		value="<spring:message code="activity.delete" />"
 		onclick="return confirm('<spring:message code="activity.confirm.delete" />')" />&nbsp;
@@ -158,7 +158,7 @@
 	<input type="submit" name="savePanel"
 		value="<spring:message code="activity.save" />" />&nbsp;
 	<jstl:if test="${panel.id!=0 }">
-	<jstl:if test="${panel.conference.finalMode==false}">
+	<jstl:if test="${panel.conference.finalMode==true}">
 	<input type="submit" name="deletePanel"
 		value="<spring:message code="activity.delete" />"
 		onclick="return confirm('<spring:message code="activity.confirm.delete" />')" />&nbsp;
@@ -239,7 +239,7 @@
 	<input type="submit" name="saveTutorial"
 		value="<spring:message code="activity.save" />" />&nbsp;
 	<jstl:if test="${tutorial.id!=0 }">
-	<jstl:if test="${tutorial.conference.finalMode==false}">
+	<jstl:if test="${tutorial.conference.finalMode==true}">
 	<input type="submit" name="deleteTutorial"
 		value="<spring:message code="activity.delete" />"
 		onclick="return confirm('<spring:message code="activity.confirm.delete" />')" />&nbsp;

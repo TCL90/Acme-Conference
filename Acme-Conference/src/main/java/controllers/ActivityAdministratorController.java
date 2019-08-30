@@ -263,7 +263,7 @@ public class ActivityAdministratorController extends AbstractController {
 			}
 
 			p = this.presentationService.reconstruct(p, binding);
-			Assert.isTrue(!p.getConference().isFinalMode(), "conferenceFinalMode");
+			Assert.isTrue(p.getConference().isFinalMode(), "conferenceFinalMode");
 			Assert.isTrue(p.getStartMoment().equals(p.getConference().getStartDate()) || p.getStartMoment().after(p.getConference().getStartDate()), "activityStartBeforeConference");
 			Assert.isTrue(p.getConference().getStartDate().after(Calendar.getInstance().getTime()), "startMomentBeforeToday");
 			Assert.isTrue(p.getStartMoment().before(p.getConference().getEndDate()), "activityStartAfterConferenceEnd");
@@ -311,7 +311,7 @@ public class ActivityAdministratorController extends AbstractController {
 			}
 
 			p = this.panelService.reconstruct(p, binding);
-			Assert.isTrue(!p.getConference().isFinalMode(), "conferenceFinalMode");
+			Assert.isTrue(p.getConference().isFinalMode(), "conferenceFinalMode");
 			Assert.isTrue(p.getStartMoment().equals(p.getConference().getStartDate()) || p.getStartMoment().after(p.getConference().getStartDate()), "activityStartBeforeConference");
 			Assert.isTrue(p.getConference().getStartDate().after(Calendar.getInstance().getTime()), "startMomentBeforeToday");
 			Assert.isTrue(p.getStartMoment().before(p.getConference().getEndDate()), "activityStartAfterConferenceEnd");
@@ -359,7 +359,7 @@ public class ActivityAdministratorController extends AbstractController {
 			}
 
 			t = this.tutorialService.reconstruct(t, binding);
-			Assert.isTrue(!t.getConference().isFinalMode(), "conferenceFinalMode");
+			Assert.isTrue(t.getConference().isFinalMode(), "conferenceFinalMode");
 
 			Assert.isTrue(t.getStartMoment().equals(t.getConference().getStartDate()) || t.getStartMoment().after(t.getConference().getStartDate()), "activityStartBeforeConference");
 			Assert.isTrue(t.getStartMoment().before(t.getConference().getEndDate()), "activityStartAfterConferenceEnd");
@@ -403,7 +403,7 @@ public class ActivityAdministratorController extends AbstractController {
 
 		try {
 			final Presentation p1 = this.presentationService.findOne(p.getId());
-			Assert.isTrue(!p1.getConference().isFinalMode(), "conferenceFinalMode");
+			Assert.isTrue(p1.getConference().isFinalMode(), "conferenceFinalMode");
 			this.presentationService.delete(p1);
 			res = new ModelAndView("redirect:../../conference/administrator/show.do?conferenceId=" + p1.getConference().getId());
 		} catch (final Throwable oops) {
@@ -422,7 +422,7 @@ public class ActivityAdministratorController extends AbstractController {
 
 		try {
 			final Panel p1 = this.panelService.findOne(p.getId());
-			Assert.isTrue(!p1.getConference().isFinalMode(), "conferenceFinalMode");
+			Assert.isTrue(p1.getConference().isFinalMode(), "conferenceFinalMode");
 			this.panelService.delete(p1);
 			res = new ModelAndView("redirect:../../conference/administrator/show.do?conferenceId=" + p1.getConference().getId());
 		} catch (final Throwable oops) {
@@ -441,7 +441,7 @@ public class ActivityAdministratorController extends AbstractController {
 
 		try {
 			final Tutorial t1 = this.tutorialService.findOne(t.getId());
-			Assert.isTrue(!t1.getConference().isFinalMode(), "conferenceFinalMode");
+			Assert.isTrue(t1.getConference().isFinalMode(), "conferenceFinalMode");
 			this.tutorialService.delete(t1);
 			res = new ModelAndView("redirect:../../conference/administrator/show.do?conferenceId=" + t1.getConference().getId());
 		} catch (final Throwable oops) {

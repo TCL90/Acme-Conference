@@ -109,7 +109,7 @@
 	
 	<display:column>
 	<security:authorize access="hasRole('ADMIN')">
-	<jstl:if test="${row.conference.finalMode==false }">
+	<jstl:if test="${row.conference.finalMode==true }">
 	<a href="activity/administrator/edit.do?activityId=${row.id }">
 	<spring:message code="activity.edit"/>
 	</a>
@@ -120,7 +120,7 @@
 	</display:table>
 	
 	<security:authorize access="hasRole('ADMIN')">
-	<jstl:if test="${!conference.finalMode==true }">
+	<jstl:if test="${conference.finalMode==true }">
 	<p>
 	<a href="activity/administrator/create.do?conferenceId=${conference.id }&type=panel"><spring:message code="conference.panel.create"/></a>
 	<a href="camerareadypaper/administrator/list.do?conferenceId=${conference.id }"><spring:message code="conference.presentation.create"/></a>

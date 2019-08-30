@@ -114,14 +114,14 @@ public class TutorialService {
 
 	public Tutorial save(final Tutorial t) {
 		Assert.isTrue(this.administratorService.checkAdmin());
-		Assert.isTrue(t.getConference().isFinalMode() == false);
+		Assert.isTrue(t.getConference().isFinalMode() == true);
 
 		return this.tutorialRepository.save(t);
 	}
 
 	public void delete(final Tutorial t) {
 		Assert.isTrue(this.administratorService.checkAdmin());
-		Assert.isTrue(t.getConference().isFinalMode() == false);
+		Assert.isTrue(t.getConference().isFinalMode() == true);
 
 		this.tutorialRepository.delete(t);
 	}

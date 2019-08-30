@@ -188,7 +188,7 @@ public class CommentService {
 		if (type.contains("report")) {
 			final Report commentable = this.reportService.findOne(id);
 			res.setCommentable(commentable);
-
+			Assert.isTrue(commentable.getSubmission().getConference().isFinalMode());
 			Assert.isTrue(commentable.getReviewer() == this.reviewerService.findByPrincipal() || commentable.getSubmission().getAuthor() == this.authorService.findByPrincipal());
 		}
 
