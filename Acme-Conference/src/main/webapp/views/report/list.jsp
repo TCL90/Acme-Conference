@@ -22,13 +22,22 @@
 	<display:column property="qualityScore" titleKey="report.qualityScore"/>
 	<display:column property="readabilityScore" titleKey="report.readabilityScore"/>
 	<display:column property="decision" titleKey="report.decision"/>
-
-
+	<security:authorize access="hasRole('AUTHOR')">
+	<display:column>
+	<a href="report/author/show.do?reportId=${row.id }"><spring:message code="report.author.show"/></a>
+	</display:column>
+	</security:authorize>
+	
+	<security:authorize access="hasRole('REVIEWER')">
+	<display:column>
+	<a href="report/reviewer/show.do?reportId=${row.id }"><spring:message code="report.author.show"/></a>
+	</display:column>
+	</security:authorize>
 	
 </display:table>
-
+<security:authorize access="hasRole('REVIEWER')">
 <a href="report/reviewer/create2.do" ><spring:message code="report.create" /></a>
-
+</security:authorize>
 
 
 

@@ -79,9 +79,9 @@ public class CommentService {
 
 		if (!AuCollection.contains(au)) {
 			if (r.getSubmission().getConference().isFinalMode())
-				res = null;
-			else
 				res = this.commentRepository.findByReport(r.getId());
+			else
+				res = null;
 		} else
 			res = this.commentRepository.findByReport(r.getId());
 
@@ -189,7 +189,8 @@ public class CommentService {
 			final Report commentable = this.reportService.findOne(id);
 			res.setCommentable(commentable);
 			Assert.isTrue(commentable.getSubmission().getConference().isFinalMode());
-			Assert.isTrue(commentable.getReviewer() == this.reviewerService.findByPrincipal() || commentable.getSubmission().getAuthor() == this.authorService.findByPrincipal());
+			Assert.isTrue(this.reviewerService.checkReviewer());
+			Assert.isTrue(commentable.getReviewer().getId() == this.reviewerService.findByPrincipal().getId());
 		}
 
 		return res;

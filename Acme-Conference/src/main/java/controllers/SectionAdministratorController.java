@@ -89,7 +89,7 @@ public class SectionAdministratorController extends AbstractController {
 			}
 
 			s = this.sectionService.reconstruct(s, binding);
-			Assert.isTrue(!s.getTutorial().getConference().isFinalMode(), "tutorialFinalMode");
+			Assert.isTrue(s.getTutorial().getConference().isFinalMode(), "tutorialFinalMode");
 			this.sectionService.save(s);
 
 			res = new ModelAndView("redirect:../../activity/administrator/show.do?activityId=" + s.getTutorial().getId());
@@ -115,7 +115,7 @@ public class SectionAdministratorController extends AbstractController {
 
 		try {
 			final Section s1 = this.sectionService.findOne(s.getId());
-			Assert.isTrue(!s1.getTutorial().getConference().isFinalMode(), "conferenceFinalMode");
+			Assert.isTrue(s1.getTutorial().getConference().isFinalMode(), "conferenceFinalMode");
 			this.sectionService.delete(s1);
 			res = new ModelAndView("redirect:../../conference/administrator/show.do?conferenceId=" + s1.getTutorial().getConference().getId());
 		} catch (final Throwable oops) {

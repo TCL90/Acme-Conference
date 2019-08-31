@@ -46,6 +46,13 @@
 		</display:column>
 	</security:authorize>
 	
+	<security:authorize access="hasRole('AUTHOR')">
+	<jstl:if test="${!empty row.reviewers }">
+	<display:column>
+	<a href="report/author/list.do?submissionId=${row.id }"><spring:message code="submission.report.list"/></a>
+	</display:column>
+	</jstl:if>
+	</security:authorize>
 
 </display:table>
 

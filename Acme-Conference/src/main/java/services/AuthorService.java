@@ -187,6 +187,18 @@ public class AuthorService {
 		return authors;
 	}
 
+	public boolean checkAuthor() {
+		boolean res = false;
+
+		final Authority a = new Authority();
+		a.setAuthority(Authority.AUTHOR);
+
+		if (LoginService.getPrincipal().getAuthorities().contains(a))
+			res = true;
+		return res;
+
+	}
+
 	public static double redondearDecimales(final double valorInicial, final int numeroDecimales) {
 		double parteEntera, resultado;
 		resultado = valorInicial;
