@@ -77,6 +77,15 @@
 		<bean class="converters.StringToBoxConverter" /> 
   		<bean class="converters.BoxToStringConverter" /> 
 		
+		<bean class="converters.StringToFinderConverter" /> 
+  		<bean class="converters.FinderToStringConverter" /> 
+		
+		<bean class="converters.StringToPaperConverter" /> 
+  		<bean class="converters.PaperToStringConverter" /> 
+		
+		
+		
+		
 		
 	</util:list>
 	

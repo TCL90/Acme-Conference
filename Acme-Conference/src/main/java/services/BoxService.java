@@ -10,10 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import repositories.ActorRepository;
 import repositories.BoxRepository;
-import security.LoginService;
-import security.UserAccount;
 import domain.Actor;
 import domain.Box;
 import domain.Message;
@@ -26,10 +23,13 @@ public class BoxService {
 	private BoxRepository	boxRepository;
 
 	@Autowired
-	private ActorRepository	actorRepository;
+	private ActorService	as;
 
 	@Autowired
 	private MessageService	ms;
+	
+	@Autowired
+	private AdministratorService administratorService;
 
 	
 
@@ -58,8 +58,7 @@ public class BoxService {
 	}
 
 	public Box save(final Box messageBox) {
-		final UserAccount actual = LoginService.getPrincipal();
-		final Actor a = this.actorRepository.getActor(actual);
+		final Actor a = this.as.findByPrincipal();
 		final Box mb = this.boxRepository.save(messageBox);
 		if (!a.getBoxes().contains(messageBox)) {
 			final Collection<Box> mboxes = a.getBoxes();
@@ -72,9 +71,15 @@ public class BoxService {
 
 	}
 	
+	public void saveNotification(final Box messageBox) {
+		final Actor a = this.as.findByPrincipal();
+		Assert.isTrue(a.getBoxes().contains(messageBox) || this.administratorService.checkAdmin());
+		this.boxRepository.save(messageBox);
+
+	}
+	
 	public Message sendMessage(final Message msg) {
-		final UserAccount actual = LoginService.getPrincipal();
-		final Actor a = this.actorRepository.getActor(actual);
+		final Actor a = this.as.findByPrincipal();
 		Assert.notNull(msg);
 
 		final Message result = this.ms.save(msg);

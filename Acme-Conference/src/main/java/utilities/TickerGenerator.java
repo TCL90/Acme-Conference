@@ -267,7 +267,7 @@ public class TickerGenerator {
 		String ticker1 = "";
 		ticker1 = ticker1 + author.getName().charAt(0);
 
-		if (author.getMiddleName() == null)
+		if (author.getMiddleName() == null || author.getMiddleName().isEmpty())
 			ticker1 = ticker1 + "X";
 		else
 			ticker1 = ticker1 + author.getMiddleName().charAt(0);

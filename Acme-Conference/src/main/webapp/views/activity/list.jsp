@@ -38,7 +38,7 @@
 	</display:column>
 	
 	<display:column>
-	<jstl:if test="${row.conference.finalMode==false }">
+	<jstl:if test="${row.conference.finalMode==true }">
 	<a href="activity/administrator/edit.do?activityId=${row.id }">
 	<spring:message code="activity.edit"/>
 	</a>

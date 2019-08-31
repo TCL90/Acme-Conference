@@ -100,14 +100,14 @@ public class PresentationService {
 
 	public Presentation save(final Presentation p) {
 		Assert.isTrue(this.administratorService.checkAdmin());
-		Assert.isTrue(p.getConference().isFinalMode() == false);
+		Assert.isTrue(p.getConference().isFinalMode() == true);
 
 		return this.presentationRepository.save(p);
 	}
 
 	public void delete(final Presentation p) {
 		Assert.isTrue(this.administratorService.checkAdmin());
-		Assert.isTrue(p.getConference().isFinalMode() == false);
+		Assert.isTrue(p.getConference().isFinalMode() == true);
 
 		this.presentationRepository.delete(p);
 	}

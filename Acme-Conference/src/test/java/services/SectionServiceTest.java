@@ -43,21 +43,14 @@ public class SectionServiceTest  extends AbstractTest {
 	@Test
 	public void testSaveSection() {
 		
-		super.authenticate("author1");
+		super.authenticate("admin");
 	
 		Collection<Conference> confs = cs.findAllNotFinalMode();
 		Conference conf = confs.iterator().next();
-		Collection<Activity> acts = as.findAllByConference(conf);
-		Iterator<Activity> iter = acts.iterator();
-		Activity act = null;
-		while(iter.hasNext() ) {
-			act = iter.next();
-			if(act instanceof Tutorial) {
-				break;
-			}
-		}
+		Collection<Tutorial> tuts = ts.findAllTutorialsByConferenceId(conf.getId());
+		Iterator<Tutorial> iter = tuts.iterator();
 		
-		Tutorial tutorial = ts.findTutorialByActivityId(act.getId());
+		Tutorial tutorial = iter.next();
 		
 		Collection<Section> inicialSects = ss.findSectionsByTutorial(tutorial);
 		Section section = ss.createSectionByTutorialId(tutorial.getId());
@@ -81,7 +74,20 @@ public class SectionServiceTest  extends AbstractTest {
 		
 		Collection<Conference> confs = cs.findAllNotFinalMode();
 		Conference conf = confs.iterator().next();
-		List<Tutorial> lista = ts.findAllTutorialsByConferenceId(conf.getId());
+		Collection<Tutorial> tuts = ts.findAllTutorialsByConferenceId(conf.getId());
+		Iterator<Tutorial> iter = tuts.iterator();
+		
+		Tutorial tutorial = iter.next();
+		
+		Collection<Section> inicialSects = ss.findSectionsByTutorial(tutorial);
+		Section section = inicialSects.iterator().next();
+
+		ss.delete(section);
+		Collection<Section> finalSects = ss.findSectionsByTutorial(tutorial);
+		
+		Assert.isTrue(inicialSects.size()!= finalSects.size());
+		
+		super.authenticate(null);
 		
 	}
 }

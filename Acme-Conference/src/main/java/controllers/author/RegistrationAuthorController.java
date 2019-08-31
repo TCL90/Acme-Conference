@@ -113,7 +113,7 @@ public class RegistrationAuthorController extends AbstractController {
 				Assert.isTrue(this.registrationService.findByAuthorAndConference(registration.getAuthor().getId(), registration.getConference().getId()) != null, "registration sent");
 
 				final int month = Calendar.getInstance().getTime().getMonth();
-				if (Calendar.getInstance().getTime().getYear() == 2019)
+				if (registration.getExpirationYear() == 2019)
 					Assert.isTrue(registration.getExpirationMonth() >= month, "registration month");
 
 				this.registrationService.save(registration);

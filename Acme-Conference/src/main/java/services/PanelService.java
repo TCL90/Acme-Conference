@@ -95,14 +95,14 @@ public class PanelService {
 
 	public Panel save(final Panel p) {
 		Assert.isTrue(this.administratorService.checkAdmin());
-		Assert.isTrue(p.getConference().isFinalMode() == false);
+		Assert.isTrue(p.getConference().isFinalMode() == true);
 
 		return this.panelRepository.save(p);
 	}
 
 	public void delete(final Panel p) {
 		Assert.isTrue(this.administratorService.checkAdmin());
-		Assert.isTrue(p.getConference().isFinalMode() == false);
+		Assert.isTrue(p.getConference().isFinalMode() == true);
 
 		this.panelRepository.delete(p);
 	}

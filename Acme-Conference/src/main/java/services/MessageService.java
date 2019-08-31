@@ -15,14 +15,8 @@ import org.springframework.util.Assert;
 
 import domain.Actor;
 import domain.Message;
-import repositories.ActorRepository;
 import repositories.MessageRepository;
-import security.LoginService;
-import security.UserAccount;
-import security.UserAccountRepository;
-import domain.Actor;
 import domain.Box;
-import domain.Message;
 import domain.Submission;
 
 @Service
@@ -31,12 +25,6 @@ public class MessageService {
 
 	@Autowired
 	private MessageRepository		messageRepository;
-
-	@Autowired
-	private ActorRepository			ar;
-
-	@Autowired
-	private UserAccountRepository	ur;
 
 	@Autowired
 	private ActorService			as;
@@ -52,8 +40,7 @@ public class MessageService {
 		public Message create() {
 			final Date date = new Date();
 			final Message m = new Message();
-			final UserAccount actual = LoginService.getPrincipal();
-			final Actor a = this.ar.getActor(actual);
+			final Actor a = this.as.findByPrincipal();
 			m.setMoment(date);
 			m.setSender(a);
 			m.setRecipients(new ArrayList<Actor>());
@@ -148,22 +135,26 @@ public class MessageService {
 		actors.add(s.getAuthor());
 		res.setRecipients(actors);
 		res.setSender(this.ad.findByPrincipal());
-		res.setSubject("Notification message, mensaje de notificaciï¿½n");
+		res.setSubject("Notification message, mensaje de notificación");
 		res.setTopic("SYSTEM");
 
 		final Message enviado = this.messageRepository.save(res);
 		final Collection<Box> boxes = s.getAuthor().getBoxes();
 		for (final Box b : boxes)
-			if (b.getName().contains("notification")) {
-				b.getMessages().add(enviado);
-				this.mbs.save(b);
+			if (b.getName().toLowerCase().contains("notification")) {
+				final List<Message> messages = new ArrayList<>(b.getMessages());
+				messages.add(enviado);
+				b.setMessages(messages);
+				this.mbs.saveNotification(b);
 			}
 		final Collection<Box> boxes2 = this.ad.findByPrincipal().getBoxes();
-		for (final Box b2 : boxes2) {
-			if (b2.getName().contains("out"))
-				b2.getMessages().add(enviado);
-			this.mbs.save(b2);
-		}
+		for (final Box b2 : boxes2)
+			if (b2.getName().toLowerCase().contains("out")) {
+				final List<Message> messages2 = new ArrayList<>(b2.getMessages());
+				messages2.add(enviado);
+				b2.setMessages(messages2);
+				this.mbs.saveNotification(b2);
+			}
 
 	}
 }

@@ -907,6 +907,7 @@
 		<property name="name" value="In" /> 
 		<property name="messages">
 			<list>
+			<ref bean="message1"/>
 			</list>
 		</property>
 	</bean>
@@ -943,6 +944,7 @@
 		<property name="name" value="Out" /> 
 		<property name="messages">
 			<list>
+			<ref bean="message1"/>
 			</list>
 		</property>
 	</bean>
@@ -1175,7 +1177,7 @@
 	
 	<!-- ================== CONFERENCES ================= -->
 	<bean id="conference1" class="domain.Conference">
-			<property name="title" value="Conference about natural language processing"/>
+			<property name="title" value="Conference about natural language processing at artificial intelligence"/>
 			<property name="acronym" value="CNLP"/>
 			<property name="venue" value="FIBES, Sevilla"/>
 			<property name="submissionDeadline" value="2019/11/11 10:00:00"/>
@@ -1228,7 +1230,7 @@
 	</bean>	
 	
 	<bean id="conference4" class="domain.Conference">
-			<property name="title" value="Conference about artificial intelligence"/>
+			<property name="title" value="Conference about artificial intelligence II"/>
 			<property name="acronym" value="IAMS"/>
 			<property name="venue" value="FIBES, Sevilla"/>
 			<property name="submissionDeadline" value="2019/06/20 10:00:00"/>
@@ -1238,7 +1240,7 @@
 			<property name="endDate" value="2019/07/02 10:00:00"/>
 			<property name="summary" value="Conference about artificial intelligence technologies. A lot of artificial intelligence technologies will be reviewed"/>
 			<property name="fee" value="13"/>
-			<property name="finalMode" value="true"/>
+			<property name="finalMode" value="false"/>
 			
 			<property name="category" ref="category3"/>
 			<!-- <property name="conference" ref="" />  -->
@@ -1254,7 +1256,7 @@
 			<property name="cameraReadyDeadline" value="2019/07/28 10:00:00"/>
 			<property name="startDate" value="2019/07/29 10:00:00"/>
 			<property name="endDate" value="2019/09/20 10:00:00"/>
-			<property name="summary" value="Conference about Spring framework and natural language processing"/>
+			<property name="summary" value="Conference about Spring framework and natural language processing. It includes references to artificial intelligence, natural language processing and Spring framework"/>
 			<property name="fee" value="13"/>
 			<property name="finalMode" value="true"/>
 			
@@ -1264,7 +1266,7 @@
 	</bean>	
 	
 	<bean id="conference6" class="domain.Conference">
-			<property name="title" value="Conference about Big Data with artificial intelligence"/>
+			<property name="title" value="About Big Data with artificial intelligence"/>
 			<property name="acronym" value="CABD"/>
 			<property name="venue" value="FIBES, Sevilla"/>
 			<property name="submissionDeadline" value="2019/07/11 10:00:00"/>
@@ -1290,7 +1292,7 @@
 			<property name="cameraReadyDeadline" value="2019/07/01 10:00:00"/>
 			<property name="startDate" value="2019/07/01 12:00:00"/>
 			<property name="endDate" value="2019/09/20 10:00:00"/>
-			<property name="summary" value="Conference about videogames"/>
+			<property name="summary" value="We will talk about videogames history"/>
 			<property name="fee" value="13"/>
 			<property name="finalMode" value="true"/>
 			
@@ -1334,6 +1336,40 @@
 			<!-- <property name="conference" ref="" />  -->
 	
 	</bean>	
+	
+	<bean id="conference10" class="domain.Conference">
+			<property name="title" value="Mobile Congress "/>
+			<property name="acronym" value="CTT"/>
+			<property name="venue" value="FIBES, Sevilla"/>
+			<property name="submissionDeadline" value="2019/11/11 10:00:00"/>
+			<property name="notificationDeadline" value="2019/11/13 10:00:00"/>
+			<property name="cameraReadyDeadline" value="2019/11/15 10:00:00"/>
+			<property name="startDate" value="2019/10/11 10:00:00"/>
+			<property name="endDate" value="2019/12/31 10:00:00"/>
+			<property name="summary" value="About new technologies on mobiles."/>
+			<property name="fee" value="12"/>
+			<property name="finalMode" value="false"/>
+			
+			
+			<property name="category" ref="category3"/>
+	</bean>
+	
+		<bean id="conference11" class="domain.Conference">
+			<property name="title" value="Conference to test delete"/>
+			<property name="acronym" value="CTTD"/>
+			<property name="venue" value="FIBES, Sevilla"/>
+			<property name="submissionDeadline" value="2019/11/11 10:00:00"/>
+			<property name="notificationDeadline" value="2019/11/13 10:00:00"/>
+			<property name="cameraReadyDeadline" value="2019/11/15 10:00:00"/>
+			<property name="startDate" value="2019/10/11 10:00:00"/>
+			<property name="endDate" value="2019/12/31 10:00:00"/>
+			<property name="summary" value="About natural language processing on domain models. Natural language processing is very important because..."/>
+			<property name="fee" value="12"/>
+			<property name="finalMode" value="false"/>
+			
+			
+			<property name="category" ref="category3"/>
+	</bean>
 	
 	<!-- ============ CATEGORIES ============== -->
 	<bean id="category1" class="domain.Category">
@@ -1565,7 +1601,7 @@
 			<property name="status" value="UNDER-REVIEW"/>	
 					
 			<property name="author" ref="author2"/>
-			<property name="conference" ref="conference4"/>
+			<property name="conference" ref="conference5"/>
 			<property name="paper" ref="paper5"/>
 			
 	</bean>
@@ -1636,7 +1672,7 @@
 			<property name="attachments" value="http://drive.google.com/attach4, http://drive.google.com/attach5"/>
 	
 			<property name="cameraReadyPaper" ref="cameraReadyPaper2"/>
-			<property name="conference" ref="conference2" />
+			<property name="conference" ref="conference5" />
 	</bean>
 	
 	
@@ -1646,7 +1682,7 @@
 			<property name="title" value="Comment number 1"/>
 			<property name="moment" value="2019/06/12 10:00:00"/>
 			<property name="author" ref ="author1"/>
-			<property name="text" value="Free text"/>
+			<property name="text" value="I didn't like this conference"/>
 			<property name="commentable" ref="conference1"/>
 	</bean>
 	
@@ -1654,7 +1690,7 @@
 			<property name="title" value="Comment number 2"/>
 			<property name="moment" value="2019/06/12 10:20:00"/>
 
-			<property name="text" value="Free text2"/>
+			<property name="text" value="This conference was a w e s o m e"/>
 			<property name="commentable" ref="conference1"/>
 	</bean>
 	
@@ -1662,7 +1698,7 @@
 			<property name="title" value="Comment number 3"/>
 			<property name="moment" value="2019/06/12 10:30:00"/>
 
-			<property name="text" value="Free text3"/>
+			<property name="text" value="This conference was cool"/>
 			<property name="commentable" ref="conference1"/>
 	</bean>
 	
@@ -1670,7 +1706,7 @@
 			<property name="title" value="Comment number 4"/>
 			<property name="moment" value="2019/06/12 10:30:02"/>
 
-			<property name="text" value="Free text4"/>
+			<property name="text" value="It was funny"/>
 			<property name="commentable" ref="conference1"/>
 	</bean>
 	
@@ -1678,7 +1714,7 @@
 			<property name="title" value="Comment number 5"/>
 			<property name="moment" value="2019/06/12 10:31:00"/>
 
-			<property name="text" value="Free text5"/>
+			<property name="text" value="So bad organisation"/>
 			<property name="commentable" ref="conference1"/>
 	</bean>
 	
@@ -1686,9 +1722,36 @@
 			<property name="title" value="Comment number 6"/>
 			<property name="moment" value="2019/06/12 10:32:00"/>
 
-			<property name="text" value="Free text6"/>
+			<property name="text" value="It was cool but too quick"/>
 			<property name="commentable" ref="conference1"/>
 	</bean>
+	
+	<bean id="comment7" class="domain.Comment">
+			<property name="title" value="Comment number 7"/>
+			<property name="moment" value="2019/06/12 10:32:00"/>
+
+			<property name="text" value="It sounds great"/>
+			<property name="commentable" ref="panel1"/>
+	</bean>
+	
+	<bean id="comment8" class="domain.Comment">
+			<property name="title" value="Comment number 8"/>
+			<property name="moment" value="2019/06/12 10:32:00"/>
+
+			<property name="text" value="It will be very useful"/>
+			<property name="commentable" ref="tutorial1"/>
+	</bean>
+	
+	<bean id="comment9" class="domain.Comment">
+			<property name="title" value="Comment number 9"/>
+			<property name="moment" value="2019/06/12 10:32:00"/>
+
+			<property name="text" value="It will be very useful"/>
+			<property name="commentable" ref="tutorial1"/>
+	</bean>
+	
+	
+	
 	
 	<!-- PANELS -->
 	
@@ -1705,6 +1768,19 @@
 			<property name="conference" ref="conference1" />
 	</bean>
 	
+		<bean id="panel2" class="domain.Panel">
+			<property name="title" value="Panel number 2"/>
+			<property name="speakers" value="Author nº3, Author nº2"/>
+			<property name="startMoment" value="2019/12/12 10:00:00"/>
+			<property name="duration" value="40"/>
+			<property name="schedule" value="2019/12/12 10:40:00"/>
+			<property name="room" value="A1.42"/>
+			<property name="summary" value="Summary panel 1"/>
+			<property name="attachments" value="http://drive.google.com/attach1, http://drive.google.com/attach2"/>
+			
+			<property name="conference" ref="conference9" />
+	</bean>
+	
 	<!-- Camera Ready Paper -->
 	<bean id="cameraReadyPaper1" class="domain.CameraReadyPaper">
 			<property name="title" value="Title 1. Artificial intelligence in environments..."/>
@@ -1717,11 +1793,12 @@
 	<bean id="cameraReadyPaper2" class="domain.CameraReadyPaper">
 			<property name="title" value="Title 2. Spring applied to..."/>
 			<property name="authors" value="Author nº2, Author nº3"/>
-			<property name="summary" value="Summary example2"/>
+			<property name="summary" value="Summary example2. It's very important that artificial intelligence is explained to kids..."/>
 			<property name="document" value="http://www.document2.com"/>
-			<property name="submission" ref="submission4"/>
+			<property name="submission" ref="submission5"/>
 	</bean>
 	
+
 	
 	
 	<!-- Tutorials -->
@@ -1740,6 +1817,34 @@
 			
 	</bean>
 	
+	<bean id="tutorial2" class="domain.Tutorial">
+			<property name="title" value="Tutorial number 2"/>
+			<property name="speakers" value="Author nº2, Author nº3"/>
+			<property name="startMoment" value="2019/12/12 10:00:00"/>
+			<property name="duration" value="40"/>
+			<property name="schedule" value="2019/12/12 10:40:00"/>
+			<property name="room" value="A1.45"/>
+			<property name="summary" value="Summary tutorial 2"/>
+			<property name="attachments" value="http://drive.google.com/attach12, http://drive.google.com/attach32"/>
+			
+			<property name="conference" ref="conference5" />
+			
+	</bean>
+	
+		<bean id="tutorial3" class="domain.Tutorial">
+			<property name="title" value="Tutorial number 2"/>
+			<property name="speakers" value="Author nº1, Author nº3"/>
+			<property name="startMoment" value="2019/12/12 10:00:00"/>
+			<property name="duration" value="40"/>
+			<property name="schedule" value="2019/12/12 10:40:00"/>
+			<property name="room" value="A1.45"/>
+			<property name="summary" value="Summary tutorial 3"/>
+			<property name="attachments" value="http://drive.google.com/attach12, http://drive.google.com/attach32"/>
+			
+			<property name="conference" ref="conference5" />
+			
+	</bean>
+	
 	<!-- SECTIONS -->
 	
 	<bean id="section1" class="domain.Section">
@@ -1748,6 +1853,23 @@
 			<property name="pictures" value="http://drive.google.com/picture6, http://drive.google.com/picture2"/>
 			
 			<property name="tutorial" ref="tutorial1" />
+	</bean>
+	
+		
+	<bean id="section2" class="domain.Section">
+			<property name="title" value="Section number 2"/>
+			<property name="summary" value="Summary section 2"/>
+			<property name="pictures" value="http://drive.google.com/picture6, http://drive.google.com/picture2"/>
+			
+			<property name="tutorial" ref="tutorial2" />
+	</bean>
+	
+		<bean id="section3" class="domain.Section">
+			<property name="title" value="Section number 3"/>
+			<property name="summary" value="Summary section 3"/>
+			<property name="pictures" value="http://drive.google.com/picture6, http://drive.google.com/picture2"/>
+			
+			<property name="tutorial" ref="tutorial3" />
 	</bean>
 	
 	<!-- Reports -->
@@ -1865,7 +1987,19 @@
 			<property name="sponsor" ref="sponsor2" />
 	</bean>
 
-
+	<bean id="message1" class="domain.Message">
+  		<property name="body" value="Prueba" /> 
+  		<property name="broadcast" value="FALSE" /> 
+  		<property name="moment" value="10/10/2018 00:00:00" /> 
+  		<property name="recipients">
+  		<list>
+  		<ref bean="author1"/>
+  		</list>
+  		</property> 
+  		<property name="sender" ref="author1" /> 
+  		<property name="subject" value="Prueba" /> 
+  		<property name="topic" value="Prueba" /> 
+  </bean>
 
 
 </beans>
