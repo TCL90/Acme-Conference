@@ -188,6 +188,14 @@ public class ConferenceService {
 
 	public Conference save(final Conference conference) {
 
+		final Date hoy = Calendar.getInstance().getTime();
+
+		Assert.isTrue(conference.getSubmissionDeadline().after(hoy), "futureDates");
+		Assert.isTrue(conference.getNotificationDeadline().after(hoy), "futureDates");
+		Assert.isTrue(conference.getCameraReadyDeadline().after(hoy), "futureDates");
+		Assert.isTrue(conference.getStartDate().after(hoy), "futureDates");
+		Assert.isTrue(conference.getEndDate().after(hoy), "futureDates");
+
 		Assert.isTrue(conference.getSubmissionDeadline().before(conference.getNotificationDeadline()), "submissionBeforeNotification");
 
 		Assert.isTrue(conference.getNotificationDeadline().before(conference.getCameraReadyDeadline()), "notificationBeforeCamera");
@@ -199,7 +207,6 @@ public class ConferenceService {
 		return this.conferenceRepository.save(conference);
 
 	}
-
 	public void delete(final Conference conf) {
 		Assert.isTrue(!conf.isFinalMode());
 
