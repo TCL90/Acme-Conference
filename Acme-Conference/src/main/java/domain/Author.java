@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Range;
 
@@ -20,7 +19,6 @@ public class Author extends Actor {
 	private double	score;
 
 
-	@NotNull
 	@Range(min = 0, max = 10)
 	public double getScore() {
 		return this.score;

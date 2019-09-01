@@ -215,7 +215,6 @@ public class ConferenceService {
 	}
 
 	public List<String> findBuzzwords() {
-		//TODO: 12 MESES DE CONFERENCES
 
 		final Date lastTwelveMonths;
 		final Calendar ca = Calendar.getInstance();

@@ -12,7 +12,7 @@
 	<display:column property="surname" titleKey="author.surname"/>
 	<display:column property="middleName" titleKey="author.middleName"/>
 	<display:column titleKey="author.score">
-		<jstl:if test="${row.score != 0.0}">
+		<jstl:if test="${row.score != null}">
 			<jstl:out value="${row.score}"></jstl:out>
 		</jstl:if>
 	</display:column>
