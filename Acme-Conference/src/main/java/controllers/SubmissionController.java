@@ -18,6 +18,10 @@ public class SubmissionController extends AbstractController {
 	@Autowired
 	private SubmissionService	submissionService;
 
+	@Autowired
+	private ActorService	actorService;
+
+
 
 	@RequestMapping(value = "/show", method = RequestMethod.GET)
 	public ModelAndView show(@RequestParam final int submissionId) {
@@ -27,6 +31,18 @@ public class SubmissionController extends AbstractController {
 		final Submission submission = this.submissionService.findOne(submissionId);
 
 		try {
+			final Collection<? extends GrantedAuthority> aus = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+			final List<String> autoridades = new ArrayList<String>();
+			for (final GrantedAuthority a : aus)
+				autoridades.add(a.toString());
+			final String autAuthor = "AUTHOR";
+			final String autAdmin = "ADMIN";
+			Assert.isTrue(autoridades.contains(autAuthor) || autoridades.contains("AUTHOR") || autoridades.contains(autAdmin) || autoridades.contains("ADMIN"));
+
+			if (autoridades.contains(autAuthor) || autoridades.contains("AUTHOR")) {
+				final Actor act = this.actorService.findByPrincipal();
+				Assert.isTrue(act.getId() == submission.getAuthor().getId());
+			}
 
 		} catch (final Throwable oops) {
 			result = new ModelAndView("welcome/index");
