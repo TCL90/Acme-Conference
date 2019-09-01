@@ -328,9 +328,7 @@ public class ConferenceAdministratorController extends AbstractController {
 				final Conference c = this.conferenceService.save(conference);
 				result = new ModelAndView("redirect:list.do");
 			} catch (final Throwable oops) {
-				if (oops.getMessage() == "futureDates")
-					result = this.createEditModelAndView(conference, "conference.dates.future");
-				else if (oops.getMessage() == "submissionBeforeNotification")
+				if (oops.getMessage() == "submissionBeforeNotification")
 					result = this.createEditModelAndView(conference, "conference.submissionBeforeNotification");
 				else if (oops.getMessage() == "notificationBeforeCamera")
 					result = this.createEditModelAndView(conference, "conference.notificationBeforeCamera");

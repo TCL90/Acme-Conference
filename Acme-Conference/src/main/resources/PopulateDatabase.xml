@@ -1601,7 +1601,7 @@
 			<property name="status" value="UNDER-REVIEW"/>	
 					
 			<property name="author" ref="author2"/>
-			<property name="conference" ref="conference5"/>
+			<property name="conference" ref="conference4"/>
 			<property name="paper" ref="paper5"/>
 			
 	</bean>
@@ -1672,7 +1672,7 @@
 			<property name="attachments" value="http://drive.google.com/attach4, http://drive.google.com/attach5"/>
 	
 			<property name="cameraReadyPaper" ref="cameraReadyPaper2"/>
-			<property name="conference" ref="conference5" />
+			<property name="conference" ref="conference4" />
 	</bean>
 	
 	
@@ -1778,7 +1778,7 @@
 			<property name="summary" value="Summary panel 1"/>
 			<property name="attachments" value="http://drive.google.com/attach1, http://drive.google.com/attach2"/>
 			
-			<property name="conference" ref="conference9" />
+			<property name="conference" ref="conference10" />
 	</bean>
 	
 	<!-- Camera Ready Paper -->
@@ -1827,7 +1827,7 @@
 			<property name="summary" value="Summary tutorial 2"/>
 			<property name="attachments" value="http://drive.google.com/attach12, http://drive.google.com/attach32"/>
 			
-			<property name="conference" ref="conference5" />
+			<property name="conference" ref="conference4" />
 			
 	</bean>
 	
@@ -1841,7 +1841,7 @@
 			<property name="summary" value="Summary tutorial 3"/>
 			<property name="attachments" value="http://drive.google.com/attach12, http://drive.google.com/attach32"/>
 			
-			<property name="conference" ref="conference5" />
+			<property name="conference" ref="conference4" />
 			
 	</bean>
 	

@@ -4,13 +4,10 @@ package controllers.administrator;
 import java.util.Collection;
 import java.util.Date;
 
-import javax.validation.Valid;
-
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 import repositories.ConferenceRepository;
 import repositories.SubmissionRepository;
 import services.AdministratorService;
-import services.ReviewerService;
 import services.SubmissionService;
 import controllers.AbstractController;
 import domain.Conference;
@@ -41,9 +37,6 @@ public class SubmissionAdministratorController extends AbstractController {
 
 	@Autowired
 	private ConferenceRepository	conferenceRepository;
-
-	@Autowired
-	private ReviewerService			reviewerService;
 
 
 	@RequestMapping(value = "/decision", method = RequestMethod.GET)
@@ -153,59 +146,6 @@ public class SubmissionAdministratorController extends AbstractController {
 		result = new ModelAndView("submission/administrator/list");
 		result.addObject("submissions", submissions);
 		result.addObject("requestURI", "/submission/administrator/list.do");
-
-		return result;
-	}
-
-	@RequestMapping(value = "/assignManual", method = RequestMethod.GET)
-	public ModelAndView assignReviewersManual(@RequestParam final int submissionId) {
-		ModelAndView result;
-
-		final Submission submission = this.submissionRepository.findOne(submissionId);
-
-		Assert.notNull(this.administratorService.findByPrincipal());
-		result = this.createModelAndView(submission);
-
-		return result;
-	}
-
-	protected ModelAndView createModelAndView(final Submission submission) {
-		ModelAndView result;
-		result = this.createModelAndView(submission, null);
-
-		return result;
-	}
-
-	protected ModelAndView createModelAndView(final Submission submission, final String messageCode) {
-		ModelAndView result;
-
-		final Collection<Reviewer> reviewers = this.reviewerService.findAll();
-
-		result = new ModelAndView("submission/administrator/assignManual");
-		result.addObject("submission", submission);
-		result.addObject("reviewers", reviewers);
-
-		result.addObject("message", messageCode);
-
-		return result;
-	}
-
-	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid final Submission submission, @Valid final BindingResult binding) {
-		ModelAndView result;
-
-		if (binding.hasErrors())
-			result = this.createModelAndView(submission);
-		else
-			try {
-				Assert.isTrue(submission.getReviewers().size() > 0 && submission.getReviewers().size() < 4);
-				Assert.notNull(submission.getConference());
-
-				this.submissionService.save(submission);
-				result = new ModelAndView("redirect:list.do");
-			} catch (final Throwable oops) {
-				result = this.createModelAndView(submission, "submission.commit.error.manual");
-			}
 
 		return result;
 	}

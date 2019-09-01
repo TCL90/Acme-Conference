@@ -185,7 +185,7 @@
 	<display:column>
 		<jstl:if test="${momentoAhoraMenosColumna > 0 && row.finalMode == true}">
 			<a href="submission/administrator/procedure.do?conferenceId=${row.id}">
-			<spring:message code="submissions.evaluate"/>
+			<spring:message code="submission.evaluate"/>
 			</a>
 		</jstl:if>
 	</display:column>

@@ -78,7 +78,7 @@ public class ReportReviewerController extends AbstractController {
 		ModelAndView result;
 
 		if (binding.hasErrors())
-			result = this.createModelAndView2(report);
+			result = this.createModelAndView(report);
 		else
 			try {
 
