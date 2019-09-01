@@ -45,10 +45,12 @@
 	</h3>
 	<jstl:out value="${photo}"></jstl:out>
 	
+	<jstl:if test="${score != 0.0}">
 	<h3>
 		<spring:message code="author.score" />:
 	</h3>
-	<jstl:out value="${score}"></jstl:out>
+		<jstl:out value="${score}"></jstl:out>
+	</jstl:if>
 	
 	
 	
