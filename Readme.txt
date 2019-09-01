@@ -22,4 +22,5 @@ This process is executed at the same time as the process that decides whether or
 author1 (with cameraReadyPaper1) will have an score of 1 because his camera-ready paper contains "intelligence" and this is 
 a buzzword.
 
+- Paper and camera-ready paper
 
