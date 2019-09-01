@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import services.AuthorService;
 import services.CommentService;
-import services.ReviewerService;
 import domain.Comment;
 
 @Controller
@@ -23,12 +21,6 @@ public class CommentController extends AbstractController {
 
 	@Autowired
 	private CommentService	commentService;
-
-	@Autowired
-	private ReviewerService	reviewerService;
-
-	@Autowired
-	private AuthorService	authorService;
 
 
 	@RequestMapping(value = "/createC", method = RequestMethod.GET)
@@ -110,12 +102,8 @@ public class CommentController extends AbstractController {
 			Assert.isTrue(c.getText() != "", "notBlank");
 			Assert.isTrue(c.getTitle() != "", "notBlank");
 			c = this.commentService.save(c);
-			if (this.authorService.checkAuthor())
-				res = new ModelAndView("redirect:../submission/author/list.do");
-			else if (this.reviewerService.checkReviewer())
-				res = new ModelAndView("redirect:../report/reviewer/list.do");
-			else
-				res = new ModelAndView("redirect:../conference/list.do");
+
+			res = new ModelAndView("redirect:../conference/list.do");
 		} catch (final ValidationException oops) {
 			res = this.createEditModelAndView(c);
 		} catch (final Throwable oops) {

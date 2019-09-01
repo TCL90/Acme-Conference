@@ -150,7 +150,7 @@
 	<jstl:set var="tuto" value="1"/>
 	<jstl:forEach items="${sections}" var="section">
 	<h3 style="color:blue;">
-	<spring:message code="tutorial.section"/> <jstl:out value="${tuto }"/>:
+	Tutorial <jstl:out value="${tuto }"/>:
 	</h3>
 	
 	<h3 style="color:blue;">
