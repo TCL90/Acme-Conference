@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import domain.Actor;
-import domain.Registration;
 import services.ActorService;
 import services.RegistrationService;
+import domain.Actor;
+import domain.Registration;
 
 @Controller
 @RequestMapping("/registration")
@@ -38,7 +38,6 @@ public class RegistrationController extends AbstractController {
 
 		final Registration registration = this.registrationService.findOne(registrationId);
 
-		//TODO: hacking
 		//Se comprueba que el usuario es el author o el admin propietario de la conference
 		try {
 			final Collection<? extends GrantedAuthority> aus = SecurityContextHolder.getContext().getAuthentication().getAuthorities();

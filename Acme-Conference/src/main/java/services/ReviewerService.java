@@ -60,17 +60,6 @@ public class ReviewerService {
 		return result;
 	}
 
-	public boolean checkReviewer() {
-		boolean res = false;
-
-		final Authority a = new Authority();
-		a.setAuthority(Authority.REVIEWER);
-
-		if (LoginService.getPrincipal().getAuthorities().contains(a))
-			res = true;
-		return res;
-
-	}
 	public Reviewer findByPrincipal() {
 		Reviewer res;
 		UserAccount userAccount;

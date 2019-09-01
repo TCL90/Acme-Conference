@@ -246,7 +246,6 @@ public class MessageController extends AbstractController {
 
 				final Message message = bf.getMessage();
 				message.setMoment(new Date());
-				message.setBroadcast(true);
 				Collection<Actor> recipients = null;
 
 				if (bf.getType().equals("subConf"))

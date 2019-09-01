@@ -13,12 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import services.CommentService;
 import services.ReportService;
 import services.ReviewerService;
 import services.SubmissionService;
 import controllers.AbstractController;
-import domain.Comment;
 import domain.Report;
 import domain.Reviewer;
 import domain.Submission;
@@ -35,9 +33,6 @@ public class ReportReviewerController extends AbstractController {
 
 	@Autowired
 	private ReviewerService		reviewerService;
-
-	@Autowired
-	private CommentService		commentService;
 
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
@@ -78,7 +73,7 @@ public class ReportReviewerController extends AbstractController {
 		ModelAndView result;
 
 		if (binding.hasErrors())
-			result = this.createModelAndView(report);
+			result = this.createModelAndView2(report);
 		else
 			try {
 
@@ -147,29 +142,6 @@ public class ReportReviewerController extends AbstractController {
 		result.addObject("reviewer", reviewer);
 		result.addObject("message", messageCode);
 		result.addObject("submissions", submissions);
-
-		return result;
-	}
-
-	@RequestMapping(value = "/show", method = RequestMethod.GET)
-	public ModelAndView show(@RequestParam final int reportId) {
-		final ModelAndView result;
-
-		Report r = null;
-		final Collection<Comment> comments;
-
-		try {
-			r = this.reportService.findOne(reportId);
-			comments = this.commentService.findByReport(r);
-
-		} catch (final Throwable oops) {
-			result = new ModelAndView("welcome/index");
-			return result;
-		}
-		result = new ModelAndView("report/show");
-		result.addObject("report", r);
-		result.addObject("requestURI", "/report/author/show.do?reportId=" + r.getId());
-		result.addObject("comments", comments);
 
 		return result;
 	}

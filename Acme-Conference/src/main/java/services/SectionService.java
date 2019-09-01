@@ -77,14 +77,14 @@ public class SectionService {
 	}
 	public Section save(final Section s) {
 		Assert.isTrue(this.administratorService.checkAdmin());
-		Assert.isTrue(s.getTutorial().getConference().isFinalMode() == true);
+		Assert.isTrue(s.getTutorial().getConference().isFinalMode() == false);
 
 		return this.sectionRepository.save(s);
 	}
 
 	public void delete(final Section s) {
 		Assert.isTrue(this.administratorService.checkAdmin());
-		Assert.isTrue(s.getTutorial().getConference().isFinalMode() == true);
+		Assert.isTrue(s.getTutorial().getConference().isFinalMode() == false);
 
 		this.sectionRepository.delete(s);
 	}

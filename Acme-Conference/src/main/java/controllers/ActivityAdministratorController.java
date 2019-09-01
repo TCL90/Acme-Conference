@@ -105,15 +105,15 @@ public class ActivityAdministratorController extends AbstractController {
 		if (activityType == "presentation") {
 			result = new ModelAndView("activity/presentationShow");
 			result.addObject("presentation", presentation);
-			result.addObject("requestURI", "/activity/administrator/show.do?activityId=" + presentation.getId());
+			result.addObject("requestURI", "/activity/show.do?activityId=" + presentation.getId());
 		} else if (activityType == "tutorial") {
 			result = new ModelAndView("activity/tutorialShow");
 			result.addObject("tutorial", tutorial);
-			result.addObject("requestURI", "/activity/administrator/show.do?activityId=" + tutorial.getId());
+			result.addObject("requestURI", "/activity/show.do?activityId=" + tutorial.getId());
 			result.addObject("sections", sections);
 		} else {
 			result = new ModelAndView("activity/panelShow");
-			result.addObject("requestURI", "/activity/administrator/show.do?activityId=" + panel.getId());
+			result.addObject("requestURI", "/activity/show.do?activityId=" + panel.getId());
 			result.addObject("activity", panel);
 		}
 		result.addObject("type", activityType);

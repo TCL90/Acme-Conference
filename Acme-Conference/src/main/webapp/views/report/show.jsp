@@ -17,26 +17,57 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
-<h3 style="color:blue;">
-		<spring:message code="report.originalityScore" />:
-	</h3>
-	<jstl:out value="${report.originalityScore}"></jstl:out>
+<fieldset>
+
+	<legend align="left">
+		<spring:message code="registration.creditcard" />
+	</legend>
+
+	<b><spring:message code="registration.holderName"/>: </b>
+		<jstl:out value="${registration.holderName}"/>
+	<br/>
 	
-	<h3 style="color:blue;">
-		<spring:message code="report.qualityScore" />:
-	</h3>
-	<jstl:out value="${report.qualityScore}"></jstl:out>
+	<b><spring:message code="registration.makeName"/>: </b>
+		<jstl:out value="${registration.makeName}"/>
+	<br/>
 	
-	<h3 style="color:blue;">
-		<spring:message code="report.readabilityScore" />:
-	</h3>
-	<jstl:out value="${report.readabilityScore}"></jstl:out>
+	<b><spring:message code="registration.number"/>: </b>
+		<jstl:out value="${registration.number}"/>
+	<br/>
 	
-	<h3 style="color:blue;">
-		<spring:message code="report.decision" />:
-	</h3>
-	<jstl:out value="${report.decision}"></jstl:out>
+	<b><spring:message code="registration.expirationYear"/>: </b>
+		<jstl:out value="${registration.expirationYear}"/>
+	<br/>
 	
+	<b><spring:message code="registration.expirationMonth"/>: </b>
+		<jstl:out value="${registration.expirationMonth}"/>
+	<br/>
+	
+	
+	<security:authorize access="hasRole('AUTHOR')">
+		<b><spring:message code="registration.cvv"/>: </b>
+			<jstl:out value="${registration.cvv}"/>
+		<br/>
+	</security:authorize>
+</fieldset>
+<br/>
+<fieldset>
+
+	<legend align="left">
+		<spring:message code="registration.info" />
+	</legend>
+	
+	<b><spring:message code="registration.conference"/>: </b>
+		<jstl:out value="${registration.conference.title}"/>
+	<br/>
+	
+	<b><spring:message code="registration.author"/>: </b>
+		<jstl:out value="${registration.author.name}"/>
+		<jstl:out value="${registration.author.surname}"/>
+	<br/>
+
+</fieldset>
+
 	<h3 style="color:blue;">
 	<spring:message code="conference.listComments"/>
 	</h3>
@@ -64,12 +95,13 @@
 	</display:table>
 	
 	<br/>
-	<security:authorize access="hasRole('REVIEWER')">
-	<a href="comment/createR.do?reportId=${report.id }"><spring:message code="comment.create"/></a>
-	</security:authorize>
+	<a href="comment/createR.do?reportId=${registration.id }"><spring:message code="comment.create"/></a>
+	
 	<br/>
 	<br/>
-<input type="button" name="cancel" value="<spring:message code="report.back" />" onclick="javascript:relativeRedir('report/author/list.do?submissionId=${report.submission.id}');" />
+
+<br/><br/>
+<input type="button" name="cancel" value="<spring:message code="registration.cancel" />" onclick="javascript:relativeRedir('welcome/index.do');" />
 
 
 <br/>

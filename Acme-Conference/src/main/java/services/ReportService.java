@@ -24,9 +24,6 @@ public class ReportService {
 	private ReviewerService		reviewerService;
 
 	@Autowired
-	private AuthorService		authorService;
-
-	@Autowired
 	private SubmissionService	submissionService;
 
 
@@ -50,19 +47,6 @@ public class ReportService {
 	}
 
 	public Report findOne(final int id) {
-		Report res;
-		res = this.reportRepository.findOne(id);
-		if (!this.reviewerService.checkReviewer()) {
-			Assert.isTrue(!res.getSubmission().getStatus().contains("UNDER-REVIEW"));
-			Assert.isTrue(this.authorService.findByPrincipal().getId() == res.getSubmission().getAuthor().getId());
-		}
-		return res;
-	}
-
-	public Collection<Report> findAllBySubmissionId(final int submissionId) {
-		final Submission s = this.submissionService.findOne(submissionId);
-		Assert.isTrue(s.getAuthor().getId() == this.authorService.findByPrincipal().getId());
-
-		return this.reportRepository.findAllBySubmissionId(submissionId);
+		return this.reportRepository.findOne(id);
 	}
 }
