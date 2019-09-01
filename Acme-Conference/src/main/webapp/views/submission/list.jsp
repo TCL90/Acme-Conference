@@ -41,17 +41,25 @@
 	<security:authorize access="hasRole('ADMIN')">
 		<display:column>
 			<jstl:if test="${empty row.reviewers }">
-				<a href="submission/administrator/assign.do?submissionId=${row.id}" ><spring:message code="submission.assign" /></a>
+				<a href="submission/administrator/assign.do?submissionId=${row.id}" ><spring:message code="submission.assign.auto" /></a>
+				<a href="submission/administrator/assignManual.do?submissionId=${row.id}" ><spring:message code="submission.assign.manual" /></a>
 			</jstl:if>
 		</display:column>
+		
 	</security:authorize>
 	
 	<security:authorize access="hasRole('AUTHOR')">
-	<jstl:if test="${!empty row.reviewers }">
-	<display:column>
-	<a href="report/author/list.do?submissionId=${row.id }"><spring:message code="submission.report.list"/></a>
-	</display:column>
-	</jstl:if>
+
+		<jstl:if test="${!empty row.reviewers }">
+
+		<display:column>
+
+			<a href="report/author/list.do?submissionId=${row.id }"><spring:message code="submission.report.list"/></a>
+
+		</display:column>
+
+		</jstl:if>
+
 	</security:authorize>
 
 </display:table>
@@ -62,6 +70,7 @@
 <a href="cameraReadyPaper/author/create.do" >
 <spring:message code="camera.create" /></a>	
 </security:authorize>
+
 
 <jstl:if test="${reviewers != null }">
 
