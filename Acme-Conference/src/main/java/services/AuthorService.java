@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -192,8 +193,9 @@ public class AuthorService {
 
 		final Authority a = new Authority();
 		a.setAuthority(Authority.AUTHOR);
+		final Collection<Authority> AuCollection = (Collection<Authority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
 
-		if (LoginService.getPrincipal().getAuthorities().contains(a))
+		if (AuCollection.contains(a))
 			res = true;
 		return res;
 

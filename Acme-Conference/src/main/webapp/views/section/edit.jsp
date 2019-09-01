@@ -48,7 +48,7 @@
 	<input type="submit" name="save"
 		value="<spring:message code="section.save" />" />&nbsp;
 	<jstl:if test="${section.id!=0 }">
-	<jstl:if test="${section.tutorial.conference.finalMode==false}">
+	<jstl:if test="${section.tutorial.conference.finalMode==true}">
 	<input type="submit" name="delete"
 		value="<spring:message code="section.delete" />"
 		onclick="return confirm('<spring:message code="section.confirm.delete" />')" />&nbsp;

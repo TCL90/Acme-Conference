@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -66,7 +67,8 @@ public class ReviewerService {
 		final Authority a = new Authority();
 		a.setAuthority(Authority.REVIEWER);
 
-		if (LoginService.getPrincipal().getAuthorities().contains(a))
+		final Collection<Authority> AuCollection = (Collection<Authority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+		if (AuCollection.contains(a))
 			res = true;
 		return res;
 

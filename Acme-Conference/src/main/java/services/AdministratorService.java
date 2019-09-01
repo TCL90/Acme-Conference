@@ -6,12 +6,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import domain.Administrator;
-import domain.Customisation;
 import repositories.AdministratorRepository;
 import security.Authority;
 import security.LoginService;
@@ -132,8 +131,9 @@ public class AdministratorService {
 
 		final Authority a = new Authority();
 		a.setAuthority(Authority.ADMIN);
+		final Collection<Authority> AuCollection = (Collection<Authority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
 
-		if (LoginService.getPrincipal().getAuthorities().contains(a))
+		if (AuCollection.contains(a))
 			res = true;
 		return res;
 
