@@ -1993,7 +1993,7 @@
   		<property name="moment" value="10/10/2018 00:00:00" /> 
   		<property name="recipients">
   		<list>
-  		<ref bean="author1"/>
+  		<ref bean="admin1"/>
   		</list>
   		</property> 
   		<property name="sender" ref="author1" /> 

@@ -65,6 +65,10 @@
 
 		<br /> <br />	
 		
+		<jstl:if test="${type=='subConf' or type == 'regConf'}">
+			<spring:message code="asterisco"/>
+		</jstl:if>
+		
 		<input type="submit" name="send"
 			value="<spring:message code="message.send.message" />" />&nbsp;
 		<input type="button" name="cancel"
