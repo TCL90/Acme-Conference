@@ -172,8 +172,11 @@ public class MessageController extends AbstractController {
 		final Collection<String> topicsEsp = cus.getTopicsEsp();
 		final Collection<String> topicsIng = cus.getTopicsIng();
 
-		if (type.equals("subConf") || type.equals("regConf")) {
-			final Collection<Conference> cd = this.cs.findAllByAdmin();
+		if (type.equals("subConf")) {
+			final Collection<Conference> cd = this.cs.findAllWithAuthorSubmission();
+			result.addObject("conferences", cd);
+		} else if (type.equals("regConf")) {
+			final Collection<Conference> cd = this.cs.findAllWithAuthorRegistered();
 			result.addObject("conferences", cd);
 		}
 
