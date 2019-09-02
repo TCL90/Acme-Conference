@@ -10,21 +10,18 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
 
-import org.hibernate.validator.constraints.Range;
-
 @Entity
 @Access(AccessType.PROPERTY)
 public class Author extends Actor {
 
-	private double	score;
+	private Double	score;
 
 
-	@Range(min = 0, max = 10)
-	public double getScore() {
+	public Double getScore() {
 		return this.score;
 	}
 
-	public void setScore(final double score) {
+	public void setScore(final Double score) {
 		this.score = score;
 	}
 

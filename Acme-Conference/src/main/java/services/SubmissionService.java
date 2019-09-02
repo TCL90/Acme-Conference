@@ -131,10 +131,10 @@ public class SubmissionService {
 	public Collection<Submission> findUnderReview() {
 		return this.submissionRepository.findUnderReview();
 	}
-//	
-//	public Collection<Author> findAllAuthorSubmissionToConference(int conferenceId){
-//		return this.submissionRepository.findAllAuthorsSubmissionConf(conferenceId);
-//	}
+	//	
+	//	public Collection<Author> findAllAuthorSubmissionToConference(int conferenceId){
+	//		return this.submissionRepository.findAllAuthorsSubmissionConf(conferenceId);
+	//	}
 
 	//public Collection<Author> findAllAuthorSubmissionToConference(int conferenceId){
 	public Collection<Actor> findAllAuthorSubmissionToConference(final int conferenceId) {
@@ -143,8 +143,6 @@ public class SubmissionService {
 
 	public Collection<Submission> decisionProcedure(final int conferenceId) {
 		final Conference conference = this.conferenceRepository.findOne(conferenceId);
-		//TODO: COMPROBAR SUBMISSION 
-		//Assert.isTrue(conference.getSubmissionDeadline().before());
 		final Collection<Submission> submissions = this.submissionRepository.findUnderReviewReported(conferenceId);
 		Collection<Report> reports = null;
 		int accept = 0;
@@ -225,7 +223,7 @@ public class SubmissionService {
 	}
 
 	public Collection<Submission> findAllWithoutCRP() {
-		
+
 		return this.submissionRepository.findAllWithoutCRP();
 	}
 
