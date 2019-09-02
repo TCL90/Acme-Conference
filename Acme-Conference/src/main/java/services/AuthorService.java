@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -66,6 +67,7 @@ public class AuthorService {
 		result.setSurname("");
 		result.setPhoneNumber("");
 		result.setPhoto("");
+
 		final Finder finder = new Finder();
 		result.setFinder(finder);
 		// Author
@@ -143,16 +145,16 @@ public class AuthorService {
 	public Collection<Author> score(final List<String> buzzwords) {
 		final Collection<Author> authors = this.authorRepository.findAll();
 		Collection<CameraReadyPaper> cams = null;
-		int score = 0;
+		Double score = 0.0;
 		double highestScore = 0;
 		double scoreRedondeado = 0;
 		double ratio = 0;
 		String cleanTitle = "";
 		String cleanSummary = "";
 		for (final Author a : authors) {
-			score = 0;
+			score = 0.0;
 			//Se comienza con el score a 0
-			a.setScore(0);
+			a.setScore(0.0);
 			cams = this.cameraReadyPaperService.findByAuthorId(a.getId());
 			//Para cada camera ready paper se comprueban las palabras
 			for (final CameraReadyPaper cam : cams) {
@@ -192,8 +194,9 @@ public class AuthorService {
 
 		final Authority a = new Authority();
 		a.setAuthority(Authority.AUTHOR);
+		final Collection<Authority> AuCollection = (Collection<Authority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
 
-		if (LoginService.getPrincipal().getAuthorities().contains(a))
+		if (AuCollection.contains(a))
 			res = true;
 		return res;
 

@@ -146,6 +146,9 @@
 	<h3 style="color:blue;">
 		<spring:message code="tutorial.section.list" />:
 	</h3>
+	<jstl:if test="${empty sections }">
+	<spring:message code="tutorial.noSections"/>
+	</jstl:if>
 	
 	<jstl:set var="tuto" value="1"/>
 	<jstl:forEach items="${sections}" var="section">

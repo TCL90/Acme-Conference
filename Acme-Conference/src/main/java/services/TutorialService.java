@@ -32,6 +32,9 @@ public class TutorialService {
 	private ConferenceService		conferenceService;
 
 	@Autowired
+	private SectionService			sectionService;
+
+	@Autowired
 	private AdministratorService	administratorService;
 
 	@Autowired
@@ -122,6 +125,9 @@ public class TutorialService {
 	public void delete(final Tutorial t) {
 		Assert.isTrue(this.administratorService.checkAdmin());
 		Assert.isTrue(t.getConference().isFinalMode() == true);
+
+		for (final Section s : this.sectionService.findSectionsByTutorial(t))
+			this.sectionService.delete(s);
 
 		this.tutorialRepository.delete(t);
 	}
