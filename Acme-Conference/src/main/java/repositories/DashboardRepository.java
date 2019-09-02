@@ -11,7 +11,7 @@ import domain.Administrator;
 
 public interface DashboardRepository extends JpaRepository<Administrator, Integer> {
 
-	@Query("select avg(1.0*(select count(s) from Submission s where s.conference.id =c.id group by s.conference)) from Conference c")
+	@Query("select avg(1.0*(select count(s) from Submission s where s.conference.id =c.id)) from Conference c")
 	Double avgSubmissions();
 
 	@Query("select min(1*(select count(s) from Submission s where s.conference.id =c.id group by s.conference)) from Conference c")
@@ -20,10 +20,10 @@ public interface DashboardRepository extends JpaRepository<Administrator, Intege
 	@Query("select max(1*(select count(s) from Submission s where s.conference.id =c.id group by s.conference)) from Conference c")
 	Integer maxSubmissions();
 
-	@Query("select stddev(1.0*(select count(s) from Submission s where s.conference.id =c.id group by s.conference)) from Conference c")
+	@Query("select stddev(1.0*(select count(s) from Submission s where s.conference.id =c.id)) from Conference c")
 	Double stddevSubmissions();
 
-	@Query("select avg(1.0*(select count(r) from Registration r where r.conference.id =c.id group by r.conference)) from Conference c")
+	@Query("select avg(1.0*(select count(r) from Registration r where r.conference.id =c.id)) from Conference c")
 	Double avgRegistrations();
 
 	@Query("select min(1*(select count(r) from Registration r where r.conference.id =c.id group by r.conference)) from Conference c")
@@ -32,7 +32,7 @@ public interface DashboardRepository extends JpaRepository<Administrator, Intege
 	@Query("select max(1*(select count(r) from Registration r where r.conference.id =c.id group by r.conference)) from Conference c")
 	Integer maxRegistrations();
 
-	@Query("select stddev(1.0*(select count(r) from Registration r where r.conference.id =c.id group by r.conference)) from Conference c")
+	@Query("select stddev(1.0*(select count(r) from Registration r where r.conference.id =c.id)) from Conference c")
 	Double stddevRegistrations();
 
 	@Query("select avg(c.fee) from Conference c")
@@ -54,7 +54,7 @@ public interface DashboardRepository extends JpaRepository<Administrator, Intege
 	@Query("select c.endDate from Conference c")
 	List<Date> endDates();
 
-	@Query("select avg(1.0*(select count(c) from Conference c where c.category.id = cat.id group by c.category)) from Category cat")
+	@Query("select avg(1.0*(select count(c) from Conference c where c.category.id = cat.id)) from Category cat")
 	Double avgCategory();
 
 	@Query("select min(1*(select count(c) from Conference c where c.category.id = cat.id group by c.category)) from Category cat")
@@ -63,10 +63,10 @@ public interface DashboardRepository extends JpaRepository<Administrator, Intege
 	@Query("select max(1*(select count(c) from Conference c where c.category.id = cat.id group by c.category)) from Category cat")
 	Integer maxCategory();
 
-	@Query("select stddev(1.0*(select count(c) from Conference c where c.category.id = cat.id group by c.category)) from Category cat")
+	@Query("select stddev(1.0*(select count(c) from Conference c where c.category.id = cat.id)) from Category cat")
 	Double stddevCategory();
 
-	@Query("select avg(1.0*(select count(c) from Comment c where c.commentable.id = a.id group by c.commentable)) from Conference a")
+	@Query("select avg(1.0*(select count(c) from Comment c where c.commentable.id = a.id)) from Conference a")
 	Double avgCommentsConf();
 
 	@Query("select min(1*(select count(c) from Comment c where c.commentable.id = a.id group by c.commentable)) from Conference a")
@@ -75,10 +75,10 @@ public interface DashboardRepository extends JpaRepository<Administrator, Intege
 	@Query("select max(1*(select count(c) from Comment c where c.commentable.id = a.id group by c.commentable)) from Conference a")
 	Integer maxCommentsConf();
 
-	@Query("select stddev(1.0*(select count(c) from Comment c where c.commentable.id = a.id group by c.commentable)) from Conference a")
+	@Query("select stddev(1.0*(select count(c) from Comment c where c.commentable.id = a.id)) from Conference a")
 	Double stddevCommentsConf();
 
-	@Query("select avg(1.0*(select count(c) from Comment c where c.commentable.id = a.id group by c.commentable)) from Activity a")
+	@Query("select avg(1.0*(select count(c) from Comment c where c.commentable.id = a.id)) from Activity a")
 	Double avgCommentsAct();
 
 	@Query("select min(1*(select count(c) from Comment c where c.commentable.id = a.id group by c.commentable)) from Activity a")
@@ -87,6 +87,6 @@ public interface DashboardRepository extends JpaRepository<Administrator, Intege
 	@Query("select max(1*(select count(c) from Comment c where c.commentable.id = a.id group by c.commentable)) from Activity a")
 	Integer maxCommentsAct();
 
-	@Query("select stddev(1.0*(select count(c) from Comment c where c.commentable.id = a.id group by c.commentable)) from Activity a")
+	@Query("select stddev(1.0*(select count(c) from Comment c where c.commentable.id = a.id)) from Activity a")
 	Double stddevCommentsAct();
 }
