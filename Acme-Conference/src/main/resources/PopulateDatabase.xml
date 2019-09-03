@@ -1991,15 +1991,15 @@
   		<property name="body" value="Prueba" /> 
   		<property name="broadcast" value="FALSE" /> 
   		<property name="moment" value="10/10/2018 00:00:00" /> 
+  		<property name="subject" value="Prueba" /> 
+  		<property name="topic" value="Prueba" />
   		<property name="recipients">
   		<list>
-  		<ref bean="admin1"/>
-  		</list>
-  		</property> 
-  		<property name="sender" ref="author1" /> 
-  		<property name="subject" value="Prueba" /> 
-  		<property name="topic" value="Prueba" /> 
-  </bean>
+		  <ref bean="admin1" /> 
+	  	</list>
+	  	</property>
+	 	 <property name="sender" ref="author1" />  
+	 </bean>
 
 
 </beans>
