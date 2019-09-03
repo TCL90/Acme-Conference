@@ -27,6 +27,11 @@ public class CameraReadyPaperService {
 		return this.cameraReadyPaperRepository.findAllByConferenceId(conferenceId);
 	}
 
+	public Collection<CameraReadyPaper> findAllByConferenceIdAdmin(final int conferenceId) {
+		Assert.isTrue(this.administratorService.checkAdminActor());
+		return this.cameraReadyPaperRepository.findAllByConferenceId(conferenceId);
+	}
+	
 	public CameraReadyPaper save(final CameraReadyPaper camera) {
 		final CameraReadyPaper res = this.cameraReadyPaperRepository.save(camera);
 		this.cameraReadyPaperRepository.flush();
@@ -43,6 +48,12 @@ public class CameraReadyPaperService {
 
 	}
 
+	public CameraReadyPaper findOneAdmin(final int paperId) {
+		Assert.isTrue(this.administratorService.checkAdminActor());
+		return this.cameraReadyPaperRepository.findOne(paperId);
+
+	}
+	
 	public Collection<CameraReadyPaper> findAll() {
 		return this.cameraReadyPaperRepository.findAll();
 	}

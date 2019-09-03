@@ -36,30 +36,26 @@ public class SectionServiceTest  extends AbstractTest {
 	@Autowired
 	private ConferenceService cs;
 	
-	@Autowired
-	private ActivityService as;
-	
-	
 	@Test
 	public void testSaveSection() {
 		
 		super.authenticate("admin");
 	
-		Collection<Conference> confs = cs.findAllNotFinalMode();
+		Collection<Conference> confs = cs.findAllForthComming();
 		Conference conf = confs.iterator().next();
 		Collection<Tutorial> tuts = ts.findAllTutorialsByConferenceId(conf.getId());
 		Iterator<Tutorial> iter = tuts.iterator();
 		
 		Tutorial tutorial = iter.next();
 		
-		Collection<Section> inicialSects = ss.findSectionsByTutorial(tutorial);
-		Section section = ss.createSectionByTutorialId(tutorial.getId());
+		Collection<Section> inicialSects = ss.findSectionsByTutorialAdmin(tutorial);
+		Section section = ss.createSectionByTutorialIdAdmin(tutorial.getId());
 		section.setTitle("title");
 		section.setSummary("Summary");
 		section.setPictures(Arrays.asList("http://flicker.com/1","http://flicker.com/2"));
 		
-		Section finalSection = ss.save(section);
-		Collection<Section> finalSects = ss.findSectionsByTutorial(tutorial);
+		Section finalSection = ss.saveAdmin(section);
+		Collection<Section> finalSects = ss.findSectionsByTutorialAdmin(tutorial);
 		
 		Assert.isTrue(inicialSects.size()!= finalSects.size());
 		Assert.isTrue(finalSects.contains(finalSection));
@@ -72,18 +68,18 @@ public class SectionServiceTest  extends AbstractTest {
 		
 		super.authenticate("admin");
 		
-		Collection<Conference> confs = cs.findAllNotFinalMode();
+		Collection<Conference> confs = cs.findAllForthComming();
 		Conference conf = confs.iterator().next();
 		Collection<Tutorial> tuts = ts.findAllTutorialsByConferenceId(conf.getId());
 		Iterator<Tutorial> iter = tuts.iterator();
 		
 		Tutorial tutorial = iter.next();
 		
-		Collection<Section> inicialSects = ss.findSectionsByTutorial(tutorial);
+		Collection<Section> inicialSects = ss.findSectionsByTutorialAdmin(tutorial);
 		Section section = inicialSects.iterator().next();
 
-		ss.delete(section);
-		Collection<Section> finalSects = ss.findSectionsByTutorial(tutorial);
+		ss.deleteAdmin(section);
+		Collection<Section> finalSects = ss.findSectionsByTutorialAdmin(tutorial);
 		
 		Assert.isTrue(inicialSects.size()!= finalSects.size());
 		

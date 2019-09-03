@@ -39,7 +39,7 @@ public class TutorialServiceTest  extends AbstractTest {
 		
 		super.authenticate("admin");
 		Tutorial t ;
-		Collection<Conference> confs = cs.findAllNotFinalMode();
+		Collection<Conference> confs = cs.findAllForthComming();
 		Conference conf = confs.iterator().next();
 		
 		Collection<String> stringList = new ArrayList<String>();
@@ -69,7 +69,7 @@ public class TutorialServiceTest  extends AbstractTest {
 		t.setRoom("First class");
 		t.setSummary("Panel summary");
 		
-		Tutorial finalP = ts.save(t);
+		Tutorial finalP = ts.saveAdmin(t);
 		Tutorial finalList = ts.findTutorialByActivityId(t.getId());
 		
 		Assert.isTrue(finalP != null );
@@ -84,11 +84,11 @@ public class TutorialServiceTest  extends AbstractTest {
 		
 		super.authenticate("admin");
 		
-		Collection<Conference> confs = cs.findAllNotFinalMode();
+		Collection<Conference> confs = cs.findAllForthComming();
 		Conference conf = confs.iterator().next();
 		List<Tutorial> lista = ts.findAllTutorialsByConferenceId(conf.getId());
 		
-		ts.delete(lista.get(0));
+		ts.deleteAdmin(lista.get(0));
 		List<Tutorial> listaFin = ts.findAllTutorialsByConferenceId(conf.getId());
 		
 		Assert.isTrue(lista.size() != listaFin.size());

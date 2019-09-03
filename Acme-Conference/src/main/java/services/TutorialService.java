@@ -121,6 +121,13 @@ public class TutorialService {
 
 		return this.tutorialRepository.save(t);
 	}
+	
+	public Tutorial saveAdmin(final Tutorial t) {
+		Assert.isTrue(this.administratorService.checkAdminActor());
+		Assert.isTrue(t.getConference().isFinalMode() == true);
+
+		return this.tutorialRepository.save(t);
+	}
 
 	public void delete(final Tutorial t) {
 		Assert.isTrue(this.administratorService.checkAdmin());
@@ -128,6 +135,15 @@ public class TutorialService {
 
 		for (final Section s : this.sectionService.findSectionsByTutorial(t))
 			this.sectionService.delete(s);
+
+		this.tutorialRepository.delete(t);
+	}
+	public void deleteAdmin(final Tutorial t) {
+		Assert.isTrue(this.administratorService.checkAdminActor());
+		Assert.isTrue(t.getConference().isFinalMode() == true);
+
+		for (final Section s : this.sectionService.findSectionsByTutorialAdmin(t))
+			this.sectionService.deleteAdmin(s);
 
 		this.tutorialRepository.delete(t);
 	}

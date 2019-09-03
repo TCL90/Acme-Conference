@@ -138,6 +138,13 @@ public class AdministratorService {
 		return res;
 
 	}
+	
+	public boolean checkAdminActor() {
+		final Authority a = new Authority();
+		a.setAuthority(Authority.ADMIN);
+		final UserAccount user = LoginService.getPrincipal();
+		return user.getAuthorities().contains(a);
+	}
 
 	public List<Administrator> findAll() {
 		return this.administratorRepository.findAll();

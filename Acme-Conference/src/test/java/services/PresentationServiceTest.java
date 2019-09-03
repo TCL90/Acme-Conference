@@ -43,7 +43,7 @@ public class PresentationServiceTest  extends AbstractTest {
 		
 		super.authenticate("admin");
 		Presentation p ;
-		Collection<Conference> confs = cs.findAllNotFinalMode();
+		Collection<Conference> confs = cs.findAllForthComming();
 		Conference conf = confs.iterator().next();
 		
 		Collection<String> stringList = new ArrayList<String>();
@@ -53,9 +53,9 @@ public class PresentationServiceTest  extends AbstractTest {
 		stringList.add("word4");
 		
 		
-		Collection<CameraReadyPaper> cameras = crs.findAllByConferenceId(conf.getId());
+		Collection<CameraReadyPaper> cameras = crs.findAllByConferenceIdAdmin(conf.getId());
 		CameraReadyPaper cam = cameras.iterator().next();
-		p = ps.createPresentationByConferenceId(conf.getId(), cam.getId());
+		p = ps.createPresentationByConferenceIdAdmin(conf.getId(), cam.getId());
 		p.setAttachments(stringList);
 		p.setDuration(3);
 		p.setTitle("title");
@@ -76,7 +76,7 @@ public class PresentationServiceTest  extends AbstractTest {
 		p.setRoom("First class");
 		p.setSummary("Panel summary");
 		
-		Presentation finalP = ps.save(p);
+		Presentation finalP = ps.saveAdmin(p);
 		
 		Assert.isTrue(finalP.getId() != 0);
 		
@@ -88,9 +88,9 @@ public class PresentationServiceTest  extends AbstractTest {
 		
 		super.authenticate("admin");
 		
-		List<Presentation> lista = ps.findAllFromConferenceNFM();
-		ps.delete(lista.get(0));
-		List<Presentation> lfin = ps.findAllFromConferenceNFM();
+		List<Presentation> lista = ps.findAllFromConferenceFM();
+		ps.deleteAdmin(lista.get(0));
+		List<Presentation> lfin = ps.findAllFromConferenceFM();
 		
 		Assert.isTrue(lfin.size() != lista.size());
 	}

@@ -52,6 +52,18 @@ public class PresentationService {
 
 		return res;
 	}
+	
+	public Presentation createPresentationByConferenceIdAdmin(final int conferenceId, final int cameraId) {
+		Assert.isTrue(this.administratorService.checkAdminActor());
+		final Presentation res = new Presentation();
+
+		res.setId(0);
+		res.setConference(this.conferenceService.findOne(conferenceId));
+		res.setCameraReadyPaper(this.cameraReadyPaperService.findOneAdmin(cameraId));
+
+		return res;
+	}
+	
 	public Presentation findOne(final int activityId) {
 
 		final Presentation res = this.presentationRepository.findOne(activityId);
@@ -104,6 +116,13 @@ public class PresentationService {
 
 		return this.presentationRepository.save(p);
 	}
+	
+	public Presentation saveAdmin(final Presentation p) {
+		Assert.isTrue(this.administratorService.checkAdminActor());
+		Assert.isTrue(p.getConference().isFinalMode() == true);
+
+		return this.presentationRepository.save(p);
+	}
 
 	public void delete(final Presentation p) {
 		Assert.isTrue(this.administratorService.checkAdmin());
@@ -111,8 +130,15 @@ public class PresentationService {
 
 		this.presentationRepository.delete(p);
 	}
+	
+	public void deleteAdmin(final Presentation p) {
+		Assert.isTrue(this.administratorService.checkAdminActor());
+		Assert.isTrue(p.getConference().isFinalMode() == true);
 
-	public List<Presentation> findAllFromConferenceNFM() {
-		return this.presentationRepository.findAllFromConferenceNFM();
+		this.presentationRepository.delete(p);
+	}
+
+	public List<Presentation> findAllFromConferenceFM() {
+		return this.presentationRepository.findAllFromConferenceFM();
 	}
 }

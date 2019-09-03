@@ -16,6 +16,6 @@ public interface PresentationRepository extends JpaRepository<Presentation, Inte
 	@Query("select p from Presentation p where p.id=?1")
 	Presentation findPresentationByActivityId(int id);
 	
-	@Query("select p from Presentation p where p.conference in (select c from Conference c where c.finalMode = '0')")
-	List<Presentation> findAllFromConferenceNFM();
+	@Query("select p from Presentation p where p.conference in (select c from Conference c where c.finalMode = '1')")
+	List<Presentation> findAllFromConferenceFM();
 }

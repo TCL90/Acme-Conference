@@ -48,6 +48,16 @@ public class PanelService {
 
 		return res;
 	}
+	
+	public Panel createPanelByConferenceIdAdmin(final int conferenceId) {
+		Assert.isTrue(this.administratorService.checkAdminActor());
+		final Panel res = new Panel();
+
+		res.setId(0);
+		res.setConference(this.conferenceService.findOne(conferenceId));
+
+		return res;
+	}
 
 	public Panel findOne(final int activityId) {
 		final Panel res = this.panelRepository.findOne(activityId);
@@ -99,6 +109,13 @@ public class PanelService {
 
 		return this.panelRepository.save(p);
 	}
+	
+	public Panel saveAdmin(final Panel p) {
+		Assert.isTrue(this.administratorService.checkAdminActor());
+		Assert.isTrue(p.getConference().isFinalMode() == true);
+
+		return this.panelRepository.save(p);
+	}
 
 	public void delete(final Panel p) {
 		Assert.isTrue(this.administratorService.checkAdmin());
@@ -107,7 +124,14 @@ public class PanelService {
 		this.panelRepository.delete(p);
 	}
 	
+	public void deleteAdmin(final Panel p) {
+		Assert.isTrue(this.administratorService.checkAdminActor());
+		Assert.isTrue(p.getConference().isFinalMode() == true);
+
+		this.panelRepository.delete(p);
+	}
+	
 	public List<Panel> findAllFromConferenceNotFinal(){
-		return this.panelRepository.findAllFromConferenceNotFinal();
+		return this.panelRepository.findAllFromConference();
 	}
 }

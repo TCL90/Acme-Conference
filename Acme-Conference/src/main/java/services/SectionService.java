@@ -37,9 +37,24 @@ public class SectionService {
 		Assert.isTrue(this.administratorService.checkAdmin());
 		return this.sectionRepository.findSectionByTutorialId(tutorial.getId());
 	}
+	
+	public Collection<Section> findSectionsByTutorialAdmin(final Tutorial tutorial) {
+		Assert.isTrue(this.administratorService.checkAdminActor());
+		return this.sectionRepository.findSectionByTutorialId(tutorial.getId());
+	}
 
 	public Section createSectionByTutorialId(final int tutorialId) {
 		Assert.isTrue(this.administratorService.checkAdmin());
+		final Section res = new Section();
+
+		res.setId(0);
+		res.setTutorial(this.tutorialService.findOne(tutorialId));
+
+		return res;
+	}
+	
+	public Section createSectionByTutorialIdAdmin(final int tutorialId) {
+		Assert.isTrue(this.administratorService.checkAdminActor());
 		final Section res = new Section();
 
 		res.setId(0);
@@ -81,9 +96,23 @@ public class SectionService {
 
 		return this.sectionRepository.save(s);
 	}
+	
+	public Section saveAdmin(final Section s) {
+		Assert.isTrue(this.administratorService.checkAdminActor());
+		Assert.isTrue(s.getTutorial().getConference().isFinalMode() == true);
+
+		return this.sectionRepository.save(s);
+	}
 
 	public void delete(final Section s) {
 		Assert.isTrue(this.administratorService.checkAdmin());
+		Assert.isTrue(s.getTutorial().getConference().isFinalMode() == true);
+
+		this.sectionRepository.delete(s);
+	}
+	
+	public void deleteAdmin(final Section s) {
+		Assert.isTrue(this.administratorService.checkAdminActor());
 		Assert.isTrue(s.getTutorial().getConference().isFinalMode() == true);
 
 		this.sectionRepository.delete(s);

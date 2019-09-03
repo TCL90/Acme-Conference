@@ -16,6 +16,6 @@ public interface PanelRepository extends JpaRepository<Panel, Integer> {
 	Panel findPanelByActivityId(int id);
 
 	@Query("select p from Panel p "
-			+ "where p.conference in (select c from Conference c where c.finalMode='0')")
-	List<Panel> findAllFromConferenceNotFinal();
+			+ "where p.conference in (select c from Conference c where c.finalMode='1')")
+	List<Panel> findAllFromConference();
 }

@@ -38,7 +38,7 @@ public class PanelServiceTest  extends AbstractTest {
 		
 		super.authenticate("admin");
 		Panel p ;
-		Collection<Conference> confs = cs.findAllNotFinalMode();
+		Collection<Conference> confs = cs.findAllForthComming();
 		Conference conf = confs.iterator().next();
 		
 		Collection<String> stringList = new ArrayList<String>();
@@ -47,7 +47,7 @@ public class PanelServiceTest  extends AbstractTest {
 		stringList.add("word3");
 		stringList.add("word4");
 		
-		p = ps.createPanelByConferenceId(conf.getId());
+		p = ps.createPanelByConferenceIdAdmin(conf.getId());
 		p.setAttachments(stringList);
 		p.setDuration(3);
 		p.setTitle("title");
@@ -68,7 +68,7 @@ public class PanelServiceTest  extends AbstractTest {
 		p.setRoom("First class");
 		p.setSummary("Panel summary");
 		
-		Panel finalP = ps.save(p);
+		Panel finalP = ps.saveAdmin(p);
 	
 		Assert.isTrue(finalP != null && finalP.getId() != 0 );
 		
@@ -85,7 +85,7 @@ public class PanelServiceTest  extends AbstractTest {
 		List<Panel> initialPanels = ps.findAllFromConferenceNotFinal();
 		
 		Panel delete = initialPanels.get(0);
-		ps.delete(delete);
+		ps.deleteAdmin(delete);
 		
 		List<Panel> finalP = ps.findAllFromConferenceNotFinal();
 		
