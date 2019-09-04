@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- 
+ * tiles_es.xml
+ *
+ * Copyright (C) 2018 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+       
+<tiles-definitions>
+
+	<definition name="cameraReadyPaper/author/create" extends="master.page">
+		<put-attribute name="title" value="Crear última versión del artículo" />
+		<put-attribute name="body" value="/views/camerareadypaper/edit.jsp" />
+	</definition>
+	
+	<definition name="cameraReadyPaper/author/edit" extends="master.page">
+		<put-attribute name="title" value="Crear última versión del artículo" />
+		<put-attribute name="body" value="/views/camerareadypaper/edit.jsp" />
+	</definition>
+
+	<definition name="camerareadypaper/list" extends="master.page">
+		<put-attribute name="title" value="Listar los documentos por conferencia" />
+		<put-attribute name="body" value="/views/camerareadypaper/list.jsp" />
+	</definition>
+	
+	<definition name="camerareadypaper/show" extends="master.page">
+		<put-attribute name="title" value="Mostrar el documento" />
+		<put-attribute name="body" value="/views/camerareadypaper/show.jsp" />
+	</definition>
+	
+</tiles-definitions>

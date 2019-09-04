@@ -1,0 +1,9 @@
+/target/
+/target/*
+.classpath
+.settings
+/.settings/*
+/.classpath
+Acme-Conference/target/*
+target/
+target/*
