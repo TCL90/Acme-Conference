@@ -21,5 +21,5 @@ This process is executed at the same time as the process that decides whether or
 - Requirement 4 - Paper and camera-ready paper
  Paper and camera-ready paper were considered different entities to make easier the maintenance. For example, 
 if camera-ready papers needed a new attribute with a publication moment, it would be very easy to implement it. However, 
-if they were the same entity it would be harder to implement it.
+if they were the same entity it would be harder to implement it. Furthermore, camera-ready paper has a relation with 
 
