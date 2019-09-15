@@ -1,0 +1,136 @@
+
+package domain;
+
+import java.util.Collection;
+import java.util.Date;
+
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.SafeHtml;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
+
+@Entity
+@Access(AccessType.PROPERTY)
+public abstract class Activity extends Commentable {
+
+	private String				title;
+	private Collection<String>	speakers;
+	private Date				startMoment;
+	private int					duration;
+	private Date				schedule;
+	private String				room;
+	private String				summary;
+	private Collection<String>	attachments;
+
+
+	@NotBlank
+	@SafeHtml
+	public String getTitle() {
+		return this.title;
+	}
+
+	public void setTitle(final String title) {
+		this.title = title;
+	}
+
+	@NotEmpty
+	@ElementCollection
+	public Collection<String> getSpeakers() {
+		return this.speakers;
+	}
+
+	public void setSpeakers(final Collection<String> speakers) {
+		this.speakers = speakers;
+	}
+
+	@NotNull
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	public Date getStartMoment() {
+		return this.startMoment;
+	}
+
+	public void setStartMoment(final Date startMoment) {
+		this.startMoment = startMoment;
+	}
+
+	@NotNull
+	@Min(0)
+	@NumberFormat
+	public int getDuration() {
+		return this.duration;
+	}
+
+	public void setDuration(final int duration) {
+		this.duration = duration;
+	}
+
+	@NotBlank
+	@SafeHtml
+	public String getRoom() {
+		return this.room;
+	}
+
+	public void setRoom(final String room) {
+		this.room = room;
+	}
+
+	@NotBlank
+	@SafeHtml
+	public String getSummary() {
+		return this.summary;
+	}
+
+	public void setSummary(final String summary) {
+		this.summary = summary;
+	}
+
+	@NotEmpty
+	@ElementCollection
+	public Collection<String> getAttachments() {
+		return this.attachments;
+	}
+
+	public void setAttachments(final Collection<String> attachments) {
+		this.attachments = attachments;
+	}
+
+	@NotNull
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "HH:mm:ss")
+	public Date getSchedule() {
+		return this.schedule;
+	}
+
+	public void setSchedule(final Date schedule) {
+		this.schedule = schedule;
+	}
+
+
+	//Relationships
+	private Conference	conference;
+
+
+	@Valid
+	@ManyToOne(optional = false)
+	public Conference getConference() {
+		return this.conference;
+	}
+
+	public void setConference(final Conference conference) {
+		this.conference = conference;
+	}
+
+}

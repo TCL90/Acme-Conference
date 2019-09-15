@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- 
+ * tiles.xml
+ *
+ * Copyright (C) 2018 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+       
+<tiles-definitions>
+
+		<definition name="conference/list" extends="master.page">
+		<put-attribute name="title" value="List of conferences" />
+		<put-attribute name="body" value="/views/conference/list.jsp" />
+	</definition>
+	
+	<definition name="conference/pastList" extends="master.page">
+		<put-attribute name="title" value="List of past conferences" />
+		<put-attribute name="body" value="/views/conference/list.jsp" />
+	</definition>
+	
+	<definition name="conference/forthCommingList" extends="master.page">
+		<put-attribute name="title" value="List of forthcomming conferences" />
+		<put-attribute name="body" value="/views/conference/list.jsp" />
+	</definition>
+	
+	<definition name="conference/runningList" extends="master.page">
+		<put-attribute name="title" value="List of running conferences" />
+		<put-attribute name="body" value="/views/conference/list.jsp" />
+	</definition>
+
+	<definition name="conference/searchList" extends="master.page">
+		<put-attribute name="title" value="Search results" />
+		<put-attribute name="body" value="/views/conference/list.jsp" />
+	</definition>
+	
+	<definition name="conference/show" extends="master.page">
+		<put-attribute name="title" value="Show conference" />
+		<put-attribute name="body" value="/views/conference/show.jsp" />
+	</definition>
+	
+	<!-- Administrator -->
+	
+	<definition name="conference/administrator/list" extends="master.page">
+		<put-attribute name="title" value="Conferences" />
+		<put-attribute name="body" value="/views/conference/list.jsp" />
+	</definition>
+	
+	<definition name="conference/administrator/sdElapsedList" extends="master.page">
+		<put-attribute name="title" value="Conferences whose submission deadline elapsed recently" />
+		<put-attribute name="body" value="/views/conference/list.jsp" />
+	</definition>
+	
+	<definition name="conference/administrator/nDElapsesSoonList" extends="master.page">
+		<put-attribute name="title" value="Conferences whose notification deadline elapses soon" />
+		<put-attribute name="body" value="/views/conference/list.jsp" />
+	</definition>
+	
+	<definition name="conference/administrator/cRElapsesSoonList" extends="master.page">
+		<put-attribute name="title" value="Conferences whose camera-ready deadline elapses soon" />
+		<put-attribute name="body" value="/views/conference/list.jsp" />
+	</definition>
+	
+	<definition name="conference/administrator/organisedSoonList" extends="master.page">
+		<put-attribute name="title" value="Conferences that will be organised soon" />
+		<put-attribute name="body" value="/views/conference/list.jsp" />
+	</definition>
+	
+	<definition name="conference/administrator/edit" extends="master.page">
+		<put-attribute name="title" value="Edit conference" />
+		<put-attribute name="body" value="/views/conference/edit.jsp" />
+	</definition>
+	
+</tiles-definitions>
