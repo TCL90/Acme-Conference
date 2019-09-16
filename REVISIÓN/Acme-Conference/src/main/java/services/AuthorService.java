@@ -181,11 +181,12 @@ public class AuthorService {
 			a.setScore(score);
 			//this.save(a);
 		}
-		for (final Author a : authors) {
-			ratio = (a.getScore() / highestScore) * 10;
-			scoreRedondeado = AuthorService.redondearDecimales(ratio, 2);
-			a.setScore(scoreRedondeado);
-		}
+		for (final Author a : authors)
+			if (a.getScore() != 0.0) {
+				ratio = (a.getScore() / highestScore) * 10;
+				scoreRedondeado = AuthorService.redondearDecimales(ratio, 2);
+				a.setScore(scoreRedondeado);
+			}
 		return authors;
 	}
 
